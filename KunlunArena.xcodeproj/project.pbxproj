@@ -14,6 +14,10 @@
 		F482DF0E239744050063CF84 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F482DF0D239744050063CF84 /* ViewController.swift */; };
 		F482DF10239744070063CF84 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F482DF0F239744070063CF84 /* Assets.xcassets */; };
 		F482DF13239744070063CF84 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F482DF11239744070063CF84 /* Main.storyboard */; };
+		F482DF1F239744D50063CF84 /* GameClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F482DF1E239744D50063CF84 /* GameClass.swift */; };
+		F482DF21239744E50063CF84 /* PlayerClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F482DF20239744E50063CF84 /* PlayerClass.swift */; };
+		F482DF23239745070063CF84 /* EntityClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F482DF22239745070063CF84 /* EntityClass.swift */; };
+		F482DF26239749550063CF84 /* random.swift in Sources */ = {isa = PBXBuildFile; fileRef = F482DF25239749550063CF84 /* random.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +31,10 @@
 		F482DF12239744070063CF84 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F482DF14239744070063CF84 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F482DF15239744070063CF84 /* KunlunArena.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = KunlunArena.entitlements; sourceTree = "<group>"; };
+		F482DF1E239744D50063CF84 /* GameClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameClass.swift; sourceTree = "<group>"; };
+		F482DF20239744E50063CF84 /* PlayerClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerClass.swift; sourceTree = "<group>"; };
+		F482DF22239745070063CF84 /* EntityClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityClass.swift; sourceTree = "<group>"; };
+		F482DF25239749550063CF84 /* random.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = random.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +67,7 @@
 		F482DF04239744050063CF84 /* KunlunArena */ = {
 			isa = PBXGroup;
 			children = (
+				F482DF1B2397445D0063CF84 /* Core Classes */,
 				F482DF05239744050063CF84 /* AppDelegate.swift */,
 				F482DF07239744050063CF84 /* GameScene.sks */,
 				F482DF09239744050063CF84 /* Actions.sks */,
@@ -70,6 +79,41 @@
 				F482DF15239744070063CF84 /* KunlunArena.entitlements */,
 			);
 			path = KunlunArena;
+			sourceTree = "<group>";
+		};
+		F482DF1B2397445D0063CF84 /* Core Classes */ = {
+			isa = PBXGroup;
+			children = (
+				F482DF242397493C0063CF84 /* Utility Classes */,
+				F482DF1D239744830063CF84 /* Creature Classes */,
+				F482DF1C239744740063CF84 /* Game Level Classes */,
+			);
+			path = "Core Classes";
+			sourceTree = "<group>";
+		};
+		F482DF1C239744740063CF84 /* Game Level Classes */ = {
+			isa = PBXGroup;
+			children = (
+				F482DF1E239744D50063CF84 /* GameClass.swift */,
+				F482DF20239744E50063CF84 /* PlayerClass.swift */,
+			);
+			path = "Game Level Classes";
+			sourceTree = "<group>";
+		};
+		F482DF1D239744830063CF84 /* Creature Classes */ = {
+			isa = PBXGroup;
+			children = (
+				F482DF22239745070063CF84 /* EntityClass.swift */,
+			);
+			path = "Creature Classes";
+			sourceTree = "<group>";
+		};
+		F482DF242397493C0063CF84 /* Utility Classes */ = {
+			isa = PBXGroup;
+			children = (
+				F482DF25239749550063CF84 /* random.swift */,
+			);
+			path = "Utility Classes";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -144,8 +188,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F482DF26239749550063CF84 /* random.swift in Sources */,
 				F482DF0E239744050063CF84 /* ViewController.swift in Sources */,
 				F482DF0C239744050063CF84 /* GameScene.swift in Sources */,
+				F482DF1F239744D50063CF84 /* GameClass.swift in Sources */,
+				F482DF23239745070063CF84 /* EntityClass.swift in Sources */,
+				F482DF21239744E50063CF84 /* PlayerClass.swift in Sources */,
 				F482DF06239744050063CF84 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
