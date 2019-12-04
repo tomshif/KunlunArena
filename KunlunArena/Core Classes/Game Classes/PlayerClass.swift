@@ -9,8 +9,15 @@
 import Foundation
 import SpriteKit
 
-class PlayerClass:Codable
+class PlayerClass
 {
+    var game:GameClass?
+    
+    init(theGame:GameClass)
+    {
+        game=theGame
+    }
+    
     
     
 }

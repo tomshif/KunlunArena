@@ -9,12 +9,15 @@
 import Foundation
 import SpriteKit
 
-class EntityClass:Codable
+class EntityClass
 {
     var name:String
     var headNum:Int
     var bodyNum:Int
     var legsNum:Int
+    var headSprite=SKSpriteNode()
+    var bodySprite=SKSpriteNode()
+    
     
     init()
     {
@@ -24,34 +27,6 @@ class EntityClass:Codable
         legsNum=0
     }
     
-    
-    /*
-    private enum CodingKeys: String, CodingKey {
-        case name
-        case headNum
-        case bodyNum
-        case legsNum
-        
-    } // CodingKeys
-    
-    required init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.name = try container.decode(String.self, forKey: .name)
-        self.headNum = try container.decode(Int.self, forKey: .headNum)
-        self.bodyNum = try container.decode(Int.self, forKey: .bodyNum)
-        self.legsNum = try container.decode(Int.self, forKey: .legsNum)
-    } // decode init
-    
-    func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(name, forKey: .name)
-        try container.encode(headNum, forKey: .headNum)
-        try container.encode(bodyNum, forKey: .bodyNum)
-        try container.encode(legsNum, forKey: .legsNum)
-        
-
-    }
-    */
     
     
 } // class EntityClass
