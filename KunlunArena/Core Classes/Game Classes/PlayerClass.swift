@@ -12,7 +12,13 @@ import SpriteKit
 class PlayerClass
 {
     var game:GameClass?
+    var playerSprite:SKSpriteNode?
     
+    
+    init()
+    {
+        
+    }
     init(theGame:GameClass)
     {
         game=theGame

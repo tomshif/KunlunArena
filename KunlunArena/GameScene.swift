@@ -23,8 +23,8 @@ class GameScene: SKScene {
     
     
     
-    var game:GameClass?
-    var player:PlayerClass?
+    var game=GameClass()
+
 
     var myEnt=EntityClass()
     
@@ -42,23 +42,35 @@ class GameScene: SKScene {
     
     // CONSTANTS
     let MOVESPEED:CGFloat=10
+            
     
+    
+    // Temp Variables
+    //var tempEnt=EntityClass()
+    var player=PlayerClass()
+    
+    var entList=[EntityClass]()
     
     
     override func didMove(to view: SKView) {
         
         addChild(cam)
         self.camera=cam
+
+        
+        
+        
+        
         
         game=GameClass(theScene: self)
-        if game != nil
-        {
-            player=PlayerClass(theGame: game!)
-        }
+
+            player=PlayerClass(theGame: game)
+            print("Player Created")
         
+        game.player=player
         
         gameState=STATES.FIGHT
-        
+        player.playerSprite=pBody
         drawGrid()
         
         addChild(pBody)
@@ -67,6 +79,17 @@ class GameScene: SKScene {
         pBody.zPosition=1
         pHead.zPosition=2
         pArms.zPosition=2
+        
+        // create a bunch of temp entities
+        for i in 1...1000
+        {
+            let tempEnt=EntityClass(theScene: self)
+            tempEnt.game=game
+            tempEnt.bodySprite.position.x=random(min: -size.width, max: size.width)
+            tempEnt.bodySprite.position.y=random(min: -size.height, max: size.height)
+            entList.append(tempEnt)
+        } // for
+        
         
     } // didMove()
     
@@ -238,6 +261,10 @@ class GameScene: SKScene {
         
         pBody.position=cam.position
         
+        for ent in entList
+        {
+            ent.update()
+        }
         
     } // update()
     

@@ -12,6 +12,12 @@ import SpriteKit
 class GameClass
 {
     var scene:SKScene?
+    var player:PlayerClass?
+    
+    init()
+    {
+        
+    }
     
     init(theScene:SKScene)
     {
