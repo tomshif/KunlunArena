@@ -16,6 +16,11 @@ class GameScene: SKScene {
     
     // SK Nodes
     var cam=SKCameraNode()
+    var pBody=SKSpriteNode(imageNamed: "body")
+    var pHead=SKSpriteNode(imageNamed: "head")
+    var pArms=SKSpriteNode(imageNamed: "arms")
+    
+    
     
     
     var game:GameClass?
@@ -29,6 +34,7 @@ class GameScene: SKScene {
     var leftPressed:Bool=false
     var rightPressed:Bool=false
     var downPressed:Bool=false
+    var mousePressed:Bool=false
     
     
     var gameState:Int=STATES.FIGHT
@@ -55,13 +61,17 @@ class GameScene: SKScene {
         
         drawGrid()
         
+        addChild(pBody)
+        pBody.addChild(pHead)
+        pBody.addChild(pArms)
+        pBody.zPosition=1
+        pHead.zPosition=2
+        pArms.zPosition=2
+        
     } // didMove()
     
     
-    func touchDown(atPoint pos : CGPoint) {
 
-    } // touchDown()
-    
     
     func drawGrid()
     {
@@ -81,12 +91,25 @@ class GameScene: SKScene {
         } // for y
     } // drawGrid()
     
+    func touchDown(atPoint pos : CGPoint) {
+        mousePressed=true
+        let dx=pos.x-pBody.position.x
+        let dy=pos.y-pBody.position.y
+        let angle=atan2(dy,dx)
+        pBody.zRotation=angle
+        
+    } // touchDown()
+    
+    
     func touchMoved(toPoint pos : CGPoint) {
-
+        let dx=pos.x-pBody.position.x
+        let dy=pos.y-pBody.position.y
+        let angle=atan2(dy,dx)
+        pBody.zRotation=angle
     } // touchMoved()
     
     func touchUp(atPoint pos : CGPoint) {
-
+        mousePressed=false
     } // touchUp()
     
     override func mouseDown(with event: NSEvent) {
@@ -151,16 +174,59 @@ class GameScene: SKScene {
         if rightPressed
         {
             cam.position.x += MOVESPEED
+            
         }
         if upPressed
         {
             cam.position.y += MOVESPEED
+            
         }
         if downPressed
         {
             cam.position.y -= MOVESPEED
+            
+        }
+        
+        
+        if !mousePressed
+        {
+            if rightPressed
+            {
+                pBody.zRotation=0
+            }
+            if leftPressed
+            {
+                pBody.zRotation=CGFloat.pi
+            }
+            if upPressed
+            {
+                pBody.zRotation=CGFloat.pi/2
+            }
+            if downPressed
+            {
+                pBody.zRotation=3*CGFloat.pi/2
+            }
+            if rightPressed && upPressed
+            {
+                pBody.zRotation=CGFloat.pi/4
+            }
+            if leftPressed && upPressed
+            {
+                pBody.zRotation = 3*CGFloat.pi/4
+            }
+            
+            if leftPressed && downPressed
+            {
+                pBody.zRotation = 5*CGFloat.pi/4
+            }
+            
+            if rightPressed && downPressed
+            {
+                pBody.zRotation = 7*CGFloat.pi/4
+            }
         }
     } // keyMovement
+    
     
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
@@ -169,6 +235,10 @@ class GameScene: SKScene {
         {
             keyMovement()
         }
+        
+        pBody.position=cam.position
+        
+        
     } // update()
     
     
