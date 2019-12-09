@@ -82,7 +82,7 @@ class GameScene: SKScene {
         pArms.zPosition=2
         
         // create a bunch of temp entities
-        for i in 1...2000
+        for i in 1...1000
         {
             let tempEnt=EntityClass(theScene: self)
             tempEnt.game=game
@@ -99,15 +99,15 @@ class GameScene: SKScene {
     
     func drawGrid()
     {
-        let gridWidth:Int=64
+        let gridWidth:Int=32
         
         for y in 1...gridWidth
         {
             for x in 1...gridWidth
             {
                 let tempGrid=SKSpriteNode(imageNamed: "bgGrid")
-                tempGrid.position.x = CGFloat(x-32)*(tempGrid.size.width)
-                tempGrid.position.y = CGFloat(y-32)*tempGrid.size.height
+                tempGrid.position.x = CGFloat(x-gridWidth/2)*(tempGrid.size.width)
+                tempGrid.position.y = CGFloat(y-gridWidth/2)*tempGrid.size.height
                 tempGrid.zPosition=0
                 tempGrid.name="tempGrid"
                 addChild(tempGrid)
@@ -211,7 +211,7 @@ class GameScene: SKScene {
             
         }
         
-        
+        /*
         if !mousePressed
         {
             if rightPressed
@@ -249,6 +249,7 @@ class GameScene: SKScene {
                 pBody.zRotation = 7*CGFloat.pi/4
             }
         }
+         */
     } // keyMovement
     
     
@@ -258,7 +259,7 @@ class GameScene: SKScene {
         
         // increase our update cycle
         updateCycle += 1
-        if updateCycle > 3
+        if updateCycle > 5
         {
             updateCycle=0
         }

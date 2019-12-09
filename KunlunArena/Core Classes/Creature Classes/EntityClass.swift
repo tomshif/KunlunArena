@@ -18,12 +18,19 @@ class EntityClass
     var headNum:Int
     var bodyNum:Int
     var legsNum:Int
+    
+    var isTurning:Bool=false
+    
+    
     var headSprite=SKSpriteNode()
     var bodySprite=SKSpriteNode()
     
     var moveSpeed:CGFloat=5.0
+    var turnToAngle:CGFloat=0
     
     let UPDATECYCLE:Int=0
+    var TURNRATE:CGFloat=0.1
+    
     
     init()
     {
@@ -56,7 +63,51 @@ class EntityClass
         bodySprite.zPosition=10
         headSprite.zPosition=11
         moveSpeed=random(min: 3.5, max: 8.5)
+        TURNRATE=random(min: 0.1, max: 0.25)
     } // init(scene)
+    
+    func getAngleToPlayer() -> CGFloat
+    {
+                
+        let dx=game!.player!.playerSprite!.position.x - bodySprite.position.x
+        let dy=game!.player!.playerSprite!.position.y - bodySprite.position.y
+        var angle=atan2(dy,dx)
+        if angle < 0
+        {
+            angle += CGFloat.pi*2
+        }
+        
+        return angle
+    } // getAngleToPlayer()
+    
+    func turnTo(pAngle: CGFloat)
+    {
+        
+        var da=pAngle-bodySprite.zRotation // delta angle
+        if da > 3.14
+        {
+            da -= CGFloat.pi*2
+        }
+        print("pAngle: \(pAngle)")
+        print("da: \(da)")
+        if da < TURNRATE*2
+        {
+            isTurning=false
+            bodySprite.zRotation=pAngle
+        }
+        else
+        {
+            if da > 0
+            {
+                bodySprite.zRotation += TURNRATE
+            }
+            else if da < 0
+            {
+                bodySprite.zRotation -= TURNRATE
+            }
+            isTurning=true
+        } // else
+    } // turnTo()
     
     public func update(cycle: Int)
     {
@@ -70,7 +121,8 @@ class EntityClass
             let angle=atan2(dy,dx)
             
             // Turn towards player
-            bodySprite.zRotation=angle
+            turnToAngle=angle
+            turnTo(pAngle: angle)
             
             // Compute distance to player
             let dist=hypot(dy, dx)
