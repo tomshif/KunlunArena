@@ -21,6 +21,7 @@ class GameScene: SKScene {
     var pArms=SKSpriteNode(imageNamed: "arms")
     
     
+    var updateCycle:Int=0
     
     
     var game=GameClass()
@@ -81,7 +82,7 @@ class GameScene: SKScene {
         pArms.zPosition=2
         
         // create a bunch of temp entities
-        for i in 1...1000
+        for i in 1...2000
         {
             let tempEnt=EntityClass(theScene: self)
             tempEnt.game=game
@@ -254,17 +255,27 @@ class GameScene: SKScene {
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
         
+        
+        // increase our update cycle
+        updateCycle += 1
+        if updateCycle > 3
+        {
+            updateCycle=0
+        }
+        
+        
         if gameState==STATES.FIGHT
         {
             keyMovement()
-        }
+            for ent in entList
+            {
+                ent.update(cycle: updateCycle)
+            }
+        } // if we're in fight state
         
         pBody.position=cam.position
         
-        for ent in entList
-        {
-            ent.update()
-        }
+
         
     } // update()
     

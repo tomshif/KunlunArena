@@ -14,6 +14,8 @@ class PlayerClass
     var game:GameClass?
     var playerSprite:SKSpriteNode?
     
+    var health:Int=100
+    
     
     init()
     {

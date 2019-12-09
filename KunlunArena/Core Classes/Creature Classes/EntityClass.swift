@@ -21,6 +21,9 @@ class EntityClass
     var headSprite=SKSpriteNode()
     var bodySprite=SKSpriteNode()
     
+    var moveSpeed:CGFloat=5.0
+    
+    let UPDATECYCLE:Int=0
     
     init()
     {
@@ -52,36 +55,34 @@ class EntityClass
         headSprite.name="entHead"
         bodySprite.zPosition=10
         headSprite.zPosition=11
-        
+        moveSpeed=random(min: 3.5, max: 8.5)
     } // init(scene)
     
-    public func update()
+    public func update(cycle: Int)
     {
-        // Simple Follow logic - target player
-        print("game: \(game)")
-        print("player: \(game!.player)")
-        print("sprite: \(game!.player!.playerSprite)")
-        // get direction to player
-        let dx=game!.player!.playerSprite!.position.x - bodySprite.position.x
-        let dy=game!.player!.playerSprite!.position.y - bodySprite.position.y
-        let angle=atan2(dy,dx)
-        
-        // Turn towards player
-        bodySprite.zRotation=angle
-        
-        // Compute distance to player
-        let dist=hypot(dy, dx)
-        
-        
-        
-        // move towards player to a point
-        if dist > 30
+        if UPDATECYCLE==cycle
         {
-            let moveDX=cos(angle)*5
-            let moveDY=sin(angle)*5
-            bodySprite.position.x += moveDX
-            bodySprite.position.y += moveDY
-        }
+            // Simple Follow logic - target player
+ 
+            // get direction to player
+            let dx=game!.player!.playerSprite!.position.x - bodySprite.position.x
+            let dy=game!.player!.playerSprite!.position.y - bodySprite.position.y
+            let angle=atan2(dy,dx)
+            
+            // Turn towards player
+            bodySprite.zRotation=angle
+            
+            // Compute distance to player
+            let dist=hypot(dy, dx)
+            
+        } // if it's our time to update
+            
+        // move towards player
+
+        let moveDX=cos(bodySprite.zRotation)*moveSpeed
+        let moveDY=sin(bodySprite.zRotation)*moveSpeed
+        bodySprite.position.x += moveDX
+        bodySprite.position.y += moveDY
         
     } // update()
     
