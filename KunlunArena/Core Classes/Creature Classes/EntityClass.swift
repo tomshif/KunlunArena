@@ -62,8 +62,8 @@ class EntityClass
         headSprite.name="entHead"
         bodySprite.zPosition=10
         headSprite.zPosition=11
-        moveSpeed=random(min: 3.5, max: 8.5)
-        TURNRATE=random(min: 0.1, max: 0.25)
+        moveSpeed=random(min: 1.5, max: 8.5)
+        TURNRATE=random(min: 0.2, max: 0.45)
     } // init(scene)
     
     func getAngleToPlayer() -> CGFloat
@@ -84,13 +84,17 @@ class EntityClass
     {
         
         var da=pAngle-bodySprite.zRotation // delta angle
-        if da > 3.14
+        if da > CGFloat.pi
         {
             da -= CGFloat.pi*2
         }
+        if da < -CGFloat.pi
+        {
+            da += CGFloat.pi*2
+        }
         print("pAngle: \(pAngle)")
         print("da: \(da)")
-        if da < TURNRATE*2
+        if abs(da) < TURNRATE
         {
             isTurning=false
             bodySprite.zRotation=pAngle

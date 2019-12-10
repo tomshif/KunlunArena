@@ -36,6 +36,8 @@ class GameScene: SKScene {
     var rightPressed:Bool=false
     var downPressed:Bool=false
     var mousePressed:Bool=false
+    var zoomOutPressed:Bool=false
+    var zoomInPressed:Bool=false
     
     
     var gameState:Int=STATES.FIGHT
@@ -82,7 +84,7 @@ class GameScene: SKScene {
         pArms.zPosition=2
         
         // create a bunch of temp entities
-        for i in 1...1000
+        for i in 1...1
         {
             let tempEnt=EntityClass(theScene: self)
             tempEnt.game=game
@@ -162,6 +164,11 @@ class GameScene: SKScene {
             
         case 13:
             upPressed=true
+        case 27:
+            zoomOutPressed=true
+            
+        case 24:
+            zoomInPressed=true
             
         default:
             print("keyDown: \(event.characters!) keyCode: \(event.keyCode)")
@@ -182,7 +189,11 @@ class GameScene: SKScene {
                 
             case 13:
                 upPressed=false
+            case 27:
+                zoomOutPressed=false
                 
+            case 24:
+                zoomInPressed=false
         default:
             break
         } // switch keyCode
@@ -209,6 +220,16 @@ class GameScene: SKScene {
         {
             cam.position.y -= MOVESPEED
             
+        }
+        
+        if cam.xScale < 4.0 && zoomInPressed
+        {
+            cam.setScale(cam.xScale+0.01)
+        }
+        
+        if cam.xScale > 0.01 && zoomOutPressed
+        {
+            cam.setScale(cam.xScale-0.01)
         }
         
         /*
