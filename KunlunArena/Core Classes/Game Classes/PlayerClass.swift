@@ -13,6 +13,8 @@ class PlayerClass
 {
     var game:GameClass?
     var playerSprite:SKSpriteNode?
+    var moveToPoint:CGPoint?
+    var isMovingToPoint:Bool=false
     
     var health:Int=100
     

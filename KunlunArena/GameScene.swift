@@ -45,7 +45,7 @@ class GameScene: SKScene {
     
     // CONSTANTS
     let MOVESPEED:CGFloat=10
-            
+    let MAXAICYCLES:Int=4
     
     
     // Temp Variables
@@ -250,14 +250,14 @@ class GameScene: SKScene {
             
         }
         
-        if cam.xScale < 4.0 && zoomInPressed
-        {
-            cam.setScale(cam.xScale+0.01)
-        }
-        
-        if cam.xScale > 0.01 && zoomOutPressed
+        if cam.xScale > 0.01 && zoomInPressed
         {
             cam.setScale(cam.xScale-0.01)
+        }
+        
+        if cam.xScale < 4.0 && zoomOutPressed
+        {
+            cam.setScale(cam.xScale+0.01)
         }
         
         /*
@@ -307,23 +307,25 @@ class GameScene: SKScene {
         
         
         // increase our update cycle
-        updateCycle += 1
-        if updateCycle > 3
-        {
-            updateCycle=0
-        }
+
         
         
         if gameState==STATES.FIGHT
         {
+            updateCycle += 1
+            if updateCycle >= MAXAICYCLES
+            {
+                updateCycle=0
+            }
             keyMovement()
+            pBody.position=cam.position
             for ent in entList
             {
                 ent.update(cycle: updateCycle)
             }
         } // if we're in fight state
         
-        pBody.position=cam.position
+        
         
 
         
