@@ -84,9 +84,9 @@ class GameScene: SKScene {
         pArms.zPosition=2
         
         // create a bunch of temp entities
-        for i in 1...1
+        for i in 1...500
         {
-            let tempEnt=EntityClass(theScene: self)
+            let tempEnt=EntityClass(theScene: self, id: i)
             tempEnt.game=game
             tempEnt.bodySprite.position.x=random(min: -size.width, max: size.width)
             tempEnt.bodySprite.position.y=random(min: -size.height, max: size.height)
@@ -96,7 +96,34 @@ class GameScene: SKScene {
         
     } // didMove()
     
-    
+    func attack()
+    {
+        for node in self.children
+        {
+            if node.name != nil
+            {
+                if node.name!.contains("ent")
+                {
+                    let dx=player.playerSprite!.position.x - node.position.x
+                    let dy=player.playerSprite!.position.y - node.position.y
+                    let dist = hypot(dy, dx)
+                    if dist < 60
+                    {
+                        // find in entList
+                        for ent in entList
+                        {
+                            if ent.bodySprite.name! == node.name!
+                            {
+                                ent.die()
+                               
+                            } // we found the entity, kill it
+                        } // for each entity
+                        //print(node.name!)
+                    } // if in range
+                } // if ent
+            } // if name not nil
+        } // for each node
+    } // attack()
 
     
     func drawGrid()
@@ -123,7 +150,7 @@ class GameScene: SKScene {
         let dy=pos.y-pBody.position.y
         let angle=atan2(dy,dx)
         pBody.zRotation=angle
-        
+    
     } // touchDown()
     
     
@@ -136,6 +163,7 @@ class GameScene: SKScene {
     
     func touchUp(atPoint pos : CGPoint) {
         mousePressed=false
+        attack()
     } // touchUp()
     
     override func mouseDown(with event: NSEvent) {
@@ -280,7 +308,7 @@ class GameScene: SKScene {
         
         // increase our update cycle
         updateCycle += 1
-        if updateCycle > 5
+        if updateCycle > 3
         {
             updateCycle=0
         }

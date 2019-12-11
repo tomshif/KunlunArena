@@ -19,6 +19,13 @@
 		F482DF26239749550063CF84 /* random.swift in Sources */ = {isa = PBXBuildFile; fileRef = F482DF25239749550063CF84 /* random.swift */; };
 		F4AC645423982D5A00C64D2E /* BaseInventoryClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AC645323982D5A00C64D2E /* BaseInventoryClass.swift */; };
 		F4AC645623982E2200C64D2E /* States.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AC645523982E2200C64D2E /* States.swift */; };
+		F4AC645F239FF6A500C64D2E /* PlayerTalentClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AC645E239FF6A500C64D2E /* PlayerTalentClass.swift */; };
+		F4AC6461239FF6B800C64D2E /* EnemySkillClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AC6460239FF6B800C64D2E /* EnemySkillClass.swift */; };
+		F4AC6463239FF70B00C64D2E /* InventorySlots.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AC6462239FF70B00C64D2E /* InventorySlots.swift */; };
+		F4AC6465239FF7A300C64D2E /* PrefixClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AC6464239FF7A300C64D2E /* PrefixClass.swift */; };
+		F4AC646723A00CDD00C64D2E /* SpecialStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AC646623A00CDD00C64D2E /* SpecialStatus.swift */; };
+		F4AC646B23A03DF200C64D2E /* FireSplode.sks in Resources */ = {isa = PBXBuildFile; fileRef = F4AC646923A03DF200C64D2E /* FireSplode.sks */; };
+		F4AC646C23A03DF200C64D2E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F4AC646A23A03DF200C64D2E /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +44,13 @@
 		F482DF25239749550063CF84 /* random.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = random.swift; sourceTree = "<group>"; };
 		F4AC645323982D5A00C64D2E /* BaseInventoryClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseInventoryClass.swift; sourceTree = "<group>"; };
 		F4AC645523982E2200C64D2E /* States.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = States.swift; sourceTree = "<group>"; };
+		F4AC645E239FF6A500C64D2E /* PlayerTalentClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerTalentClass.swift; sourceTree = "<group>"; };
+		F4AC6460239FF6B800C64D2E /* EnemySkillClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnemySkillClass.swift; sourceTree = "<group>"; };
+		F4AC6462239FF70B00C64D2E /* InventorySlots.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventorySlots.swift; sourceTree = "<group>"; };
+		F4AC6464239FF7A300C64D2E /* PrefixClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrefixClass.swift; sourceTree = "<group>"; };
+		F4AC646623A00CDD00C64D2E /* SpecialStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecialStatus.swift; sourceTree = "<group>"; };
+		F4AC646923A03DF200C64D2E /* FireSplode.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = FireSplode.sks; sourceTree = "<group>"; };
+		F4AC646A23A03DF200C64D2E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +87,7 @@
 				F482DF1B2397445D0063CF84 /* Core Classes */,
 				F482DF0B239744050063CF84 /* GameScene.swift */,
 				F482DF0F239744070063CF84 /* Assets.xcassets */,
+				F4AC646823A03DCE00C64D2E /* Emitters */,
 				F482DF14239744070063CF84 /* Info.plist */,
 			);
 			path = KunlunArena;
@@ -81,6 +96,7 @@
 		F482DF1B2397445D0063CF84 /* Core Classes */ = {
 			isa = PBXGroup;
 			children = (
+				F4AC645D239FF68C00C64D2E /* Ability Classes */,
 				F4AC645223982D3C00C64D2E /* Inventory Classes */,
 				F482DF242397493C0063CF84 /* Utility Classes */,
 				F482DF1D239744830063CF84 /* Creature Classes */,
@@ -119,6 +135,8 @@
 			isa = PBXGroup;
 			children = (
 				F4AC645323982D5A00C64D2E /* BaseInventoryClass.swift */,
+				F4AC6462239FF70B00C64D2E /* InventorySlots.swift */,
+				F4AC6464239FF7A300C64D2E /* PrefixClass.swift */,
 			);
 			path = "Inventory Classes";
 			sourceTree = "<group>";
@@ -157,6 +175,25 @@
 				F482DF15239744070063CF84 /* KunlunArena.entitlements */,
 			);
 			path = Other;
+			sourceTree = "<group>";
+		};
+		F4AC645D239FF68C00C64D2E /* Ability Classes */ = {
+			isa = PBXGroup;
+			children = (
+				F4AC645E239FF6A500C64D2E /* PlayerTalentClass.swift */,
+				F4AC6460239FF6B800C64D2E /* EnemySkillClass.swift */,
+				F4AC646623A00CDD00C64D2E /* SpecialStatus.swift */,
+			);
+			path = "Ability Classes";
+			sourceTree = "<group>";
+		};
+		F4AC646823A03DCE00C64D2E /* Emitters */ = {
+			isa = PBXGroup;
+			children = (
+				F4AC646923A03DF200C64D2E /* FireSplode.sks */,
+				F4AC646A23A03DF200C64D2E /* Assets.xcassets */,
+			);
+			path = Emitters;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -219,7 +256,9 @@
 			files = (
 				F482DF08239744050063CF84 /* GameScene.sks in Resources */,
 				F482DF10239744070063CF84 /* Assets.xcassets in Resources */,
+				F4AC646B23A03DF200C64D2E /* FireSplode.sks in Resources */,
 				F482DF13239744070063CF84 /* Main.storyboard in Resources */,
+				F4AC646C23A03DF200C64D2E /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -232,13 +271,18 @@
 			files = (
 				F482DF26239749550063CF84 /* random.swift in Sources */,
 				F482DF0E239744050063CF84 /* ViewController.swift in Sources */,
+				F4AC6465239FF7A300C64D2E /* PrefixClass.swift in Sources */,
+				F4AC646723A00CDD00C64D2E /* SpecialStatus.swift in Sources */,
 				F4AC645423982D5A00C64D2E /* BaseInventoryClass.swift in Sources */,
 				F482DF0C239744050063CF84 /* GameScene.swift in Sources */,
+				F4AC6461239FF6B800C64D2E /* EnemySkillClass.swift in Sources */,
 				F482DF1F239744D50063CF84 /* GameClass.swift in Sources */,
 				F482DF23239745070063CF84 /* EntityClass.swift in Sources */,
 				F4AC645623982E2200C64D2E /* States.swift in Sources */,
 				F482DF21239744E50063CF84 /* PlayerClass.swift in Sources */,
 				F482DF06239744050063CF84 /* AppDelegate.swift in Sources */,
+				F4AC6463239FF70B00C64D2E /* InventorySlots.swift in Sources */,
+				F4AC645F239FF6A500C64D2E /* PlayerTalentClass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
