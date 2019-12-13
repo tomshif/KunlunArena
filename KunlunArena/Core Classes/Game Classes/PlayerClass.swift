@@ -17,17 +17,53 @@ class PlayerClass
     var isMovingToPoint:Bool=false
     
     var health:Int=100
-    
+    var moveSpeed:CGFloat=10
     
     init()
     {
         
-    }
+    } // init (default)
+    
+    
+    
+    
     init(theGame:GameClass)
     {
         game=theGame
-    }
+    } // init - game
+    
+    func moveTo()
+    {
+        if isMovingToPoint
+        {
+            // update movement toward point
+            if moveToPoint != nil
+            {
+            
+                let dx=moveToPoint!.x-playerSprite!.position.x
+                let dy=moveToPoint!.y-playerSprite!.position.y
+                let angle=atan2(dy,dx)
+                playerSprite!.zRotation=angle
+                playerSprite!.position.x += cos(angle)*moveSpeed
+                playerSprite!.position.y += sin(angle)*moveSpeed
+                
+                // Get distance to point
+                let dist = hypot(dy,dx)
+                if dist < moveSpeed
+                {
+                    isMovingToPoint=false
+                    
+                }
+            } // if moveToPoint is not nil
+        } // if moving to point
+    } // moveTo()
     
     
     
-}
+    func update()
+    {
+        moveTo()
+    } // update()
+    
+    
+} // PlayerClass

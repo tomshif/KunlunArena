@@ -98,6 +98,11 @@ class GameScene: SKScene {
     
     func attack()
     {
+        let tempSplode=SKEmitterNode(fileNamed: "FireSplode.sks")
+        tempSplode!.position=player.playerSprite!.position
+        tempSplode!.zPosition=10
+        tempSplode!.run(SKAction.sequence([SKAction.wait(forDuration: 0.5),SKAction.removeFromParent()]))
+        addChild(tempSplode!)
         for node in self.children
         {
             if node.name != nil
@@ -150,7 +155,9 @@ class GameScene: SKScene {
         let dy=pos.y-pBody.position.y
         let angle=atan2(dy,dx)
         pBody.zRotation=angle
-    
+        player.moveToPoint=pos
+        player.isMovingToPoint=true
+        
     } // touchDown()
     
     
@@ -159,11 +166,13 @@ class GameScene: SKScene {
         let dy=pos.y-pBody.position.y
         let angle=atan2(dy,dx)
         pBody.zRotation=angle
+        player.moveToPoint=pos
+        player.isMovingToPoint=true
     } // touchMoved()
     
     func touchUp(atPoint pos : CGPoint) {
         mousePressed=false
-        attack()
+        
     } // touchUp()
     
     override func mouseDown(with event: NSEvent) {
@@ -192,6 +201,10 @@ class GameScene: SKScene {
             
         case 13:
             upPressed=true
+            
+        case 18: // 1
+            attack()
+            
         case 27:
             zoomOutPressed=true
             
@@ -232,21 +245,21 @@ class GameScene: SKScene {
     {
         if leftPressed
         {
-            cam.position.x -= MOVESPEED
+            player.playerSprite!.position.x -= MOVESPEED
         }
         if rightPressed
         {
-            cam.position.x += MOVESPEED
+            player.playerSprite!.position.x += MOVESPEED
             
         }
         if upPressed
         {
-            cam.position.y += MOVESPEED
+            player.playerSprite!.position.y += MOVESPEED
             
         }
         if downPressed
         {
-            cam.position.y -= MOVESPEED
+            player.playerSprite!.position.y -= MOVESPEED
             
         }
         
@@ -317,8 +330,15 @@ class GameScene: SKScene {
             {
                 updateCycle=0
             }
-            keyMovement()
-            pBody.position=cam.position
+            
+            if !mousePressed
+            {
+                keyMovement()
+            }
+            cam.position=player.playerSprite!.position
+            
+            player.update()
+            
             for ent in entList
             {
                 ent.update(cycle: updateCycle)

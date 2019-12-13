@@ -14,6 +14,7 @@ class GameClass
     var scene:SKScene?
     var player:PlayerClass?
     
+    
     init()
     {
         
