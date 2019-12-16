@@ -15,6 +15,8 @@ class PlayerClass
     var playerSprite:SKSpriteNode?
     var moveToPoint:CGPoint?
     var isMovingToPoint:Bool=false
+    var playerName:String?
+    
     
     var health:Int=100
     var moveSpeed:CGFloat=10
