@@ -7,3 +7,23 @@
 //
 
 import Foundation
+import SpriteKit
+
+class PlayerTalentClass
+{
+    var game:GameClass?
+    
+    init()
+    {
+        
+    } // init (default)
+    
+    init(theGame: GameClass)
+    {
+        game=theGame
+        
+    } // init game
+    
+    
+    
+} // PlayerTalentClass
