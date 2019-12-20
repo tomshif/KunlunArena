@@ -11,6 +11,9 @@ import Foundation
 struct STATES
 {
     static let FIGHT:Int=0
-    static let SPAWN:Int=2
-    static let PAUSE:Int=4
+    static let SPAWNWALL:Int=2
+    static let SPAWNVERTWALL:Int=3
+    
+    static let SPAWNENT:Int=4
+    static let PAUSE:Int=6
 } // struct STATES

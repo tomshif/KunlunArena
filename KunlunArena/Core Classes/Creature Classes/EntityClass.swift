@@ -23,6 +23,7 @@ class EntityClass
     
     var isTurning:Bool=false
     var isPursuing:Bool=false
+    var isDead:Bool=false
     
     
     var headSprite=SKSpriteNode()
@@ -40,6 +41,11 @@ class EntityClass
     let UPDATECYCLE:Int=0
     var TURNRATE:CGFloat=0.1
     
+    
+    
+    // Testing Variables
+    
+
     init()
     {
         name="Test"
@@ -61,7 +67,7 @@ class EntityClass
         bodyNum=0
         legsNum=0
         headSprite=SKSpriteNode(imageNamed: "head")
-        bodySprite=SKSpriteNode(imageNamed: "body")
+        bodySprite=SKSpriteNode(imageNamed: "eBody00")
         bodySprite.colorBlendFactor=1.0
         bodySprite.color=NSColor(calibratedRed: random(min: 0, max: 1.0), green: random(min: 0, max: 1), blue: random(min: 0, max: 1), alpha: 1.0)
         bodySprite.position.x=scene!.size.height/2
@@ -72,6 +78,12 @@ class EntityClass
         headSprite.name=String(format:"entHead%5d",id)
         bodySprite.zPosition=10
         headSprite.zPosition=11
+        bodySprite.physicsBody=SKPhysicsBody(circleOfRadius: bodySprite.size.width/2)
+        bodySprite.physicsBody!.categoryBitMask=BODYBITMASKS.ENEMY
+        bodySprite.physicsBody!.collisionBitMask=BODYBITMASKS.WALL | BODYBITMASKS.ENEMY | BODYBITMASKS.PLAYER
+        
+        bodySprite.physicsBody!.affectedByGravity=false
+        
         moveSpeed=random(min: 1.5, max: 8.5)
         TURNRATE=random(min: 0.25, max: 0.45)
         attackRange=random(min: 25, max: 200)
@@ -84,6 +96,9 @@ class EntityClass
         {
             pursueRange=attackRange
         }
+        
+
+        
     } // init(scene)
     
     internal func getAngleToPlayer() -> CGFloat
@@ -141,8 +156,25 @@ class EntityClass
         bodySprite.removeAllChildren()
         bodySprite.removeAllActions()
         bodySprite.removeFromParent()
+        isDead=true
+
     } // die()
     
+    private func checkLOS(angle: CGFloat, distance: CGFloat) -> Bool
+    {
+        
+        let rayStart = bodySprite.position
+        let rayEnd = CGPoint(x: bodySprite.position.x+(distance * cos(angle)),
+                             y: bodySprite.position.y+(distance * sin(angle)))
+
+        
+        let body = scene!.physicsWorld.body(alongRayStart: rayStart, end: rayEnd)
+
+        
+        return body?.categoryBitMask == BODYBITMASKS.PLAYER
+        
+        
+    } // checkLOS
     
     
     
@@ -158,7 +190,12 @@ class EntityClass
             // get direction to player
             let dx=game!.player!.playerSprite!.position.x - bodySprite.position.x
             let dy=game!.player!.playerSprite!.position.y - bodySprite.position.y
-            let angle=atan2(dy,dx)
+            var angle=atan2(dy,dx)
+            if angle < 0
+            {
+                angle+=CGFloat.pi*2
+            }
+
             // Compute distance to player
             playerDist=hypot(dy, dx)
             
@@ -169,17 +206,17 @@ class EntityClass
                 turnToAngle=angle
                 turnTo(pAngle: angle)
             }
-
+            if checkLOS(angle: angle, distance: VISIONDIST)
+            {
+                isPursuing=true
+            }
+            else
+            {
+                isPursuing=false
+            }
             
         } // if it's our time to update
-        if playerDist > VISIONDIST
-        {
-            isPursuing=false
-        }
-        else
-        {
-            isPursuing=true
-        }
+
         
         // move towards player
         if playerDist > pursueRange && isPursuing

@@ -22,7 +22,13 @@ class GameScene: SKScene {
     
     
     var updateCycle:Int=0
+    var entCount:Int=0
     
+    
+    var stateLabel=SKLabelNode(fontNamed: "Chalkduster")
+    var entCountLabel=SKLabelNode(fontNamed: "Arial")
+    
+    var entCountBG=SKShapeNode()
     
     var game=GameClass()
 
@@ -60,9 +66,28 @@ class GameScene: SKScene {
         addChild(cam)
         self.camera=cam
 
+        stateLabel.fontSize=40
+        stateLabel.position.y=size.height*0.45
+        stateLabel.text="Play State"
+        stateLabel.zPosition=10000
+        stateLabel.fontColor=NSColor.red
+        cam.addChild(stateLabel)
         
+        entCountBG=SKShapeNode(rectOf: CGSize(width: 100, height: 30))
+        entCountBG.fillColor=NSColor.black
+        entCountBG.alpha=0.50
+        entCountBG.zPosition=10001
+        entCountBG.position.x = -size.width*0.43
+        entCountBG.position.y = size.height*0.45
+        cam.addChild(entCountBG)
         
-        
+        entCountLabel.position.x = -size.width*0.43
+        entCountLabel.position.y = size.height*0.4375
+        entCountLabel.fontSize = 28
+        entCountLabel.fontColor=NSColor.white
+        entCountLabel.zPosition=10002
+        entCountLabel.text="435"
+        cam.addChild(entCountLabel)
         
         
         game=GameClass(theScene: self)
@@ -83,14 +108,23 @@ class GameScene: SKScene {
         pHead.zPosition=2
         pArms.zPosition=2
         
+        // create player physics body
+        pBody.physicsBody=SKPhysicsBody(circleOfRadius: pBody.size.width/2)
+        pBody.physicsBody!.categoryBitMask=BODYBITMASKS.PLAYER
+        pBody.physicsBody!.collisionBitMask=BODYBITMASKS.WALL
+        pBody.physicsBody!.affectedByGravity=false
+        
+        
+        
         // create a bunch of temp entities
         for i in 1...500
         {
-            let tempEnt=EntityClass(theScene: self, id: i)
+            let tempEnt=EntityClass(theScene: self, id: entCount)
             tempEnt.game=game
             tempEnt.bodySprite.position.x=random(min: -size.width, max: size.width)
             tempEnt.bodySprite.position.y=random(min: -size.height, max: size.height)
             entList.append(tempEnt)
+            entCount+=1
         } // for
         
         
@@ -150,24 +184,74 @@ class GameScene: SKScene {
     } // drawGrid()
     
     func touchDown(atPoint pos : CGPoint) {
-        mousePressed=true
-        let dx=pos.x-pBody.position.x
-        let dy=pos.y-pBody.position.y
-        let angle=atan2(dy,dx)
-        pBody.zRotation=angle
-        player.moveToPoint=pos
-        player.isMovingToPoint=true
         
+        if gameState==STATES.FIGHT
+        {
+            mousePressed=true
+            let dx=pos.x-pBody.position.x
+            let dy=pos.y-pBody.position.y
+            let angle=atan2(dy,dx)
+            pBody.zRotation=angle
+            player.moveToPoint=pos
+            player.isMovingToPoint=true
+        } // if play state
+        else if gameState==STATES.SPAWNWALL
+        {
+            for x in 1...10
+            {
+                let tempWall=SKSpriteNode(imageNamed: "wall00")
+                tempWall.setScale(2.0)
+                tempWall.position.y=pos.y
+                tempWall.position.x = pos.x + (CGFloat(x)*tempWall.size.width)
+                tempWall.zPosition=10
+                tempWall.physicsBody=SKPhysicsBody(rectangleOf: tempWall.size)
+                tempWall.physicsBody!.categoryBitMask=BODYBITMASKS.WALL
+                tempWall.physicsBody!.affectedByGravity=false
+                tempWall.physicsBody!.isDynamic=false
+                tempWall.physicsBody!.collisionBitMask=BODYBITMASKS.ENEMY
+                tempWall.name="wall"
+                addChild(tempWall)
+            } // for
+        } // if in spawnwall state
+        else if gameState==STATES.SPAWNVERTWALL
+        {
+            for x in 1...10
+            {
+                let tempWall=SKSpriteNode(imageNamed: "wall00")
+                tempWall.setScale(2.0)
+                tempWall.position.x=pos.x
+                tempWall.position.y = pos.y + (CGFloat(x)*tempWall.size.height)
+                tempWall.zPosition=10
+                tempWall.physicsBody=SKPhysicsBody(rectangleOf: tempWall.size)
+                tempWall.physicsBody!.categoryBitMask=BODYBITMASKS.WALL
+                tempWall.physicsBody!.affectedByGravity=false
+                tempWall.physicsBody!.isDynamic=false
+                tempWall.physicsBody!.collisionBitMask=BODYBITMASKS.ENEMY
+                tempWall.name="wall"
+                addChild(tempWall)
+            } // for
+        }
+        else if gameState==STATES.SPAWNENT
+        {
+            let tempEnt=EntityClass(theScene: self, id: entCount)
+            tempEnt.game=game
+            tempEnt.bodySprite.position=pos
+            entList.append(tempEnt)
+            entCount+=1
+        } // if in spawn entity state
     } // touchDown()
     
     
     func touchMoved(toPoint pos : CGPoint) {
-        let dx=pos.x-pBody.position.x
-        let dy=pos.y-pBody.position.y
-        let angle=atan2(dy,dx)
-        pBody.zRotation=angle
-        player.moveToPoint=pos
-        player.isMovingToPoint=true
+        if gameState==STATES.FIGHT
+        {
+            let dx=pos.x-pBody.position.x
+            let dy=pos.y-pBody.position.y
+            let angle=atan2(dy,dx)
+            pBody.zRotation=angle
+            player.moveToPoint=pos
+            player.isMovingToPoint=true
+        } // if in play state
     } // touchMoved()
     
     func touchUp(atPoint pos : CGPoint) {
@@ -210,6 +294,26 @@ class GameScene: SKScene {
             
         case 24:
             zoomInPressed=true
+            
+            
+        case 31: // o
+            gameState=STATES.SPAWNENT
+            
+        case 35: // P
+            gameState=STATES.FIGHT
+            
+        case 33: // [
+            gameState=STATES.SPAWNWALL
+            
+        case 30:
+            gameState=STATES.SPAWNVERTWALL
+            
+            
+        case 42: // \ (backslash)
+            for ent in entList
+            {
+                ent.die()
+            }
             
         default:
             print("keyDown: \(event.characters!) keyCode: \(event.keyCode)")
@@ -272,59 +376,52 @@ class GameScene: SKScene {
         {
             cam.setScale(cam.xScale+0.01)
         }
-        
-        /*
-        if !mousePressed
-        {
-            if rightPressed
-            {
-                pBody.zRotation=0
-            }
-            if leftPressed
-            {
-                pBody.zRotation=CGFloat.pi
-            }
-            if upPressed
-            {
-                pBody.zRotation=CGFloat.pi/2
-            }
-            if downPressed
-            {
-                pBody.zRotation=3*CGFloat.pi/2
-            }
-            if rightPressed && upPressed
-            {
-                pBody.zRotation=CGFloat.pi/4
-            }
-            if leftPressed && upPressed
-            {
-                pBody.zRotation = 3*CGFloat.pi/4
-            }
-            
-            if leftPressed && downPressed
-            {
-                pBody.zRotation = 5*CGFloat.pi/4
-            }
-            
-            if rightPressed && downPressed
-            {
-                pBody.zRotation = 7*CGFloat.pi/4
-            }
-        }
-         */
+
     } // keyMovement
     
+    func updateUI()
+    {
+        switch gameState
+        {
+        case STATES.FIGHT:
+            stateLabel.text="Play State"
+            
+        case STATES.SPAWNWALL:
+            stateLabel.text="Spawn Horz Wall State"
+        case STATES.SPAWNVERTWALL:
+            stateLabel.text="Spawn Vert Wall State"
+        case STATES.SPAWNENT:
+            stateLabel.text="Spawn Ent State"
+        default:
+            stateLabel.text="Error in State"
+        } // switch gameState
+        
+        entCountLabel.text="\(entList.count)"
+        
+    } // updateUI()
+    
+    func cleanLists()
+    {
+        for i in 0..<entList.count
+        {
+            if entList[i].isDead
+            {
+                entList.remove(at: i)
+                break
+            } // if ent is dead
+        } // for each ent
+    } // clean lists
     
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
         
         
-        // increase our update cycle
+        updateUI()
+        cleanLists()
 
-        
-        
         if gameState==STATES.FIGHT
         {
+            // increase our update cycle
             updateCycle += 1
             if updateCycle >= MAXAICYCLES
             {
