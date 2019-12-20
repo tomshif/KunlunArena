@@ -197,7 +197,7 @@ class GameScene: SKScene {
         } // if play state
         else if gameState==STATES.SPAWNWALL
         {
-            for x in 1...10
+            for x in 0..<10
             {
                 let tempWall=SKSpriteNode(imageNamed: "wall00")
                 tempWall.setScale(2.0)
@@ -215,7 +215,7 @@ class GameScene: SKScene {
         } // if in spawnwall state
         else if gameState==STATES.SPAWNVERTWALL
         {
-            for x in 1...10
+            for x in 0..<10
             {
                 let tempWall=SKSpriteNode(imageNamed: "wall00")
                 tempWall.setScale(2.0)
