@@ -16,7 +16,10 @@ class PlayerClass
     var moveToPoint:CGPoint?
     var isMovingToPoint:Bool=false
     var playerName:String?
+    var isPlayAction:Bool=false
     
+    
+    var playerTalents=[PlayerTalentClass]()
     
     var health:Int=100
     var moveSpeed:CGFloat=10
@@ -32,6 +35,13 @@ class PlayerClass
     init(theGame:GameClass)
     {
         game=theGame
+        
+        // initialize talents
+        
+        let tempDash=DashTalentClass(theGame: game!)
+        playerTalents.append(tempDash)
+        
+        
     } // init - game
     
     func moveTo()
@@ -60,11 +70,16 @@ class PlayerClass
         } // if moving to point
     } // moveTo()
     
-    
+    private func checkActions()
+    {
+        isPlayAction=playerSprite!.hasActions()
+    }
     
     func update()
     {
+        checkActions()
         moveTo()
+        
     } // update()
     
     

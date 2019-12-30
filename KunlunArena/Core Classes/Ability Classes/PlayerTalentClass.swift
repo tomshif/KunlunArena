@@ -12,6 +12,15 @@ import SpriteKit
 class PlayerTalentClass
 {
     var game:GameClass?
+    var name:String="Talent"
+    var isAction:Bool=false
+    var tier:Int=0
+    var lastUse=NSDate()
+    
+    let COOLDOWN:Double=1.5
+    
+    
+    
     
     init()
     {
@@ -24,6 +33,10 @@ class PlayerTalentClass
         
     } // init game
     
+    public func doTalent()
+    {
+        
+    } // doTalent()
     
     
 } // PlayerTalentClass

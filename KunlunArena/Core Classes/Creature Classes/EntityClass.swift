@@ -24,7 +24,7 @@ class EntityClass
     var isTurning:Bool=false
     var isPursuing:Bool=false
     var isDead:Bool=false
-    
+    var playerInSight:Bool=false
     
     var headSprite=SKSpriteNode()
     var bodySprite=SKSpriteNode()
@@ -33,7 +33,8 @@ class EntityClass
     var turnToAngle:CGFloat=0
     var attackRange:CGFloat=15
     var pursueRange:CGFloat=15
-
+    var lastSightAngle:CGFloat=0
+    
     var playerDist:CGFloat=0
     
     
@@ -87,7 +88,7 @@ class EntityClass
         moveSpeed=random(min: 1.5, max: 8.5)
         TURNRATE=random(min: 0.25, max: 0.45)
         attackRange=random(min: 25, max: 200)
-        VISIONDIST=random(min: 500, max: 1000)
+        VISIONDIST=random(min: 500, max: 500)
         if attackRange > 45
         {
             pursueRange=attackRange*2
@@ -199,21 +200,33 @@ class EntityClass
             // Compute distance to player
             playerDist=hypot(dy, dx)
             
+            playerInSight=checkLOS(angle: angle, distance: VISIONDIST)
             
             // Turn towards player
-            if isPursuing
+            if isPursuing && playerInSight
             {
                 turnToAngle=angle
                 turnTo(pAngle: angle)
-            }
-            if checkLOS(angle: angle, distance: VISIONDIST)
+            } // if
+            
+            if isPursuing && !playerInSight
+            {
+                turnToAngle=lastSightAngle
+                turnTo(pAngle: turnToAngle)
+            } // if
+            
+            
+            if playerInSight && playerDist < VISIONDIST
             {
                 isPursuing=true
-            }
-            else
+                lastSightAngle=angle
+            } // if
+            
+            if playerDist >= VISIONDIST
             {
                 isPursuing=false
             }
+            
             
         } // if it's our time to update
 

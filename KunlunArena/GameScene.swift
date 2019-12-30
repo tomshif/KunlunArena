@@ -10,9 +10,12 @@ import SpriteKit
 import GameplayKit
 
 
+// Global externals
 
 
 class GameScene: SKScene {
+    
+    let BUILDVERSION:String="Tech Demo 0.05"
     
     // SK Nodes
     var cam=SKCameraNode()
@@ -27,6 +30,10 @@ class GameScene: SKScene {
     
     var stateLabel=SKLabelNode(fontNamed: "Chalkduster")
     var entCountLabel=SKLabelNode(fontNamed: "Arial")
+    var copyrightLabel=SKLabelNode(text: "(C) LCS Game Design, 2020.")
+    var buildLabel=SKLabelNode(fontNamed: "Arial")
+    
+    
     
     var entCountBG=SKShapeNode()
     
@@ -52,20 +59,51 @@ class GameScene: SKScene {
     // CONSTANTS
     let MOVESPEED:CGFloat=10
     let MAXAICYCLES:Int=4
-    
+    var NUMENEMIES:Int=150
     
     // Temp Variables
     //var tempEnt=EntityClass()
     var player=PlayerClass()
     
     var entList=[EntityClass]()
+    var tempMap:MapClass?
+    var bgParticle=SKEmitterNode()
     
+    var MAPSIZE:Int=90
     
     override func didMove(to view: SKView) {
         
+        
+        MAPSIZE=Int(random(min:48, max: 90))
+        NUMENEMIES=MAPSIZE*MAPSIZE/54 // based on 150 enemies at 90x90 map
         addChild(cam)
         self.camera=cam
+        self.backgroundColor=NSColor.black
+        
+        tempMap=MapClass(width: MAPSIZE, height: MAPSIZE, theScene: self)
+        
+        copyrightLabel.position.y = -size.height*0.475
+        copyrightLabel.position.x = -size.width*0.385
+        copyrightLabel.fontName="Arial"
+        copyrightLabel.fontSize=16
+        copyrightLabel.fontColor=NSColor.red
+        cam.addChild(copyrightLabel)
+        copyrightLabel.zPosition=10000
+        
+        buildLabel.position.x = size.width*0.4
+        buildLabel.position.y = -size.height*0.45
+        buildLabel.zPosition = 10000
+        buildLabel.text="Build: \(BUILDVERSION)"
+        buildLabel.fontColor=NSColor.red
+        buildLabel.fontSize=16
+        cam.addChild(buildLabel)
 
+        
+        
+        bgParticle=SKEmitterNode(fileNamed: "SmokeBG.sks")!
+        addChild(bgParticle)
+        bgParticle.setScale(4.0)
+        
         stateLabel.fontSize=40
         stateLabel.position.y=size.height*0.45
         stateLabel.text="Play State"
@@ -99,36 +137,68 @@ class GameScene: SKScene {
         
         gameState=STATES.FIGHT
         player.playerSprite=pBody
-        drawGrid()
+        //drawGrid()
         
         addChild(pBody)
         pBody.addChild(pHead)
         pBody.addChild(pArms)
-        pBody.zPosition=1
-        pHead.zPosition=2
-        pArms.zPosition=2
+        pBody.zPosition=2
+        pHead.zPosition=3
+        pArms.zPosition=3
         
         // create player physics body
-        pBody.physicsBody=SKPhysicsBody(circleOfRadius: pBody.size.width/2)
+        pBody.physicsBody=SKPhysicsBody(circleOfRadius: pBody.size.width)
         pBody.physicsBody!.categoryBitMask=BODYBITMASKS.PLAYER
         pBody.physicsBody!.collisionBitMask=BODYBITMASKS.WALL
+        pBody.physicsBody!.usesPreciseCollisionDetection=true
         pBody.physicsBody!.affectedByGravity=false
         
+        player.playerSprite!.position.x = CGFloat(tempMap!.roomPoints[tempMap!.startRoomIndex].x)*tempMap!.TILESIZE - (CGFloat(tempMap!.mapWidth)*tempMap!.TILESIZE) / 2
+        player.playerSprite!.position.y = CGFloat(tempMap!.roomPoints[tempMap!.startRoomIndex].y)*tempMap!.TILESIZE - (CGFloat(tempMap!.mapHeight)*tempMap!.TILESIZE)/2
         
         
         // create a bunch of temp entities
-        for i in 1...500
+        for i in 1...NUMENEMIES
         {
-            let tempEnt=EntityClass(theScene: self, id: entCount)
-            tempEnt.game=game
-            tempEnt.bodySprite.position.x=random(min: -size.width, max: size.width)
-            tempEnt.bodySprite.position.y=random(min: -size.height, max: size.height)
-            entList.append(tempEnt)
-            entCount+=1
+            spawnEnemy()
         } // for
         
         
     } // didMove()
+    
+    func spawnEnemy()
+    {
+        let tempEnt=EntityClass(theScene: self, id: entCount)
+        tempEnt.game=game
+        var goodSpawn:Bool=false
+        var xp:CGFloat=0
+        var yp:CGFloat=0
+        while !goodSpawn
+        {
+            xp=random(min: -CGFloat(tempMap!.mapWidth)*tempMap!.TILESIZE/2, max: CGFloat(tempMap!.mapWidth)*tempMap!.TILESIZE/2)
+            yp=random(min: -CGFloat(tempMap!.mapHeight)*tempMap!.TILESIZE/2, max: CGFloat(tempMap!.mapHeight)*tempMap!.TILESIZE/2)
+            // get distance to player
+            let dx = xp - player.playerSprite!.position.x
+            let dy = yp - player.playerSprite!.position.y
+            let pDist = hypot(dy,dx)
+            print(pDist)
+            
+            for node in self.nodes(at: CGPoint(x: xp, y: yp))
+            {
+                if node.name != nil
+                {
+                    if node.name!.contains("Floor") && pDist > 1000
+                    {
+                        goodSpawn=true
+                    }
+                } // if not nil
+            } // for each node at the spot
+        } // while we're looking for a good spawn point
+        tempEnt.bodySprite.position.x=xp
+        tempEnt.bodySprite.position.y=yp
+        entList.append(tempEnt)
+        entCount+=1
+    }
     
     func attack()
     {
@@ -146,7 +216,7 @@ class GameScene: SKScene {
                     let dx=player.playerSprite!.position.x - node.position.x
                     let dy=player.playerSprite!.position.y - node.position.y
                     let dist = hypot(dy, dx)
-                    if dist < 60
+                    if dist < 100
                     {
                         // find in entList
                         for ent in entList
@@ -200,7 +270,7 @@ class GameScene: SKScene {
             for x in 0..<10
             {
                 let tempWall=SKSpriteNode(imageNamed: "wall00")
-                tempWall.setScale(2.0)
+                tempWall.setScale(3.0)
                 tempWall.position.y=pos.y
                 tempWall.position.x = pos.x + (CGFloat(x)*tempWall.size.width)
                 tempWall.zPosition=10
@@ -208,6 +278,7 @@ class GameScene: SKScene {
                 tempWall.physicsBody!.categoryBitMask=BODYBITMASKS.WALL
                 tempWall.physicsBody!.affectedByGravity=false
                 tempWall.physicsBody!.isDynamic=false
+                tempWall.physicsBody!.usesPreciseCollisionDetection=true
                 tempWall.physicsBody!.collisionBitMask=BODYBITMASKS.ENEMY
                 tempWall.name="wall"
                 addChild(tempWall)
@@ -218,7 +289,7 @@ class GameScene: SKScene {
             for x in 0..<10
             {
                 let tempWall=SKSpriteNode(imageNamed: "wall00")
-                tempWall.setScale(2.0)
+                tempWall.setScale(3.0)
                 tempWall.position.x=pos.x
                 tempWall.position.y = pos.y + (CGFloat(x)*tempWall.size.height)
                 tempWall.zPosition=10
@@ -226,6 +297,8 @@ class GameScene: SKScene {
                 tempWall.physicsBody!.categoryBitMask=BODYBITMASKS.WALL
                 tempWall.physicsBody!.affectedByGravity=false
                 tempWall.physicsBody!.isDynamic=false
+                tempWall.physicsBody!.usesPreciseCollisionDetection=true
+                
                 tempWall.physicsBody!.collisionBitMask=BODYBITMASKS.ENEMY
                 tempWall.name="wall"
                 addChild(tempWall)
@@ -249,8 +322,8 @@ class GameScene: SKScene {
             let dy=pos.y-pBody.position.y
             let angle=atan2(dy,dx)
             pBody.zRotation=angle
-            player.moveToPoint=pos
-            player.isMovingToPoint=true
+            // player.moveToPoint=pos
+            // player.isMovingToPoint=true
         } // if in play state
     } // touchMoved()
     
@@ -274,25 +347,25 @@ class GameScene: SKScene {
     override func keyDown(with event: NSEvent) {
         switch event.keyCode {
 
-        case 0:
+        case 0: // a
             leftPressed=true
             
-        case 2:
+        case 2: // d
             rightPressed=true
             
-        case 1:
+        case 1: // s
             downPressed=true
             
-        case 13:
+        case 13: // w
             upPressed=true
             
-        case 18: // 1
+        case 14: // e
             attack()
             
-        case 27:
+        case 27: // -
             zoomOutPressed=true
             
-        case 24:
+        case 24: // +
             zoomInPressed=true
             
             
@@ -305,7 +378,7 @@ class GameScene: SKScene {
         case 33: // [
             gameState=STATES.SPAWNWALL
             
-        case 30:
+        case 30: // ]
             gameState=STATES.SPAWNVERTWALL
             
             
@@ -315,6 +388,39 @@ class GameScene: SKScene {
                 ent.die()
             }
             
+        
+        case 44: // / (forward slash)
+            for ent in entList
+            {
+                ent.die()
+            }
+            for node in self.children
+            {
+                if node.name != nil
+                {
+                    if node.name!.contains("dng")
+                    {
+                        node.removeFromParent()
+                    }
+                } // if not nil
+            } // for each node
+            MAPSIZE=Int(random(min:48, max: 90))
+            NUMENEMIES=MAPSIZE*MAPSIZE/54
+            tempMap=MapClass(width: MAPSIZE, height: MAPSIZE, theScene: self)
+            player.playerSprite!.position.x = CGFloat(tempMap!.roomPoints[tempMap!.startRoomIndex].x)*tempMap!.TILESIZE - (CGFloat(tempMap!.mapWidth)*tempMap!.TILESIZE) / 2
+            player.playerSprite!.position.y = CGFloat(tempMap!.roomPoints[tempMap!.startRoomIndex].y)*tempMap!.TILESIZE - (CGFloat(tempMap!.mapHeight)*tempMap!.TILESIZE)/2
+            
+            
+            // create a bunch of temp entities
+            for i in 1...NUMENEMIES
+            {
+                spawnEnemy()
+            } // for
+        
+        case 49: // space
+            player.playerTalents[0].doTalent()
+            
+
         default:
             print("keyDown: \(event.characters!) keyCode: \(event.keyCode)")
         } // switch keyCode
@@ -347,36 +453,59 @@ class GameScene: SKScene {
     
     func keyMovement()
     {
+        
         if leftPressed
         {
             player.playerSprite!.position.x -= MOVESPEED
+            player.playerSprite!.zRotation = CGFloat.pi
         }
         if rightPressed
         {
             player.playerSprite!.position.x += MOVESPEED
+            player.playerSprite!.zRotation = 0
             
         }
         if upPressed
         {
             player.playerSprite!.position.y += MOVESPEED
+            player.playerSprite!.zRotation = CGFloat.pi/2
             
         }
         if downPressed
         {
             player.playerSprite!.position.y -= MOVESPEED
+            player.playerSprite!.zRotation = 3*CGFloat.pi/2
             
         }
         
         if cam.xScale > 0.01 && zoomInPressed
         {
-            cam.setScale(cam.xScale-0.01)
+            cam.setScale(cam.xScale-0.05)
         }
         
-        if cam.xScale < 4.0 && zoomOutPressed
+        if cam.xScale < 8.0 && zoomOutPressed
         {
-            cam.setScale(cam.xScale+0.01)
+            cam.setScale(cam.xScale+0.05)
         }
 
+        // handle orientation
+        if leftPressed && upPressed
+        {
+            player.playerSprite!.zRotation = 3*CGFloat.pi/4
+        }
+        if leftPressed && downPressed
+        {
+            player.playerSprite!.zRotation = 5*CGFloat.pi/4
+        }
+        if rightPressed && upPressed
+        {
+            player.playerSprite!.zRotation = 1*CGFloat.pi/4
+        }
+        if rightPressed && downPressed
+        {
+            player.playerSprite!.zRotation = 7*CGFloat.pi/4
+        }
+        
     } // keyMovement
     
     func updateUI()
@@ -428,7 +557,7 @@ class GameScene: SKScene {
                 updateCycle=0
             }
             
-            if !mousePressed
+            if !mousePressed && !player.isPlayAction
             {
                 keyMovement()
             }
