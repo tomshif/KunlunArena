@@ -15,10 +15,11 @@ class DashTalentClass:PlayerTalentClass
     
     override init(theGame: GameClass)
     {
-        super.init()
+        super.init(theGame: theGame)
         name="Dash"
         isAction=true
         game=theGame
+        COOLDOWN=0.75
     } // init game
     
     override func doTalent()

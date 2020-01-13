@@ -30,18 +30,20 @@ class GameScene: SKScene {
     
     var entCountBG=SKShapeNode()
     
+    var bgParticle=SKEmitterNode() // This looks crappy, needs to be different
     
     
-    
-
+    // Ints
     var updateCycle:Int=0
     var entCount:Int=0
+    var gameState:Int=STATES.FIGHT
+    var MAPSIZE:Int=90
     
-    
+    // Core Classes
     var game=GameClass()
 
 
-    var myEnt=EntityClass()
+    // var myEnt=EntityClass()
     
     
     // KB Bools
@@ -54,7 +56,7 @@ class GameScene: SKScene {
     var zoomInPressed:Bool=false
     
     
-    var gameState:Int=STATES.FIGHT
+    
     
     
     // CONSTANTS
@@ -64,25 +66,30 @@ class GameScene: SKScene {
     
     // Temp Variables
     //var tempEnt=EntityClass()
-    var player=PlayerClass()
+    var player=PlayerClass() // Needs to go in GameClass
     
-    var entList=[EntityClass]()
+    var entList=[EntityClass]() // needs to move to GameClass
     var tempMap:MapClass?
-    var bgParticle=SKEmitterNode()
     
-    var MAPSIZE:Int=90
+    
+    
     
     override func didMove(to view: SKView) {
         
         
         MAPSIZE=Int(random(min:64, max: 96))
-        NUMENEMIES=MAPSIZE*MAPSIZE/54 // based on 150 enemies at 90x90 map
+        NUMENEMIES=MAPSIZE*MAPSIZE/54 // based on 150 enemies at 90x90 map...This needs to be moved to MapClass
+        
+        // Init Camera and BG
         addChild(cam)
         self.camera=cam
         self.backgroundColor=NSColor.black
         
+        // Gen Map
         tempMap=MapClass(width: MAPSIZE, height: MAPSIZE, theScene: self)
         
+        
+        // Setup Labels
         copyrightLabel.position.y = -size.height*0.475
         copyrightLabel.position.x = -size.width*0.385
         copyrightLabel.fontName="Arial"
@@ -98,12 +105,6 @@ class GameScene: SKScene {
         buildLabel.fontColor=NSColor.red
         buildLabel.fontSize=16
         cam.addChild(buildLabel)
-
-        
-        
-        bgParticle=SKEmitterNode(fileNamed: "SmokeBG.sks")!
-        addChild(bgParticle)
-        bgParticle.setScale(4.0)
         
         stateLabel.fontSize=40
         stateLabel.position.y=size.height*0.45
@@ -128,18 +129,20 @@ class GameScene: SKScene {
         entCountLabel.text="435"
         cam.addChild(entCountLabel)
         
+        bgParticle=SKEmitterNode(fileNamed: "SmokeBG.sks")!
+        addChild(bgParticle)
+        bgParticle.setScale(4.0)
         
+        
+        // Init the game
         game=GameClass(theScene: self)
 
         player=PlayerClass(theGame: game)
-
-        
         game.player=player
-        
         gameState=STATES.FIGHT
         player.playerSprite=pBody
-        //drawGrid()
         
+        // Setup the player sprite (needs to be moved to PlayerClass init)
         addChild(pBody)
         pBody.addChild(pHead)
         pBody.addChild(pArms)
@@ -148,12 +151,13 @@ class GameScene: SKScene {
         pArms.zPosition=3
         
         // create player physics body
-        pBody.physicsBody=SKPhysicsBody(circleOfRadius: pBody.size.width)
+        pBody.physicsBody=SKPhysicsBody(circleOfRadius: pBody.size.width*0.75)
         pBody.physicsBody!.categoryBitMask=BODYBITMASKS.PLAYER
         pBody.physicsBody!.collisionBitMask=BODYBITMASKS.WALL
         pBody.physicsBody!.usesPreciseCollisionDetection=true
         pBody.physicsBody!.affectedByGravity=false
         
+        // Start the player in room #1 of the map
         player.playerSprite!.position.x = CGFloat(tempMap!.roomPoints[tempMap!.startRoomIndex].x)*tempMap!.TILESIZE - (CGFloat(tempMap!.mapWidth)*tempMap!.TILESIZE) / 2
         player.playerSprite!.position.y = CGFloat(tempMap!.roomPoints[tempMap!.startRoomIndex].y)*tempMap!.TILESIZE - (CGFloat(tempMap!.mapHeight)*tempMap!.TILESIZE)/2
         
@@ -203,6 +207,8 @@ class GameScene: SKScene {
     
     func attack()
     {
+        
+        // This is a temp function that needs to be replaced with a talent class
         let tempSplode=SKEmitterNode(fileNamed: "FireSplode.sks")
         tempSplode!.position=player.playerSprite!.position
         tempSplode!.zPosition=10
@@ -238,6 +244,7 @@ class GameScene: SKScene {
     
     func drawGrid()
     {
+        // This is used if you just want a blank grid instead of the actual level.
         let gridWidth:Int=32
         
         for y in 1...gridWidth
@@ -248,7 +255,7 @@ class GameScene: SKScene {
                 tempGrid.position.x = CGFloat(x-gridWidth/2)*(tempGrid.size.width)
                 tempGrid.position.y = CGFloat(y-gridWidth/2)*tempGrid.size.height
                 tempGrid.zPosition=0
-                tempGrid.name="tempGrid"
+                tempGrid.name="tempGridFloor"
                 addChild(tempGrid)
             } // for x
         } // for y
@@ -258,6 +265,7 @@ class GameScene: SKScene {
         
         if gameState==STATES.FIGHT
         {
+            // Currently a test of click to move...not sure I like this...maybe remove it?
             mousePressed=true
             let dx=pos.x-pBody.position.x
             let dy=pos.y-pBody.position.y

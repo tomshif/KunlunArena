@@ -17,15 +17,10 @@ class PlayerTalentClass
     var tier:Int=0
     var lastUse=NSDate()
     
-    let COOLDOWN:Double=1.5
+    var COOLDOWN:Double=1.5
     
     
     
-    
-    init()
-    {
-        
-    } // init (default)
     
     init(theGame: GameClass)
     {

@@ -168,7 +168,7 @@ class MapClass
 
             // adjust the grid to show room floors
             for y in 0..<roomHeight
-            {
+            {   
                 for x in 0..<roomWidth
                 {
                     
