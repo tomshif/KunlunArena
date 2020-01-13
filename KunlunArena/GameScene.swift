@@ -15,27 +15,28 @@ import GameplayKit
 
 class GameScene: SKScene {
     
-    let BUILDVERSION:String="Tech Demo 0.05"
+    let BUILDVERSION:String="Tech Demo 0.05a"
     
     // SK Nodes
     var cam=SKCameraNode()
     var pBody=SKSpriteNode(imageNamed: "body")
     var pHead=SKSpriteNode(imageNamed: "head")
     var pArms=SKSpriteNode(imageNamed: "arms")
-    
-    
-    var updateCycle:Int=0
-    var entCount:Int=0
-    
-    
+
     var stateLabel=SKLabelNode(fontNamed: "Chalkduster")
     var entCountLabel=SKLabelNode(fontNamed: "Arial")
     var copyrightLabel=SKLabelNode(text: "(C) LCS Game Design, 2020.")
     var buildLabel=SKLabelNode(fontNamed: "Arial")
     
-    
-    
     var entCountBG=SKShapeNode()
+    
+    
+    
+    
+
+    var updateCycle:Int=0
+    var entCount:Int=0
+    
     
     var game=GameClass()
 
@@ -74,7 +75,7 @@ class GameScene: SKScene {
     override func didMove(to view: SKView) {
         
         
-        MAPSIZE=Int(random(min:48, max: 90))
+        MAPSIZE=Int(random(min:64, max: 96))
         NUMENEMIES=MAPSIZE*MAPSIZE/54 // based on 150 enemies at 90x90 map
         addChild(cam)
         self.camera=cam
@@ -130,8 +131,8 @@ class GameScene: SKScene {
         
         game=GameClass(theScene: self)
 
-            player=PlayerClass(theGame: game)
-            print("Player Created")
+        player=PlayerClass(theGame: game)
+
         
         game.player=player
         
@@ -181,7 +182,7 @@ class GameScene: SKScene {
             let dx = xp - player.playerSprite!.position.x
             let dy = yp - player.playerSprite!.position.y
             let pDist = hypot(dy,dx)
-            print(pDist)
+            
             
             for node in self.nodes(at: CGPoint(x: xp, y: yp))
             {
@@ -198,7 +199,7 @@ class GameScene: SKScene {
         tempEnt.bodySprite.position.y=yp
         entList.append(tempEnt)
         entCount+=1
-    }
+    } // func spawnEnemy()
     
     func attack()
     {
@@ -387,7 +388,16 @@ class GameScene: SKScene {
             {
                 ent.die()
             }
-            
+            for node in self.children
+            {
+                if node.name != nil
+                {
+                    if node.name!.contains("wall")
+                    {
+                        node.removeFromParent()
+                    }
+                } // if not nil
+            } // for each node
         
         case 44: // / (forward slash)
             for ent in entList
@@ -398,13 +408,13 @@ class GameScene: SKScene {
             {
                 if node.name != nil
                 {
-                    if node.name!.contains("dng")
+                    if node.name!.contains("dng") || node.name!.contains("wall")
                     {
                         node.removeFromParent()
                     }
                 } // if not nil
             } // for each node
-            MAPSIZE=Int(random(min:48, max: 90))
+            MAPSIZE=Int(random(min:64, max: 96))
             NUMENEMIES=MAPSIZE*MAPSIZE/54
             tempMap=MapClass(width: MAPSIZE, height: MAPSIZE, theScene: self)
             player.playerSprite!.position.x = CGFloat(tempMap!.roomPoints[tempMap!.startRoomIndex].x)*tempMap!.TILESIZE - (CGFloat(tempMap!.mapWidth)*tempMap!.TILESIZE) / 2
@@ -483,7 +493,7 @@ class GameScene: SKScene {
             cam.setScale(cam.xScale-0.05)
         }
         
-        if cam.xScale < 8.0 && zoomOutPressed
+        if cam.xScale < 16.0 && zoomOutPressed
         {
             cam.setScale(cam.xScale+0.05)
         }

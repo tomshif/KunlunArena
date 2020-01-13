@@ -14,37 +14,49 @@ class MapClass
     var mapGrid=[Int]()
     var scene:GameScene?
     
-    var mapWidth:Int=0
+    var mapWidth:Int=0 // in tile grid spaces
     var mapHeight:Int=0
     
+    // An array of the map tile coords for each room (based on the bottom left corner of each room)
     var roomPoints=[(x: Int,y: Int)]()
     
+    // These save the start room (where the player will spawn), the end room (where the exit will be) and the largest room (Where the mini-boss / boss will be).
     var startRoomIndex:Int=0
     var endRoomIndex:Int=0
     var largestRoomIndex:Int=0
+    
+    
     var roomNum:Int=0
-    var TILESIZE:CGFloat=0
     
-    let ROOMDISTANCE:Int=8
-    let TILESCALE:CGFloat=8.0
     
-    let ONEBLOCKWIDE:CGFloat=0.65 // used for determining width of hallways
+    var TILESIZE:CGFloat=0 // set in init() to the width of the tile sprite (after scaling)
+    
+    var ROOMDISTANCE:Int=12 // This is how far apart the rooms must be in order to be allowed to be placed. This is the minimum distance (in tiles) from the bottom left corner of one room to the bottom left corner of the other room. If this number is too high, the game will lock up as there is no failsafe to bail out on the search...maybe we should add that?
+    
+    
+    
+    let TILESCALE:CGFloat=6.0 // How much to scale the ground tiles...make sure that all ground tiles are the same size or things get wonky.
+    
+    
+
+    var ONEBLOCKWIDE:CGFloat=0.00    // This used for determining width of hallways it rolls a number 0-1.0 and based on the value of this variable if the roll is HIGHER than this number, the hallway is two blocks wide instead of one. This is reset in the init() (currently randomized but to be customized for different subclasses).
     
     
     
     
     init(width:Int, height:Int, theScene: GameScene)
     {
-        scene=theScene
+        scene=theScene // a pointer to our scene
         
         mapWidth=width
         mapHeight=height
         
+        ONEBLOCKWIDE=random(min: 0.1, max: 0.9)
         
         // create empty map
-        for y in 0..<height
+        for _ in 0..<height
         {
-            for x in 0..<width
+            for _ in 0..<width
             {
                 
                 mapGrid.append(0)
@@ -66,13 +78,31 @@ class MapClass
     
     private func createMap()
     {
-        // choose number of rooms
-        roomNum=Int(random(min:CGFloat(mapWidth*mapHeight)/512, max: CGFloat(mapWidth*mapHeight)/384))
+        // ** choose number of rooms **
+        // This is chosen based on the size of the map.
+        // Bigger maps will have more rooms (on average)
+        // For example: 64*64 = 4096, divide this by:
+        // 256 = 16
+        // 341 = 12
+        // 512 = 8
+        // 768 = 5
+        // 1024 = 4
+        //
+        // But if we have a 96x96 map, that gives us 9216:
+        // 256 = 36
+        // 341 = 27
+        // 512 = 18
+        // 768 = 12
+        // 1024 = 9
+        //
+        // The random range can give a unique feel to the maps and should be customized for subclasses
+        
+        roomNum=Int(random(min:CGFloat(mapWidth*mapHeight)/768, max: CGFloat(mapWidth*mapHeight)/341))
+        
         
         // pick the location for the rooms
         
-        
-        for i in 1...roomNum
+        for _ in 1...roomNum
         {
             var goodSpot:Bool=false
             
@@ -94,6 +124,15 @@ class MapClass
                         let dist=Int(hypot(CGFloat(dy), CGFloat(dx)))
                         
                         
+                        // The room distance can GREATLY alter the look of the level
+                        // because if the rooms can be close together
+                        // then there will be a lot of overlap, turning two
+                        // or more rooms into one really big room
+                        // This is variable so that it can be altered in
+                        // subclasses but should not be altered within a given
+                        // subclass so that levels of the same subclass
+                        // maintain a consistent feel.
+                        
                         if dist <= ROOMDISTANCE
                         {
                             goodSpot=false
@@ -114,8 +153,8 @@ class MapClass
         var largestSize:Int=0
         for i in 0..<roomPoints.count
         {
-            let roomWidth:Int=Int(random(min:4, max: 13))
-            let roomHeight:Int=Int(random(min:4, max: 13))
+            let roomWidth:Int=Int(random(min:8, max: 16))
+            let roomHeight:Int=Int(random(min:8, max: 16))
             
             if i > 0
             {
@@ -125,7 +164,7 @@ class MapClass
                     largestSize=size
                     largestRoomIndex=i
                 }
-            }
+            } // save the largest sized room that isn't the first room
 
             // adjust the grid to show room floors
             for y in 0..<roomHeight
@@ -147,6 +186,10 @@ class MapClass
         
         
         // Next we draw the connecting paths to room to room
+        //
+        // We'll randomly choose whether to draw the horizontal or vertical
+        // connecting path first. We'll draw that path, then the other
+        //
         
         for i in 0..<roomPoints.count-1
         {
@@ -155,7 +198,7 @@ class MapClass
             let dx = roomPoints[i].x - roomPoints[i+1].x
             
             // Choose whether this is a one block or two block wide path
-            let HALLWIDTH=random(min: 0, max: 1) // 0..<0.75 = 1, 0.75 - 1.0 = 2
+            let HALLWIDTH=random(min: 0, max: 1) // if this is greater than our ONEBLOCKWIDE value, then the hall is two wide
             
             // choose to draw vertical or horizontal path first
             let choice=random(min:0, max: 1)
@@ -168,13 +211,12 @@ class MapClass
                     {
 
                         mapGrid[(roomPoints[i].y-yPath)*mapWidth+roomPoints[i].x]=2
-                        print("Floor path=\((roomPoints[i].y-yPath)*mapWidth+roomPoints[i].x)")
+                        
                         // if two block wide, add one to the right
                         if HALLWIDTH >= ONEBLOCKWIDE
                         {
-                            print("Extra path=\((roomPoints[i].y-yPath)*mapWidth+roomPoints[i].x+1)")
                         mapGrid[(roomPoints[i].y-yPath)*mapWidth+roomPoints[i].x+1]=2
-                        }
+                        } // if it is a double hallway
                     } // for each y difference
                 } // if drawing up
                 else if dy < 0
@@ -308,7 +350,8 @@ class MapClass
                         {
                             mapGrid[convertXY(x: x, y: y)] = 1
                         }
-                    }
+                    } // if
+                    
                     // check right
                     if x < mapWidth-1
                     {
@@ -316,7 +359,8 @@ class MapClass
                         {
                             mapGrid[convertXY(x: x, y: y)] = 1
                         }
-                    }
+                    } // if
+                    
                     // check left
                     if x > 0
                     {
@@ -324,50 +368,57 @@ class MapClass
                         {
                             mapGrid[convertXY(x: x, y: y)] = 1
                         }
-                    }
+                    } // if
                     
+                    // check below
                     if y > 0
                     {
                         if mapGrid[convertXY(x: x, y: y-1)] == 2
                         {
                             mapGrid[convertXY(x: x, y: y)] = 1
                         }
-                    }
+                    } // if
                     
+                    // check below left
                     if y > 0 && x > 0
                     {
                         if mapGrid[convertXY(x: x-1, y: y-1)] == 2
                         {
                             mapGrid[convertXY(x: x, y: y)] = 1
                         }
-                    }
+                    } // if
+                    
+                    // check above right
                     if y < mapHeight-1 && x < mapWidth-1
                     {
                         if mapGrid[convertXY(x: x+1, y: y+1)] == 2
                         {
                             mapGrid[convertXY(x: x, y: y)] = 1
                         }
-                    }
+                    } // if
                     
+                    // check below right
                     if y > 0 && x < mapWidth-1
                     {
                         if mapGrid[convertXY(x: x+1, y: y-1)] == 2
                         {
                             mapGrid[convertXY(x: x, y: y)] = 1
                         }
-                    }
+                    } // if
+                    
+                    // check below left
                     if y < mapHeight-1 && x > 0
                     {
                         if mapGrid[convertXY(x: x-1, y: y+1)] == 2
                         {
                             mapGrid[convertXY(x: x, y: y)] = 1
                         }
-                    }
+                    } // if
                 } // if not a floor tile
             } // for x
         } // for y
         
-    }
+    } // func createMap()
     
     
     private func drawMap()
@@ -422,10 +473,11 @@ class MapClass
                 } // switch
             } // for x
         } // for y
-    }
+    } // func drawMap()
+    
     private func convertXY(x: Int, y:Int) -> Int
     {
         return y*mapWidth+x
-    }
+    } // func convertXY()
     
 } // MapClass
