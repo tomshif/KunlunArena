@@ -25,6 +25,7 @@ class MapClass
     var endRoomIndex:Int=0
     var largestRoomIndex:Int=0
     
+    var floorType:Int=0
     
     var roomNum:Int=0
     
@@ -63,7 +64,7 @@ class MapClass
             } // for x
         } // for y
 
-        
+        floorType=Int(random(min: 0, max: 3.999999999))
         // create the map
         createMap()
         
@@ -423,6 +424,19 @@ class MapClass
     
     private func drawMap()
     {
+        var wallString:String=""
+        switch floorType
+        {
+        case 0:
+            wallString="wall"
+            
+        case 1:
+            wallString="yellowWall"
+            
+        default:
+            wallString="wall"
+            
+        }
         for y in 0..<mapHeight
         {
             for x in 0..<mapWidth
@@ -431,7 +445,7 @@ class MapClass
                 {
                     
                 case 1: // blocked grid
-                    let tempFloor=SKSpriteNode(imageNamed: "wall00")
+                    let tempFloor=SKSpriteNode(imageNamed: "\(wallString)00")
                     tempFloor.setScale(TILESCALE)
                     tempFloor.zPosition=1
                     tempFloor.position.x = (CGFloat(x)*tempFloor.size.width) - (CGFloat(mapWidth)*tempFloor.size.width)/2
@@ -452,12 +466,24 @@ class MapClass
                     if chance > 0.85
                     {
                         let skin=Int(random(min:1, max: 4.9999999))
-                        tempFloor.texture=SKTexture(imageNamed: "wall0\(skin)")
-                    }
+                        tempFloor.texture=SKTexture(imageNamed: "\(wallString)0\(skin)")
+                    } // if chance
                     
                 case 2: // room floor
                     
-                    let tempFloor=SKSpriteNode(imageNamed: "floor")
+                    let tempFloor=SKSpriteNode(imageNamed: "stoneFloor00")
+                    if floorType==1
+                    {
+                        tempFloor.texture=SKTexture(imageNamed: "dirtFloor00")
+                    }
+                    else if floorType==2
+                    {
+                    tempFloor.texture=SKTexture(imageNamed: "lavaFloor00")
+                    }
+                    else if floorType==3
+                    {
+                    tempFloor.texture=SKTexture(imageNamed: "purpleFloor00")
+                    }
                     tempFloor.setScale(TILESCALE)
                     tempFloor.zPosition=1
                     tempFloor.position.x = (CGFloat(x)*tempFloor.size.width) - (CGFloat(mapWidth)*tempFloor.size.width)/2

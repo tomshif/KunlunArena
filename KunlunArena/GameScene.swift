@@ -78,7 +78,7 @@ class GameScene: SKScene {
         
         
         MAPSIZE=Int(random(min:64, max: 96))
-        NUMENEMIES=MAPSIZE*MAPSIZE/54 // based on 150 enemies at 90x90 map...This needs to be moved to MapClass
+        NUMENEMIES=MAPSIZE*MAPSIZE/game.ENTSPAWNFACTOR // based on 150 enemies at 90x90 map divide by 54...This needs to be moved to MapClass
         
         // Init Camera and BG
         addChild(cam)
@@ -423,7 +423,7 @@ class GameScene: SKScene {
                 } // if not nil
             } // for each node
             MAPSIZE=Int(random(min:64, max: 96))
-            NUMENEMIES=MAPSIZE*MAPSIZE/54
+            NUMENEMIES=MAPSIZE*MAPSIZE/game.ENTSPAWNFACTOR
             tempMap=MapClass(width: MAPSIZE, height: MAPSIZE, theScene: self)
             player.playerSprite!.position.x = CGFloat(tempMap!.roomPoints[tempMap!.startRoomIndex].x)*tempMap!.TILESIZE - (CGFloat(tempMap!.mapWidth)*tempMap!.TILESIZE) / 2
             player.playerSprite!.position.y = CGFloat(tempMap!.roomPoints[tempMap!.startRoomIndex].y)*tempMap!.TILESIZE - (CGFloat(tempMap!.mapHeight)*tempMap!.TILESIZE)/2

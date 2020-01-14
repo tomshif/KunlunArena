@@ -39,7 +39,7 @@ class EntityClass
     
     
     var VISIONDIST:CGFloat=500
-    let UPDATECYCLE:Int=0
+    var UPDATECYCLE:Int=0   // This is revised based on entID % 4 to ensure even distribution of entities in update cycling
     var TURNRATE:CGFloat=0.1
     
     
@@ -63,7 +63,7 @@ class EntityClass
         scene=theScene
         name=String(format:"Ent%5d",id)
         entID=id
-        
+        UPDATECYCLE=entID % 4
         headNum=0
         bodyNum=0
         legsNum=0
@@ -184,6 +184,7 @@ class EntityClass
     ////////////////////
     public func update(cycle: Int)
     {
+        
         if UPDATECYCLE==cycle
         {
             // Simple Follow logic - target player
