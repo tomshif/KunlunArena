@@ -45,11 +45,12 @@ class EntityClass
     var UPDATECYCLE:Int=0   // This is revised based on entID % 4 to ensure even distribution of entities in update cycling
     var TURNRATE:CGFloat=0.15
     
+    var spriteNamePrefix:String="pig"
     
     
     // Testing Variables
     
-
+    
     init()
     {
         name="Test"
@@ -70,14 +71,23 @@ class EntityClass
         headNum=0
         bodyNum=0
         legsNum=0
-        headSprite=SKSpriteNode(imageNamed: "entHead00")
-        bodySprite=SKSpriteNode(imageNamed: "entBody00")
-        tailSprite=SKSpriteNode(imageNamed: "entTail00")
-        //bodySprite.colorBlendFactor=1.0
-        //bodySprite.color=NSColor(calibratedRed: random(min: 0, max: 1.0), green: random(min: 0, max: 1), blue: random(min: 0, max: 1), alpha: 1.0)
+        headSprite=SKSpriteNode(imageNamed: "\(spriteNamePrefix)Head00")
+        bodySprite=SKSpriteNode(imageNamed: "\(spriteNamePrefix)Body00")
+        tailSprite=SKSpriteNode(imageNamed: "\(spriteNamePrefix)Tail00")
+        bodySprite.colorBlendFactor=1.0
+        headSprite.colorBlendFactor=1.0
+        tailSprite.colorBlendFactor=1.0
+        bodySprite.lightingBitMask=1
+        tailSprite.lightingBitMask=1
+        headSprite.lightingBitMask=0
+        
+        let entColor=NSColor(calibratedRed: random(min: 1, max: 1.0), green: random(min: 0, max: 1), blue: random(min: 0, max: 1), alpha: 1.0)
+        bodySprite.color=entColor
+        headSprite.color=entColor
+        tailSprite.color=entColor
         bodySprite.position.x=scene!.size.height/2
         bodySprite.position.y=scene!.size.width/2
-        let spriteScale=random(min: 0.75, max: 2)
+        let spriteScale=random(min: 1.5, max: 3.5)
 
         scene!.addChild(bodySprite)
 
@@ -102,7 +112,9 @@ class EntityClass
         bodySprite.physicsBody=SKPhysicsBody(circleOfRadius: bodySprite.size.width)
         bodySprite.physicsBody!.categoryBitMask=BODYBITMASKS.ENEMY
         bodySprite.physicsBody!.collisionBitMask=BODYBITMASKS.WALL | BODYBITMASKS.ENEMY | BODYBITMASKS.PLAYER
-        
+        bodySprite.texture!.filteringMode=SKTextureFilteringMode.nearest
+        headSprite.texture!.filteringMode=SKTextureFilteringMode.nearest
+        tailSprite.texture!.filteringMode=SKTextureFilteringMode.nearest
         bodySprite.physicsBody!.affectedByGravity=false
         
         bodySprite.setScale(spriteScale)

@@ -14,7 +14,7 @@ class GameClass
     var scene:SKScene?
     var player:PlayerClass?
     
-    var ENTSPAWNFACTOR:Int=10
+    var ENTSPAWNFACTOR:Int=50
     
     init()
     {

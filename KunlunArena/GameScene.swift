@@ -32,6 +32,9 @@ class GameScene: SKScene {
     
     var bgParticle=SKEmitterNode() // This looks crappy, needs to be different
     
+    var myLight=SKLightNode()
+    
+      
     
     // Ints
     var updateCycle:Int=0
@@ -77,9 +80,12 @@ class GameScene: SKScene {
     override func didMove(to view: SKView) {
         
         
+        
+        
         MAPSIZE=Int(random(min:64, max: 96))
         NUMENEMIES=MAPSIZE*MAPSIZE/game.ENTSPAWNFACTOR // based on 150 enemies at 90x90 map divide by 54...This needs to be moved to MapClass
-        
+        addChild(myLight)
+        myLight.falloff=2
         // Init Camera and BG
         addChild(cam)
         self.camera=cam
@@ -214,6 +220,7 @@ class GameScene: SKScene {
         tempSplode!.zPosition=10
         tempSplode!.run(SKAction.sequence([SKAction.wait(forDuration: 0.5),SKAction.removeFromParent()]))
         addChild(tempSplode!)
+        tempSplode!.setScale(2.0)
         for node in self.children
         {
             if node.name != nil
@@ -223,7 +230,7 @@ class GameScene: SKScene {
                     let dx=player.playerSprite!.position.x - node.position.x
                     let dy=player.playerSprite!.position.y - node.position.y
                     let dist = hypot(dy, dx)
-                    if dist < 100
+                    if dist < 500
                     {
                         // find in entList
                         for ent in entList
@@ -580,7 +587,7 @@ class GameScene: SKScene {
                 keyMovement()
             }
             cam.position=player.playerSprite!.position
-            
+            myLight.position=player.playerSprite!.position
             player.update()
             
             for ent in entList

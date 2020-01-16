@@ -448,6 +448,7 @@ class MapClass
                     let tempFloor=SKSpriteNode(imageNamed: "\(wallString)00")
                     tempFloor.setScale(TILESCALE)
                     tempFloor.zPosition=1
+                    tempFloor.lightingBitMask=1
                     tempFloor.position.x = (CGFloat(x)*tempFloor.size.width) - (CGFloat(mapWidth)*tempFloor.size.width)/2
                     tempFloor.position.y = (CGFloat(y)*tempFloor.size.height) - (CGFloat(mapHeight)*tempFloor.size.width)/2
                     tempFloor.name="dngBlock"
@@ -472,6 +473,7 @@ class MapClass
                 case 2: // room floor
                     
                     let tempFloor=SKSpriteNode(imageNamed: "stoneFloor00")
+                    tempFloor.lightingBitMask=1
                     if floorType==1
                     {
                         tempFloor.texture=SKTexture(imageNamed: "dirtFloor00")
@@ -482,8 +484,10 @@ class MapClass
                     }
                     else if floorType==3
                     {
-                    tempFloor.texture=SKTexture(imageNamed: "purpleFloor00")
+                        
+                        tempFloor.texture=SKTexture(imageNamed: "purpleFloor00")
                     }
+                    
                     tempFloor.setScale(TILESCALE)
                     tempFloor.zPosition=1
                     tempFloor.position.x = (CGFloat(x)*tempFloor.size.width) - (CGFloat(mapWidth)*tempFloor.size.width)/2
