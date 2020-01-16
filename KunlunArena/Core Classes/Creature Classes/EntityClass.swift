@@ -28,8 +28,11 @@ class EntityClass
     
     var headSprite=SKSpriteNode()
     var bodySprite=SKSpriteNode()
+    var tailSprite=SKSpriteNode()
+    var leftSprite=SKSpriteNode()
+    var rightSprite=SKSpriteNode()
     
-    var moveSpeed:CGFloat=5.0
+    var moveSpeed:CGFloat=7.5
     var turnToAngle:CGFloat=0
     var attackRange:CGFloat=15
     var pursueRange:CGFloat=15
@@ -40,7 +43,7 @@ class EntityClass
     
     var VISIONDIST:CGFloat=500
     var UPDATECYCLE:Int=0   // This is revised based on entID % 4 to ensure even distribution of entities in update cycling
-    var TURNRATE:CGFloat=0.1
+    var TURNRATE:CGFloat=0.15
     
     
     
@@ -67,26 +70,45 @@ class EntityClass
         headNum=0
         bodyNum=0
         legsNum=0
-        headSprite=SKSpriteNode(imageNamed: "head")
-        bodySprite=SKSpriteNode(imageNamed: "eBody00")
-        bodySprite.colorBlendFactor=1.0
-        bodySprite.color=NSColor(calibratedRed: random(min: 0, max: 1.0), green: random(min: 0, max: 1), blue: random(min: 0, max: 1), alpha: 1.0)
+        headSprite=SKSpriteNode(imageNamed: "entHead00")
+        bodySprite=SKSpriteNode(imageNamed: "entBody00")
+        tailSprite=SKSpriteNode(imageNamed: "entTail00")
+        //bodySprite.colorBlendFactor=1.0
+        //bodySprite.color=NSColor(calibratedRed: random(min: 0, max: 1.0), green: random(min: 0, max: 1), blue: random(min: 0, max: 1), alpha: 1.0)
         bodySprite.position.x=scene!.size.height/2
         bodySprite.position.y=scene!.size.width/2
+        let spriteScale=random(min: 0.75, max: 2)
+
         scene!.addChild(bodySprite)
+
+        
         bodySprite.addChild(headSprite)
+        bodySprite.addChild(tailSprite)
+        
+
+        headSprite.position.x=bodySprite.size.width
+        
+        tailSprite.position.x = -bodySprite.size.width
+
+
         bodySprite.name=String(format:"entBody%5d",id)
         headSprite.name=String(format:"entHead%5d",id)
+        tailSprite.name=String(format:"entTail%5d",id)
         bodySprite.zPosition=10
-        headSprite.zPosition=11
-        bodySprite.physicsBody=SKPhysicsBody(circleOfRadius: bodySprite.size.width/2)
+        headSprite.zPosition=10
+        tailSprite.zPosition=10
+        
+
+        bodySprite.physicsBody=SKPhysicsBody(circleOfRadius: bodySprite.size.width)
         bodySprite.physicsBody!.categoryBitMask=BODYBITMASKS.ENEMY
         bodySprite.physicsBody!.collisionBitMask=BODYBITMASKS.WALL | BODYBITMASKS.ENEMY | BODYBITMASKS.PLAYER
         
         bodySprite.physicsBody!.affectedByGravity=false
         
-        moveSpeed=random(min: 1.5, max: 8.5)
-        TURNRATE=random(min: 0.25, max: 0.45)
+        bodySprite.setScale(spriteScale)
+        
+        moveSpeed=random(min: 5.5, max: 10.5)
+        TURNRATE=random(min: 0.5, max: 0.9)
         attackRange=random(min: 25, max: 200)
         VISIONDIST=random(min: 500, max: 500)
         if attackRange > 45

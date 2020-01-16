@@ -108,6 +108,7 @@
 		F482DF04239744050063CF84 /* KunlunArena */ = {
 			isa = PBXGroup;
 			children = (
+				F482DF15239744070063CF84 /* KunlunArena.entitlements */,
 				F4AC645723982E3900C64D2E /* Misc Files */,
 				F482DF1B2397445D0063CF84 /* Core Classes */,
 				F4AC646823A03DCE00C64D2E /* Emitters */,
@@ -201,7 +202,6 @@
 			isa = PBXGroup;
 			children = (
 				F482DF11239744070063CF84 /* Main.storyboard */,
-				F482DF15239744070063CF84 /* KunlunArena.entitlements */,
 			);
 			path = Other;
 			sourceTree = "<group>";

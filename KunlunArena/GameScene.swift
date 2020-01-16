@@ -163,7 +163,7 @@ class GameScene: SKScene {
         
         
         // create a bunch of temp entities
-        for i in 1...NUMENEMIES
+        for _ in 1...NUMENEMIES
         {
             spawnEnemy()
         } // for
@@ -430,7 +430,7 @@ class GameScene: SKScene {
             
             
             // create a bunch of temp entities
-            for i in 1...NUMENEMIES
+            for _ in 1...NUMENEMIES
             {
                 spawnEnemy()
             } // for
