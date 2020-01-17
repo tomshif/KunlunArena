@@ -5,9 +5,17 @@
 //  Created by Tom Shiflet on 12/3/19.
 //  Copyright © 2019 LCS Game Design. All rights reserved.
 //
+// This class holds key player information and is mostly exposed directly to the main (GameScene) code.
+//
+// This class should not be subclassed at all.
+//
+// Later in development, we will create a function that copies all key pieces of information that need to be saved into separate class for saving, so that we do not have to make this class compliant with Swift's Codable protocol.
+
 
 import Foundation
 import SpriteKit
+
+
 
 class PlayerClass
 {
@@ -44,7 +52,7 @@ class PlayerClass
         
     } // init - game
     
-    func moveTo()
+    public func moveTo()
     {
         if isMovingToPoint
         {
@@ -75,7 +83,7 @@ class PlayerClass
         isPlayAction=playerSprite!.hasActions()
     }
     
-    func update()
+    public func update()
     {
         checkActions()
         moveTo()

@@ -12,6 +12,7 @@
 		F45F4ACB23B2A6660020333B /* DashTalentClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45F4ACA23B2A6660020333B /* DashTalentClass.swift */; };
 		F45F4B1C23B64F5B0020333B /* MapClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45F4B1B23B64F5B0020333B /* MapClass.swift */; };
 		F45F4B1E23B652ED0020333B /* SmokeBG.sks in Resources */ = {isa = PBXBuildFile; fileRef = F45F4B1D23B652ED0020333B /* SmokeBG.sks */; };
+		F46BF48923D264AB005C29EB /* FloatingTextClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46BF48823D264AB005C29EB /* FloatingTextClass.swift */; };
 		F482DF06239744050063CF84 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F482DF05239744050063CF84 /* AppDelegate.swift */; };
 		F482DF08239744050063CF84 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = F482DF07239744050063CF84 /* GameScene.sks */; };
 		F482DF0C239744050063CF84 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = F482DF0B239744050063CF84 /* GameScene.swift */; };
@@ -39,6 +40,7 @@
 		F45F4ACA23B2A6660020333B /* DashTalentClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashTalentClass.swift; sourceTree = "<group>"; };
 		F45F4B1B23B64F5B0020333B /* MapClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapClass.swift; sourceTree = "<group>"; };
 		F45F4B1D23B652ED0020333B /* SmokeBG.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = SmokeBG.sks; sourceTree = "<group>"; };
+		F46BF48823D264AB005C29EB /* FloatingTextClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingTextClass.swift; sourceTree = "<group>"; };
 		F482DF02239744050063CF84 /* KunlunArena.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KunlunArena.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F482DF05239744050063CF84 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F482DF07239744050063CF84 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -89,6 +91,14 @@
 			path = "Init Files";
 			sourceTree = "<group>";
 		};
+		F46BF48723D26484005C29EB /* Special Effects Classes */ = {
+			isa = PBXGroup;
+			children = (
+				F46BF48823D264AB005C29EB /* FloatingTextClass.swift */,
+			);
+			path = "Special Effects Classes";
+			sourceTree = "<group>";
+		};
 		F482DEF9239744050063CF84 = {
 			isa = PBXGroup;
 			children = (
@@ -123,6 +133,7 @@
 		F482DF1B2397445D0063CF84 /* Core Classes */ = {
 			isa = PBXGroup;
 			children = (
+				F46BF48723D26484005C29EB /* Special Effects Classes */,
 				F45F4AC723ABE7020020333B /* Level Classes */,
 				F4AC645D239FF68C00C64D2E /* Ability Classes */,
 				F4AC645223982D3C00C64D2E /* Inventory Classes */,
@@ -319,6 +330,7 @@
 				F4AC6463239FF70B00C64D2E /* InventorySlots.swift in Sources */,
 				F45F4ACB23B2A6660020333B /* DashTalentClass.swift in Sources */,
 				F4AC645F239FF6A500C64D2E /* PlayerTalentClass.swift in Sources */,
+				F46BF48923D264AB005C29EB /* FloatingTextClass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

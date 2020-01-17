@@ -5,6 +5,10 @@
 //  Created by Tom Shiflet on 12/25/19.
 //  Copyright © 2019 LCS Game Design. All rights reserved.
 //
+// This class is the base class for creating map levels. This class itself will never be used in game and only subclasses of this class will be used.
+// Sub classes should modify variables and override the drawMap() function (copy/paste then change is probably the easiest).
+// The parameter line of the init() CANNOT be changed in order to keep class polymorphism.
+// If the dungeon layout needs to be changed drastically, the init() can be overridden but very special circumstances apply and things can break very easily because of the requirement to call the super class init().
 
 import Foundation
 import SpriteKit
@@ -422,7 +426,7 @@ class MapClass
     } // func createMap()
     
     
-    private func drawMap()
+    internal func drawMap()
     {
         var wallString:String=""
         switch floorType
@@ -455,6 +459,7 @@ class MapClass
                     tempFloor.texture!.filteringMode=SKTextureFilteringMode.nearest
                     
                     tempFloor.physicsBody=SKPhysicsBody(rectangleOf: tempFloor.size)
+                    tempFloor.physicsBody!.usesPreciseCollisionDetection=true
                     tempFloor.physicsBody!.isDynamic=false
                     tempFloor.physicsBody!.affectedByGravity=false
                     tempFloor.physicsBody!.categoryBitMask=BODYBITMASKS.WALL
@@ -477,10 +482,14 @@ class MapClass
                     if floorType==1
                     {
                         tempFloor.texture=SKTexture(imageNamed: "dirtFloor00")
+                        scene!.myLight.lightColor=NSColor(calibratedRed: 0.6, green: 1.0, blue: 1.0, alpha: 1.0)
                     }
                     else if floorType==2
                     {
                     tempFloor.texture=SKTexture(imageNamed: "lavaFloor00")
+                       
+                        scene!.myLight.lightColor=NSColor(calibratedRed: 1.0, green: 0.7, blue: 0.7, alpha: 1.0)
+                        //scene!.myLight.ambientColor=NSColor(calibratedRed: 0.01, green: 0.0, blue: 0.0, alpha: 1.0)
                     }
                     else if floorType==3
                     {

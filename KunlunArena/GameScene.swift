@@ -84,8 +84,9 @@ class GameScene: SKScene {
         
         MAPSIZE=Int(random(min:64, max: 96))
         NUMENEMIES=MAPSIZE*MAPSIZE/game.ENTSPAWNFACTOR // based on 150 enemies at 90x90 map divide by 54...This needs to be moved to MapClass
-        addChild(myLight)
-        myLight.falloff=2
+        //addChild(myLight)
+        myLight.falloff=1
+        
         // Init Camera and BG
         addChild(cam)
         self.camera=cam
@@ -157,9 +158,10 @@ class GameScene: SKScene {
         pArms.zPosition=3
         
         // create player physics body
-        pBody.physicsBody=SKPhysicsBody(circleOfRadius: pBody.size.width*0.75)
+        pBody.physicsBody=SKPhysicsBody(circleOfRadius: pBody.size.width)
         pBody.physicsBody!.categoryBitMask=BODYBITMASKS.PLAYER
         pBody.physicsBody!.collisionBitMask=BODYBITMASKS.WALL
+       
         pBody.physicsBody!.usesPreciseCollisionDetection=true
         pBody.physicsBody!.affectedByGravity=false
         
@@ -221,6 +223,7 @@ class GameScene: SKScene {
         tempSplode!.run(SKAction.sequence([SKAction.wait(forDuration: 0.5),SKAction.removeFromParent()]))
         addChild(tempSplode!)
         tempSplode!.setScale(2.0)
+        myLight.run(SKAction.sequence([SKAction.falloff(to: 0.1, duration: 0.8),SKAction.falloff(to: 2.5, duration: 0.2)]))
         for node in self.children
         {
             if node.name != nil
@@ -503,14 +506,16 @@ class GameScene: SKScene {
             
         }
         
-        if cam.xScale > 0.01 && zoomInPressed
+        if cam.xScale > 0.75 && zoomInPressed
         {
-            cam.setScale(cam.xScale-0.05)
+            cam.setScale(cam.xScale-0.01)
+            myLight.falloff=cam.xScale
         }
         
-        if cam.xScale < 16.0 && zoomOutPressed
+        if cam.xScale < 1.5 && zoomOutPressed
         {
-            cam.setScale(cam.xScale+0.05)
+            cam.setScale(cam.xScale+0.01)
+            myLight.falloff=cam.xScale
         }
 
         // handle orientation

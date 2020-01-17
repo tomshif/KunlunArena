@@ -5,6 +5,10 @@
 //  Created by Tom Shiflet on 12/3/19.
 //  Copyright © 2019 LCS Game Design. All rights reserved.
 //
+// This class is the baseclass for ALL entities (enemy mobs).
+// We must very particular about sub-classes and not change any init() parameter lists in order to keep class polymorphism.
+//
+// We also need to be very careful about what methods are exposed and what methods are kept internal.
 
 import Foundation
 import SpriteKit
@@ -79,7 +83,8 @@ class EntityClass
         tailSprite.colorBlendFactor=1.0
         bodySprite.lightingBitMask=1
         tailSprite.lightingBitMask=1
-        headSprite.lightingBitMask=0
+        headSprite.lightingBitMask=1
+        bodySprite.shadowCastBitMask=1
         
         let entColor=NSColor(calibratedRed: random(min: 1, max: 1.0), green: random(min: 0, max: 1), blue: random(min: 0, max: 1), alpha: 1.0)
         bodySprite.color=entColor
@@ -195,7 +200,7 @@ class EntityClass
 
     } // die()
     
-    private func checkLOS(angle: CGFloat, distance: CGFloat) -> Bool
+    internal func checkLOS(angle: CGFloat, distance: CGFloat) -> Bool
     {
         
         let rayStart = bodySprite.position
