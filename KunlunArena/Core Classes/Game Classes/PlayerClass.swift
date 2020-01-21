@@ -5,7 +5,7 @@
 //  Created by Tom Shiflet on 12/3/19.
 //  Copyright © 2019 LCS Game Design. All rights reserved.
 //
-// This class holds key player information and is mostly exposed directly to the main (GameScene) code.
+// This class holds key player information and is mostly exposed directly to the main (GameScene) code and to other class through the GameClass
 //
 // This class should not be subclassed at all.
 //
@@ -93,10 +93,8 @@ class PlayerClass
             for i in 0..<activeTalents.count
             {
                 activeTalents[i].updateTalent()
-                print("Active \(activeTalents[i].name)")
                 if activeTalents[i].activeLengthLeft() < 0 && activeTalents[i].isActive
                 {
-                    print("Removing \(activeTalents[i].name)")
                     activeTalents[i].removeTalent()
                     activeTalents.remove(at: i)
                     

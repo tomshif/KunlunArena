@@ -19,7 +19,8 @@ class GameClass
     var scene:SKScene?
     var player:PlayerClass?
     
-    var ENTSPAWNFACTOR:Int=50
+    var entList=[EntityClass]() // needs to move to GameClass
+
     
     init()
     {

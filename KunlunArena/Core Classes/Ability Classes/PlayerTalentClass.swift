@@ -35,12 +35,17 @@ class PlayerTalentClass
     
     init(theGame: GameClass)
     {
+        // The initializer will always pass the game so that we have access to the scene, player and entList
+        
         game=theGame
         
     } // init game
     
     public func getCooldown() -> Double
     {
+        // Returns the time left until the cooldown is ready when positive
+        // If the value is negative, then the talent is off cooldown.
+        //
         let timeSinceLastUse = -lastUse.timeIntervalSinceNow
 
         return COOLDOWN-timeSinceLastUse
@@ -48,6 +53,9 @@ class PlayerTalentClass
     
     public func activeLengthLeft() -> Double
     {
+        // Returns how much time is left before the talent expires (when positive)
+        // If the value is negative, then the talent has already expired
+        
         let timeActive = -lastUse.timeIntervalSinceNow
         
         return lengthActive-timeActive
@@ -56,16 +64,26 @@ class PlayerTalentClass
     
     public func updateTalent()
     {
+        // This method is called each frame while the method is active
+        // If the talent is a one shot thing, this method won't need to do anything.
+        // Note that this will always be called from the GameScene and should not be called internally.
         
     } // updateTalent()
     
     public func removeTalent()
     {
+        // This talent will be called when the talent expires.
+        // Note that this will always be called from the GameScene and should not be called internally.
+        
+        
         
     } // removeTalent()
     
     public func doTalent()
     {
+        // This method will be called when the talent is first begun.
+        // For one shot talents, this will handle everything all in one
+        // Note that this will always be called from the GameScene and should not be called internally.
         
     } // doTalent()
     

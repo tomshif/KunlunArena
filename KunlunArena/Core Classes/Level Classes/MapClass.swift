@@ -46,6 +46,15 @@ class MapClass
 
     var ONEBLOCKWIDE:CGFloat=0.00    // This used for determining width of hallways it rolls a number 0-1.0 and based on the value of this variable if the roll is HIGHER than this number, the hallway is two blocks wide instead of one. This is reset in the init() (currently randomized but to be customized for different subclasses).
     
+        // This is the number of enemies that spawn into a given map.
+        // The number of enemies present is computed as follows
+        // numEnemies = mapWidth*mapHeight/ENTSPAWNFACTOR
+        // As an example, a 96x96 map with a spawn factor of 50:
+        // 96x96 / 50
+        // 9216 / 50
+        // 184
+        // We need to keep enemies under 200ish
+        var ENTSPAWNFACTOR:Int=50
     
     
     
