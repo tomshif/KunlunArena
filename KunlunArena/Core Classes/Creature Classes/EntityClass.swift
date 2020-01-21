@@ -109,8 +109,7 @@ class EntityClass
         bodySprite.color=entColor
         headSprite.color=entColor
         tailSprite.color=entColor
-        bodySprite.position.x=scene!.size.height/2
-        bodySprite.position.y=scene!.size.width/2
+      
         
 
         scene!.addChild(bodySprite)
@@ -144,7 +143,7 @@ class EntityClass
         
         
         moveSpeed=random(min: 5.5, max: 10.5)
-        TURNRATE=random(min: 0.5, max: 0.9)
+        TURNRATE=random(min: 0.9, max: 0.9)
         attackRange=random(min: 25, max: 200)
         VISIONDIST=random(min: 500, max: 500)
         if attackRange > 45
