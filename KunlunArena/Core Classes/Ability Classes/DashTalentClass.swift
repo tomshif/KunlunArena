@@ -5,6 +5,8 @@
 //  Created by Tom Shiflet on 12/24/19.
 //  Copyright © 2019 LCS Game Design. All rights reserved.
 //
+// This is an example talent that bosts the player's speed by 50% for 2 seconds with a 5 second cooldown.
+//
 
 import Foundation
 import SpriteKit
@@ -20,7 +22,8 @@ class DashTalentClass:PlayerTalentClass
     {
         super.init(theGame: theGame)
         name="Dash"
-        isAction=true
+        description="Boosts player movement speed by 50% for 2 seconds. 5 second cooldown."
+        isAction=false
         game=theGame
         COOLDOWN=5
         lengthActive=2
@@ -29,6 +32,8 @@ class DashTalentClass:PlayerTalentClass
     
     override func removeTalent()
     {
+
+        
         game!.player!.moveSpeed /= dashSpeed
         isActive=false
     } // removeTalent()

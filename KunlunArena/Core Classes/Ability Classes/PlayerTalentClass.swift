@@ -23,6 +23,7 @@ class PlayerTalentClass
 {
     var game:GameClass?
     var name:String="Talent"
+    var description:String="Description"
     var isAction:Bool=false
     var tier:Int=0
     var lastUse=NSDate()
