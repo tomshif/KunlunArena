@@ -15,52 +15,71 @@ import SpriteKit
 
 class EntityClass
 {
-    var scene:SKScene?
-    var game:GameClass?
+    var scene:SKScene? // the scene is contained in the GameClass but this is just to shorten notation.
+    
+    var game:GameClass? // points back to the GameClass to be able to reference the player and/or other entities
     
     
-    var name:String
+    var name:String // Generated in the init based on the type and entID
     var entID:Int=0
-    var headNum:Int
-    var bodyNum:Int
-    var legsNum:Int
     
-    var isTurning:Bool=false
-    var isPursuing:Bool=false
-    var isDead:Bool=false
-    var playerInSight:Bool=false
+
     
+    
+    // This is the prefix for the artwork. All artwork should follow the following format:
+    //
+    // ent<Type>0<Single digit number>
+    // for example a pig part would be
+    // "entPig01"
+    var spriteNamePrefix:String="pig"
+    
+    // the number of possible combinations for each sprite part.
+    var headNum:Int=0
+    var bodyNum:Int=0
+    var tailNum:Int=0
+    
+    // These are the ID of the sprite parts used
+    var headID:Int=0
+    var bodyID:Int=0
+    var tailID:Int=0
+    var leftID:Int=0
+    var rightID:Int=0
+    
+    // Sprites for each part
     var headSprite=SKSpriteNode()
     var bodySprite=SKSpriteNode()
     var tailSprite=SKSpriteNode()
     var leftSprite=SKSpriteNode()
     var rightSprite=SKSpriteNode()
     
+    var spriteScale:CGFloat=1.0
+    
+    // AI related
     var moveSpeed:CGFloat=7.5
     var turnToAngle:CGFloat=0
     var attackRange:CGFloat=15
     var pursueRange:CGFloat=15
     var lastSightAngle:CGFloat=0
-    
     var playerDist:CGFloat=0
-    
-    
+    var isTurning:Bool=false
+    var isPursuing:Bool=false
+    var isDead:Bool=false
+    var playerInSight:Bool=false
+    var TURNRATE:CGFloat=0.15
     var VISIONDIST:CGFloat=500
     var UPDATECYCLE:Int=0   // This is revised based on entID % 4 to ensure even distribution of entities in update cycling
-    var TURNRATE:CGFloat=0.15
-    
-    var spriteNamePrefix:String="pig"
     
     
-    // Testing Variables
     
+    
+
     
     init()
     {
         name="Test"
         headNum=0
         bodyNum=0
-        legsNum=0
+        tailNum=0
         headSprite=SKSpriteNode(imageNamed: "head")
         bodySprite=SKSpriteNode(imageNamed: "body")
         
@@ -74,7 +93,7 @@ class EntityClass
         UPDATECYCLE=entID % 4
         headNum=0
         bodyNum=0
-        legsNum=0
+        tailNum=0
         headSprite=SKSpriteNode(imageNamed: "\(spriteNamePrefix)Head00")
         bodySprite=SKSpriteNode(imageNamed: "\(spriteNamePrefix)Body00")
         tailSprite=SKSpriteNode(imageNamed: "\(spriteNamePrefix)Tail00")
@@ -92,7 +111,7 @@ class EntityClass
         tailSprite.color=entColor
         bodySprite.position.x=scene!.size.height/2
         bodySprite.position.y=scene!.size.width/2
-        let spriteScale=random(min: 1.5, max: 3.5)
+        
 
         scene!.addChild(bodySprite)
 
@@ -122,7 +141,7 @@ class EntityClass
         tailSprite.texture!.filteringMode=SKTextureFilteringMode.nearest
         bodySprite.physicsBody!.affectedByGravity=false
         
-        bodySprite.setScale(spriteScale)
+        
         
         moveSpeed=random(min: 5.5, max: 10.5)
         TURNRATE=random(min: 0.5, max: 0.9)
@@ -202,7 +221,7 @@ class EntityClass
     
     internal func checkLOS(angle: CGFloat, distance: CGFloat) -> Bool
     {
-        
+        // Cast a ray to see if any physics blocks obstruct our view
         let rayStart = bodySprite.position
         let rayEnd = CGPoint(x: bodySprite.position.x+(distance * cos(angle)),
                              y: bodySprite.position.y+(distance * sin(angle)))
@@ -210,7 +229,7 @@ class EntityClass
         
         let body = scene!.physicsWorld.body(alongRayStart: rayStart, end: rayEnd)
 
-        
+        // return true if ray is unobstructed to player, false in all other cases
         return body?.categoryBitMask == BODYBITMASKS.PLAYER
         
         
@@ -240,6 +259,7 @@ class EntityClass
             // Compute distance to player
             playerDist=hypot(dy, dx)
             
+            // Check if we can see the player
             playerInSight=checkLOS(angle: angle, distance: VISIONDIST)
             
             // Turn towards player

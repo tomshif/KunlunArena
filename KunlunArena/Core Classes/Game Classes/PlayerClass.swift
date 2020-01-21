@@ -29,6 +29,9 @@ class PlayerClass
     
     var playerTalents=[PlayerTalentClass]()
     
+    var activeTalents=[PlayerTalentClass]()
+    
+    
     var health:Int=100
     var moveSpeed:CGFloat=10
     
@@ -81,10 +84,33 @@ class PlayerClass
     private func checkActions()
     {
         isPlayAction=playerSprite!.hasActions()
-    }
+    } // checkActions
+    
+    private func updateTalents()
+    {
+        if activeTalents.count > 0
+        {
+            for i in 0..<activeTalents.count
+            {
+                activeTalents[i].updateTalent()
+                print("Active \(activeTalents[i].name)")
+                if activeTalents[i].activeLengthLeft() < 0 && activeTalents[i].isActive
+                {
+                    print("Removing \(activeTalents[i].name)")
+                    activeTalents[i].removeTalent()
+                    activeTalents.remove(at: i)
+                    
+                    break
+                } // if it's time to remove the talent
+                
+                
+            } // for each active talent
+        } // if there are active talents
+    } // updateTalents()
     
     public func update()
     {
+        updateTalents()
         checkActions()
         moveTo()
         

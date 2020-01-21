@@ -181,7 +181,7 @@ class GameScene: SKScene {
     
     func spawnEnemy()
     {
-        let tempEnt=EntityClass(theScene: self, id: entCount)
+        let tempEnt=TestEntClass(theScene: self, id: entCount)
         tempEnt.game=game
         var goodSpawn:Bool=false
         var xp:CGFloat=0
@@ -446,8 +446,15 @@ class GameScene: SKScene {
             } // for
         
         case 49: // space
-            player.playerTalents[0].doTalent()
-            
+            if player.playerTalents[0].getCooldown() < 0
+            {
+            player.activeTalents.append(player.playerTalents[0])
+                player.playerTalents[0].doTalent()
+            }
+            else
+            {
+                print("Dash on cooldown.")
+            }
 
         default:
             print("keyDown: \(event.characters!) keyCode: \(event.keyCode)")
@@ -484,24 +491,24 @@ class GameScene: SKScene {
         
         if leftPressed
         {
-            player.playerSprite!.position.x -= MOVESPEED
+            player.playerSprite!.position.x -= player.moveSpeed
             player.playerSprite!.zRotation = CGFloat.pi
         }
         if rightPressed
         {
-            player.playerSprite!.position.x += MOVESPEED
+            player.playerSprite!.position.x += player.moveSpeed
             player.playerSprite!.zRotation = 0
             
         }
         if upPressed
         {
-            player.playerSprite!.position.y += MOVESPEED
+            player.playerSprite!.position.y += player.moveSpeed
             player.playerSprite!.zRotation = CGFloat.pi/2
             
         }
         if downPressed
         {
-            player.playerSprite!.position.y -= MOVESPEED
+            player.playerSprite!.position.y -= player.moveSpeed
             player.playerSprite!.zRotation = 3*CGFloat.pi/2
             
         }
