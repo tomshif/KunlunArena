@@ -60,7 +60,7 @@ class PlayerTalentClass
         
         return lengthActive-timeActive
         
-    }
+    } // activeLengthLeft()
     
     public func updateTalent()
     {

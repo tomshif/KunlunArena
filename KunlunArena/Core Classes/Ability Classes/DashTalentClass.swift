@@ -63,7 +63,7 @@ class DashTalentClass:PlayerTalentClass
             lastStreak=NSDate()
         } // if time to leave another streaky-star
         
-    } // updateTalen()
+    } // updateTalent()
     
     override func doTalent()
     {

@@ -21,8 +21,5 @@ class BaseInventoryClass
     var suffixNum:Int=0
     var invSlot:Int=0
     
-    
-    
-    
 } // class BaseInventoryClass
 
