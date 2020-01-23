@@ -174,7 +174,7 @@ class GameScene: SKScene {
     
     func spawnEnemy()
     {
-        let tempEnt=TestEntClass(theScene: self, id: entCount)
+        let tempEnt=SnakeEntClass(theScene: self, id: entCount)
         tempEnt.game=game
         var goodSpawn:Bool=false
         var xp:CGFloat=0
