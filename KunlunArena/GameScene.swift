@@ -44,10 +44,7 @@ class GameScene: SKScene {
     
     // Core Classes
     var game=GameClass()
-
-
-    // var myEnt=EntityClass()
-    
+ 
     
     // KB Bools
     var upPressed:Bool=false
@@ -58,20 +55,16 @@ class GameScene: SKScene {
     var zoomOutPressed:Bool=false
     var zoomInPressed:Bool=false
     
-    
-    
-    
-    
+
     // CONSTANTS
-    let MOVESPEED:CGFloat=10
     let MAXAICYCLES:Int=4
-    var NUMENEMIES:Int=150
+    var NUMENEMIES:Int=0
     
     // Temp Variables
     //var tempEnt=EntityClass()
     var player=PlayerClass() // Needs to go in GameClass
     
-    var entList=[EntityClass]() // needs to move to GameClass
+
     var tempMap:MapClass?
     
     
@@ -83,7 +76,7 @@ class GameScene: SKScene {
         
         
         MAPSIZE=Int(random(min:64, max: 96))
-        NUMENEMIES=MAPSIZE*MAPSIZE/game.ENTSPAWNFACTOR // based on 150 enemies at 90x90 map divide by 54...This needs to be moved to MapClass
+        
         //addChild(myLight)
         myLight.falloff=1
         
@@ -94,7 +87,7 @@ class GameScene: SKScene {
         
         // Gen Map
         tempMap=MapClass(width: MAPSIZE, height: MAPSIZE, theScene: self)
-        
+        NUMENEMIES=MAPSIZE*MAPSIZE/tempMap!.ENTSPAWNFACTOR
         
         // Setup Labels
         copyrightLabel.position.y = -size.height*0.475
@@ -209,7 +202,7 @@ class GameScene: SKScene {
         } // while we're looking for a good spawn point
         tempEnt.bodySprite.position.x=xp
         tempEnt.bodySprite.position.y=yp
-        entList.append(tempEnt)
+        game.entList.append(tempEnt)
         entCount+=1
     } // func spawnEnemy()
     
@@ -236,7 +229,7 @@ class GameScene: SKScene {
                     if dist < 500
                     {
                         // find in entList
-                        for ent in entList
+                        for ent in game.entList
                         {
                             if ent.bodySprite.name! == node.name!
                             {
@@ -244,7 +237,7 @@ class GameScene: SKScene {
                                
                             } // we found the entity, kill it
                         } // for each entity
-                        //print(node.name!)
+                        
                     } // if in range
                 } // if ent
             } // if name not nil
@@ -281,9 +274,31 @@ class GameScene: SKScene {
             let dy=pos.y-pBody.position.y
             let angle=atan2(dy,dx)
             pBody.zRotation=angle
-            player.moveToPoint=pos
-            player.isMovingToPoint=true
+            //player.moveToPoint=pos
+            //player.isMovingToPoint=true
+            
+            if player.playerTalents[0].getCooldown() < 0
+            {
+                player.playerTalents[0].doTalent()
+            } // if we're not on cooldown
         } // if play state
+        /*
+        else if gameState==STATES.FIGHT  && player.isInAttackMode
+        {
+            // Check cooldown
+            if player.playerTalents[0].getCooldown() < 0
+            {
+                // rotate the player to the point
+                let angle=atan2(pos.y-player.playerSprite!.position.y, pos.x-player.playerSprite!.position.x)
+                player.playerSprite!.zRotation=angle
+                player.playerTalents[0].doTalent()
+            } // if we're not on cooldown
+            else
+            {
+                print("Attack on cooldown.")
+            }
+        } // if we're in attack mode
+        */
         else if gameState==STATES.SPAWNWALL
         {
             for x in 0..<10
@@ -322,13 +337,13 @@ class GameScene: SKScene {
                 tempWall.name="wall"
                 addChild(tempWall)
             } // for
-        }
+        } // if in spawn vert wall mode
         else if gameState==STATES.SPAWNENT
         {
             let tempEnt=EntityClass(theScene: self, id: entCount)
             tempEnt.game=game
             tempEnt.bodySprite.position=pos
-            entList.append(tempEnt)
+            game.entList.append(tempEnt)
             entCount+=1
         } // if in spawn entity state
     } // touchDown()
@@ -381,6 +396,19 @@ class GameScene: SKScene {
         case 14: // e
             attack()
             
+        case 18: // 1
+            if player.playerTalents[1].getCooldown() < 0
+            {
+            player.activeTalents.append(player.playerTalents[1])
+                player.playerTalents[1].doTalent()
+            }
+            else
+            {
+                print("Dash on cooldown.")
+            }
+            
+            
+            
         case 27: // -
             zoomOutPressed=true
             
@@ -402,7 +430,7 @@ class GameScene: SKScene {
             
             
         case 42: // \ (backslash)
-            for ent in entList
+            for ent in game.entList
             {
                 ent.die()
             }
@@ -418,7 +446,7 @@ class GameScene: SKScene {
             } // for each node
         
         case 44: // / (forward slash)
-            for ent in entList
+            for ent in game.entList
             {
                 ent.die()
             }
@@ -433,8 +461,9 @@ class GameScene: SKScene {
                 } // if not nil
             } // for each node
             MAPSIZE=Int(random(min:64, max: 96))
-            NUMENEMIES=MAPSIZE*MAPSIZE/game.ENTSPAWNFACTOR
+            
             tempMap=MapClass(width: MAPSIZE, height: MAPSIZE, theScene: self)
+            NUMENEMIES=MAPSIZE*MAPSIZE/tempMap!.ENTSPAWNFACTOR
             player.playerSprite!.position.x = CGFloat(tempMap!.roomPoints[tempMap!.startRoomIndex].x)*tempMap!.TILESIZE - (CGFloat(tempMap!.mapWidth)*tempMap!.TILESIZE) / 2
             player.playerSprite!.position.y = CGFloat(tempMap!.roomPoints[tempMap!.startRoomIndex].y)*tempMap!.TILESIZE - (CGFloat(tempMap!.mapHeight)*tempMap!.TILESIZE)/2
             
@@ -444,17 +473,12 @@ class GameScene: SKScene {
             {
                 spawnEnemy()
             } // for
-        
-        case 49: // space
-            if player.playerTalents[0].getCooldown() < 0
-            {
-            player.activeTalents.append(player.playerTalents[0])
-                player.playerTalents[0].doTalent()
-            }
-            else
-            {
-                print("Dash on cooldown.")
-            }
+        /* Temporarily removing spacebar lock
+        case 49: // space - Attack lock
+            game.player!.isInAttackMode=true
+        */
+            
+
 
         default:
             print("keyDown: \(event.characters!) keyCode: \(event.keyCode)")
@@ -480,6 +504,9 @@ class GameScene: SKScene {
                 
             case 24:
                 zoomInPressed=false
+            
+            case 49: // space - Attack lock
+                game.player!.isInAttackMode=false
         default:
             break
         } // switch keyCode
@@ -492,24 +519,24 @@ class GameScene: SKScene {
         if leftPressed
         {
             player.playerSprite!.position.x -= player.moveSpeed
-            player.playerSprite!.zRotation = CGFloat.pi
+            //player.playerSprite!.zRotation = CGFloat.pi
         }
         if rightPressed
         {
             player.playerSprite!.position.x += player.moveSpeed
-            player.playerSprite!.zRotation = 0
+            //player.playerSprite!.zRotation = 0
             
         }
         if upPressed
         {
             player.playerSprite!.position.y += player.moveSpeed
-            player.playerSprite!.zRotation = CGFloat.pi/2
+            //player.playerSprite!.zRotation = CGFloat.pi/2
             
         }
         if downPressed
         {
             player.playerSprite!.position.y -= player.moveSpeed
-            player.playerSprite!.zRotation = 3*CGFloat.pi/2
+            //player.playerSprite!.zRotation = 3*CGFloat.pi/2
             
         }
         
@@ -525,24 +552,25 @@ class GameScene: SKScene {
             myLight.falloff=cam.xScale
         }
 
+        /* Temp removal of directional facing
         // handle orientation
-        if leftPressed && upPressed
+        if leftPressed && upPressed && !player.isInAttackMode
         {
             player.playerSprite!.zRotation = 3*CGFloat.pi/4
         }
-        if leftPressed && downPressed
+        if leftPressed && downPressed && !player.isInAttackMode
         {
             player.playerSprite!.zRotation = 5*CGFloat.pi/4
         }
-        if rightPressed && upPressed
+        if rightPressed && upPressed && !player.isInAttackMode
         {
             player.playerSprite!.zRotation = 1*CGFloat.pi/4
         }
-        if rightPressed && downPressed
+        if rightPressed && downPressed && !player.isInAttackMode
         {
             player.playerSprite!.zRotation = 7*CGFloat.pi/4
         }
-        
+        */
     } // keyMovement
     
     func updateUI()
@@ -562,17 +590,17 @@ class GameScene: SKScene {
             stateLabel.text="Error in State"
         } // switch gameState
         
-        entCountLabel.text="\(entList.count)"
+        entCountLabel.text="\(game.entList.count)"
         
     } // updateUI()
     
     func cleanLists()
     {
-        for i in 0..<entList.count
+        for i in 0..<game.entList.count
         {
-            if entList[i].isDead
+            if game.entList[i].isDead
             {
-                entList.remove(at: i)
+                game.entList.remove(at: i)
                 break
             } // if ent is dead
         } // for each ent
@@ -594,15 +622,14 @@ class GameScene: SKScene {
                 updateCycle=0
             }
             
-            if !mousePressed && !player.isPlayAction
-            {
-                keyMovement()
-            }
+
+            keyMovement()
+            
             cam.position=player.playerSprite!.position
             myLight.position=player.playerSprite!.position
             player.update()
             
-            for ent in entList
+            for ent in game.entList
             {
                 ent.update(cycle: updateCycle)
             }

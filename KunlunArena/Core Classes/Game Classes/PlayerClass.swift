@@ -5,7 +5,7 @@
 //  Created by Tom Shiflet on 12/3/19.
 //  Copyright © 2019 LCS Game Design. All rights reserved.
 //
-// This class holds key player information and is mostly exposed directly to the main (GameScene) code.
+// This class holds key player information and is mostly exposed directly to the main (GameScene) code and to other class through the GameClass
 //
 // This class should not be subclassed at all.
 //
@@ -25,15 +25,27 @@ class PlayerClass
     var isMovingToPoint:Bool=false
     var playerName:String?
     var isPlayAction:Bool=false
+    var isInAttackMode:Bool=false
     
     
     var playerTalents=[PlayerTalentClass]()
     
     var activeTalents=[PlayerTalentClass]()
     
-    
-    var health:Int=100
+    // Player stats
+    var playerLevel:Int=1
+    var strength:CGFloat=20
+    var quickness:CGFloat=20
+    var wisdom:CGFloat=20
+    var mana:CGFloat=20
+    var health:CGFloat=20
+    var manaRegen:CGFloat=1.0
+    var healthRegen:CGFloat=1.0
+    var critChance:CGFloat=5.0
+    var damageReduction:CGFloat=0
     var moveSpeed:CGFloat=10
+    
+    var currentDamage:CGFloat=5.0 // This is updated each time the player changes gear or levels up.
     
     init()
     {
@@ -48,7 +60,10 @@ class PlayerClass
         game=theGame
         
         // initialize talents
-        
+        // 0
+        let tempMelee=MeleeAttackClass(theGame: game!)
+        playerTalents.append(tempMelee)
+        // 1
         let tempDash=DashTalentClass(theGame: game!)
         playerTalents.append(tempDash)
         
@@ -93,10 +108,8 @@ class PlayerClass
             for i in 0..<activeTalents.count
             {
                 activeTalents[i].updateTalent()
-                print("Active \(activeTalents[i].name)")
                 if activeTalents[i].activeLengthLeft() < 0 && activeTalents[i].isActive
                 {
-                    print("Removing \(activeTalents[i].name)")
                     activeTalents[i].removeTalent()
                     activeTalents.remove(at: i)
                     

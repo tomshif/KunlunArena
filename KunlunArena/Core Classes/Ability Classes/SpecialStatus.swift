@@ -5,6 +5,11 @@
 //  Created by Tom Shiflet on 12/10/19.
 //  Copyright © 2019 LCS Game Design. All rights reserved.
 //
+// This is a quick reference for various status effects that can affect both player and entities.
+// They can be accessed as:
+//
+// player.status=SPECIALSTATUS.jade
+//
 
 import Foundation
 
