@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		44B8DBBA23DA2D30002BA761 /* SnakeEntClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B8DBB923DA2D30002BA761 /* SnakeEntClass.swift */; };
 		F45F4AC623ABDD080020333B /* BodyBitMasks.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45F4AC523ABDD080020333B /* BodyBitMasks.swift */; };
 		F45F4AC923ABE9ED0020333B /* Keyboard Commands.rtf in Resources */ = {isa = PBXBuildFile; fileRef = F45F4AC823ABE9ED0020333B /* Keyboard Commands.rtf */; };
 		F45F4ACB23B2A6660020333B /* DashTalentClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45F4ACA23B2A6660020333B /* DashTalentClass.swift */; };
@@ -39,6 +40,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		44B8DBB923DA2D30002BA761 /* SnakeEntClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnakeEntClass.swift; sourceTree = "<group>"; };
 		F45F4AC523ABDD080020333B /* BodyBitMasks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyBitMasks.swift; sourceTree = "<group>"; };
 		F45F4AC823ABE9ED0020333B /* Keyboard Commands.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = "Keyboard Commands.rtf"; sourceTree = "<group>"; };
 		F45F4ACA23B2A6660020333B /* DashTalentClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashTalentClass.swift; sourceTree = "<group>"; };
@@ -166,6 +168,7 @@
 			children = (
 				F482DF22239745070063CF84 /* EntityClass.swift */,
 				F46BF48A23D772A4005C29EB /* TestEntClass.swift */,
+				44B8DBB923DA2D30002BA761 /* SnakeEntClass.swift */,
 			);
 			path = "Creature Classes";
 			sourceTree = "<group>";
@@ -346,6 +349,7 @@
 				F4AC6463239FF70B00C64D2E /* InventorySlots.swift in Sources */,
 				F45F4ACB23B2A6660020333B /* DashTalentClass.swift in Sources */,
 				F4AC645F239FF6A500C64D2E /* PlayerTalentClass.swift in Sources */,
+				44B8DBBA23DA2D30002BA761 /* SnakeEntClass.swift in Sources */,
 				F46BF48923D264AB005C29EB /* FloatingTextClass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
