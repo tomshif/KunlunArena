@@ -346,6 +346,7 @@
 				F46BF49123D9FAA9005C29EB /* MeleeAttackClass.swift in Sources */,
 				F482DF23239745070063CF84 /* EntityClass.swift in Sources */,
 				F4AC645623982E2200C64D2E /* States.swift in Sources */,
+				43914AF923DA443B00538AFB /* MonkeyEntClass.swift in Sources */,
 				F482DF21239744E50063CF84 /* PlayerClass.swift in Sources */,
 				F45F4AC623ABDD080020333B /* BodyBitMasks.swift in Sources */,
 				F482DF06239744050063CF84 /* AppDelegate.swift in Sources */,
