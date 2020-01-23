@@ -25,15 +25,27 @@ class PlayerClass
     var isMovingToPoint:Bool=false
     var playerName:String?
     var isPlayAction:Bool=false
+    var isInAttackMode:Bool=false
     
     
     var playerTalents=[PlayerTalentClass]()
     
     var activeTalents=[PlayerTalentClass]()
     
-    
-    var health:Int=100
+    // Player stats
+    var playerLevel:Int=1
+    var strength:CGFloat=20
+    var quickness:CGFloat=20
+    var wisdom:CGFloat=20
+    var mana:CGFloat=20
+    var health:CGFloat=20
+    var manaRegen:CGFloat=1.0
+    var healthRegen:CGFloat=1.0
+    var critChance:CGFloat=5.0
+    var damageReduction:CGFloat=0
     var moveSpeed:CGFloat=10
+    
+    var currentDamage:CGFloat=5.0 // This is updated each time the player changes gear or levels up.
     
     init()
     {
@@ -48,7 +60,10 @@ class PlayerClass
         game=theGame
         
         // initialize talents
-        
+        // 0
+        let tempMelee=MeleeAttackClass(theGame: game!)
+        playerTalents.append(tempMelee)
+        // 1
         let tempDash=DashTalentClass(theGame: game!)
         playerTalents.append(tempDash)
         

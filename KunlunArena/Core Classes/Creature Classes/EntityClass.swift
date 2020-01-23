@@ -69,6 +69,9 @@ class EntityClass
     var VISIONDIST:CGFloat=500
     var UPDATECYCLE:Int=0   // This is revised based on entID % 4 to ensure even distribution of entities in update cycling
     
+    // Entity Stats
+    var health:CGFloat=10;
+    var damageReduction:CGFloat=0.05; // Modifier applied to incoming damage
     
     
     
@@ -160,6 +163,28 @@ class EntityClass
         
     } // init(scene)
     
+    public func takeDamage(amount: CGFloat)
+    {
+        health -= amount*(1-damageReduction)
+        print("\(amount) reduced to \(amount*(1-damageReduction))")
+        
+        // create a flash effect to indicate it got hit
+        bodySprite.run(SKAction.sequence([SKAction.fadeAlpha(to: 0.5, duration: 0.1), SKAction.fadeAlpha(to: 1.0, duration: 0.1)]))
+        
+        // create blood splatter
+        for _ in 1...5
+        {
+            let tempBlood=SKSpriteNode(imageNamed: "bloodSplatter")
+            tempBlood.position=bodySprite.position
+            tempBlood.zPosition=15
+            tempBlood.zRotation=random(min: 0, max: CGFloat.pi*2)
+            tempBlood.run(SKAction.sequence([SKAction.move(by: CGVector(dx: random(min: -100, max: 100), dy: random(min: -100, max: 100)), duration: 0.4), SKAction.wait(forDuration: 2.0), SKAction.fadeOut(withDuration: 0.5), SKAction.removeFromParent()]))
+            tempBlood.name="bloodSplatter"
+            game!.scene!.addChild(tempBlood)
+        } // for
+        
+    } // takeDamage()
+     
     internal func getAngleToPlayer() -> CGFloat
     {
                 
@@ -242,8 +267,13 @@ class EntityClass
     ////////////////////
     public func update(cycle: Int)
     {
+        // First, let's check our health to see if we should die
+        if health <= 0
+        {
+            die()
+        }
         
-        if UPDATECYCLE==cycle
+        if UPDATECYCLE==cycle && !isDead
         {
             // Simple Follow logic - target player
  
@@ -263,26 +293,26 @@ class EntityClass
             playerInSight=checkLOS(angle: angle, distance: VISIONDIST)
             
             // Turn towards player
-            if isPursuing && playerInSight
+            if isPursuing && playerInSight && !isDead
             {
                 turnToAngle=angle
                 turnTo(pAngle: angle)
             } // if
             
-            if isPursuing && !playerInSight
+            if isPursuing && !playerInSight && !isDead
             {
                 turnToAngle=lastSightAngle
                 turnTo(pAngle: turnToAngle)
             } // if
             
             
-            if playerInSight && playerDist < VISIONDIST
+            if playerInSight && playerDist < VISIONDIST && !isDead
             {
                 isPursuing=true
                 lastSightAngle=angle
             } // if
             
-            if playerDist >= VISIONDIST
+            if playerDist >= VISIONDIST && !isDead
             {
                 isPursuing=false
             }
@@ -292,13 +322,15 @@ class EntityClass
 
         
         // move towards player
-        if playerDist > pursueRange && isPursuing
+        if playerDist > pursueRange && isPursuing && !isDead
         {
             let moveDX=cos(bodySprite.zRotation)*moveSpeed
             let moveDY=sin(bodySprite.zRotation)*moveSpeed
             bodySprite.position.x += moveDX
             bodySprite.position.y += moveDY
         } // pursue player
+        
+
     } // update()
     
 } // class EntityClass
