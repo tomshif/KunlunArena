@@ -29,9 +29,22 @@ class dragonEntClass:EntityClass
     spriteScale=random(min: 1.5, max: 3.5)
     bodySprite.setScale(spriteScale)
     
-
-
-
-
+    moveSpeed=random(min: 5.5, max: 10.5)
+    attackRange=random(min: 25, max: 200)
+    VISIONDIST=random(min: 500, max: 500)
+    if attackRange > 45
+    {
+        pursueRange=attackRange*2
+    }
+    else
+    {
+        pursueRange=attackRange
+    }
+      
+    let entColor=NSColor(calibratedRed: random(min: 0.5, max: 0.7), green: random(min: 0.6, max: 0.9), blue: random(min: 0, max: 0.4), alpha: 1.0)
+    bodySprite.color=entColor
+    headSprite.color=entColor
+    tailSprite.color=entColor
+   
     } // init scene/ID}
 }// class TestEntClass
