@@ -18,9 +18,9 @@ class GameClass
 {
     var scene:SKScene?
     var player:PlayerClass?
-    
+    var floatText:FloatingTextClass?
     var entList=[EntityClass]() // needs to move to GameClass
-
+    
     
     init()
     {
@@ -30,6 +30,8 @@ class GameClass
     init(theScene:SKScene)
     {
         scene=theScene
+        floatText=FloatingTextClass(theScene: scene!)
+        
     } // init(theScene)
     
 } // class GameClass
