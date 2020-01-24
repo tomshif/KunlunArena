@@ -44,7 +44,7 @@ class GameScene: SKScene {
     
     // Core Classes
     var game=GameClass()
- 
+
     
     // KB Bools
     var upPressed:Bool=false

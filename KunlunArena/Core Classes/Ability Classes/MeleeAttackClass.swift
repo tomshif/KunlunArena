@@ -53,6 +53,7 @@ class MeleeAttackClass:PlayerTalentClass
                         {
                             // we have found our entity, so we apply the damage based on the player's current damage
                             entity.takeDamage(amount: game!.player!.currentDamage)
+                        
                             break
                         } // if
                     } // for

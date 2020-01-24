@@ -169,7 +169,7 @@ class EntityClass
         
         // create a flash effect to indicate it got hit
         bodySprite.run(SKAction.sequence([SKAction.fadeAlpha(to: 0.5, duration: 0.1), SKAction.fadeAlpha(to: 1.0, duration: 0.1)]))
-        
+        game!.floatText!.damageLabel(amount: amount*(1-damageReduction), ent: self)
         // create blood splatter
         for _ in 1...5
         {
