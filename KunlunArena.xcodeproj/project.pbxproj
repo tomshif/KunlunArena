@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		44B8DBBA23DA2D30002BA761 /* SnakeEntClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B8DBB923DA2D30002BA761 /* SnakeEntClass.swift */; };
+		4CE0D1C423DA452100220D9B /* GhostDodgeTalentClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE0D1C323DA452100220D9B /* GhostDodgeTalentClass.swift */; };
 		F45F4AC623ABDD080020333B /* BodyBitMasks.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45F4AC523ABDD080020333B /* BodyBitMasks.swift */; };
 		F45F4AC923ABE9ED0020333B /* Keyboard Commands.rtf in Resources */ = {isa = PBXBuildFile; fileRef = F45F4AC823ABE9ED0020333B /* Keyboard Commands.rtf */; };
 		F45F4ACB23B2A6660020333B /* DashTalentClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45F4ACA23B2A6660020333B /* DashTalentClass.swift */; };
@@ -41,6 +42,7 @@
 
 /* Begin PBXFileReference section */
 		44B8DBB923DA2D30002BA761 /* SnakeEntClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnakeEntClass.swift; sourceTree = "<group>"; };
+		4CE0D1C323DA452100220D9B /* GhostDodgeTalentClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GhostDodgeTalentClass.swift; sourceTree = "<group>"; };
 		F45F4AC523ABDD080020333B /* BodyBitMasks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyBitMasks.swift; sourceTree = "<group>"; };
 		F45F4AC823ABE9ED0020333B /* Keyboard Commands.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = "Keyboard Commands.rtf"; sourceTree = "<group>"; };
 		F45F4ACA23B2A6660020333B /* DashTalentClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashTalentClass.swift; sourceTree = "<group>"; };
@@ -239,6 +241,7 @@
 				F4AC6460239FF6B800C64D2E /* EnemySkillClass.swift */,
 				F4AC646623A00CDD00C64D2E /* SpecialStatus.swift */,
 				F45F4ACA23B2A6660020333B /* DashTalentClass.swift */,
+				4CE0D1C323DA452100220D9B /* GhostDodgeTalentClass.swift */,
 			);
 			path = "Ability Classes";
 			sourceTree = "<group>";
@@ -348,6 +351,7 @@
 				F482DF06239744050063CF84 /* AppDelegate.swift in Sources */,
 				F4AC6463239FF70B00C64D2E /* InventorySlots.swift in Sources */,
 				F45F4ACB23B2A6660020333B /* DashTalentClass.swift in Sources */,
+				4CE0D1C423DA452100220D9B /* GhostDodgeTalentClass.swift in Sources */,
 				F4AC645F239FF6A500C64D2E /* PlayerTalentClass.swift in Sources */,
 				44B8DBBA23DA2D30002BA761 /* SnakeEntClass.swift in Sources */,
 				F46BF48923D264AB005C29EB /* FloatingTextClass.swift in Sources */,
