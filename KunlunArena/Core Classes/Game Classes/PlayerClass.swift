@@ -65,10 +65,17 @@ class PlayerClass
         // 0
         let tempMelee=MeleeAttackClass(theGame: game!)
         playerTalents.append(tempMelee)
+        
         // 1
         // TO DO - Dash needs to be moved to 2 and ranged needs to be put at 1
         let tempDash=DashTalentClass(theGame: game!)
         playerTalents.append(tempDash)
+        
+        // 2
+        let tempLightning=SwordsOfLightningTalentClass(theGame: game!)
+        playerTalents.append(tempLightning)
+        
+        
         equippedWeapon=BaseInventoryClass(game: game!)
         
     } // init - game

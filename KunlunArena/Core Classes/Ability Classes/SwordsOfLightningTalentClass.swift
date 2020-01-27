@@ -14,6 +14,7 @@ class SwordsOfLightningTalentClass:PlayerTalentClass
     var timeSinceLastUse: CGFloat=0
     
     override init(theGame:GameClass)
+        
     {
         super.init(theGame: theGame)
         name="Swords of Lighting"
@@ -27,6 +28,8 @@ class SwordsOfLightningTalentClass:PlayerTalentClass
     override func removeTalent()
     {
         isActive=false
+        game!.player!.playerTalents[0].COOLDOWN=0.25
+        
     }
     
     override func updateTalent()
@@ -36,6 +39,9 @@ class SwordsOfLightningTalentClass:PlayerTalentClass
     
     override func doTalent()
     {
+        game!.player!.playerTalents[0].COOLDOWN=0
+        lastUse=NSDate()
+        isActive=true
         
     }
     
