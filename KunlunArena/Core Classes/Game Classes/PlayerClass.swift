@@ -102,10 +102,10 @@ class PlayerClass
     {
         if health<maxHealth
         {
-            health+=1/60
+            health+=healthRegen/60
         }
         else{
-            health=20
+            health=maxHealth
         }
     }
     
@@ -113,10 +113,10 @@ class PlayerClass
     {
         if mana<maxMana
         {
-            mana+=1/60
+            mana+=manaRegen/60
         }
         else{
-            mana=20
+            mana=maxMana
         }
     }
     private func checkActions()
@@ -144,6 +144,85 @@ class PlayerClass
         } // if there are active talents
     } // updateTalents()
     
+    
+    public func equipRefresh()
+    {
+        if equippedWeapon!.effects % suffixEffects.STRENGTH == 0
+        {
+            strength = CGFloat(15 + playerLevel*5) + equippedWeapon!.statsMod
+        }
+        else if equippedWeapon!.effects % suffixEffects.QUICKNESS == 0
+        {
+            quickness = CGFloat(15 + playerLevel*5) + equippedWeapon!.statsMod
+        }
+        else if equippedWeapon!.effects % suffixEffects.WISDOM == 0
+        {
+            wisdom = CGFloat(15 + playerLevel*5) + equippedWeapon!.statsMod
+        }
+        else if equippedWeapon!.effects % suffixEffects.HEALTH == 0
+        {
+            health = CGFloat(15 + playerLevel*5) + equippedWeapon!.statsMod
+        }
+        else if equippedWeapon!.effects % suffixEffects.MANA == 0
+        {
+            mana = CGFloat(15 + playerLevel*5) + equippedWeapon!.statsMod
+        }
+        else if equippedWeapon!.effects % suffixEffects.HEALTHREGEN == 0
+        {
+            healthRegen = CGFloat(15 + playerLevel*5) + equippedWeapon!.statsMod
+        }
+        else if equippedWeapon!.effects % suffixEffects.MANAREGEN == 0
+        {
+            manaRegen = CGFloat(15 + playerLevel*5) + equippedWeapon!.statsMod
+        }
+        else if equippedWeapon!.effects % suffixEffects.MOVESPEED == 0
+        {
+            moveSpeed = CGFloat(15 + playerLevel*5) + equippedWeapon!.statsMod
+        }
+        else if equippedWeapon!.effects % suffixEffects.CRITICAL == 0
+        {
+            critChance = CGFloat(15 + playerLevel*5) + equippedWeapon!.statsMod
+        }
+        
+        
+        if equippedWeapon!.effects % suffixEffects.CRITICAL == 0
+        {
+            critChance = CGFloat(15 + playerLevel*5) + equippedWeapon!.statsMod
+        }
+        else if equippedWeapon!.effects % suffixEffects.MOVESPEED == 0
+               {
+                   moveSpeed = CGFloat(15 + playerLevel*5) + equippedWeapon!.statsMod
+               }
+        else if equippedWeapon!.effects % suffixEffects.MANAREGEN == 0
+               {
+                   manaRegen = CGFloat(15 + playerLevel*5) + equippedWeapon!.statsMod
+               }
+        else if equippedWeapon!.effects % suffixEffects.HEALTHREGEN == 0
+               {
+                   healthRegen = CGFloat(15 + playerLevel*5) + equippedWeapon!.statsMod
+               }
+        else if equippedWeapon!.effects % suffixEffects.MANA == 0
+             {
+                 mana = CGFloat(15 + playerLevel*5) + equippedWeapon!.statsMod
+             }
+        else if equippedWeapon!.effects % suffixEffects.HEALTH == 0
+        {
+            health = CGFloat(15 + playerLevel*5) + equippedWeapon!.statsMod
+        }
+        else if equippedWeapon!.effects % suffixEffects.WISDOM == 0
+               {
+                   wisdom = CGFloat(15 + playerLevel*5) + equippedWeapon!.statsMod
+               }
+        else if equippedWeapon!.effects % suffixEffects.QUICKNESS == 0
+               {
+                   quickness = CGFloat(15 + playerLevel*5) + equippedWeapon!.statsMod
+               }
+        else if equippedWeapon!.effects % suffixEffects.STRENGTH == 0
+               {
+                   strength = CGFloat(15 + playerLevel*5) + equippedWeapon!.statsMod
+               }
+        
+    }
     public func update()
     {
         updateTalents()
@@ -153,8 +232,9 @@ class PlayerClass
         manaRe()
         
         // test
-        print("Mana: \(game!.player!.mana)")
-        print("Health:\(game!.player!.health)")
+        //print("Mana: \(game!.player!.mana)")
+        //print("Health:\(game!.player!.health)")
+        print("Stats Mod: \(equippedWeapon!.statsMod)")
     } // update()
     
     
