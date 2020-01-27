@@ -27,7 +27,7 @@ class PlayerClass
     var isPlayAction:Bool=false
     var isInAttackMode:Bool=false
     
-    var equippedWeapon=[BaseInventoryClass]()
+    var equippedWeapon:BaseInventoryClass?
     
     var playerTalents=[PlayerTalentClass]()
     var activeTalents=[PlayerTalentClass]()
@@ -67,7 +67,7 @@ class PlayerClass
         // TO DO - Dash needs to be moved to 2 and ranged needs to be put at 1
         let tempDash=DashTalentClass(theGame: game!)
         playerTalents.append(tempDash)
-        
+        equippedWeapon=BaseInventoryClass(game: game!)
         
     } // init - game
     

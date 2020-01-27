@@ -139,11 +139,16 @@ class GameScene: SKScene {
        ///////////////////////////////////////
         
         game=GameClass(theScene: self)
+        initInventory(game: game)
         player=PlayerClass(theGame: game)
         game.player=player
         gameState=STATES.FIGHT
         player.playerSprite=pBody
-        initInventory(game: game)
+        
+        
+        // Create first weapon
+        let tempItem=BaseInventoryClass(game: game)
+        //game.player!.equippedWeapon!=tempItem
         
         
         
@@ -436,6 +441,8 @@ class GameScene: SKScene {
             
         case 34: // I
             let tempItem=BaseInventoryClass(game: game)
+            game.player!.equippedWeapon!=tempItem
+            
             
         case 42: // \ (backslash)
             for ent in game.entList

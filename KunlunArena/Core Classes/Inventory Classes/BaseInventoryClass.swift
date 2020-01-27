@@ -130,7 +130,10 @@ class BaseInventoryClass
         print("Speed: \(attackSpeedFactor)")
         print("#1 Effect: \(getFirstEffectString()) + \(statsMod)")
         print("#2 Effect: \(getSecondEffectString()) + \(statsMod)")
-    }
+        
+
+
+    } // init
     
     public func getFirstEffectString() -> String
     {
