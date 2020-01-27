@@ -44,6 +44,8 @@ class PlayerClass
     var critChance:CGFloat=5.0
     var damageReduction:CGFloat=0
     var moveSpeed:CGFloat=10
+    var maxHealth:CGFloat=20
+    var maxMana:CGFloat=20
     
     var currentDamage:CGFloat=5.0 // This is updated each time the player changes gear or levels up.
     
@@ -96,7 +98,27 @@ class PlayerClass
             } // if moveToPoint is not nil
         } // if moving to point
     } // moveTo()
+    public func healthRe()
+    {
+        if health<maxHealth
+        {
+            health+=1/60
+        }
+        else{
+            health=20
+        }
+    }
     
+    public func manaRe()
+    {
+        if mana<maxMana
+        {
+            mana+=1/60
+        }
+        else{
+            mana=20
+        }
+    }
     private func checkActions()
     {
         isPlayAction=playerSprite!.hasActions()
@@ -127,7 +149,12 @@ class PlayerClass
         updateTalents()
         checkActions()
         moveTo()
+        healthRe()
+        manaRe()
         
+        // test
+        print("Mana: \(game!.player!.mana)")
+        print("Health:\(game!.player!.health)")
     } // update()
     
     
