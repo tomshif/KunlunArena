@@ -397,10 +397,10 @@ class GameScene: SKScene {
             attack()
             
         case 18: // 1
-            if player.playerTalents[1].getCooldown() < 0
+            if player.playerTalents[TalentList.dash].getCooldown() < 0
             {
-            player.activeTalents.append(player.playerTalents[1])
-                player.playerTalents[1].doTalent()
+            player.activeTalents.append(player.playerTalents[TalentList.dash])
+                player.playerTalents[TalentList.dash].doTalent()
             }
             else
             {
