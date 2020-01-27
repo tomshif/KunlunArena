@@ -133,14 +133,19 @@ class GameScene: SKScene {
         addChild(bgParticle)
         bgParticle.setScale(4.0)
         
-        
+        ///////////////////////////////////////
         // Init the game
-        game=GameClass(theScene: self)
 
+       ///////////////////////////////////////
+        
+        game=GameClass(theScene: self)
         player=PlayerClass(theGame: game)
         game.player=player
         gameState=STATES.FIGHT
         player.playerSprite=pBody
+        initInventory(game: game)
+        
+        
         
         // Setup the player sprite (needs to be moved to PlayerClass init)
         addChild(pBody)
@@ -428,6 +433,9 @@ class GameScene: SKScene {
         case 30: // ]
             gameState=STATES.SPAWNVERTWALL
             
+            
+        case 34: // I
+            let tempItem=BaseInventoryClass(game: game)
             
         case 42: // \ (backslash)
             for ent in game.entList

@@ -12,5 +12,7 @@ import Foundation
 class PrefixClass
 {
     var name:String=""
-
+    var rarity:Int=0
+    var base:CGFloat=0
+    
 }

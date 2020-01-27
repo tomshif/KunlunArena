@@ -13,5 +13,8 @@ import SpriteKit
 
 class SuffixClass
 {
+    var name:String=""
+    var effects:Int=0
+    
     
 } // SuffixClass

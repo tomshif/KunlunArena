@@ -20,6 +20,9 @@ class GameClass
     var player:PlayerClass?
     var floatText:FloatingTextClass?
     var entList=[EntityClass]() // needs to move to GameClass
+    var suffixList=[SuffixClass]()
+    var prefixList=[PrefixClass]()
+    var baseTypesList=[BaseInvTypesClass]()
     
     
     init()
