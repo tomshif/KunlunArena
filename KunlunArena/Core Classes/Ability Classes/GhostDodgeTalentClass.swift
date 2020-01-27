@@ -2,7 +2,7 @@
 //  GhostDodgeTalentClass.swift
 //  KunlunArena
 //
-//  Created by Michael Ramirez on 1/23/20.
+//  Created by Michael Ramirez on 1/24/20.
 //  Copyright © 2020 LCS Game Design. All rights reserved.
 //
 
@@ -10,29 +10,22 @@ import Foundation
 
 import SpriteKit
 
-
-class GhostDodgeTalentClass:PlayerTalentClass
+class GhostTalentClass:PlayerTalentClass
 {
-    
-    var oldArmor:CGFloat = 0
-    var oldStrength:CGFloat = 0
+    var oldArmor:CGFloat=0
     
     override init(theGame: GameClass)
     {
         // This is the only initializer that will ever be used. We will always pass the class when initializing talents
-        
-        
         super.init(theGame: theGame)
         name="GhostDodge"
-        description="Player is impervious to incoming attacks for 5 seconds but cannot attack enimies while in this state."
+        description="Player becomes impervious to incoming damage"
         isAction=false
-        game=theGame //ask about this
+        game=theGame
         COOLDOWN=7.5
         lengthActive=5
         
-        oldArmor=game!.player!.damageReduction
-        oldStrength=game!.player!.strength
-        
+        oldArmor = game!.player!.damageReduction
     } // init game
     
     
@@ -41,14 +34,16 @@ class GhostDodgeTalentClass:PlayerTalentClass
         // This talent will be called when the talent expires.
         // Note that this will always be called from the GameScene and should not be called internally.
 
-        game!.player!.strength = oldStrength //restores strength to normal
-        game!.player!.damageReduction = oldArmor //restores armor to normal
+        game!.player!.damageReduction = oldArmor //restores armor stats
         isActive=false
     } // removeTalent()
     
     
     override func updateTalent()
     {
+        // This method is called each frame while the method is active
+        // If the talent is a one shot thing, this method won't need to do anything.
+        // Note that this will always be called from the GameScene and should not be called internally.
         
     } // updateTalent()
     
@@ -57,8 +52,7 @@ class GhostDodgeTalentClass:PlayerTalentClass
         // This method will be called when the talent is first begun.
         // Note that this will always be called from the GameScene and should not be called internally.
         
-        game!.player!.strength = 0 //player can not attack
-        game!.player!.damageReduction = 1 // Immune to incoming attacks
+        game!.player!.damageReduction = 1 //player becomes immune to incoming attacks
         lastUse=NSDate()
         isActive=true
             
@@ -66,7 +60,3 @@ class GhostDodgeTalentClass:PlayerTalentClass
     } // doTalent()
     
 } // class GhostDodgeTalentClass
-
-
-
-//Possible Bugs: 1.(If a player equips a new peice of armor during GhostDodge it could restore the  stats of the old armor.)
