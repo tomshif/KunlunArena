@@ -45,6 +45,32 @@ class dragonEntClass:EntityClass
     bodySprite.color=entColor
     headSprite.color=entColor
     tailSprite.color=entColor
+    
+    func takeDamage(amount: CGFloat)
+    {
+        health -= amount*(1-damageReduction)
+        print("\(amount) reduced to \(amount*(1-damageReduction))")
+        
+        // create a flash effect to indicate it got hit
+        bodySprite.run(SKAction.sequence([SKAction.fadeAlpha(to: 0.5, duration: 0.1), SKAction.fadeAlpha(to: 1.0, duration: 0.1)]))
+        game!.floatText!.damageLabel(amount: amount*(1-damageReduction), ent: self)
+        // create blood splatter
+        for _ in 1...5
+        {
+            let tempBlood=SKSpriteNode(imageNamed: "bloodSplatter")
+            tempBlood.position=bodySprite.position
+            tempBlood.zPosition=15
+            tempBlood.zRotation=random(min: 0, max: CGFloat.pi*2)
+            tempBlood.run(SKAction.sequence([SKAction.move(by: CGVector(dx: random(min: -100, max: 100), dy: random(min: -100, max: 100)), duration: 0.4), SKAction.wait(forDuration: 2.0), SKAction.fadeOut(withDuration: 0.5), SKAction.removeFromParent()]))
+            tempBlood.name="bloodSplatter"
+            game!.scene!.addChild(tempBlood)
+        } // for
+        
+    } // takeDamage()
+    
+    
+    
+    
    
     } // init scene/ID}
 }// class TestEntClass
