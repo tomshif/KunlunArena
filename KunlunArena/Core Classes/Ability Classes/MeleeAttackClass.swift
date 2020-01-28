@@ -52,7 +52,8 @@ class MeleeAttackClass:PlayerTalentClass
                         if thisEnt == entity.bodySprite.name! || thisEnt == entity.headSprite.name!
                         {
                             // we have found our entity, so we apply the damage based on the player's current damage
-                            entity.takeDamage(amount: game!.player!.currentDamage)
+                            entity.takeDamage(amount: game!.player!.equippedWeapon!.iLevelMod * game!.player!.equippedWeapon!.modLevel)
+                            
                         
                             break
                         } // if

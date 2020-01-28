@@ -87,6 +87,35 @@ func initInventory(game: GameClass)
     let type22=BaseInvTypesClass(n: "Fire Lance", m: 1.5)
     game.baseTypesList.append(type22)
     
+    let type23=BaseInvTypesClass(n: "Sickle", m: 0.8)
+    game.baseTypesList.append(type23)
+    
+    let type24=BaseInvTypesClass(n: "Hammer", m: 1.0)
+    game.baseTypesList.append(type24)
+    
+    let type25=BaseInvTypesClass(n: "Broomstick", m: 1.2)
+    game.baseTypesList.append(type25)
+    
+    let type26=BaseInvTypesClass(n: "Pitchfork", m: 1.3)
+    game.baseTypesList.append(type26)
+    
+    let type27=BaseInvTypesClass(n: "Scythe", m: 1.5)
+    game.baseTypesList.append(type27)
+    
+    let type28=BaseInvTypesClass(n: "Fuozhu", m: 0.85)
+    game.baseTypesList.append(type28)
+    
+    let type29=BaseInvTypesClass(n: "Zhuanjingtong", m: 1.0)
+    game.baseTypesList.append(type29)
+    
+    let type30=BaseInvTypesClass(n: "Sacred Mallet-TEMP", m: 1.2)
+    game.baseTypesList.append(type30)
+    
+    let type31=BaseInvTypesClass(n: "Fuchen", m: 1.3)
+    game.baseTypesList.append(type31)
+    
+    let type32=BaseInvTypesClass(n: "Ru Yi", m: 1.5)
+    game.baseTypesList.append(type32)
     
     // Add each of the prefixes to the list
     
@@ -127,31 +156,31 @@ func initInventory(game: GameClass)
     game.prefixList.append(pre05)
     
     let pre06=PrefixClass()
-    pre06.name="Spider's"
+    pre06.name="Jagged"
     pre06.rarity=2
     pre06.base=7.5
     game.prefixList.append(pre06)
     
     let pre07=PrefixClass()
-    pre07.name="Raven's"
+    pre07.name="Sharp"
     pre07.rarity=2
     pre07.base=7.5
     game.prefixList.append(pre07)
     
     let pre08=PrefixClass()
-    pre08.name="Eagle's"
+    pre08.name="Balanced"
     pre08.rarity=2
     pre08.base=7.0
     game.prefixList.append(pre08)
     
     let pre09=PrefixClass()
-    pre09.name="Scorpion's"
+    pre09.name="Slicing"
     pre09.rarity=2
     pre09.base=6
     game.prefixList.append(pre09)
     
     let pre10=PrefixClass()
-    pre10.name="Fox's"
+    pre10.name="Tempered"
     pre10.rarity=2
     pre10.base=5.5
     game.prefixList.append(pre10)

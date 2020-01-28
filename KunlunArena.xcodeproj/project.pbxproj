@@ -148,7 +148,6 @@
 				F4AC645723982E3900C64D2E /* Misc Files */,
 				F482DF1B2397445D0063CF84 /* Core Classes */,
 				F4AC646823A03DCE00C64D2E /* Emitters */,
-				F45F4B1623B4404E0020333B /* Init Files */,
 				F482DF0B239744050063CF84 /* GameScene.swift */,
 				F482DF0F239744070063CF84 /* Assets.xcassets */,
 				F482DF14239744070063CF84 /* Info.plist */,
@@ -162,6 +161,7 @@
 				F46BF48723D26484005C29EB /* Special Effects Classes */,
 				F45F4AC723ABE7020020333B /* Level Classes */,
 				F4AC645D239FF68C00C64D2E /* Ability Classes */,
+				F45F4B1623B4404E0020333B /* Init Files */,
 				F4AC645223982D3C00C64D2E /* Inventory Classes */,
 				F482DF242397493C0063CF84 /* Utility Classes */,
 				F482DF1D239744830063CF84 /* Creature Classes */,
@@ -204,6 +204,7 @@
 		F4AC645223982D3C00C64D2E /* Inventory Classes */ = {
 			isa = PBXGroup;
 			children = (
+				F46BF48E23D8CA31005C29EB /* InventoryInit.swift */,
 				F4AC645323982D5A00C64D2E /* BaseInventoryClass.swift */,
 				F4AC6462239FF70B00C64D2E /* InventorySlots.swift */,
 				F4AC6464239FF7A300C64D2E /* PrefixClass.swift */,
@@ -211,7 +212,6 @@
 				F46BF49223DF3974005C29EB /* InventoryColors.swift */,
 				F46BF49423DF3A01005C29EB /* SuffixEffects.swift */,
 				F46BF49623DF4100005C29EB /* BaseInvTypesClass.swift */,
-				F46BF48E23D8CA31005C29EB /* InventoryInit.swift */,
 			);
 			path = "Inventory Classes";
 			sourceTree = "<group>";

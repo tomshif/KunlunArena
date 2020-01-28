@@ -23,6 +23,9 @@ class GameScene: SKScene {
     var pHead=SKSpriteNode(imageNamed: "head")
     var pArms=SKSpriteNode(imageNamed: "arms")
 
+    // UI
+    var itemScreen=SKSpriteNode(imageNamed: "itemScrollBG")
+
     var stateLabel=SKLabelNode(fontNamed: "Chalkduster")
     var entCountLabel=SKLabelNode(fontNamed: "Arial")
     var copyrightLabel=SKLabelNode(text: "(C) LCS Game Design, 2020.")
@@ -72,7 +75,18 @@ class GameScene: SKScene {
     
     override func didMove(to view: SKView) {
         
-        
+         ///////////////////////////////////////
+         // Init the game
+
+        ///////////////////////////////////////
+         
+         game=GameClass(theScene: self)
+         initInventory(game: game)
+         player=PlayerClass(theGame: game)
+         game.player=player
+         game.player!.equipRefresh()
+         gameState=STATES.FIGHT
+         player.playerSprite=pBody
         
         
         MAPSIZE=Int(random(min:64, max: 96))
@@ -133,22 +147,10 @@ class GameScene: SKScene {
         addChild(bgParticle)
         bgParticle.setScale(4.0)
         
-        ///////////////////////////////////////
-        // Init the game
 
-       ///////////////////////////////////////
-        
-        game=GameClass(theScene: self)
-        initInventory(game: game)
-        player=PlayerClass(theGame: game)
-        game.player=player
-        gameState=STATES.FIGHT
-        player.playerSprite=pBody
         
         
-        // Create first weapon
-        let tempItem=BaseInventoryClass(game: game)
-        //game.player!.equippedWeapon!=tempItem
+
         
         
         
@@ -180,11 +182,19 @@ class GameScene: SKScene {
         } // for
         
         
+        // Initializer UI Elements
+        
+        // Item Window
+        itemScreen.isHidden=true
+        itemScreen.zPosition=10000
+        cam.addChild(itemScreen)
+        
+        
     } // didMove()
     
     func spawnEnemy()
     {
-        let tempEnt=SnakeEntClass(theScene: self, id: entCount)
+        let tempEnt=SnakeEntClass(theGame: game, id: entCount)
         tempEnt.game=game
         var goodSpawn:Bool=false
         var xp:CGFloat=0
@@ -254,6 +264,58 @@ class GameScene: SKScene {
         } // for each node
     } // attack()
 
+    func updateItemScreen()
+    {
+        itemScreen.removeAllChildren()
+        let itemNameLabel=SKLabelNode(fontNamed: "Tahoma")
+        itemNameLabel.position.y=itemScreen.size.height*0.30
+        itemNameLabel.fontColor=game.player!.equippedWeapon!.itemLevelColor
+        itemNameLabel.text=game.player!.equippedWeapon!.name
+        itemScreen.addChild(itemNameLabel)
+        itemNameLabel.zPosition=10010
+
+        let itemLevelLabel=SKLabelNode(fontNamed: "Tahoma")
+        itemLevelLabel.position.y=itemScreen.size.height*0.25
+        itemLevelLabel.color=NSColor.white
+        itemLevelLabel.fontSize=24
+        itemLevelLabel.zPosition=10010
+        itemLevelLabel.text="Item Level: \(game.player!.equippedWeapon!.iLevel)"
+        itemScreen.addChild(itemLevelLabel)
+    
+        let itemDamageLabel=SKLabelNode(fontNamed: "Tahoma")
+        itemDamageLabel.position.y=itemScreen.size.height*0.20
+        itemDamageLabel.color=NSColor.white
+        itemDamageLabel.fontSize=24
+        itemDamageLabel.zPosition=10010
+        itemDamageLabel.text=String(format: "Damage: %2.2f", game.player!.equippedWeapon!.modLevel*game.player!.equippedWeapon!.iLevelMod)
+        itemScreen.addChild(itemDamageLabel)
+        
+        let itemSpeedLabel=SKLabelNode(fontNamed: "Tahoma")
+        itemSpeedLabel.position.y=itemScreen.size.height*0.15
+        itemSpeedLabel.color=NSColor.white
+        itemSpeedLabel.fontSize=24
+        itemSpeedLabel.zPosition=10010
+        itemSpeedLabel.text=String(format: "Speed: %1.2f", game.player!.equippedWeapon!.attackSpeedFactor)
+        itemScreen.addChild(itemSpeedLabel)
+        
+        
+        let itemMod1=SKLabelNode(fontNamed: "Tahoma")
+        itemMod1.position.y=itemScreen.size.height*0.05
+        itemMod1.color=NSColor.white
+        itemMod1.fontSize=24
+        itemMod1.zPosition=10010
+        itemMod1.text=String(format: "\(game.player!.equippedWeapon!.getFirstEffectString()) +%1.2f", game.player!.equippedWeapon!.statsMod)
+        itemScreen.addChild(itemMod1)
+        
+        let itemMod2=SKLabelNode(fontNamed: "Tahoma")
+        itemMod2.position.y=itemScreen.size.height*0.00
+        itemMod2.color=NSColor.white
+        itemMod2.fontSize=24
+        itemMod2.zPosition=10010
+        itemMod2.text=String(format: "\(game.player!.equippedWeapon!.getSecondEffectString()) +%1.2f", game.player!.equippedWeapon!.statsMod)
+        itemScreen.addChild(itemMod2)
+        
+    } // updateItemScreen
     
     func drawGrid()
     {
@@ -350,7 +412,7 @@ class GameScene: SKScene {
         } // if in spawn vert wall mode
         else if gameState==STATES.SPAWNENT
         {
-            let tempEnt=EntityClass(theScene: self, id: entCount)
+            let tempEnt=EntityClass(theGame: game, id: entCount)
             tempEnt.game=game
             tempEnt.bodySprite.position=pos
             game.entList.append(tempEnt)
@@ -440,9 +502,10 @@ class GameScene: SKScene {
             
             
         case 34: // I
-            let tempItem=BaseInventoryClass(game: game)
-            game.player!.equippedWeapon!=tempItem
-            
+            gameState=STATES.ITEM
+            game.player!.equippedWeapon=BaseInventoryClass(game: game)
+            game.player!.equipRefresh()
+            updateItemScreen()
             
         case 42: // \ (backslash)
             for ent in game.entList
@@ -601,6 +664,8 @@ class GameScene: SKScene {
             stateLabel.text="Spawn Vert Wall State"
         case STATES.SPAWNENT:
             stateLabel.text="Spawn Ent State"
+        case STATES.ITEM:
+            stateLabel.text="Item Test State"
         default:
             stateLabel.text="Error in State"
         } // switch gameState
@@ -630,6 +695,8 @@ class GameScene: SKScene {
 
         if gameState==STATES.FIGHT
         {
+            itemScreen.isHidden=true
+            
             // increase our update cycle
             updateCycle += 1
             if updateCycle >= MAXAICYCLES
@@ -649,6 +716,10 @@ class GameScene: SKScene {
                 ent.update(cycle: updateCycle)
             }
         } // if we're in fight state
+        else
+        {
+            itemScreen.isHidden=false
+        }
         
         
         
