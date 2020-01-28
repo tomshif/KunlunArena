@@ -29,8 +29,8 @@ class dragonEntClass:EntityClass
     spriteScale=random(min: 1.5, max: 3.5)
     bodySprite.setScale(spriteScale)
     
-    moveSpeed=random(min: 5.5, max: 10.5)
-    attackRange=random(min: 25, max: 200)
+    moveSpeed=random(min: 6.2, max: 10.7)
+    attackRange=random(min: 17, max: 200)
     VISIONDIST=random(min: 500, max: 500)
     if attackRange > 45
     {
@@ -41,32 +41,10 @@ class dragonEntClass:EntityClass
         pursueRange=attackRange
     }
       
-    let entColor=NSColor(calibratedRed: random(min: 0.5, max: 0.7), green: random(min: 0.6, max: 0.9), blue: random(min: 0, max: 0.4), alpha: 1.0)
+    let entColor=NSColor(calibratedRed: random(min: 0.9, max: 1.0), green: random(min: 0.8, max: 0.9), blue: random(min: 0.8, max: 0.9), alpha: 1.0)
     bodySprite.color=entColor
     headSprite.color=entColor
     tailSprite.color=entColor
-    
-    func takeDamage(amount: CGFloat)
-    {
-        health -= amount*(1-damageReduction)
-        print("\(amount) reduced to \(amount*(1-damageReduction))")
-        
-        // create a flash effect to indicate it got hit
-        bodySprite.run(SKAction.sequence([SKAction.fadeAlpha(to: 0.5, duration: 0.1), SKAction.fadeAlpha(to: 1.0, duration: 0.1)]))
-        game!.floatText!.damageLabel(amount: amount*(1-damageReduction), ent: self)
-        // create blood splatter
-        for _ in 1...5
-        {
-            let tempBlood=SKSpriteNode(imageNamed: "bloodSplatter")
-            tempBlood.position=bodySprite.position
-            tempBlood.zPosition=15
-            tempBlood.zRotation=random(min: 0, max: CGFloat.pi*2)
-            tempBlood.run(SKAction.sequence([SKAction.move(by: CGVector(dx: random(min: -100, max: 100), dy: random(min: -100, max: 100)), duration: 0.4), SKAction.wait(forDuration: 2.0), SKAction.fadeOut(withDuration: 0.5), SKAction.removeFromParent()]))
-            tempBlood.name="bloodSplatter"
-            game!.scene!.addChild(tempBlood)
-        } // for
-        
-    } // takeDamage()
     
     
     
