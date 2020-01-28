@@ -32,6 +32,8 @@ class BaseInventoryClass
     var effects:Int=0
     let BASEEFFECTSMOD:CGFloat=1.0
     
+    var itemLevelColor=NSColor()
+    
     
     init(game: GameClass)
     {
@@ -39,7 +41,7 @@ class BaseInventoryClass
         
         // Generate the iLevel
         // For test purposes this is hard coded to be random, but will scale with player
-        iLevel=Int(random(min: 4, max: 4))
+        iLevel=Int(random(min: 1, max: 20))
         iLevelMod=CGFloat(iLevel)*1.0525
         
         
@@ -80,6 +82,27 @@ class BaseInventoryClass
             {
                 foundType=true
             }
+        } // while
+    
+        if chanceType==1
+        {
+            itemLevelColor=invColors.COMMON
+        }
+        else if chanceType==2
+        {
+            itemLevelColor=invColors.UNCOMMON
+        }
+        else if chanceType==3
+        {
+            itemLevelColor=invColors.RARE
+        }
+        else if chanceType==4
+        {
+            itemLevelColor=invColors.EPIC
+        }
+        else if chanceType==5
+        {
+            itemLevelColor=invColors.LEGENDARY
         }
         
         

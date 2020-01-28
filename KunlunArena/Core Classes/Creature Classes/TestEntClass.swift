@@ -11,9 +11,9 @@ import SpriteKit
 
 class TestEntClass:EntityClass
 {
-    override init(theScene: SKScene, id: Int)
+    override init(theGame: GameClass, id: Int)
     {
-        super.init(theScene: theScene, id: id)
+        super.init(theGame: theGame, id: id)
         spriteNamePrefix="testEnt"
         headNum=3
         bodyNum=3
