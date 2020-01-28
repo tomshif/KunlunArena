@@ -70,8 +70,9 @@ class EntityClass
     var UPDATECYCLE:Int=0   // This is revised based on entID % 4 to ensure even distribution of entities in update cycling
     
     // Entity Stats
-    var health:CGFloat=10;
-    var damageReduction:CGFloat=0.05; // Modifier applied to incoming damage
+    var entLevel:Int=1
+    var health:CGFloat=10
+    var damageReduction:CGFloat=0.05 // Modifier applied to incoming damage
     
     
     
@@ -88,9 +89,11 @@ class EntityClass
         
     } // init() - default
     
-    init(theScene: SKScene, id: Int)
+    init(theGame: GameClass, id: Int)
     {
-        scene=theScene
+        game=theGame
+        scene=theGame.scene!
+        
         name=String(format:"Ent%5d",id)
         entID=id
         UPDATECYCLE=entID % 4
@@ -158,12 +161,23 @@ class EntityClass
             pursueRange=attackRange
         }
         
+        // Set Entity Stats
+
+        let variance=Int(random(min: -3, max: 3))
+        entLevel=game!.player!.playerLevel+variance
+        if entLevel <= 0
+        {
+            entLevel=1
+        }
+        print("EntLevel = \(entLevel)")
+        health=CGFloat(entLevel)*25+25
 
         
     } // init(scene)
     
     public func takeDamage(amount: CGFloat)
     {
+        print("Health: \(health)")
         health -= amount*(1-damageReduction)
         print("\(amount) reduced to \(amount*(1-damageReduction))")
         

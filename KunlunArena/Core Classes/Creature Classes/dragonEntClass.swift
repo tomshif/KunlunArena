@@ -11,9 +11,9 @@ import SpriteKit
 
 class dragonEntClass:EntityClass
 {
-    override init(theScene: SKScene, id: Int)
+    override init(theGame: GameClass, id: Int)
 {
-    super.init(theScene: theScene, id: id)
+    super.init(theGame: theGame, id: id)
     spriteNamePrefix="dragon"
     headNum=1
     bodyNum=1

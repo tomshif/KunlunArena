@@ -47,6 +47,18 @@ class FloatingTextClass
     
     public func healLabel(amount: CGFloat, ent: EntityClass)
     {
+        let tempLabel=SKLabelNode(text: String(format:"-%2.0f", amount))
+
+        tempLabel.zPosition=zPos
+        tempLabel.position=ent.bodySprite.position
+        tempLabel.name="healLabel"
+        tempLabel.fontName="Chalkboard"
+        tempLabel.run(SKAction.sequence([SKAction.move(by: CGVector(dx: 10, dy: 100), duration: 1),  SKAction.removeFromParent()]))
+        tempLabel.run(SKAction.sequence([SKAction.wait(forDuration: 0.8),SKAction.fadeOut(withDuration: 0.2)]))
+        tempLabel.fontColor=NSColor.green
+        
+        scene!.addChild(tempLabel)
+        
         
     } // healLabel
     
