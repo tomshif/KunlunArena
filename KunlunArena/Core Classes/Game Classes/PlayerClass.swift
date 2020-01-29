@@ -47,7 +47,8 @@ class PlayerClass
     var maxHealth:CGFloat=20
     var maxMana:CGFloat=20
     
-    let BASEREGEN:CGFloat=1.0
+    let BASEREGENMANA:CGFloat=2
+    let BASEREGENHEALTH:CGFloat=1.0
     
     var currentDamage:CGFloat=5.0 // This is updated each time the player changes gear or levels up.
     
@@ -162,14 +163,14 @@ class PlayerClass
     public func resetStats()
     {
         playerLevel=equippedWeapon!.iLevel
-        strength=CGFloat(playerLevel*15+5)
-        quickness=CGFloat(playerLevel*15+5)
-        wisdom=CGFloat(playerLevel*15+5)
-        maxMana=CGFloat(playerLevel*15+5)
-        maxHealth=CGFloat(playerLevel*15+5)
+        strength=CGFloat(playerLevel*5+15)
+        quickness=CGFloat(playerLevel*5+15)
+        wisdom=CGFloat(playerLevel*5+15)
+        maxMana=CGFloat(playerLevel*5+15)
+        maxHealth=CGFloat(playerLevel*5+15)
         moveSpeed=7.5
-        manaRegen=BASEREGEN
-        healthRegen=BASEREGEN
+        manaRegen=BASEREGENMANA
+        healthRegen=BASEREGENHEALTH
         
         // TEMP - For now, set player level equal to the equipped weapon level
 
@@ -177,82 +178,85 @@ class PlayerClass
     
     public func equipRefresh()
     {
-        if equippedWeapon!.effects % suffixEffects.STRENGTH == 0
+        if equippedWeapon!.rarity > 1
         {
-            strength = CGFloat(15 + playerLevel*5) + equippedWeapon!.statsMod
-        }
-        else if equippedWeapon!.effects % suffixEffects.QUICKNESS == 0
-        {
-            quickness = CGFloat(15 + playerLevel*5) + equippedWeapon!.statsMod
-        }
-        else if equippedWeapon!.effects % suffixEffects.WISDOM == 0
-        {
-            wisdom = CGFloat(15 + playerLevel*5) + equippedWeapon!.statsMod
-        }
-        else if equippedWeapon!.effects % suffixEffects.HEALTH == 0
-        {
-            maxHealth = CGFloat(15 + playerLevel*5) + equippedWeapon!.statsMod
-        }
-        else if equippedWeapon!.effects % suffixEffects.MANA == 0
-        {
-            maxMana = CGFloat(15 + playerLevel*5) + equippedWeapon!.statsMod
-        }
-        else if equippedWeapon!.effects % suffixEffects.HEALTHREGEN == 0
-        {
-            healthRegen = BASEREGEN + equippedWeapon!.statsMod/100
-        }
-        else if equippedWeapon!.effects % suffixEffects.MANAREGEN == 0
-        {
-            manaRegen = BASEREGEN + equippedWeapon!.statsMod/100
-        }
-        else if equippedWeapon!.effects % suffixEffects.MOVESPEED == 0
-        {
-            moveSpeed = 7.5 + equippedWeapon!.statsMod/100
-        }
-        else if equippedWeapon!.effects % suffixEffects.CRITICAL == 0
-        {
-            critChance = CGFloat(15 + playerLevel*5) + equippedWeapon!.statsMod
-        }
-        
-        
-        if equippedWeapon!.effects % suffixEffects.CRITICAL == 0
-        {
-            critChance = CGFloat(15 + playerLevel*5) + equippedWeapon!.statsMod
-        }
-        else if equippedWeapon!.effects % suffixEffects.MOVESPEED == 0
-               {
+            if equippedWeapon!.effects % suffixEffects.STRENGTH == 0
+            {
+                strength = CGFloat(15 + playerLevel*5) + equippedWeapon!.statsMod
+            }
+            else if equippedWeapon!.effects % suffixEffects.QUICKNESS == 0
+            {
+                quickness = CGFloat(15 + playerLevel*5) + equippedWeapon!.statsMod
+            }
+            else if equippedWeapon!.effects % suffixEffects.WISDOM == 0
+            {
+                wisdom = CGFloat(15 + playerLevel*5) + equippedWeapon!.statsMod
+            }
+            else if equippedWeapon!.effects % suffixEffects.HEALTH == 0
+            {
+                maxHealth = CGFloat(15 + playerLevel*5) + equippedWeapon!.statsMod
+            }
+            else if equippedWeapon!.effects % suffixEffects.MANA == 0
+            {
+                maxMana = CGFloat(15 + playerLevel*5) + equippedWeapon!.statsMod
+            }
+            else if equippedWeapon!.effects % suffixEffects.HEALTHREGEN == 0
+            {
+                healthRegen = BASEREGENHEALTH + equippedWeapon!.statsMod/100
+            }
+            else if equippedWeapon!.effects % suffixEffects.MANAREGEN == 0
+            {
+                manaRegen = BASEREGENMANA + equippedWeapon!.statsMod/100
+            }
+            else if equippedWeapon!.effects % suffixEffects.MOVESPEED == 0
+            {
                 moveSpeed = 7.5 + equippedWeapon!.statsMod/100
-               }
-        else if equippedWeapon!.effects % suffixEffects.MANAREGEN == 0
-               {
-                manaRegen = BASEREGEN + equippedWeapon!.statsMod/100
-               }
-        else if equippedWeapon!.effects % suffixEffects.HEALTHREGEN == 0
-               {
-                healthRegen = BASEREGEN + equippedWeapon!.statsMod/100
-               }
-        else if equippedWeapon!.effects % suffixEffects.MANA == 0
-             {
-                 maxMana = CGFloat(15 + playerLevel*5) + equippedWeapon!.statsMod
-             }
-        else if equippedWeapon!.effects % suffixEffects.HEALTH == 0
-        {
-            maxHealth = CGFloat(15 + playerLevel*5) + equippedWeapon!.statsMod
+            }
+            else if equippedWeapon!.effects % suffixEffects.CRITICAL == 0
+            {
+                critChance = CGFloat(15 + playerLevel*5) + equippedWeapon!.statsMod
+            }
+            
+            
+            if equippedWeapon!.effects % suffixEffects.CRITICAL == 0
+            {
+                critChance = CGFloat(15 + playerLevel*5) + equippedWeapon!.statsMod
+            }
+            else if equippedWeapon!.effects % suffixEffects.MOVESPEED == 0
+                   {
+                    moveSpeed = 7.5 + equippedWeapon!.statsMod/100
+                   }
+            else if equippedWeapon!.effects % suffixEffects.MANAREGEN == 0
+                   {
+                    manaRegen = BASEREGENMANA + equippedWeapon!.statsMod/100
+                   }
+            else if equippedWeapon!.effects % suffixEffects.HEALTHREGEN == 0
+                   {
+                    healthRegen = BASEREGENHEALTH + equippedWeapon!.statsMod/100
+                   }
+            else if equippedWeapon!.effects % suffixEffects.MANA == 0
+                 {
+                     maxMana = CGFloat(15 + playerLevel*5) + equippedWeapon!.statsMod
+                 }
+            else if equippedWeapon!.effects % suffixEffects.HEALTH == 0
+            {
+                maxHealth = CGFloat(15 + playerLevel*5) + equippedWeapon!.statsMod
+            }
+            else if equippedWeapon!.effects % suffixEffects.WISDOM == 0
+                   {
+                       wisdom = CGFloat(15 + playerLevel*5) + equippedWeapon!.statsMod
+                   }
+            else if equippedWeapon!.effects % suffixEffects.QUICKNESS == 0
+                   {
+                       quickness = CGFloat(15 + playerLevel*5) + equippedWeapon!.statsMod
+                   }
+            else if equippedWeapon!.effects % suffixEffects.STRENGTH == 0
+                   {
+                       strength = CGFloat(15 + playerLevel*5) + equippedWeapon!.statsMod
+                   }
         }
-        else if equippedWeapon!.effects % suffixEffects.WISDOM == 0
-               {
-                   wisdom = CGFloat(15 + playerLevel*5) + equippedWeapon!.statsMod
-               }
-        else if equippedWeapon!.effects % suffixEffects.QUICKNESS == 0
-               {
-                   quickness = CGFloat(15 + playerLevel*5) + equippedWeapon!.statsMod
-               }
-        else if equippedWeapon!.effects % suffixEffects.STRENGTH == 0
-               {
-                   strength = CGFloat(15 + playerLevel*5) + equippedWeapon!.statsMod
-               }
-        
-    }
+    } // equipRefresh
+    
     public func update()
     {
         updateTalents()

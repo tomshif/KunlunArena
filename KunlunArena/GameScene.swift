@@ -117,11 +117,11 @@ class GameScene: SKScene {
         copyrightLabel.fontSize=16
         copyrightLabel.fontColor=NSColor.red
         cam.addChild(copyrightLabel)
-        copyrightLabel.zPosition=10000
+        copyrightLabel.zPosition=20000
         
         buildLabel.position.x = size.width*0.4
         buildLabel.position.y = -size.height*0.45
-        buildLabel.zPosition = 10000
+        buildLabel.zPosition = 20000
         buildLabel.text="Build: \(BUILDVERSION)"
         buildLabel.fontColor=NSColor.red
         buildLabel.fontSize=16
@@ -498,6 +498,7 @@ class GameScene: SKScene {
                 {
                     actionCoolDowns[i-1].isHidden=false
                     actionCoolDowns[i-1].yScale=player.playerTalents[i].getCooldownRatio()
+                    actionCoolDowns[i-1].position.y = -32*(1-player.playerTalents[i].getCooldownRatio())
                 } // if on cooldown
                 else
                 {
@@ -558,29 +559,29 @@ class GameScene: SKScene {
             attack()
             
         case 18: // 1
-            if player.playerTalents[TalentList.dash].getCooldown() < 0
+            if player.playerTalents[TalentList.dash].getCooldown() < 0 && player.mana >= player.playerTalents[TalentList.dash].manaCost
             {
             player.activeTalents.append(player.playerTalents[TalentList.dash])
                 player.playerTalents[TalentList.dash].doTalent()
             }
             else
             {
-                print("Dash on cooldown.")
+                print("Dash on cooldown or not enough mana.")
             }
             
         case 19: // 2
-            if player.playerTalents[TalentList.swordOfLightning].getCooldown() < 0
+            if player.playerTalents[TalentList.swordOfLightning].getCooldown() < 0 && player.mana >= player.playerTalents[TalentList.swordOfLightning].manaCost
                      {
                      player.activeTalents.append(player.playerTalents[TalentList.swordOfLightning])
                          player.playerTalents[TalentList.swordOfLightning].doTalent()
                      }
                      else
                      {
-                         print("Sword of Lightning on cooldown.")
+                         print("Sword of Lightning on cooldown or OOM.")
                      }
             
         case 20: // 3
-            if player.playerTalents[TalentList.fireBreath].getCooldown() < 0
+            if player.playerTalents[TalentList.fireBreath].getCooldown() < 0 && player.mana >= player.playerTalents[TalentList.fireBreath].manaCost
                      {
                      player.activeTalents.append(player.playerTalents[TalentList.fireBreath])
                          player.playerTalents[TalentList.fireBreath].doTalent()
@@ -590,7 +591,7 @@ class GameScene: SKScene {
                          print("Fire Breath on cooldown.")
                      }
         case 21: // 4
-            if player.playerTalents[TalentList.ghostDodge].getCooldown() < 0
+            if player.playerTalents[TalentList.ghostDodge].getCooldown() < 0 && player.mana >= player.playerTalents[TalentList.ghostDodge].manaCost
                      {
                      player.activeTalents.append(player.playerTalents[TalentList.ghostDodge])
                          player.playerTalents[TalentList.ghostDodge].doTalent()
@@ -824,10 +825,14 @@ class GameScene: SKScene {
         
         updateUI()
         cleanLists()
-
-        if gameState==STATES.FIGHT
+        
+        if gameState != STATES.ITEM
         {
             itemScreen.isHidden=true
+        }
+        if gameState==STATES.FIGHT
+        {
+            
             
             // increase our update cycle
             updateCycle += 1

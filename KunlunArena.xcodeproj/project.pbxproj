@@ -205,6 +205,14 @@
 			path = "Utility Classes";
 			sourceTree = "<group>";
 		};
+		F497A28823E2026B00E4B248 /* Entity Abilities */ = {
+			isa = PBXGroup;
+			children = (
+				F4AC6460239FF6B800C64D2E /* EnemySkillClass.swift */,
+			);
+			path = "Entity Abilities";
+			sourceTree = "<group>";
+		};
 		F4AC645223982D3C00C64D2E /* Inventory Classes */ = {
 			isa = PBXGroup;
 			children = (
@@ -259,9 +267,9 @@
 		F4AC645D239FF68C00C64D2E /* Ability Classes */ = {
 			isa = PBXGroup;
 			children = (
+				F497A28823E2026B00E4B248 /* Entity Abilities */,
 				F4AC645E239FF6A500C64D2E /* PlayerTalentClass.swift */,
 				F46BF49023D9FAA9005C29EB /* MeleeAttackClass.swift */,
-				F4AC6460239FF6B800C64D2E /* EnemySkillClass.swift */,
 				F4AC646623A00CDD00C64D2E /* SpecialStatus.swift */,
 				F45F4ACA23B2A6660020333B /* DashTalentClass.swift */,
 				44F62E7323DA451B004C8469 /* SwordsOfLightningTalentClass.swift */,

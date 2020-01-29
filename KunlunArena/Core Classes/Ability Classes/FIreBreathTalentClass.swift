@@ -36,6 +36,7 @@ class FireBreathTalentClass:PlayerTalentClass
     {
         oldMovementSpeed=game!.player!.moveSpeed
         game!.player!.moveSpeed=0
+        
         lastUse=NSDate()
         isActive=true
         
@@ -72,7 +73,10 @@ class FireBreathTalentClass:PlayerTalentClass
         
         
     } // doTalent()
-    
+    override func updateTalent()
+    {
+        game!.player!.mana -= manaCost/2/60
+    } // update talent
     override func removeTalent()
     {
         game!.player!.moveSpeed=oldMovementSpeed

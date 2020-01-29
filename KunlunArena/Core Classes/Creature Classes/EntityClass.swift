@@ -187,7 +187,7 @@ class EntityClass
             entLevel=1
         }
         print("EntLevel = \(entLevel)")
-        health=CGFloat(entLevel)*25+25
+        health=CGFloat(entLevel)*35+25
 
         
     } // init(scene)

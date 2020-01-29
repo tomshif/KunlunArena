@@ -84,6 +84,7 @@ class BaseInventoryClass
             }
         } // while
     
+        rarity=chanceType
         if chanceType==1
         {
             itemLevelColor=invColors.COMMON
