@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		4346BEC123DA456500F6300D /* dragonEntClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4346BEC023DA456500F6300D /* dragonEntClass.swift */; };
 		4351F38C23DB9B6F002A48A9 /* PigEntClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4351F38B23DB9B6F002A48A9 /* PigEntClass.swift */; };
+		4454C2E623E2176F00473804 /* DogEntClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4454C2E523E2176F00473804 /* DogEntClass.swift */; };
 		44B8DBBA23DA2D30002BA761 /* SnakeEntClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B8DBB923DA2D30002BA761 /* SnakeEntClass.swift */; };
 		44C697A223DF768B004CCE49 /* PlayerClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C697A123DF768B004CCE49 /* PlayerClass.swift */; };
 		44F62E7423DA451B004C8469 /* SwordsOfLightningTalentClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F62E7323DA451B004C8469 /* SwordsOfLightningTalentClass.swift */; };
@@ -38,6 +39,8 @@
 		F482DF26239749550063CF84 /* random.swift in Sources */ = {isa = PBXBuildFile; fileRef = F482DF25239749550063CF84 /* random.swift */; };
 		F497A28523E1D88200E4B248 /* FIreBreathTalentClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F497A28423E1D88200E4B248 /* FIreBreathTalentClass.swift */; };
 		F497A28723E1D96C00E4B248 /* FireBreathTalentEmitter.sks in Resources */ = {isa = PBXBuildFile; fileRef = F497A28623E1D96C00E4B248 /* FireBreathTalentEmitter.sks */; };
+		F497A28A23E2196900E4B248 /* TalentBranchList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F497A28923E2196900E4B248 /* TalentBranchList.swift */; };
+		F497A28C23E21D8400E4B248 /* EnemyMeleeClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F497A28B23E21D8400E4B248 /* EnemyMeleeClass.swift */; };
 		F4AC645423982D5A00C64D2E /* BaseInventoryClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AC645323982D5A00C64D2E /* BaseInventoryClass.swift */; };
 		F4AC645623982E2200C64D2E /* States.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AC645523982E2200C64D2E /* States.swift */; };
 		F4AC645F239FF6A500C64D2E /* PlayerTalentClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AC645E239FF6A500C64D2E /* PlayerTalentClass.swift */; };
@@ -52,6 +55,7 @@
 /* Begin PBXFileReference section */
 		4346BEC023DA456500F6300D /* dragonEntClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dragonEntClass.swift; sourceTree = "<group>"; };
 		4351F38B23DB9B6F002A48A9 /* PigEntClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PigEntClass.swift; sourceTree = "<group>"; };
+		4454C2E523E2176F00473804 /* DogEntClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogEntClass.swift; sourceTree = "<group>"; };
 		44B8DBB923DA2D30002BA761 /* SnakeEntClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnakeEntClass.swift; sourceTree = "<group>"; };
 		44C697A123DF768B004CCE49 /* PlayerClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerClass.swift; sourceTree = "<group>"; };
 		44F62E7323DA451B004C8469 /* SwordsOfLightningTalentClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwordsOfLightningTalentClass.swift; sourceTree = "<group>"; };
@@ -84,6 +88,8 @@
 		F482DF25239749550063CF84 /* random.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = random.swift; sourceTree = "<group>"; };
 		F497A28423E1D88200E4B248 /* FIreBreathTalentClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FIreBreathTalentClass.swift; sourceTree = "<group>"; };
 		F497A28623E1D96C00E4B248 /* FireBreathTalentEmitter.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = FireBreathTalentEmitter.sks; sourceTree = "<group>"; };
+		F497A28923E2196900E4B248 /* TalentBranchList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalentBranchList.swift; sourceTree = "<group>"; };
+		F497A28B23E21D8400E4B248 /* EnemyMeleeClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnemyMeleeClass.swift; sourceTree = "<group>"; };
 		F4AC645323982D5A00C64D2E /* BaseInventoryClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseInventoryClass.swift; sourceTree = "<group>"; };
 		F4AC645523982E2200C64D2E /* States.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = States.swift; sourceTree = "<group>"; };
 		F4AC645E239FF6A500C64D2E /* PlayerTalentClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerTalentClass.swift; sourceTree = "<group>"; };
@@ -179,6 +185,7 @@
 			children = (
 				F482DF1E239744D50063CF84 /* GameClass.swift */,
 				44C697A123DF768B004CCE49 /* PlayerClass.swift */,
+				F497A28923E2196900E4B248 /* TalentBranchList.swift */,
 			);
 			path = "Game Classes";
 			sourceTree = "<group>";
@@ -191,6 +198,7 @@
 				44B8DBB923DA2D30002BA761 /* SnakeEntClass.swift */,
 				4346BEC023DA456500F6300D /* dragonEntClass.swift */,
 				4351F38B23DB9B6F002A48A9 /* PigEntClass.swift */,
+				4454C2E523E2176F00473804 /* DogEntClass.swift */,
 			);
 			path = "Creature Classes";
 			sourceTree = "<group>";
@@ -209,6 +217,7 @@
 			isa = PBXGroup;
 			children = (
 				F4AC6460239FF6B800C64D2E /* EnemySkillClass.swift */,
+				F497A28B23E21D8400E4B248 /* EnemyMeleeClass.swift */,
 			);
 			path = "Entity Abilities";
 			sourceTree = "<group>";
@@ -375,12 +384,14 @@
 				4CA2857A23DF8BC400A72268 /* GhostDodgeTalent.swift in Sources */,
 				F46BF48F23D8CA31005C29EB /* InventoryInit.swift in Sources */,
 				44F62E7423DA451B004C8469 /* SwordsOfLightningTalentClass.swift in Sources */,
+				4454C2E623E2176F00473804 /* DogEntClass.swift in Sources */,
 				F431F07D23DBD16D00EBD905 /* TalentList.swift in Sources */,
 				F4AC645423982D5A00C64D2E /* BaseInventoryClass.swift in Sources */,
 				4351F38C23DB9B6F002A48A9 /* PigEntClass.swift in Sources */,
 				F482DF0C239744050063CF84 /* GameScene.swift in Sources */,
 				F46BF48D23D8C9CD005C29EB /* SuffixClass.swift in Sources */,
 				F46BF48B23D772A4005C29EB /* TestEntClass.swift in Sources */,
+				F497A28C23E21D8400E4B248 /* EnemyMeleeClass.swift in Sources */,
 				F4AC6461239FF6B800C64D2E /* EnemySkillClass.swift in Sources */,
 				F482DF1F239744D50063CF84 /* GameClass.swift in Sources */,
 				F497A28523E1D88200E4B248 /* FIreBreathTalentClass.swift in Sources */,
@@ -395,6 +406,7 @@
 				F482DF06239744050063CF84 /* AppDelegate.swift in Sources */,
 				F4AC6463239FF70B00C64D2E /* InventorySlots.swift in Sources */,
 				F45F4ACB23B2A6660020333B /* DashTalentClass.swift in Sources */,
+				F497A28A23E2196900E4B248 /* TalentBranchList.swift in Sources */,
 				F4AC645F239FF6A500C64D2E /* PlayerTalentClass.swift in Sources */,
 				44B8DBBA23DA2D30002BA761 /* SnakeEntClass.swift in Sources */,
 				F46BF48923D264AB005C29EB /* FloatingTextClass.swift in Sources */,

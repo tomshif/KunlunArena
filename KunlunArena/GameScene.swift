@@ -184,7 +184,7 @@ class GameScene: SKScene {
         pBody.zPosition=14
         pHead.zPosition=15
         pArms.zPosition=15
-        
+        pBody.name="playerSprite"
         // create player physics body
         pBody.physicsBody=SKPhysicsBody(circleOfRadius: pBody.size.width)
         pBody.physicsBody!.categoryBitMask=BODYBITMASKS.PLAYER
@@ -217,7 +217,7 @@ class GameScene: SKScene {
     
     func spawnEnemy()
     {
-        let tempEnt=dragonEntClass(theGame: game, id: entCount)
+        let tempEnt=DogEntClass(theGame: game, id: entCount)
         tempEnt.game=game
         var goodSpawn:Bool=false
         var xp:CGFloat=0
