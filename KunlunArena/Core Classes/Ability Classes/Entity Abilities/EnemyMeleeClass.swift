@@ -11,7 +11,7 @@ import SpriteKit
 
 class EnemyMeleeClass:EnemySkillClass
 {
-    override init(theScene: GameScene, ent: EntityClass)
+    override init(theScene: SKScene, ent: EntityClass)
     {
         super.init(theScene: theScene, ent: ent)
         

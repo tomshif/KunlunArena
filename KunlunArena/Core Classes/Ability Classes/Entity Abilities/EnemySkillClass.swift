@@ -16,7 +16,7 @@ import SpriteKit
 
 class EnemySkillClass
 {
-    var scene:GameScene?
+    var scene:SKScene?
     var isAction:Bool=false
     var tier:Int=0
     var lastUse=NSDate()
@@ -27,7 +27,7 @@ class EnemySkillClass
     
     var entity:EntityClass?
     
-    init(theScene: GameScene, ent: EntityClass)
+    init(theScene: SKScene, ent: EntityClass)
     {
         scene=theScene
         entity=ent
