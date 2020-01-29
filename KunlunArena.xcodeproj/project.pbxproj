@@ -13,6 +13,7 @@
 		44B8DBBA23DA2D30002BA761 /* SnakeEntClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B8DBB923DA2D30002BA761 /* SnakeEntClass.swift */; };
 		44C697A223DF768B004CCE49 /* PlayerClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C697A123DF768B004CCE49 /* PlayerClass.swift */; };
 		44F62E7423DA451B004C8469 /* SwordsOfLightningTalentClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F62E7323DA451B004C8469 /* SwordsOfLightningTalentClass.swift */; };
+		4C45B38E23E22FBF005C778E /* AngerIssuesTalentClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C45B38D23E22FBF005C778E /* AngerIssuesTalentClass.swift */; };
 		4CA2857A23DF8BC400A72268 /* GhostDodgeTalent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA2857923DF8BC400A72268 /* GhostDodgeTalent.swift */; };
 		F431F07D23DBD16D00EBD905 /* TalentList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F431F07C23DBD16D00EBD905 /* TalentList.swift */; };
 		F45F4AC623ABDD080020333B /* BodyBitMasks.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45F4AC523ABDD080020333B /* BodyBitMasks.swift */; };
@@ -59,6 +60,7 @@
 		44B8DBB923DA2D30002BA761 /* SnakeEntClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnakeEntClass.swift; sourceTree = "<group>"; };
 		44C697A123DF768B004CCE49 /* PlayerClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerClass.swift; sourceTree = "<group>"; };
 		44F62E7323DA451B004C8469 /* SwordsOfLightningTalentClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwordsOfLightningTalentClass.swift; sourceTree = "<group>"; };
+		4C45B38D23E22FBF005C778E /* AngerIssuesTalentClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AngerIssuesTalentClass.swift; sourceTree = "<group>"; };
 		4CA2857923DF8BC400A72268 /* GhostDodgeTalent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GhostDodgeTalent.swift; sourceTree = "<group>"; };
 		F431F07C23DBD16D00EBD905 /* TalentList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalentList.swift; sourceTree = "<group>"; };
 		F45F4AC523ABDD080020333B /* BodyBitMasks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyBitMasks.swift; sourceTree = "<group>"; };
@@ -285,6 +287,7 @@
 				F431F07C23DBD16D00EBD905 /* TalentList.swift */,
 				4CA2857923DF8BC400A72268 /* GhostDodgeTalent.swift */,
 				F497A28423E1D88200E4B248 /* FIreBreathTalentClass.swift */,
+				4C45B38D23E22FBF005C778E /* AngerIssuesTalentClass.swift */,
 			);
 			path = "Ability Classes";
 			sourceTree = "<group>";
@@ -382,6 +385,7 @@
 				F4AC6465239FF7A300C64D2E /* PrefixClass.swift in Sources */,
 				F4AC646723A00CDD00C64D2E /* SpecialStatus.swift in Sources */,
 				4CA2857A23DF8BC400A72268 /* GhostDodgeTalent.swift in Sources */,
+				4C45B38E23E22FBF005C778E /* AngerIssuesTalentClass.swift in Sources */,
 				F46BF48F23D8CA31005C29EB /* InventoryInit.swift in Sources */,
 				44F62E7423DA451B004C8469 /* SwordsOfLightningTalentClass.swift in Sources */,
 				4454C2E623E2176F00473804 /* DogEntClass.swift in Sources */,
