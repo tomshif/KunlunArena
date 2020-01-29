@@ -46,6 +46,11 @@ class PlayerClass
     var moveSpeed:CGFloat=10
     var maxHealth:CGFloat=20
     var maxMana:CGFloat=20
+    var experienceGain:CGFloat=0
+    var experienceMana:CGFloat=0
+    var experienceDefence:CGFloat=0
+    var experienceEye:CGFloat=0
+    
     
     let BASEREGENMANA:CGFloat=2
     let BASEREGENHEALTH:CGFloat=1.0
@@ -114,6 +119,8 @@ class PlayerClass
             } // if moveToPoint is not nil
         } // if moving to point
     } // moveTo()
+    
+    
     public func healthRe()
     {
         if health<maxHealth
