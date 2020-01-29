@@ -61,7 +61,7 @@ class GhostDodgeTalentClass:PlayerTalentClass
         //ghostEffect!.targetNode=game!.scene!
         ghostEffect!.zPosition = 200
         ghostEffect!.alpha=1
-        ghostEffect!.run(SKAction.sequence([SKAction.wait(forDuration: 5),SKAction.fadeOut(withDuration: 0.6), SKAction.removeFromParent()]))
+        ghostEffect!.run(SKAction.sequence([SKAction.wait(forDuration: 4),SKAction.fadeOut(withDuration: 1.0), SKAction.removeFromParent()]))
         //game!.player!.playerTalents[0].COOLDOWN=0
         oldArmor = game!.player!.damageReduction
         game!.player!.damageReduction = 1
