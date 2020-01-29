@@ -30,6 +30,13 @@ class GameScene: SKScene {
     var entCountLabel=SKLabelNode(fontNamed: "Arial")
     var copyrightLabel=SKLabelNode(text: "(C) LCS Game Design, 2020.")
     var buildLabel=SKLabelNode(fontNamed: "Arial")
+    var pHealthLabel=SKLabelNode(fontNamed: "Chalkduster")
+    var pManaLabel=SKLabelNode(fontNamed: "Chalkduster")
+    
+    var actionBarFrame=SKSpriteNode(imageNamed: "actionBarFrame")
+    
+    var actionCoolDowns=[SKSpriteNode]()
+    
     
     var entCountBG=SKShapeNode()
     
@@ -143,12 +150,28 @@ class GameScene: SKScene {
         entCountLabel.text="435"
         cam.addChild(entCountLabel)
         
+        pHealthLabel.fontSize=40
+        pHealthLabel.position=CGPoint(x: size.width*0.4, y: -size.height*0.35)
+        pHealthLabel.text="Health"
+        pHealthLabel.zPosition=10000
+        pHealthLabel.fontColor=NSColor.red
+        cam.addChild(pHealthLabel)
+        
+        pManaLabel.fontSize=40
+        pManaLabel.position=CGPoint(x: size.width*0.4, y: -size.height*0.4)
+        pManaLabel.text="Mana"
+        pManaLabel.fontColor=NSColor.blue
+        pManaLabel.zPosition=10000
+        cam.addChild(pManaLabel)
+        
         bgParticle=SKEmitterNode(fileNamed: "SmokeBG.sks")!
         addChild(bgParticle)
         bgParticle.setScale(4.0)
         
-
-        
+        actionBarFrame.position.y = -size.height*0.4
+        actionBarFrame.zPosition=10000
+        cam.addChild(actionBarFrame)
+        updateActionBar()
         
 
         
@@ -158,9 +181,9 @@ class GameScene: SKScene {
         addChild(pBody)
         pBody.addChild(pHead)
         pBody.addChild(pArms)
-        pBody.zPosition=2
-        pHead.zPosition=3
-        pArms.zPosition=3
+        pBody.zPosition=14
+        pHead.zPosition=15
+        pArms.zPosition=15
         
         // create player physics body
         pBody.physicsBody=SKPhysicsBody(circleOfRadius: pBody.size.width)
@@ -194,7 +217,7 @@ class GameScene: SKScene {
     
     func spawnEnemy()
     {
-        let tempEnt=SnakeEntClass(theGame: game, id: entCount)
+        let tempEnt=dragonEntClass(theGame: game, id: entCount)
         tempEnt.game=game
         var goodSpawn:Bool=false
         var xp:CGFloat=0
@@ -224,6 +247,7 @@ class GameScene: SKScene {
         tempEnt.bodySprite.position.y=yp
         game.entList.append(tempEnt)
         entCount+=1
+        
     } // func spawnEnemy()
     
     func attack()
@@ -421,6 +445,71 @@ class GameScene: SKScene {
     } // touchDown()
     
     
+    func updateActionBar()
+    {
+        for i in 1...8
+        {
+            let tempAction=SKSpriteNode(imageNamed: "actionFrame")
+            tempAction.name="actButton0\(i)"
+            tempAction.position.x = -size.width*0.27 + (tempAction.size.width*1.08*CGFloat(i))
+            //tempAction.position.y = size.height*0.4
+            tempAction.zPosition=10010
+            actionBarFrame.addChild(tempAction)
+            
+            let buttonLabel=SKLabelNode(fontNamed: "Arial")
+            buttonLabel.fontSize=12
+            buttonLabel.position.x = -tempAction.size.width*0.4
+            buttonLabel.position.y = -tempAction.size.height*0.4
+            buttonLabel.text="\(i)"
+            buttonLabel.zPosition=tempAction.zPosition+1
+            buttonLabel.name="actButtonLabel0\(i)"
+            tempAction.addChild(buttonLabel)
+            
+            // draw icons
+            if i < player.playerTalents.count
+            {
+                print("crashing on \(i)")
+                print("talent name: \(player.playerTalents[i].name)")
+                let tempIcon=SKSpriteNode(imageNamed: player.playerTalents[i].iconName)
+                tempIcon.zPosition=tempAction.zPosition+1
+                
+                tempAction.addChild(tempIcon)
+            } // if we have a talent in this slot
+            
+            // setup cooldowns
+            let tempActionCD=SKSpriteNode(imageNamed: "actionCooldown")
+            tempActionCD.zPosition=tempAction.zPosition+5
+            tempActionCD.name="actCooldown0\(i)"
+            tempAction.addChild(tempActionCD)
+            actionCoolDowns.append(tempActionCD)
+            
+        } // for each button
+    } // updateActionsBar
+    
+    
+    func updateCooldowns()
+    {
+        if actionCoolDowns.count > 0
+        {
+            for i in 1..<player.playerTalents.count
+            {
+                // get the cooldown remaing %
+                if player.playerTalents[i].getCooldown() > 0
+                {
+                    actionCoolDowns[i-1].isHidden=false
+                    actionCoolDowns[i-1].yScale=player.playerTalents[i].getCooldownRatio()
+                } // if on cooldown
+                else
+                {
+                    actionCoolDowns[i-1].isHidden=true
+                    
+                } // else
+            } // for each action cooldown sprite
+        } // if we have action cooldown sprites in our list
+        
+    } // updateCooldowns()
+    
+    
     func touchMoved(toPoint pos : CGPoint) {
         if gameState==STATES.FIGHT
         {
@@ -479,14 +568,51 @@ class GameScene: SKScene {
                 print("Dash on cooldown.")
             }
             
+        case 19: // 2
+            if player.playerTalents[TalentList.swordOfLightning].getCooldown() < 0
+                     {
+                     player.activeTalents.append(player.playerTalents[TalentList.swordOfLightning])
+                         player.playerTalents[TalentList.swordOfLightning].doTalent()
+                     }
+                     else
+                     {
+                         print("Sword of Lightning on cooldown.")
+                     }
             
-            
+        case 20: // 3
+            if player.playerTalents[TalentList.fireBreath].getCooldown() < 0
+                     {
+                     player.activeTalents.append(player.playerTalents[TalentList.fireBreath])
+                         player.playerTalents[TalentList.fireBreath].doTalent()
+                     }
+                     else
+                     {
+                         print("Fire Breath on cooldown.")
+                     }
+        case 21: // 4
+            if player.playerTalents[TalentList.ghostDodge].getCooldown() < 0
+                     {
+                     player.activeTalents.append(player.playerTalents[TalentList.ghostDodge])
+                         player.playerTalents[TalentList.ghostDodge].doTalent()
+                     }
+                     else
+                     {
+                         print("Ghost Dodge on cooldown.")
+                     }
         case 27: // -
             zoomOutPressed=true
             
         case 24: // +
             zoomInPressed=true
             
+        case 29: // 0 -- generate new weapon
+            if gameState==STATES.ITEM
+            {
+            game.player!.equippedWeapon=BaseInventoryClass(game: game)
+                game.player!.resetStats()
+                game.player!.equipRefresh()
+                updateItemScreen()
+            }
             
         case 31: // o
             gameState=STATES.SPAWNENT
@@ -502,11 +628,15 @@ class GameScene: SKScene {
             
             
         case 34: // I
-            gameState=STATES.ITEM
-            game.player!.equippedWeapon=BaseInventoryClass(game: game)
-            game.player!.equipRefresh()
-            updateItemScreen()
-            
+            if (gameState==STATES.ITEM)
+            {
+                gameState=STATES.FIGHT
+            }
+            else
+            {
+                gameState=STATES.ITEM
+                updateItemScreen()
+            }
         case 42: // \ (backslash)
             for ent in game.entList
             {
@@ -653,6 +783,7 @@ class GameScene: SKScene {
     
     func updateUI()
     {
+        updateCooldowns()
         switch gameState
         {
         case STATES.FIGHT:
@@ -671,7 +802,8 @@ class GameScene: SKScene {
         } // switch gameState
         
         entCountLabel.text="\(game.entList.count)"
-        
+        pHealthLabel.text=String(format: "%2.0f / %2.0f",player.health, player.maxHealth)
+        pManaLabel.text=String(format: "%2.0f / %2.0f",player.mana, player.maxMana)
     } // updateUI()
     
     func cleanLists()

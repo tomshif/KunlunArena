@@ -28,6 +28,7 @@ class DashTalentClass:PlayerTalentClass
         game=theGame
         COOLDOWN=10
         lengthActive=5
+        manaCost=15
     } // init game
     
     
@@ -69,7 +70,7 @@ class DashTalentClass:PlayerTalentClass
     {
         // This method will be called when the talent is first begun.
         // Note that this will always be called from the GameScene and should not be called internally.
-        
+        game!.player!.mana-=manaCost
         game!.player!.moveSpeed*=dashSpeed
         lastUse=NSDate()
         isActive=true

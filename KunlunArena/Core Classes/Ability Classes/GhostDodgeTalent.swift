@@ -24,6 +24,7 @@ class GhostDodgeTalentClass:PlayerTalentClass
         game=theGame
         COOLDOWN=7.5
         lengthActive=5
+        iconName="ghostDodgeTalentIcon"
     } // init game
     
     

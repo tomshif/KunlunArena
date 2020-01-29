@@ -14,5 +14,8 @@ struct TalentList
     static let melee:Int=0
     // static let ranged:Int=1
     static let dash:Int=1
+    static let swordOfLightning:Int=2
+    static let fireBreath:Int=3 // Temp
+    static let ghostDodge:Int=4
     
 }

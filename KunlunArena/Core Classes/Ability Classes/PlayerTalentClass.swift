@@ -30,14 +30,16 @@ class PlayerTalentClass
     var lengthActive:Double=0
     var COOLDOWN:Double=1.5
     var isActive:Bool=false
-    
-    
+    var manaCost:CGFloat=10.00
+    var iconName:String=""
     
     init(theGame: GameClass)
     {
         // The initializer will always pass the game so that we have access to the scene, player and entList
         
         game=theGame
+        iconName="dashTalentIcon"
+        
         
     } // init game
     
@@ -50,6 +52,13 @@ class PlayerTalentClass
 
         return COOLDOWN-timeSinceLastUse
     } //  getCooldown()
+    
+    public func getCooldownRatio()->CGFloat
+    {
+        let time=getCooldown()
+        let ratio=CGFloat(time/self.COOLDOWN)
+        return ratio
+    }
     
     public func activeLengthLeft() -> Double
     {

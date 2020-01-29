@@ -23,6 +23,7 @@ class SwordsOfLightningTalentClass:PlayerTalentClass
         game=theGame
         COOLDOWN=15
         lengthActive=5
+        iconName="solTalentIcon"
     }//init game
     
     override func removeTalent()

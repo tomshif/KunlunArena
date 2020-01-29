@@ -37,6 +37,8 @@ class EntityClass
     var headNum:Int=0
     var bodyNum:Int=0
     var tailNum:Int=0
+    var leftNum:Int=0
+    var rightNum:Int=0
     
     // These are the ID of the sprite parts used
     var headID:Int=0
@@ -100,12 +102,18 @@ class EntityClass
         headNum=0
         bodyNum=0
         tailNum=0
+        leftNum=0
+        rightNum=0
         headSprite=SKSpriteNode(imageNamed: "\(spriteNamePrefix)Head00")
         bodySprite=SKSpriteNode(imageNamed: "\(spriteNamePrefix)Body00")
         tailSprite=SKSpriteNode(imageNamed: "\(spriteNamePrefix)Tail00")
+        rightSprite=SKSpriteNode(imageNamed: "\(spriteNamePrefix)Right00")
+        leftSprite=SKSpriteNode(imageNamed: "\(spriteNamePrefix)Left00")
         bodySprite.colorBlendFactor=1.0
         headSprite.colorBlendFactor=1.0
         tailSprite.colorBlendFactor=1.0
+        leftSprite.colorBlendFactor=1.0
+        rightSprite.colorBlendFactor=1.0
         bodySprite.lightingBitMask=1
         tailSprite.lightingBitMask=1
         headSprite.lightingBitMask=1
@@ -115,7 +123,8 @@ class EntityClass
         bodySprite.color=entColor
         headSprite.color=entColor
         tailSprite.color=entColor
-      
+        leftSprite.color=entColor
+        rightSprite.color=entColor
         
 
         scene!.addChild(bodySprite)
@@ -123,11 +132,14 @@ class EntityClass
         
         bodySprite.addChild(headSprite)
         bodySprite.addChild(tailSprite)
-        
+        bodySprite.addChild(rightSprite)
+        bodySprite.addChild(leftSprite)
 
         headSprite.position.x=bodySprite.size.width
         
         tailSprite.position.x = -bodySprite.size.width
+        leftSprite.position.y = bodySprite.size.height
+        rightSprite.position.y = -bodySprite.size.height
 
 
         bodySprite.name=String(format:"entBody%5d",id)
@@ -136,6 +148,8 @@ class EntityClass
         bodySprite.zPosition=10
         headSprite.zPosition=10
         tailSprite.zPosition=10
+        leftSprite.zPosition=10
+        rightSprite.zPosition=10
         
 
         bodySprite.physicsBody=SKPhysicsBody(circleOfRadius: bodySprite.size.width)
@@ -144,6 +158,9 @@ class EntityClass
         bodySprite.texture!.filteringMode=SKTextureFilteringMode.nearest
         headSprite.texture!.filteringMode=SKTextureFilteringMode.nearest
         tailSprite.texture!.filteringMode=SKTextureFilteringMode.nearest
+       
+        leftSprite.texture!.filteringMode=SKTextureFilteringMode.nearest
+        rightSprite.texture!.filteringMode=SKTextureFilteringMode.nearest
         bodySprite.physicsBody!.affectedByGravity=false
         
         

@@ -15,17 +15,22 @@ class dragonEntClass:EntityClass
 {
     super.init(theGame: theGame, id: id)
     spriteNamePrefix="dragon"
-    headNum=1
-    bodyNum=1
-    tailNum=1
+    headNum=3
+    bodyNum=3
+    tailNum=3
+    leftNum=3
+    rightNum=3
     
     headID=Int(random(min: 0, max: CGFloat(headNum)-0.000000001))
     bodyID=Int(random(min: 0, max: CGFloat(bodyNum)-0.000000001))
     tailID=Int(random(min: 0, max: CGFloat(tailNum)-0.000000001))
-    
+    rightID=Int(random(min: 0, max: CGFloat(rightNum)-0.000000001))
+    leftID=Int(random(min: 0, max: CGFloat(leftNum)-0.000000001))
     headSprite.texture=SKTexture(imageNamed: "\(spriteNamePrefix)Head0\(headID)")
     bodySprite.texture=SKTexture(imageNamed: "\(spriteNamePrefix)Body0\(bodyID)")
     tailSprite.texture=SKTexture(imageNamed: "\(spriteNamePrefix)Tail0\(tailID)")
+    leftSprite.texture=SKTexture(imageNamed: "\(spriteNamePrefix)Left0\(leftID)")
+    rightSprite.texture=SKTexture(imageNamed: "\(spriteNamePrefix)Right0\(leftID)")
     spriteScale=random(min: 1.5, max: 3.5)
     bodySprite.setScale(spriteScale)
     
@@ -45,7 +50,8 @@ class dragonEntClass:EntityClass
     bodySprite.color=entColor
     headSprite.color=entColor
     tailSprite.color=entColor
-    
+    rightSprite.color=entColor
+    leftSprite.color=entColor
     
     
     
