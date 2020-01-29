@@ -14,4 +14,40 @@
 import Foundation
 import SpriteKit
 
-
+class EnemySkillClass
+{
+    var scene:GameScene?
+    var isAction:Bool=false
+    var tier:Int=0
+    var lastUse=NSDate()
+    var lengthActive:Double=0
+    var COOLDOWN:Double=1.5
+    var isActive:Bool=false
+    var manaCost:CGFloat=10.00
+    
+    var entity:EntityClass?
+    
+    init(theScene: GameScene, ent: EntityClass)
+    {
+        scene=theScene
+        entity=ent
+    } // init(scene)
+    
+    public func doSkill()
+    {
+        
+    }
+    
+    public func updateSkill()
+    {
+        
+    }
+    
+    public func removeSkill()
+    {
+        
+    }
+    
+    
+    
+} // class EnemySkillClass

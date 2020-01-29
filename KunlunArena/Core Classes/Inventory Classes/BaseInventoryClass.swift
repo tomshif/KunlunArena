@@ -19,6 +19,7 @@ class BaseInventoryClass
     var statsMod:CGFloat=0
     
     var invType:Int=0
+    var talentType:Int=0
     
     var rarity:Int=0
     
@@ -47,6 +48,7 @@ class BaseInventoryClass
         
         // First, pick the type
         invType=Int(random(min: 0, max: CGFloat(game.baseTypesList.count)-0.0000001))
+       
         
         
         // Next pick a prefix
@@ -130,6 +132,7 @@ class BaseInventoryClass
         
         modLevel=game.prefixList[prefixNum].base*game.baseTypesList[invType].modifier
         
+        talentType=game.baseTypesList[invType].talentType
         attackSpeedFactor=game.baseTypesList[invType].modifier
         
         
