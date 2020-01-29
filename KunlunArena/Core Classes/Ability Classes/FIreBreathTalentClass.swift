@@ -43,39 +43,41 @@ class FireBreathTalentClass:PlayerTalentClass
         print("Fire Breath")
         let fireNode=SKEmitterNode(fileNamed: "FireBreathTalentEmitter.sks")
         fireNode!.position=game!.player!.playerSprite!.position
-        fireNode!.zPosition=12
+        fireNode!.zPosition=game!.player!.playerSprite!.zPosition-0.00001
         fireNode!.zRotation=game!.player!.playerSprite!.zRotation
         
         fireNode!.run(SKAction.sequence([SKAction.wait(forDuration: 1.5),SKAction.removeFromParent()]))
-        
+        fireNode!.setScale(1.3)
         game!.scene!.addChild(fireNode!)
         
-        // check for enemies hit
-        
-        // determine dx/dy to center of hit area
-        let dx=cos(game!.player!.playerSprite!.zRotation)*100+game!.player!.playerSprite!.position.x
-        let dy=sin(game!.player!.playerSprite!.zRotation)*100+game!.player!.playerSprite!.position.y
-        
-        // check for all enemies within 100 pixels of this spot
-        for ent in game!.entList
-        {
-            // compute distance of ent from center of area
-            let entdx=dx-ent.bodySprite.position.x
-            let entdy=dy-ent.bodySprite.position.y
-            let dist=hypot(entdy,entdx)
-
-            if dist < 100
-            {
-                ent.takeDamage(amount: game!.player!.equippedWeapon!.iLevelMod * game!.player!.equippedWeapon!.modLevel*3)
-                
-            } // if in range do damage
-        } // for each ent
-        
+ 
         
     } // doTalent()
     override func updateTalent()
     {
         game!.player!.mana -= manaCost/2/60
+        // check for enemies hit
+         
+         // determine dx/dy to center of hit area
+         let dx=cos(game!.player!.playerSprite!.zRotation)*100+game!.player!.playerSprite!.position.x
+         let dy=sin(game!.player!.playerSprite!.zRotation)*100+game!.player!.playerSprite!.position.y
+         
+         // check for all enemies within 100 pixels of this spot
+         for ent in game!.entList
+         {
+             // compute distance of ent from center of area
+             let entdx=dx-ent.bodySprite.position.x
+             let entdy=dy-ent.bodySprite.position.y
+             let dist=hypot(entdy,entdx)
+
+             if dist < 100
+             {
+                 ent.takeDamage(amount: game!.player!.equippedWeapon!.iLevelMod * game!.player!.equippedWeapon!.modLevel*3/60/2)
+                 
+             } // if in range do damage
+         } // for each ent
+         
+        
     } // update talent
     override func removeTalent()
     {

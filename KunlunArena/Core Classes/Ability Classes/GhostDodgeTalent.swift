@@ -13,7 +13,7 @@ import SpriteKit
 class GhostDodgeTalentClass:PlayerTalentClass
 {
     var oldArmor:CGFloat=0
-    var ghostEffect = SKEmitterNode(fileNamed: "GhostDodgeEmitter")
+    
     
     override init(theGame: GameClass)
     {
@@ -35,7 +35,7 @@ class GhostDodgeTalentClass:PlayerTalentClass
         // This talent will be called when the talent expires.
         // Note that this will always be called from the GameScene and should not be called internally.
         
-        game!.player!.playerTalents[0].COOLDOWN=7.5
+        
         game!.player!.damageReduction = oldArmor
         isActive=false
     } // removeTalent()
@@ -46,23 +46,28 @@ class GhostDodgeTalentClass:PlayerTalentClass
         // This method is called each frame while the method is active
         // If the talent is a one shot thing, this method won't need to do anything.
         // Note that this will always be called from the GameScene and should not be called internally.
-        while isActive
-        {
-            ghostEffect!.position = game!.player!.playerSprite!.position
-        }
+
     } // updateTalent()
     
     override func doTalent()
     {
         // This method will be called when the talent is first begun.
         // Note that this will always be called from the GameScene and should not be called internally.
+        let ghostEffect = SKEmitterNode(fileNamed: "GhostDodgeEmitter.sks")
+        ghostEffect!.name="ghostTalentEffect"
+        game!.player!.playerSprite!.addChild(ghostEffect!)
         
-        game!.player!.playerTalents[0].COOLDOWN=0
+        
+        //ghostEffect!.targetNode=game!.scene!
+        ghostEffect!.zPosition = 200
+        ghostEffect!.alpha=1
+        ghostEffect!.run(SKAction.sequence([SKAction.wait(forDuration: 5),SKAction.fadeOut(withDuration: 0.6), SKAction.removeFromParent()]))
+        //game!.player!.playerTalents[0].COOLDOWN=0
         oldArmor = game!.player!.damageReduction
         game!.player!.damageReduction = 1
         lastUse=NSDate()
         isActive=true
-        game!.scene!.addChild(ghostEffect!)
+        
 
     } // doTalent()
     

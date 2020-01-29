@@ -213,7 +213,11 @@ class EntityClass
             tempBlood.position=bodySprite.position
             tempBlood.zPosition=15
             tempBlood.zRotation=random(min: 0, max: CGFloat.pi*2)
-            tempBlood.run(SKAction.sequence([SKAction.move(by: CGVector(dx: random(min: -100, max: 100), dy: random(min: -100, max: 100)), duration: 0.4), SKAction.wait(forDuration: 2.0), SKAction.fadeOut(withDuration: 0.5), SKAction.removeFromParent()]))
+            let distance=random(min: 2, max: 100)
+            let angle=random(min: 0, max: CGFloat.pi*2)
+            let adx=cos(angle)*distance
+            let ady=sin(angle)*distance
+            tempBlood.run(SKAction.sequence([SKAction.move(by: CGVector(dx: adx, dy: ady), duration: 0.4), SKAction.wait(forDuration: 2.0), SKAction.fadeOut(withDuration: 0.5), SKAction.removeFromParent()]))
             tempBlood.name="bloodSplatter"
             game!.scene!.addChild(tempBlood)
         } // for

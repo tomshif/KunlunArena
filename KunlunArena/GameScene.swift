@@ -19,7 +19,7 @@ class GameScene: SKScene {
     
     // SK Nodes
     var cam=SKCameraNode()
-    var pBody=SKSpriteNode(imageNamed: "body")
+    var pBody=SKSpriteNode()
     var pHead=SKSpriteNode(imageNamed: "head")
     var pArms=SKSpriteNode(imageNamed: "arms")
 
@@ -93,7 +93,10 @@ class GameScene: SKScene {
          game.player=player
          game.player!.equipRefresh()
          gameState=STATES.FIGHT
-         player.playerSprite=pBody
+        
+         player.playerSprite=SKSpriteNode(imageNamed: "body")
+        addChild(player.playerSprite!)
+        pBody=player.playerSprite!
         
         
         MAPSIZE=Int(random(min:64, max: 96))
@@ -178,12 +181,13 @@ class GameScene: SKScene {
         
         
         // Setup the player sprite (needs to be moved to PlayerClass init)
-        addChild(pBody)
+        
+        
         pBody.addChild(pHead)
         pBody.addChild(pArms)
-        pBody.zPosition=14
-        pHead.zPosition=15
-        pArms.zPosition=15
+        pBody.zPosition=100
+        pHead.zPosition=115
+        pArms.zPosition=115
         pBody.name="playerSprite"
         // create player physics body
         pBody.physicsBody=SKPhysicsBody(circleOfRadius: pBody.size.width)
