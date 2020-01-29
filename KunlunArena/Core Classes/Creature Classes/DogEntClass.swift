@@ -11,9 +11,7 @@ import SpriteKit
 
 class DogEntClass:EntityClass
 {
-    var dog=SKSpriteNode(imageNamed: "dogHead00")
-    var dogE=SKSpriteNode(imageNamed: "dogBody00")
-    
+   
     
     override init(theGame: GameClass, id: Int)
      {
@@ -60,28 +58,6 @@ class DogEntClass:EntityClass
 }//Init
     
         
-        
-        func camo()
-             {
-                 
-                 if playerInSight==true
-                 {
-                     let fadeOut=SKAction.fadeOut(withDuration: 0.3)
-                     let fadeIn=SKAction.fadeIn(withDuration: 0.3)
-                     dogE.run(SKAction.repeatForever(fadeOut))
-                     dogE.run(SKAction.repeatForever(fadeIn))
-                     
-                 }
-    }// camo
-    
-        
-        
-    func update(_ currentTime: TimeInterval)  {
-        
-        camo()
-        
-    }
-    
     
 }// dogEntClass
 
