@@ -18,103 +18,103 @@ func initInventory(game: GameClass)
 {
     
     // Add in each of the base types
-    let type00=BaseInvTypesClass(n: "Jian", m: 0.75)
+    let type00=BaseInvTypesClass(n: "Jian", m: 0.75,t: 0)
     game.baseTypesList.append(type00)
     
-    let type01=BaseInvTypesClass(n: "Dao", m: 1.0)
+    let type01=BaseInvTypesClass(n: "Dao", m: 1.0,t: 0)
     game.baseTypesList.append(type01)
     
-    let type02=BaseInvTypesClass(n: "Changdao", m: 1.25)
+    let type02=BaseInvTypesClass(n: "Changdao", m: 1.25,t: 0)
     game.baseTypesList.append(type02)
     
-    let type03=BaseInvTypesClass(n: "Liuyedao", m: 1.3)
+    let type03=BaseInvTypesClass(n: "Liuyedao", m: 1.3,t: 0)
     game.baseTypesList.append(type03)
     
-    let type04=BaseInvTypesClass(n: "Nandao", m: 1.4)
+    let type04=BaseInvTypesClass(n: "Nandao", m: 1.4,t: 0)
     game.baseTypesList.append(type04)
     
-    let type05=BaseInvTypesClass(n: "Yanyuedao", m: 1.5)
+    let type05=BaseInvTypesClass(n: "Yanyuedao", m: 1.5,t: 0)
     game.baseTypesList.append(type05)
     
-    let type06=BaseInvTypesClass(n: "Bang", m: 0.8)
+    let type06=BaseInvTypesClass(n: "Bang", m: 0.8,t: 1)
     game.baseTypesList.append(type06)
     
-    let type07=BaseInvTypesClass(n: "Guan", m: 1.0)
+    let type07=BaseInvTypesClass(n: "Guan", m: 1.0,t: 1)
     game.baseTypesList.append(type07)
     
-    let type08=BaseInvTypesClass(n: "Yanyuedao", m: 1.2)
+    let type08=BaseInvTypesClass(n: "Yanyuedao", m: 1.2,t: 1)
     game.baseTypesList.append(type08)
     
-    let type09=BaseInvTypesClass(n: "Chang Guan", m: 1.2)
+    let type09=BaseInvTypesClass(n: "Chang Guan", m: 1.2,t: 1)
     game.baseTypesList.append(type09)
     
-    let type10=BaseInvTypesClass(n: "Bian", m: 1.3)
+    let type10=BaseInvTypesClass(n: "Bian", m: 1.3,t: 1)
     game.baseTypesList.append(type10)
     
-    let type11=BaseInvTypesClass(n: "Sanjiegun", m: 1.3)
+    let type11=BaseInvTypesClass(n: "Sanjiegun", m: 1.3,t: 1)
     game.baseTypesList.append(type11)
     
-    let type12=BaseInvTypesClass(n: "Chan", m: 1.3)
+    let type12=BaseInvTypesClass(n: "Chan", m: 1.3,t: 1)
     game.baseTypesList.append(type12)
     
-    let type13=BaseInvTypesClass(n: "Self Bow", m: 0.8)
+    let type13=BaseInvTypesClass(n: "Self Bow", m: 0.8,t: 2)
     game.baseTypesList.append(type13)
     
-    let type14=BaseInvTypesClass(n: "Reflex Bow", m: 1.0)
+    let type14=BaseInvTypesClass(n: "Reflex Bow", m: 1.0,t: 2)
     game.baseTypesList.append(type14)
     
-    let type15=BaseInvTypesClass(n: "Laminate Bow", m: 1.2)
+    let type15=BaseInvTypesClass(n: "Laminate Bow", m: 1.2,t: 2)
     game.baseTypesList.append(type15)
     
-    let type16=BaseInvTypesClass(n: "Horn Bow", m: 1.3)
+    let type16=BaseInvTypesClass(n: "Horn Bow", m: 1.3,t: 2)
     game.baseTypesList.append(type16)
     
-    let type17=BaseInvTypesClass(n: "Scythian Bow", m: 1.5)
+    let type17=BaseInvTypesClass(n: "Scythian Bow", m: 1.5,t: 2)
     game.baseTypesList.append(type17)
     
-    let type18=BaseInvTypesClass(n: "Light Crossbow", m: 0.8)
+    let type18=BaseInvTypesClass(n: "Light Crossbow", m: 0.8,t: 3)
     game.baseTypesList.append(type18)
     
-    let type19=BaseInvTypesClass(n: "Crossbow", m: 1.0)
+    let type19=BaseInvTypesClass(n: "Crossbow", m: 1.0,t: 3)
     game.baseTypesList.append(type19)
     
-    let type20=BaseInvTypesClass(n: "Heavy Crossbow", m: 1.2)
+    let type20=BaseInvTypesClass(n: "Heavy Crossbow", m: 1.2,t: 3)
     game.baseTypesList.append(type20)
     
-    let type21=BaseInvTypesClass(n: "Hand Cannon", m: 1.3)
+    let type21=BaseInvTypesClass(n: "Hand Cannon", m: 1.3,t: 3)
     game.baseTypesList.append(type21)
     
-    let type22=BaseInvTypesClass(n: "Fire Lance", m: 1.5)
+    let type22=BaseInvTypesClass(n: "Fire Lance", m: 1.5,t: 3)
     game.baseTypesList.append(type22)
     
-    let type23=BaseInvTypesClass(n: "Sickle", m: 0.8)
+    let type23=BaseInvTypesClass(n: "Sickle", m: 0.8,t: 4)
     game.baseTypesList.append(type23)
     
-    let type24=BaseInvTypesClass(n: "Hammer", m: 1.0)
+    let type24=BaseInvTypesClass(n: "Hammer", m: 1.0,t: 4)
     game.baseTypesList.append(type24)
     
-    let type25=BaseInvTypesClass(n: "Broomstick", m: 1.2)
+    let type25=BaseInvTypesClass(n: "Broomstick", m: 1.2,t: 4)
     game.baseTypesList.append(type25)
     
-    let type26=BaseInvTypesClass(n: "Pitchfork", m: 1.3)
+    let type26=BaseInvTypesClass(n: "Pitchfork", m: 1.3,t: 4)
     game.baseTypesList.append(type26)
     
-    let type27=BaseInvTypesClass(n: "Scythe", m: 1.5)
+    let type27=BaseInvTypesClass(n: "Scythe", m: 1.5,t: 4)
     game.baseTypesList.append(type27)
     
-    let type28=BaseInvTypesClass(n: "Fuozhu", m: 0.85)
+    let type28=BaseInvTypesClass(n: "Fuozhu", m: 0.85,t: 5)
     game.baseTypesList.append(type28)
     
-    let type29=BaseInvTypesClass(n: "Zhuanjingtong", m: 1.0)
+    let type29=BaseInvTypesClass(n: "Zhuanjingtong", m: 1.0,t: 5)
     game.baseTypesList.append(type29)
     
-    let type30=BaseInvTypesClass(n: "Sacred Mallet-TEMP", m: 1.2)
+    let type30=BaseInvTypesClass(n: "Sacred Mallet-TEMP", m: 1.2,t: 5)
     game.baseTypesList.append(type30)
     
-    let type31=BaseInvTypesClass(n: "Fuchen", m: 1.3)
+    let type31=BaseInvTypesClass(n: "Fuchen", m: 1.3,t: 5)
     game.baseTypesList.append(type31)
     
-    let type32=BaseInvTypesClass(n: "Ru Yi", m: 1.5)
+    let type32=BaseInvTypesClass(n: "Ru Yi", m: 1.5,t: 5)
     game.baseTypesList.append(type32)
     
     // Add each of the prefixes to the list

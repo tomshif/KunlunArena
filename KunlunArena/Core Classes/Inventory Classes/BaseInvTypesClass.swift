@@ -13,10 +13,13 @@ class BaseInvTypesClass
 {
     var name:String=""
     var modifier:CGFloat=0
+    var talentType:Int=0
     
-    init(n: String, m: CGFloat)
+    init(n: String, m: CGFloat, t: Int)
     {
         name=n
         modifier=m
+        talentType=t
     } // init
-}
+}// class BaseInvTypesClass
+

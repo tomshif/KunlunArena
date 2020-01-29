@@ -38,6 +38,7 @@
 		F482DF26239749550063CF84 /* random.swift in Sources */ = {isa = PBXBuildFile; fileRef = F482DF25239749550063CF84 /* random.swift */; };
 		F497A28523E1D88200E4B248 /* FIreBreathTalentClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F497A28423E1D88200E4B248 /* FIreBreathTalentClass.swift */; };
 		F497A28723E1D96C00E4B248 /* FireBreathTalentEmitter.sks in Resources */ = {isa = PBXBuildFile; fileRef = F497A28623E1D96C00E4B248 /* FireBreathTalentEmitter.sks */; };
+		F497A28A23E2196900E4B248 /* TalentBranchList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F497A28923E2196900E4B248 /* TalentBranchList.swift */; };
 		F4AC645423982D5A00C64D2E /* BaseInventoryClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AC645323982D5A00C64D2E /* BaseInventoryClass.swift */; };
 		F4AC645623982E2200C64D2E /* States.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AC645523982E2200C64D2E /* States.swift */; };
 		F4AC645F239FF6A500C64D2E /* PlayerTalentClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AC645E239FF6A500C64D2E /* PlayerTalentClass.swift */; };
@@ -84,6 +85,7 @@
 		F482DF25239749550063CF84 /* random.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = random.swift; sourceTree = "<group>"; };
 		F497A28423E1D88200E4B248 /* FIreBreathTalentClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FIreBreathTalentClass.swift; sourceTree = "<group>"; };
 		F497A28623E1D96C00E4B248 /* FireBreathTalentEmitter.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = FireBreathTalentEmitter.sks; sourceTree = "<group>"; };
+		F497A28923E2196900E4B248 /* TalentBranchList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalentBranchList.swift; sourceTree = "<group>"; };
 		F4AC645323982D5A00C64D2E /* BaseInventoryClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseInventoryClass.swift; sourceTree = "<group>"; };
 		F4AC645523982E2200C64D2E /* States.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = States.swift; sourceTree = "<group>"; };
 		F4AC645E239FF6A500C64D2E /* PlayerTalentClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerTalentClass.swift; sourceTree = "<group>"; };
@@ -179,6 +181,7 @@
 			children = (
 				F482DF1E239744D50063CF84 /* GameClass.swift */,
 				44C697A123DF768B004CCE49 /* PlayerClass.swift */,
+				F497A28923E2196900E4B248 /* TalentBranchList.swift */,
 			);
 			path = "Game Classes";
 			sourceTree = "<group>";
@@ -395,6 +398,7 @@
 				F482DF06239744050063CF84 /* AppDelegate.swift in Sources */,
 				F4AC6463239FF70B00C64D2E /* InventorySlots.swift in Sources */,
 				F45F4ACB23B2A6660020333B /* DashTalentClass.swift in Sources */,
+				F497A28A23E2196900E4B248 /* TalentBranchList.swift in Sources */,
 				F4AC645F239FF6A500C64D2E /* PlayerTalentClass.swift in Sources */,
 				44B8DBBA23DA2D30002BA761 /* SnakeEntClass.swift in Sources */,
 				F46BF48923D264AB005C29EB /* FloatingTextClass.swift in Sources */,
