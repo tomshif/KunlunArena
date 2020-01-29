@@ -47,7 +47,7 @@ class DogEntClass:EntityClass
            pursueRange=attackRange
        }
          
-       let entColor=NSColor(calibratedRed: random(min: 0.2, max: 0.4), green: random(min: 0.6, max: 0.8), blue: random(min: 0.7, max: 0.9), alpha: 1.0)
+       let entColor=NSColor(calibratedRed: random(min: 0.4, max: 0.6), green: random(min: 0.6, max: 0.8), blue: random(min: 0.7, max: 0.9), alpha: 1.0)
        
        bodySprite.color=entColor
        headSprite.color=entColor
