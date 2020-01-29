@@ -1,15 +1,15 @@
 //
-//  PigEntClass.swift
+//  TigerEntClass.swift
 //  KunlunArena
 //
-//  Created by 8 - Game Design on 1/24/20.
+//  Created by 8 - Game Design on 1/29/20.
 //  Copyright © 2020 LCS Game Design. All rights reserved.
 //
 
 import Foundation
 import SpriteKit
 
-class PigEntClass:EntityClass
+class TigerEntClass:EntityClass
 {
   override init(theGame: GameClass, id: Int)
   {

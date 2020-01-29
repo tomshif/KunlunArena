@@ -1,42 +1,41 @@
 //
-//  dragonEntClass.swift
+//  DragonEntClass.swift
 //  KunlunArena
 //
-//  Created by 8 - Game Design on 1/23/20.
+//  Created by 8 - Game Design on 1/29/20.
 //  Copyright © 2020 LCS Game Design. All rights reserved.
 //
 
 import Foundation
 import SpriteKit
 
-class dragonEntClass:EntityClass
+class DragonEntClass:EntityClass
 {
-    override init(theGame: GameClass, id: Int)
-{
-    super.init(theGame: theGame, id: id)
-    spriteNamePrefix="dragon"
-    headNum=3
-    bodyNum=3
-    tailNum=3
-    leftNum=3
-    rightNum=3
+  override init(theGame: GameClass, id: Int)
+  {
+      super.init(theGame: theGame, id: id)
+      spriteNamePrefix="dragon"
+      headNum=3
+      bodyNum=3
+      tailNum=3
+
+      headID=Int(random(min: 0, max: CGFloat(headNum)-0.000000001))
+      bodyID=Int(random(min: 0, max: CGFloat(bodyNum)-0.000000001))
+      tailID=Int(random(min: 0, max: CGFloat(tailNum)-0.000000001))
+      
+      
+      headSprite.texture=SKTexture(imageNamed: "\(spriteNamePrefix)Head0\(headID)")
+      bodySprite.texture=SKTexture(imageNamed: "\(spriteNamePrefix)Body0\(bodyID)")
+      tailSprite.texture=SKTexture(imageNamed: "\(spriteNamePrefix)Tail0\(tailID)")
+      spriteScale=random(min: 1.5, max: 3.5)
+      bodySprite.setScale(spriteScale)
     
-    headID=Int(random(min: 0, max: CGFloat(headNum)-0.000000001))
-    bodyID=Int(random(min: 0, max: CGFloat(bodyNum)-0.000000001))
-    tailID=Int(random(min: 0, max: CGFloat(tailNum)-0.000000001))
-    rightID=Int(random(min: 0, max: CGFloat(rightNum)-0.000000001))
-    leftID=Int(random(min: 0, max: CGFloat(leftNum)-0.000000001))
-    headSprite.texture=SKTexture(imageNamed: "\(spriteNamePrefix)Head0\(headID)")
-    bodySprite.texture=SKTexture(imageNamed: "\(spriteNamePrefix)Body0\(bodyID)")
-    tailSprite.texture=SKTexture(imageNamed: "\(spriteNamePrefix)Tail0\(tailID)")
-    leftSprite.texture=SKTexture(imageNamed: "\(spriteNamePrefix)Left0\(leftID)")
-    rightSprite.texture=SKTexture(imageNamed: "\(spriteNamePrefix)Right0\(leftID)")
-    spriteScale=random(min: 1.5, max: 3.5)
-    bodySprite.setScale(spriteScale)
     
-    moveSpeed=random(min: 6.2, max: 10.7)
-    attackRange=random(min: 17, max: 200)
+    moveSpeed=random(min: 5.7, max: 10.3)
+    TURNRATE=random(min: 0.8, max: 0.8)
+    attackRange=random(min: 25, max: 150)
     VISIONDIST=random(min: 500, max: 500)
+    
     if attackRange > 45
     {
         pursueRange=attackRange*2
@@ -46,15 +45,22 @@ class dragonEntClass:EntityClass
         pursueRange=attackRange
     }
       
-    let entColor=NSColor(calibratedRed: random(min: 0.9, max: 1.0), green: random(min: 0.8, max: 0.9), blue: random(min: 0.8, max: 0.9), alpha: 1.0)
+    let entColor=NSColor(calibratedRed: random(min: 0.3, max: 0.5), green: random(min: 0.6, max: 0.8), blue: random(min: 0.1, max: 0.4), alpha: 1.0)
+    
     bodySprite.color=entColor
     headSprite.color=entColor
     tailSprite.color=entColor
-    rightSprite.color=entColor
-    leftSprite.color=entColor
+ 
+
+
     
     
     
-   
-    } // init scene/ID}
-}// class TestEntClass
+  } // init scene/ID
+
+
+    
+    
+    
+    
+}// class PigEntClass
