@@ -87,8 +87,14 @@ class PlayerClass
         let tempFireBreath=FireBreathTalentClass(theGame: game!)
         playerTalents.append(tempFireBreath)
         
+        // 4 - Ghost Dodge
         let tempGhostDodge=GhostDodgeTalentClass(theGame: game!)
         playerTalents.append(tempGhostDodge)
+        
+        // 5 - Anger Issues
+        let tempAnger=AngerIssuesTalentClass(theGame: game!)
+        playerTalents.append(tempAnger)
+        
         
         equippedWeapon=BaseInventoryClass(game: game!)
         

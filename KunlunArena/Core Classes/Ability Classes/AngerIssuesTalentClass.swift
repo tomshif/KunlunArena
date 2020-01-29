@@ -23,7 +23,7 @@ class AngerIssuesTalentClass:PlayerTalentClass
         description="Increase Attack Damage by 50%."
         isAction=false
         game=theGame
-        COOLDOWN=25
+        COOLDOWN=3
         lengthActive=10
         
     } // init game
@@ -31,7 +31,7 @@ class AngerIssuesTalentClass:PlayerTalentClass
     
     override func removeTalent()
     {
-        game!.player!.playerTalents[0].COOLDOWN=25
+        
         game!.player!.currentDamage = game!.player!.currentDamage / 1.5
         isActive=false
     } // removeTalent()
@@ -45,8 +45,8 @@ class AngerIssuesTalentClass:PlayerTalentClass
     
     override func doTalent()
     {
-        game!.player!.playerTalents[0].COOLDOWN=0
-        game!.player!.currentDamage = game!.player!.currentDamage * 1.5
+        print("ANGER!!!!")
+
         lastUse=NSDate()
         isActive=true
             

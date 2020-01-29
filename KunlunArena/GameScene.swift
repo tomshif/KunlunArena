@@ -600,6 +600,20 @@ class GameScene: SKScene {
                      {
                          print("Ghost Dodge on cooldown.")
                      }
+            
+            
+        case 23: // 5
+            if player.playerTalents[TalentList.anger].getCooldown() < 0 && player.mana >= player.playerTalents[TalentList.anger].manaCost
+                     {
+                     player.activeTalents.append(player.playerTalents[TalentList.anger])
+                         player.playerTalents[TalentList.anger].doTalent()
+                     }
+                     else
+                     {
+                         print("Anger on cooldown.")
+                     }
+            
+            
         case 27: // -
             zoomOutPressed=true
             
