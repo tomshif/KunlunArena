@@ -74,7 +74,12 @@ class EntityClass
     // Entity Stats
     var entLevel:Int=1
     var health:CGFloat=10
+    var mana:CGFloat=20
+    
     var damageReduction:CGFloat=0.05 // Modifier applied to incoming damage
+    
+    
+    var skillList=[EnemySkillClass]()
     
     
     
