@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		4346BEC123DA456500F6300D /* dragonEntClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4346BEC023DA456500F6300D /* dragonEntClass.swift */; };
 		4351F38C23DB9B6F002A48A9 /* PigEntClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4351F38B23DB9B6F002A48A9 /* PigEntClass.swift */; };
+		4388593123E3800D0048F4DB /* MonkeyEntClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4388593023E3800D0048F4DB /* MonkeyEntClass.swift */; };
 		4454C2E623E2176F00473804 /* DogEntClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4454C2E523E2176F00473804 /* DogEntClass.swift */; };
 		44B8DBBA23DA2D30002BA761 /* SnakeEntClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B8DBB923DA2D30002BA761 /* SnakeEntClass.swift */; };
 		44C697A223DF768B004CCE49 /* PlayerClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C697A123DF768B004CCE49 /* PlayerClass.swift */; };
@@ -58,6 +59,7 @@
 /* Begin PBXFileReference section */
 		4346BEC023DA456500F6300D /* dragonEntClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dragonEntClass.swift; sourceTree = "<group>"; };
 		4351F38B23DB9B6F002A48A9 /* PigEntClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PigEntClass.swift; sourceTree = "<group>"; };
+		4388593023E3800D0048F4DB /* MonkeyEntClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MonkeyEntClass.swift; path = ../../../../MonkeyEntClass.swift; sourceTree = "<group>"; };
 		4454C2E523E2176F00473804 /* DogEntClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogEntClass.swift; sourceTree = "<group>"; };
 		44B8DBB923DA2D30002BA761 /* SnakeEntClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnakeEntClass.swift; sourceTree = "<group>"; };
 		44C697A123DF768B004CCE49 /* PlayerClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerClass.swift; sourceTree = "<group>"; };
@@ -199,6 +201,7 @@
 		F482DF1D239744830063CF84 /* Creature Classes */ = {
 			isa = PBXGroup;
 			children = (
+				4388593023E3800D0048F4DB /* MonkeyEntClass.swift */,
 				F482DF22239745070063CF84 /* EntityClass.swift */,
 				F46BF48A23D772A4005C29EB /* TestEntClass.swift */,
 				44B8DBB923DA2D30002BA761 /* SnakeEntClass.swift */,
@@ -400,6 +403,7 @@
 				F431F07D23DBD16D00EBD905 /* TalentList.swift in Sources */,
 				F4AC645423982D5A00C64D2E /* BaseInventoryClass.swift in Sources */,
 				4351F38C23DB9B6F002A48A9 /* PigEntClass.swift in Sources */,
+				4388593123E3800D0048F4DB /* MonkeyEntClass.swift in Sources */,
 				F482DF0C239744050063CF84 /* GameScene.swift in Sources */,
 				F46BF48D23D8C9CD005C29EB /* SuffixClass.swift in Sources */,
 				F46BF48B23D772A4005C29EB /* TestEntClass.swift in Sources */,
