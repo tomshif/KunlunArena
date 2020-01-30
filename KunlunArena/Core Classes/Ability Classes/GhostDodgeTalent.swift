@@ -25,7 +25,7 @@ class GhostDodgeTalentClass:PlayerTalentClass
         game=theGame
         COOLDOWN=7.5
         lengthActive=5
-        iconName="ghostDodgeTalentIcon"
+        iconName="ghostDodgeTalentIcon4"
     } // init game
     
     
@@ -58,7 +58,7 @@ class GhostDodgeTalentClass:PlayerTalentClass
         game!.player!.playerSprite!.addChild(ghostEffect!)
         
         
-        //ghostEffect!.targetNode=game!.scene!
+        
         ghostEffect!.zPosition = 200
         ghostEffect!.alpha=1
         ghostEffect!.run(SKAction.sequence([SKAction.wait(forDuration: 4),SKAction.fadeOut(withDuration: 1.0), SKAction.removeFromParent()]))

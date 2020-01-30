@@ -150,11 +150,11 @@ class EntityClass
         bodySprite.name=String(format:"entBody%5d",id)
         headSprite.name=String(format:"entHead%5d",id)
         tailSprite.name=String(format:"entTail%5d",id)
-        bodySprite.zPosition=10
-        headSprite.zPosition=10
-        tailSprite.zPosition=10
-        leftSprite.zPosition=10
-        rightSprite.zPosition=10
+        bodySprite.zPosition=30
+        headSprite.zPosition=30
+        tailSprite.zPosition=30
+        leftSprite.zPosition=30
+        rightSprite.zPosition=30
         
 
         bodySprite.physicsBody=SKPhysicsBody(circleOfRadius: bodySprite.size.width)
@@ -211,7 +211,7 @@ class EntityClass
         {
             let tempBlood=SKSpriteNode(imageNamed: "bloodSplatter")
             tempBlood.position=bodySprite.position
-            tempBlood.zPosition=15
+            tempBlood.zPosition=10
             tempBlood.zRotation=random(min: 0, max: CGFloat.pi*2)
             let distance=random(min: 2, max: 100)
             let angle=random(min: 0, max: CGFloat.pi*2)
