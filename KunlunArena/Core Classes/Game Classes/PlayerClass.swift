@@ -187,7 +187,37 @@ class PlayerClass
         
         // TEMP - For now, set player level equal to the equipped weapon level
 
-    }
+    } // resetStats()
+    
+    public func takeDamage(amount: CGFloat)
+    {
+
+        print("Health: \(health)")
+        health -= amount*(1-damageReduction)
+        print("\(amount) reduced to \(amount*(1-damageReduction))")
+        
+        // create a flash effect to indicate it got hit
+        playerSprite!.run(SKAction.sequence([SKAction.fadeAlpha(to: 0.5, duration: 0.1), SKAction.fadeAlpha(to: 1.0, duration: 0.1)]))
+        game!.floatText!.damageLabel(amount: amount*(1-damageReduction), player: self)
+        // create blood splatter
+        for _ in 1...5
+        {
+            let tempBlood=SKSpriteNode(imageNamed: "bloodSplatter")
+            tempBlood.position=playerSprite!.position
+            tempBlood.zPosition=10
+            tempBlood.zRotation=random(min: 0, max: CGFloat.pi*2)
+            let distance=random(min: 2, max: 100)
+            let angle=random(min: 0, max: CGFloat.pi*2)
+            let adx=cos(angle)*distance
+            let ady=sin(angle)*distance
+            tempBlood.run(SKAction.sequence([SKAction.move(by: CGVector(dx: adx, dy: ady), duration: 0.4), SKAction.wait(forDuration: 2.0), SKAction.fadeOut(withDuration: 0.5), SKAction.removeFromParent()]))
+            tempBlood.name="bloodSplatter"
+            game!.scene!.addChild(tempBlood)
+        } // for
+        
+            
+
+    } // takeDamage()
     
     public func equipRefresh()
     {

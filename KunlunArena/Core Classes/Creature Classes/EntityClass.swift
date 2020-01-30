@@ -70,11 +70,13 @@ class EntityClass
     var TURNRATE:CGFloat=0.15
     var VISIONDIST:CGFloat=500
     var UPDATECYCLE:Int=0   // This is revised based on entID % 4 to ensure even distribution of entities in update cycling
+    var MELEERANGE:CGFloat=100
     
     // Entity Stats
     var entLevel:Int=1
     var health:CGFloat=10
     var mana:CGFloat=20
+    var baseDamage:CGFloat=1.0
     
     var damageReduction:CGFloat=0.05 // Modifier applied to incoming damage
     
@@ -150,11 +152,11 @@ class EntityClass
         bodySprite.name=String(format:"entBody%5d",id)
         headSprite.name=String(format:"entHead%5d",id)
         tailSprite.name=String(format:"entTail%5d",id)
-        bodySprite.zPosition=10
-        headSprite.zPosition=10
-        tailSprite.zPosition=10
-        leftSprite.zPosition=10
-        rightSprite.zPosition=10
+        bodySprite.zPosition=30
+        headSprite.zPosition=30
+        tailSprite.zPosition=30
+        leftSprite.zPosition=30
+        rightSprite.zPosition=30
         
 
         bodySprite.physicsBody=SKPhysicsBody(circleOfRadius: bodySprite.size.width)
@@ -168,7 +170,8 @@ class EntityClass
         rightSprite.texture!.filteringMode=SKTextureFilteringMode.nearest
         bodySprite.physicsBody!.affectedByGravity=false
         
-        
+        // Setup entity stats
+        baseDamage=baseDamage*CGFloat(entLevel)
         
         moveSpeed=random(min: 5.5, max: 10.5)
         TURNRATE=random(min: 0.9, max: 0.9)
@@ -194,8 +197,19 @@ class EntityClass
         print("EntLevel = \(entLevel)")
         health=CGFloat(entLevel)*35+25
 
+        // setup skills
+        setupSkills()
         
     } // init(scene)
+    
+    internal func setupSkills()
+    {
+        // 0
+        let tempMelee=EnemyMeleeClass(theGame: game!, ent: self)
+        skillList.append(tempMelee)
+        
+    } // setupSkills
+    
     
     public func takeDamage(amount: CGFloat)
     {
@@ -211,12 +225,17 @@ class EntityClass
         {
             let tempBlood=SKSpriteNode(imageNamed: "bloodSplatter")
             tempBlood.position=bodySprite.position
-            tempBlood.zPosition=15
+            tempBlood.zPosition=10
             tempBlood.zRotation=random(min: 0, max: CGFloat.pi*2)
-            tempBlood.run(SKAction.sequence([SKAction.move(by: CGVector(dx: random(min: -100, max: 100), dy: random(min: -100, max: 100)), duration: 0.4), SKAction.wait(forDuration: 2.0), SKAction.fadeOut(withDuration: 0.5), SKAction.removeFromParent()]))
+            let distance=random(min: 2, max: 100)
+            let angle=random(min: 0, max: CGFloat.pi*2)
+            let adx=cos(angle)*distance
+            let ady=sin(angle)*distance
+            tempBlood.run(SKAction.sequence([SKAction.move(by: CGVector(dx: adx, dy: ady), duration: 0.4), SKAction.wait(forDuration: 2.0), SKAction.fadeOut(withDuration: 0.5), SKAction.removeFromParent()]))
             tempBlood.name="bloodSplatter"
             game!.scene!.addChild(tempBlood)
         } // for
+        
         
     } // takeDamage()
      
@@ -295,6 +314,60 @@ class EntityClass
         
     } // checkLOS
     
+    internal func pursue()
+    {
+        // get direction to player
+        let dx=game!.player!.playerSprite!.position.x - bodySprite.position.x
+        let dy=game!.player!.playerSprite!.position.y - bodySprite.position.y
+        var angle=atan2(dy,dx)
+        if angle < 0
+        {
+            angle+=CGFloat.pi*2
+        }
+
+        // Compute distance to player
+        playerDist=hypot(dy, dx)
+        
+        // Check if we can see the player
+        playerInSight=checkLOS(angle: angle, distance: VISIONDIST)
+        
+        // Turn towards player
+        if isPursuing && playerInSight && !isDead
+        {
+            turnToAngle=angle
+            turnTo(pAngle: angle)
+        } // if
+        
+        if isPursuing && !playerInSight && !isDead
+        {
+            turnToAngle=lastSightAngle
+            turnTo(pAngle: turnToAngle)
+        } // if
+        
+        
+        if playerInSight && playerDist < VISIONDIST && !isDead
+        {
+            isPursuing=true
+            lastSightAngle=angle
+        } // if
+        
+        if playerDist >= VISIONDIST && !isDead
+        {
+            isPursuing=false
+        }
+        
+    } // pursue()
+    
+    
+    internal func attack()
+    {
+        if skillList[0].getCooldown() < 0
+        {
+            skillList[0].doSkill()
+        }
+
+        
+    } //atack()
     
     
     ////////////////////
@@ -310,61 +383,28 @@ class EntityClass
         
         if UPDATECYCLE==cycle && !isDead
         {
-            // Simple Follow logic - target player
+            
  
-            // get direction to player
-            let dx=game!.player!.playerSprite!.position.x - bodySprite.position.x
-            let dy=game!.player!.playerSprite!.position.y - bodySprite.position.y
-            var angle=atan2(dy,dx)
-            if angle < 0
+            pursue()
+            if playerDist <= MELEERANGE
             {
-                angle+=CGFloat.pi*2
+                attack()
             }
-
-            // Compute distance to player
-            playerDist=hypot(dy, dx)
-            
-            // Check if we can see the player
-            playerInSight=checkLOS(angle: angle, distance: VISIONDIST)
-            
-            // Turn towards player
-            if isPursuing && playerInSight && !isDead
-            {
-                turnToAngle=angle
-                turnTo(pAngle: angle)
-            } // if
-            
-            if isPursuing && !playerInSight && !isDead
-            {
-                turnToAngle=lastSightAngle
-                turnTo(pAngle: turnToAngle)
-            } // if
-            
-            
-            if playerInSight && playerDist < VISIONDIST && !isDead
-            {
-                isPursuing=true
-                lastSightAngle=angle
-            } // if
-            
-            if playerDist >= VISIONDIST && !isDead
-            {
-                isPursuing=false
-            }
-            
-            
         } // if it's our time to update
 
         
-        // move towards player
+        // move if pursuing
         if playerDist > pursueRange && isPursuing && !isDead
         {
             let moveDX=cos(bodySprite.zRotation)*moveSpeed
             let moveDY=sin(bodySprite.zRotation)*moveSpeed
             bodySprite.position.x += moveDX
             bodySprite.position.y += moveDY
-        } // pursue player
+        } // update sprite position
         
+        // melee attack if in range
+        
+
 
     } // update()
     

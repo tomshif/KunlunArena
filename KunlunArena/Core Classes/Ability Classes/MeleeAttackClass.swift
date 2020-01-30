@@ -37,6 +37,7 @@ class MeleeAttackClass:PlayerTalentClass
         let dy=sin(game!.player!.playerSprite!.zRotation)*attackDistance+game!.player!.playerSprite!.position.y
         
         // Next we check that spot in the scene to see if any sprite name contains the word body or head
+        var found=false
         for node in game!.scene!.nodes(at: CGPoint(x: dx, y: dy))
         {
             if node.name != nil
@@ -54,7 +55,7 @@ class MeleeAttackClass:PlayerTalentClass
                             // we have found our entity, so we apply the damage based on the player's current damage
                             entity.takeDamage(amount: game!.player!.equippedWeapon!.iLevelMod * game!.player!.equippedWeapon!.modLevel)
                             
-                        
+                            found=true
                             break
                         } // if
                     } // for
@@ -62,6 +63,10 @@ class MeleeAttackClass:PlayerTalentClass
                     
                 } // if we hit something
             } // if the name isn't nil
+            if found
+            {
+                break
+            }
         } // for each node in the scene
         
         // reset cooldown timer

@@ -14,8 +14,10 @@
 		44C697A223DF768B004CCE49 /* PlayerClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C697A123DF768B004CCE49 /* PlayerClass.swift */; };
 		44F62E7423DA451B004C8469 /* SwordsOfLightningTalentClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F62E7323DA451B004C8469 /* SwordsOfLightningTalentClass.swift */; };
 		4C45B38E23E22FBF005C778E /* AngerIssuesTalentClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C45B38D23E22FBF005C778E /* AngerIssuesTalentClass.swift */; };
+		4C45B39023E23160005C778E /* GhostDodgeEmitter.sks in Resources */ = {isa = PBXBuildFile; fileRef = 4C45B38F23E23160005C778E /* GhostDodgeEmitter.sks */; };
 		4CA2857A23DF8BC400A72268 /* GhostDodgeTalent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA2857923DF8BC400A72268 /* GhostDodgeTalent.swift */; };
 		F431F07D23DBD16D00EBD905 /* TalentList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F431F07C23DBD16D00EBD905 /* TalentList.swift */; };
+		F451541B23E314E900B5D04C /* To Do.rtf in Resources */ = {isa = PBXBuildFile; fileRef = F451541A23E314E900B5D04C /* To Do.rtf */; };
 		F45F4AC623ABDD080020333B /* BodyBitMasks.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45F4AC523ABDD080020333B /* BodyBitMasks.swift */; };
 		F45F4AC923ABE9ED0020333B /* Keyboard Commands.rtf in Resources */ = {isa = PBXBuildFile; fileRef = F45F4AC823ABE9ED0020333B /* Keyboard Commands.rtf */; };
 		F45F4ACB23B2A6660020333B /* DashTalentClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45F4ACA23B2A6660020333B /* DashTalentClass.swift */; };
@@ -61,8 +63,10 @@
 		44C697A123DF768B004CCE49 /* PlayerClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerClass.swift; sourceTree = "<group>"; };
 		44F62E7323DA451B004C8469 /* SwordsOfLightningTalentClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwordsOfLightningTalentClass.swift; sourceTree = "<group>"; };
 		4C45B38D23E22FBF005C778E /* AngerIssuesTalentClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AngerIssuesTalentClass.swift; sourceTree = "<group>"; };
+		4C45B38F23E23160005C778E /* GhostDodgeEmitter.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GhostDodgeEmitter.sks; sourceTree = "<group>"; };
 		4CA2857923DF8BC400A72268 /* GhostDodgeTalent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GhostDodgeTalent.swift; sourceTree = "<group>"; };
 		F431F07C23DBD16D00EBD905 /* TalentList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalentList.swift; sourceTree = "<group>"; };
+		F451541A23E314E900B5D04C /* To Do.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = "To Do.rtf"; sourceTree = "<group>"; };
 		F45F4AC523ABDD080020333B /* BodyBitMasks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyBitMasks.swift; sourceTree = "<group>"; };
 		F45F4AC823ABE9ED0020333B /* Keyboard Commands.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = "Keyboard Commands.rtf"; sourceTree = "<group>"; };
 		F45F4ACA23B2A6660020333B /* DashTalentClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashTalentClass.swift; sourceTree = "<group>"; };
@@ -242,6 +246,7 @@
 		F4AC645723982E3900C64D2E /* Misc Files */ = {
 			isa = PBXGroup;
 			children = (
+				F451541A23E314E900B5D04C /* To Do.rtf */,
 				F45F4AC823ABE9ED0020333B /* Keyboard Commands.rtf */,
 				F4AC645A23983E9900C64D2E /* Other */,
 				F4AC645923983E8400C64D2E /* SKS Files */,
@@ -298,6 +303,7 @@
 				F4AC646923A03DF200C64D2E /* FireSplode.sks */,
 				F4AC646A23A03DF200C64D2E /* Assets.xcassets */,
 				F45F4B1D23B652ED0020333B /* SmokeBG.sks */,
+				4C45B38F23E23160005C778E /* GhostDodgeEmitter.sks */,
 				F497A28623E1D96C00E4B248 /* FireBreathTalentEmitter.sks */,
 			);
 			path = Emitters;
@@ -363,6 +369,8 @@
 			files = (
 				F497A28723E1D96C00E4B248 /* FireBreathTalentEmitter.sks in Resources */,
 				F45F4B1E23B652ED0020333B /* SmokeBG.sks in Resources */,
+				4C45B39023E23160005C778E /* GhostDodgeEmitter.sks in Resources */,
+				F451541B23E314E900B5D04C /* To Do.rtf in Resources */,
 				F482DF08239744050063CF84 /* GameScene.sks in Resources */,
 				F482DF10239744070063CF84 /* Assets.xcassets in Resources */,
 				F4AC646B23A03DF200C64D2E /* FireSplode.sks in Resources */,
