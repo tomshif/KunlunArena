@@ -16,6 +16,7 @@ import SpriteKit
 
 class EnemySkillClass
 {
+    var game:GameClass?
     var scene:SKScene?
     var isAction:Bool=false
     var tier:Int=0
@@ -27,11 +28,23 @@ class EnemySkillClass
     
     var entity:EntityClass?
     
-    init(theScene: SKScene, ent: EntityClass)
+    init(theGame: GameClass, ent: EntityClass)
     {
-        scene=theScene
+        game=theGame
+        scene=game!.scene
         entity=ent
     } // init(scene)
+    
+    
+    public func getCooldown() -> Double
+    {
+        // Returns the time left until the cooldown is ready when positive
+        // If the value is negative, then the talent is off cooldown.
+        //
+        let timeSinceLastUse = -lastUse.timeIntervalSinceNow
+
+        return COOLDOWN-timeSinceLastUse
+    } //  getCooldown()
     
     public func doSkill()
     {

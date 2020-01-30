@@ -11,12 +11,12 @@ import SpriteKit
 
 class EnemyMeleeClass:EnemySkillClass
 {
-    override init(theScene: SKScene, ent: EntityClass)
+    override init(theGame: GameClass, ent: EntityClass)
     {
-        super.init(theScene: theScene, ent: ent)
+        super.init(theGame: theGame, ent: ent)
         
         manaCost=0
-        COOLDOWN=0.25
+        COOLDOWN=0.5
         lengthActive=0
         tier=0
         
@@ -32,17 +32,21 @@ class EnemyMeleeClass:EnemySkillClass
         
         for node in scene!.nodes(at: CGPoint(x: dx, y: dy))
         {
-            if node.name! == "playerSprite"
+            if node.name != nil
             {
-                // Do damage to the player (coming soon)
-                print("Hit player for xx damage.")
-            } // if we hit player
-             
+                if node.name! == "playerSprite"
+                {
+                    // Do damage to the player (coming soon)
+                    print("Hit player for xx damage.")
+                } // if we hit player
+            }// if not nil
         } // for each node
         
         // update our cooldown
         lastUse=NSDate()
         
+        // apply the damage
+        game!.player!.takeDamage(amount: entity!.baseDamage)
         
     } // doSkill()
     
