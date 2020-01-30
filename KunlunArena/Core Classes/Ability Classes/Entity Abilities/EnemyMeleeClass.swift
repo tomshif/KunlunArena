@@ -37,7 +37,10 @@ class EnemyMeleeClass:EnemySkillClass
                 if node.name! == "playerSprite"
                 {
                     // Do damage to the player (coming soon)
-                    print("Hit player for xx damage.")
+                    print("Entity Level: \(entity!.entLevel)")
+                    print("Base Damage: \(entity!.baseDamage)")
+                    print("Hit player for          \(entity!.currentDamage) damage.")
+                game!.player!.takeDamage(amount: entity!.currentDamage)
                 } // if we hit player
             }// if not nil
         } // for each node
@@ -46,7 +49,8 @@ class EnemyMeleeClass:EnemySkillClass
         lastUse=NSDate()
         
         // apply the damage
-        game!.player!.takeDamage(amount: entity!.baseDamage)
+        
+
         
     } // doSkill()
     

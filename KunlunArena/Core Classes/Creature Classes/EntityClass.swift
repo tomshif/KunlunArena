@@ -77,7 +77,7 @@ class EntityClass
     var health:CGFloat=10
     var mana:CGFloat=20
     var baseDamage:CGFloat=1.0
-    
+    var currentDamage:CGFloat=0
     var damageReduction:CGFloat=0.05 // Modifier applied to incoming damage
     
     
@@ -171,7 +171,7 @@ class EntityClass
         bodySprite.physicsBody!.affectedByGravity=false
         
         // Setup entity stats
-        baseDamage=baseDamage*CGFloat(entLevel)
+        currentDamage=baseDamage*CGFloat(entLevel)
         
         moveSpeed=random(min: 5.5, max: 10.5)
         TURNRATE=random(min: 0.9, max: 0.9)

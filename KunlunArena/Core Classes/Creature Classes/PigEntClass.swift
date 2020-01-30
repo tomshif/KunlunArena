@@ -52,7 +52,8 @@ class PigEntClass:EntityClass
     tailSprite.color=entColor
  
 
-
+    baseDamage=1
+    currentDamage=baseDamage*CGFloat(entLevel)
     
     
     
