@@ -52,10 +52,24 @@ class DogEntClass:EntityClass
        bodySprite.color=entColor
        headSprite.color=entColor
        tailSprite.color=entColor
+        
+        baseDamage=3
+        health=20
+        mana=15
+        MELEERANGE=80
+        
+        if spriteScale > 2.5
+        {
+            baseDamage=5
+            health=25
+            mana=20
+        } //spriteScale
     
 
 
 }//Init
+    
+ 
     
         
     

@@ -50,6 +50,29 @@ class SnakeEntClass:EntityClass
     bodySprite.color=entColor
     headSprite.color=entColor
     tailSprite.color=entColor
+    
+    baseDamage=2
+    health=15
+    mana=30
+    damageReduction=0.05
+    MELEERANGE=80
+    
+    if spriteScale > 2.5
+    {
+        moveSpeed=random(min: 6.5, max: 9.0)
+        baseDamage=random(min: 3.0, max: 5.0)
+        health=random(min: 100.0, max: 150.0)
+        mana=35
+        MELEERANGE=85
+    }//spriteScale > 2.5
+    
+    if spriteScale < 2.5
+    {
+        moveSpeed=random(min: 7.0, max: 10.3)
+        baseDamage=random(min: 2.0, max: 3.0)
+        health=random(min: 50.0, max: 100.0)
+        
+    }
  
 
 
