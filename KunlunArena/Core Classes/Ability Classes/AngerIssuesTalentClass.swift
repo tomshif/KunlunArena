@@ -19,7 +19,7 @@ class AngerIssuesTalentClass:PlayerTalentClass
     {
         // This is the only initializer that will ever be used. We will always pass the class when initializing talents
         super.init(theGame: theGame)
-        name="GhostDodge"
+        name="Anger"
         description="Increase Attack Damage by 50%."
         isAction=false
         game=theGame
@@ -49,7 +49,12 @@ class AngerIssuesTalentClass:PlayerTalentClass
 
         lastUse=NSDate()
         isActive=true
-            
+        let fireNode=SKEmitterNode(fileNamed: "Test.sks")
+        
+        fireNode!.zPosition=game!.player!.playerSprite!.zPosition-0.00001
+        
+        fireNode!.run(SKAction.sequence([SKAction.wait(forDuration: lengthActive-1), SKAction.fadeOut(withDuration: 1),SKAction.removeFromParent()]))
+        game!.player!.playerSprite!.addChild(fireNode!)
 
     } // doTalent()
     
