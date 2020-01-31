@@ -17,6 +17,8 @@
 		44F62E7423DA451B004C8469 /* SwordsOfLightningTalentClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F62E7323DA451B004C8469 /* SwordsOfLightningTalentClass.swift */; };
 		4C45B38E23E22FBF005C778E /* AngerIssuesTalentClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C45B38D23E22FBF005C778E /* AngerIssuesTalentClass.swift */; };
 		4C45B39023E23160005C778E /* GhostDodgeEmitter.sks in Resources */ = {isa = PBXBuildFile; fileRef = 4C45B38F23E23160005C778E /* GhostDodgeEmitter.sks */; };
+		4C45B39923E4CF9E005C778E /* CherryBombTalentClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C45B39823E4CF9E005C778E /* CherryBombTalentClass.swift */; };
+		4C45B39B23E4D0E5005C778E /* CherryBombEffect.sks in Resources */ = {isa = PBXBuildFile; fileRef = 4C45B39A23E4D0E5005C778E /* CherryBombEffect.sks */; };
 		4CA2857A23DF8BC400A72268 /* GhostDodgeTalent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA2857923DF8BC400A72268 /* GhostDodgeTalent.swift */; };
 		F431F07D23DBD16D00EBD905 /* TalentList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F431F07C23DBD16D00EBD905 /* TalentList.swift */; };
 		F451541B23E314E900B5D04C /* To Do.rtf in Resources */ = {isa = PBXBuildFile; fileRef = F451541A23E314E900B5D04C /* To Do.rtf */; };
@@ -68,6 +70,8 @@
 		44F62E7323DA451B004C8469 /* SwordsOfLightningTalentClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwordsOfLightningTalentClass.swift; sourceTree = "<group>"; };
 		4C45B38D23E22FBF005C778E /* AngerIssuesTalentClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AngerIssuesTalentClass.swift; sourceTree = "<group>"; };
 		4C45B38F23E23160005C778E /* GhostDodgeEmitter.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GhostDodgeEmitter.sks; sourceTree = "<group>"; };
+		4C45B39823E4CF9E005C778E /* CherryBombTalentClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CherryBombTalentClass.swift; sourceTree = "<group>"; };
+		4C45B39A23E4D0E5005C778E /* CherryBombEffect.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = CherryBombEffect.sks; sourceTree = "<group>"; };
 		4CA2857923DF8BC400A72268 /* GhostDodgeTalent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GhostDodgeTalent.swift; sourceTree = "<group>"; };
 		F431F07C23DBD16D00EBD905 /* TalentList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalentList.swift; sourceTree = "<group>"; };
 		F451541A23E314E900B5D04C /* To Do.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = "To Do.rtf"; sourceTree = "<group>"; };
@@ -299,6 +303,7 @@
 				4CA2857923DF8BC400A72268 /* GhostDodgeTalent.swift */,
 				F497A28423E1D88200E4B248 /* FIreBreathTalentClass.swift */,
 				4C45B38D23E22FBF005C778E /* AngerIssuesTalentClass.swift */,
+				4C45B39823E4CF9E005C778E /* CherryBombTalentClass.swift */,
 			);
 			path = "Ability Classes";
 			sourceTree = "<group>";
@@ -311,6 +316,7 @@
 				F45F4B1D23B652ED0020333B /* SmokeBG.sks */,
 				4C45B38F23E23160005C778E /* GhostDodgeEmitter.sks */,
 				F497A28623E1D96C00E4B248 /* FireBreathTalentEmitter.sks */,
+				4C45B39A23E4D0E5005C778E /* CherryBombEffect.sks */,
 			);
 			path = Emitters;
 			sourceTree = "<group>";
@@ -373,6 +379,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C45B39B23E4D0E5005C778E /* CherryBombEffect.sks in Resources */,
 				F497A28723E1D96C00E4B248 /* FireBreathTalentEmitter.sks in Resources */,
 				F45F4B1E23B652ED0020333B /* SmokeBG.sks in Resources */,
 				4C45B39023E23160005C778E /* GhostDodgeEmitter.sks in Resources */,
@@ -429,6 +436,7 @@
 				F497A28A23E2196900E4B248 /* TalentBranchList.swift in Sources */,
 				F4AC645F239FF6A500C64D2E /* PlayerTalentClass.swift in Sources */,
 				44B8DBBA23DA2D30002BA761 /* SnakeEntClass.swift in Sources */,
+				4C45B39923E4CF9E005C778E /* CherryBombTalentClass.swift in Sources */,
 				F46BF48923D264AB005C29EB /* FloatingTextClass.swift in Sources */,
 				4346BEC123DA456500F6300D /* DragonEntClass.swift in Sources */,
 			);
