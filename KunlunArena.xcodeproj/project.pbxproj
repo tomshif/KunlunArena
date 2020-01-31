@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4346BEC123DA456500F6300D /* dragonEntClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4346BEC023DA456500F6300D /* dragonEntClass.swift */; };
+		4314BA9623E4D60A0018A07D /* HorseEntClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4314BA9523E4D60A0018A07D /* HorseEntClass.swift */; };
+		4346BEC123DA456500F6300D /* DragonEntClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4346BEC023DA456500F6300D /* DragonEntClass.swift */; };
 		4351F38C23DB9B6F002A48A9 /* PigEntClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4351F38B23DB9B6F002A48A9 /* PigEntClass.swift */; };
 		4388593323E384170048F4DB /* MonkeyEntClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4388593223E384170048F4DB /* MonkeyEntClass.swift */; };
 		4454C2E623E2176F00473804 /* DogEntClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4454C2E523E2176F00473804 /* DogEntClass.swift */; };
@@ -57,7 +58,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		4346BEC023DA456500F6300D /* dragonEntClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dragonEntClass.swift; sourceTree = "<group>"; };
+		4314BA9523E4D60A0018A07D /* HorseEntClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HorseEntClass.swift; sourceTree = "<group>"; };
+		4346BEC023DA456500F6300D /* DragonEntClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragonEntClass.swift; sourceTree = "<group>"; };
 		4351F38B23DB9B6F002A48A9 /* PigEntClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PigEntClass.swift; sourceTree = "<group>"; };
 		4388593223E384170048F4DB /* MonkeyEntClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonkeyEntClass.swift; sourceTree = "<group>"; };
 		4454C2E523E2176F00473804 /* DogEntClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogEntClass.swift; sourceTree = "<group>"; };
@@ -203,8 +205,9 @@
 			children = (
 				F482DF22239745070063CF84 /* EntityClass.swift */,
 				F46BF48A23D772A4005C29EB /* TestEntClass.swift */,
+				4314BA9523E4D60A0018A07D /* HorseEntClass.swift */,
 				44B8DBB923DA2D30002BA761 /* SnakeEntClass.swift */,
-				4346BEC023DA456500F6300D /* dragonEntClass.swift */,
+				4346BEC023DA456500F6300D /* DragonEntClass.swift */,
 				4351F38B23DB9B6F002A48A9 /* PigEntClass.swift */,
 				4454C2E523E2176F00473804 /* DogEntClass.swift */,
 				4388593223E384170048F4DB /* MonkeyEntClass.swift */,
@@ -416,6 +419,7 @@
 				F482DF23239745070063CF84 /* EntityClass.swift in Sources */,
 				F46BF49323DF3974005C29EB /* InventoryColors.swift in Sources */,
 				F4AC645623982E2200C64D2E /* States.swift in Sources */,
+				4314BA9623E4D60A0018A07D /* HorseEntClass.swift in Sources */,
 				F46BF49523DF3A01005C29EB /* SuffixEffects.swift in Sources */,
 				F46BF49723DF4100005C29EB /* BaseInvTypesClass.swift in Sources */,
 				F45F4AC623ABDD080020333B /* BodyBitMasks.swift in Sources */,
@@ -426,7 +430,7 @@
 				F4AC645F239FF6A500C64D2E /* PlayerTalentClass.swift in Sources */,
 				44B8DBBA23DA2D30002BA761 /* SnakeEntClass.swift in Sources */,
 				F46BF48923D264AB005C29EB /* FloatingTextClass.swift in Sources */,
-				4346BEC123DA456500F6300D /* dragonEntClass.swift in Sources */,
+				4346BEC123DA456500F6300D /* DragonEntClass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
