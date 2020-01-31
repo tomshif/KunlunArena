@@ -11,6 +11,7 @@
 		4351F38C23DB9B6F002A48A9 /* PigEntClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4351F38B23DB9B6F002A48A9 /* PigEntClass.swift */; };
 		4388593323E384170048F4DB /* MonkeyEntClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4388593223E384170048F4DB /* MonkeyEntClass.swift */; };
 		4454C2E623E2176F00473804 /* DogEntClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4454C2E523E2176F00473804 /* DogEntClass.swift */; };
+		44A6261523E4D0ED004ED04A /* swordsOfLightningEffect.sks in Resources */ = {isa = PBXBuildFile; fileRef = 44A6261423E4D0ED004ED04A /* swordsOfLightningEffect.sks */; };
 		44B8DBBA23DA2D30002BA761 /* SnakeEntClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B8DBB923DA2D30002BA761 /* SnakeEntClass.swift */; };
 		44C697A223DF768B004CCE49 /* PlayerClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C697A123DF768B004CCE49 /* PlayerClass.swift */; };
 		44F62E7423DA451B004C8469 /* SwordsOfLightningTalentClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F62E7323DA451B004C8469 /* SwordsOfLightningTalentClass.swift */; };
@@ -61,6 +62,7 @@
 		4351F38B23DB9B6F002A48A9 /* PigEntClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PigEntClass.swift; sourceTree = "<group>"; };
 		4388593223E384170048F4DB /* MonkeyEntClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonkeyEntClass.swift; sourceTree = "<group>"; };
 		4454C2E523E2176F00473804 /* DogEntClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogEntClass.swift; sourceTree = "<group>"; };
+		44A6261423E4D0ED004ED04A /* swordsOfLightningEffect.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = swordsOfLightningEffect.sks; sourceTree = "<group>"; };
 		44B8DBB923DA2D30002BA761 /* SnakeEntClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnakeEntClass.swift; sourceTree = "<group>"; };
 		44C697A123DF768B004CCE49 /* PlayerClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerClass.swift; sourceTree = "<group>"; };
 		44F62E7323DA451B004C8469 /* SwordsOfLightningTalentClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwordsOfLightningTalentClass.swift; sourceTree = "<group>"; };
@@ -303,6 +305,7 @@
 		F4AC646823A03DCE00C64D2E /* Emitters */ = {
 			isa = PBXGroup;
 			children = (
+				44A6261423E4D0ED004ED04A /* swordsOfLightningEffect.sks */,
 				F4AC646923A03DF200C64D2E /* FireSplode.sks */,
 				F4AC646A23A03DF200C64D2E /* Assets.xcassets */,
 				F45F4B1D23B652ED0020333B /* SmokeBG.sks */,
@@ -378,6 +381,7 @@
 				F482DF10239744070063CF84 /* Assets.xcassets in Resources */,
 				F4AC646B23A03DF200C64D2E /* FireSplode.sks in Resources */,
 				F482DF13239744070063CF84 /* Main.storyboard in Resources */,
+				44A6261523E4D0ED004ED04A /* swordsOfLightningEffect.sks in Resources */,
 				F45F4AC923ABE9ED0020333B /* Keyboard Commands.rtf in Resources */,
 				F4AC646C23A03DF200C64D2E /* Assets.xcassets in Resources */,
 			);
