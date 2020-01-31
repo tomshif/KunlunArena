@@ -6,19 +6,24 @@
 //  Copyright © 2020 LCS Game Design. All rights reserved.
 //
 
+
+// I'm just typing random stuff here because Xcode is stupid.
+
+
 import Foundation
 import SpriteKit
 
 class MonkeyEntClass:EntityClass
 {
-  override init(theScene: SKScene, id: Int)
+  override init(theGame: GameClass, id: Int)
   {
-      super.init(theScene: theScene, id: id)
+      super.init(theGame: theGame, id: id)
       spriteNamePrefix="monkey"
       headNum=1
       bodyNum=1
       tailNum=1
 
+        health = 42
       headID=Int(random(min: 0, max: CGFloat(headNum)-0.000000001))
       bodyID=Int(random(min: 0, max: CGFloat(bodyNum)-0.000000001))
       tailID=Int(random(min: 0, max: CGFloat(tailNum)-0.000000001))

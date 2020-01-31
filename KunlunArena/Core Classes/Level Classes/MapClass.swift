@@ -78,6 +78,7 @@ class MapClass
         } // for y
 
         floorType=Int(random(min: 0, max: 3.999999999))
+            
         // create the map
         createMap()
         
@@ -434,7 +435,6 @@ class MapClass
         
     } // func createMap()
     
-    
     internal func drawMap()
     {
         var wallString:String=""
@@ -495,7 +495,22 @@ class MapClass
                     }
                     else if floorType==2
                     {
-                    tempFloor.texture=SKTexture(imageNamed: "lavaFloor00")
+                        let floorType:CGFloat=random(min: 0, max: 90)
+                            var suffixFloor:String=""
+
+                            if floorType>=0 && floorType<3 {
+                                suffixFloor="00"
+                            }
+
+                            if floorType>=3 && floorType<10 {
+                                suffixFloor="01"
+                            }
+                           if floorType>=10 && floorType<=90 {
+                                suffixFloor="02"
+                            }
+                         let name:String="lavaFloor"+suffixFloor
+                        //randomizes the floor pattern
+                        tempFloor.texture=SKTexture(imageNamed: name)
                        
                         scene!.myLight.lightColor=NSColor(calibratedRed: 1.0, green: 0.7, blue: 0.7, alpha: 1.0)
                         //scene!.myLight.ambientColor=NSColor(calibratedRed: 0.01, green: 0.0, blue: 0.0, alpha: 1.0)
@@ -512,6 +527,21 @@ class MapClass
                     tempFloor.position.y = (CGFloat(y)*tempFloor.size.height) - (CGFloat(mapHeight)*tempFloor.size.width)/2
                     tempFloor.name="dngFloor"
                     tempFloor.texture!.filteringMode=SKTextureFilteringMode.nearest
+                    
+                    var rotationType:Int=(Int(random(min: 0, max: 4.99999999999999999999999999999999999)))
+                    
+                    if rotationType==1{
+                     tempFloor.zRotation = CGFloat.pi/2
+                    }
+                    if rotationType==2{
+                     tempFloor.zRotation = CGFloat.pi
+                    }
+                    if rotationType==3{
+                     tempFloor.zRotation = (CGFloat.pi*3)/2
+                    }
+                    if rotationType==4{
+                     tempFloor.zRotation = 2*CGFloat.pi
+                    }
 
                     scene!.addChild(tempFloor)
                     TILESIZE=tempFloor.size.width
