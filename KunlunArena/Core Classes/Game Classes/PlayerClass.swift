@@ -90,6 +90,12 @@ class PlayerClass
         let tempGhostDodge=GhostDodgeTalentClass(theGame: game!)
         playerTalents.append(tempGhostDodge)
         
+        
+        
+        
+        let tempCherryBomb=CherryBombTalentClass(theGame: game!)
+        playerTalents.append(tempCherryBomb)
+        
         equippedWeapon=BaseInventoryClass(game: game!)
         
     } // init - game
