@@ -47,15 +47,29 @@ class DogEntClass:EntityClass
            pursueRange=attackRange
        }
          
-       let entColor=NSColor(calibratedRed: random(min: 0.4, max: 0.6), green: random(min: 0.6, max: 0.8), blue: random(min: 0.7, max: 0.9), alpha: 1.0)
+        let entColor=NSColor(calibratedRed: random(min: 0.4, max: 1.0), green: random(min: 0.3, max: 0.6), blue: random(min: 0.1, max: 0.3), alpha: 1.0)
        
        bodySprite.color=entColor
        headSprite.color=entColor
        tailSprite.color=entColor
+        
+        baseDamage=3
+        health=20
+        mana=15
+        MELEERANGE=80
+        
+        if spriteScale > 2.5
+        {
+            baseDamage=5
+            health=25
+            mana=20
+        } //spriteScale
     
 
 
 }//Init
+    
+ 
     
         
     

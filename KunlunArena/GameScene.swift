@@ -221,8 +221,16 @@ class GameScene: SKScene {
     
     func spawnEnemy()
     {
-        let tempEnt=PigEntClass(theGame: game, id: entCount)
-        tempEnt.game=game
+        let tempEntDog=DogEntClass(theGame: game, id: entCount)
+        let tempEntDragon=DragonEntClass(theGame: game, id: entCount)
+        let tempEntPig=PigEntClass(theGame: game, id: entCount)
+        let tempEntSnake=SnakeEntClass(theGame: game, id: entCount)
+        let tempEntHorse=HorseEntClass(theGame: game, id: entCount)
+        tempEntDog.game=game
+        tempEntDragon.game=game
+        tempEntPig.game=game
+        tempEntSnake.game=game
+        tempEntHorse.game=game
         var goodSpawn:Bool=false
         var xp:CGFloat=0
         var yp:CGFloat=0
@@ -247,10 +255,22 @@ class GameScene: SKScene {
                 } // if not nil
             } // for each node at the spot
         } // while we're looking for a good spawn point
-        tempEnt.bodySprite.position.x=xp
-        tempEnt.bodySprite.position.y=yp
-        game.entList.append(tempEnt)
-        entCount+=1
+        tempEntDog.bodySprite.position.x=xp
+        tempEntDog.bodySprite.position.y=yp
+        game.entList.append(tempEntDog)
+        tempEntDragon.bodySprite.position.x=xp
+        tempEntDragon.bodySprite.position.y=yp
+        game.entList.append(tempEntDragon)
+        tempEntPig.bodySprite.position.x=xp
+        tempEntPig.bodySprite.position.y=yp
+        game.entList.append(tempEntPig)
+        tempEntSnake.bodySprite.position.x=xp
+        tempEntSnake.bodySprite.position.y=yp
+        game.entList.append(tempEntSnake)
+        tempEntHorse.bodySprite.position.x=xp
+        tempEntHorse.bodySprite.position.y=yp
+        game.entList.append(tempEntHorse)
+        entCount+=4
         
     } // func spawnEnemy()
     
