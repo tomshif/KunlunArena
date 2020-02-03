@@ -335,9 +335,9 @@ class EntityClass
         // This function generates a random chance to drop loot
         // Right now, the chance is high, but it will be reduced. Right now, it uses the generic (completely random) initializer, but we will be able to create a different init for the BaseInventoryClass to generate certain types/qualities/etc of loot
         let roll=random(min: 0, max: 1)
-        if roll > 0.5
+        if roll > 0.9
         {
-            let temploot=BaseInventoryClass(game: game!)
+            let temploot=BaseInventoryClass(game: game!, level: entLevel)
             let lootSprite=SKSpriteNode(imageNamed: temploot.iconString)
             lootSprite.name=String(format: "loot%05d",game!.lootCounter)
             

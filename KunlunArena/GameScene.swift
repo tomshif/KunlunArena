@@ -797,7 +797,7 @@ class GameScene: SKScene {
             {
                 if node.name != nil
                 {
-                    if node.name!.contains("dng") || node.name!.contains("wall")
+                    if node.name!.contains("dng") || node.name!.contains("wall") || node.name!.contains("loot")
                     {
                         node.removeFromParent()
                     }
@@ -808,6 +808,8 @@ class GameScene: SKScene {
             
             tempMap=MapClass(width: MAPSIZE, height: MAPSIZE, theScene: self, theGame:game)
             NUMENEMIES=MAPSIZE*MAPSIZE/tempMap!.ENTSPAWNFACTOR
+            game.lootList.removeAll()
+            game.lootCounter=0
             player.playerSprite!.position.x = CGFloat(tempMap!.roomPoints[tempMap!.startRoomIndex].x)*tempMap!.TILESIZE - (CGFloat(tempMap!.mapWidth)*tempMap!.TILESIZE) / 2
             player.playerSprite!.position.y = CGFloat(tempMap!.roomPoints[tempMap!.startRoomIndex].y)*tempMap!.TILESIZE - (CGFloat(tempMap!.mapHeight)*tempMap!.TILESIZE)/2
             

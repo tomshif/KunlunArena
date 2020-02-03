@@ -50,8 +50,8 @@ class PlayerClass
 
     
     
-    let BASEREGENMANA:CGFloat=2
-    let BASEREGENHEALTH:CGFloat=1.0
+    let BASEREGENMANA:CGFloat=3
+    let BASEREGENHEALTH:CGFloat=2.0
     
     var currentDamage:CGFloat=5.0 // This is updated each time the player changes gear or levels up.
     
@@ -93,8 +93,9 @@ class PlayerClass
         let tempCherryBomb=CherryBombTalentClass(theGame: game!)
         playerTalents.append(tempCherryBomb)
         
-        equippedWeapon=BaseInventoryClass(game: game!)
-        
+        equippedWeapon=BaseInventoryClass(game: game!, level: 1)
+        resetStats()
+        equipRefresh()
     } // init - game
     
     public func moveTo()
@@ -215,8 +216,8 @@ class PlayerClass
         strength=CGFloat(playerLevel*5+15)
         quickness=CGFloat(playerLevel*5+15)
         wisdom=CGFloat(playerLevel*5+15)
-        maxMana=CGFloat(playerLevel*5+15)
-        maxHealth=CGFloat(playerLevel*5+15)
+        maxMana=CGFloat(playerLevel*5+35)
+        maxHealth=CGFloat(playerLevel*5+35)
         moveSpeed=7.5
         manaRegen=BASEREGENMANA
         healthRegen=BASEREGENHEALTH
