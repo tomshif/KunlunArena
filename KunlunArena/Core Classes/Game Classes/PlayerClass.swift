@@ -47,13 +47,11 @@ class PlayerClass
     var maxHealth:CGFloat=20
     var maxMana:CGFloat=20
     var experienceGain:CGFloat=0
-    var experienceMana:CGFloat=0
-    var experienceDefence:CGFloat=0
-    var experienceEye:CGFloat=0
+
     
     
-    let BASEREGENMANA:CGFloat=2
-    let BASEREGENHEALTH:CGFloat=1.0
+    let BASEREGENMANA:CGFloat=3
+    let BASEREGENHEALTH:CGFloat=2.0
     
     var currentDamage:CGFloat=5.0 // This is updated each time the player changes gear or levels up.
     
@@ -87,17 +85,17 @@ class PlayerClass
         let tempFireBreath=FireBreathTalentClass(theGame: game!)
         playerTalents.append(tempFireBreath)
         
-        // 4 - Ghost Dodge
+        // 4
         let tempGhostDodge=GhostDodgeTalentClass(theGame: game!)
         playerTalents.append(tempGhostDodge)
         
-        // 5 - Anger Issues
-        let tempAnger=AngerIssuesTalentClass(theGame: game!)
-        playerTalents.append(tempAnger)
+        // 5
+        let tempCherryBomb=CherryBombTalentClass(theGame: game!)
+        playerTalents.append(tempCherryBomb)
         
-        
-        equippedWeapon=BaseInventoryClass(game: game!)
-        
+        equippedWeapon=BaseInventoryClass(game: game!, level: 1)
+        resetStats()
+        equipRefresh()
     } // init - game
     
     public func moveTo()
@@ -153,7 +151,7 @@ class PlayerClass
         isPlayAction=playerSprite!.hasActions()
     } // checkActions
     
-    private func updateTalents()
+    public func updateTalents()
     {
         if activeTalents.count > 0
         {
@@ -173,14 +171,53 @@ class PlayerClass
         } // if there are active talents
     } // updateTalents()
     
+    internal func dropLoot(loot: BaseInventoryClass)
+    {
+        // This function drops a specific piece of loot. Currently, it drops the equipped weapon when the player picks up another weapon.
+        // Will be used from the equipment selection screen for the player to drop loot
+        // Also will be called when the player tries to pick up loot when they are at the max number of items for that type so that there is a visual of the loot being tossed back up in the air (and probably a sound effect along with it).
+
+
+            let lootSprite=SKSpriteNode(imageNamed: loot.iconString)
+            lootSprite.name=String(format: "loot%05d",game!.lootCounter)
+            
+            lootSprite.position=playerSprite!.position
+            lootSprite.setScale(1.5)
+           let flyDist=random(min: -50, max: 50)
+        lootSprite.run(SKAction.sequence([SKAction.move(by: CGVector(dx: flyDist, dy: 100), duration: 0.5), SKAction.move(by: CGVector(dx: flyDist, dy: -100), duration: 0.5)]))
+            lootSprite.run(SKAction.rotate(byAngle: random(min: -CGFloat.pi, max: CGFloat.pi), duration: 1.0))
+            
+            lootSprite.zPosition=5
+            
+            game!.scene!.addChild(lootSprite)
+            
+            let lootGlow=SKSpriteNode(imageNamed: "itemGlow")
+            lootGlow.zPosition = -2
+            let lootaction=SKAction.sequence([SKAction.rotate(byAngle: -CGFloat.pi/2, duration: 0.35), SKAction.rotate(byAngle: CGFloat.pi/2, duration: 0.35)])
+            lootGlow.run(SKAction.repeatForever(lootaction))
+            lootGlow.alpha=0.5
+            let lootsparkle=SKAction.sequence([SKAction.fadeAlpha(to: 0.75, duration: 0.25), SKAction.fadeAlpha(to: 0.5, duration: 0.25)])
+            lootGlow.run(SKAction.repeatForever(lootsparkle))
+            lootSprite.addChild(lootGlow)
+            lootGlow.colorBlendFactor=1.0
+            lootGlow.color=loot.itemLevelColor
+            
+            
+            // add to the loot list
+            game!.lootCounter+=1
+            game!.lootList.append(loot)
+            
+        
+    } // dropLoot()
+    
     public func resetStats()
     {
         playerLevel=equippedWeapon!.iLevel
         strength=CGFloat(playerLevel*5+15)
         quickness=CGFloat(playerLevel*5+15)
         wisdom=CGFloat(playerLevel*5+15)
-        maxMana=CGFloat(playerLevel*5+15)
-        maxHealth=CGFloat(playerLevel*5+15)
+        maxMana=CGFloat(playerLevel*5+35)
+        maxHealth=CGFloat(playerLevel*5+35)
         moveSpeed=7.5
         manaRegen=BASEREGENMANA
         healthRegen=BASEREGENHEALTH
@@ -297,12 +334,280 @@ class PlayerClass
                    {
                        strength = CGFloat(15 + playerLevel*5) + equippedWeapon!.statsMod
                    }
-        }
+        } // if better than common quality
     } // equipRefresh
+    public func receiveEX()
+    {
+        if  game!.player!.equippedWeapon!.talentType == TalentBranchList.melee
+        {
+            0.8*experienceGain
+            if game!.player!.equippedWeapon!.talentType == TalentBranchList.martial
+            {
+            0.1*experienceGain
+            0.025*experienceGain
+              0.025*experienceGain
+              0.025*experienceGain
+              0.025*experienceGain
+            }
+            else if game!.player!.equippedWeapon!.talentType == TalentBranchList.bow
+            {
+                0.1*experienceGain
+                0.025*experienceGain
+                  0.025*experienceGain
+                  0.025*experienceGain
+                  0.025*experienceGain
+            }
+            else if game!.player!.equippedWeapon!.talentType == TalentBranchList.mechanical
+            {
+                0.1*experienceGain
+                0.025*experienceGain
+                  0.025*experienceGain
+                  0.025*experienceGain
+                  0.025*experienceGain
+            }
+            else if  game!.player!.equippedWeapon!.talentType == TalentBranchList.alchemy
+            {
+                0.1*experienceGain
+                0.025*experienceGain
+                  0.025*experienceGain
+                  0.025*experienceGain
+                  0.025*experienceGain
+            }
+            else if game!.player!.equippedWeapon!.talentType == TalentBranchList.ancestor
+            {
+                0.1*experienceGain
+                0.025*experienceGain
+                  0.025*experienceGain
+                  0.025*experienceGain
+                  0.025*experienceGain
+            }
+            
+        }
+
+        if  game!.player!.equippedWeapon!.talentType == TalentBranchList.martial
+        {
+            0.8*experienceGain
+           if game!.player!.equippedWeapon!.talentType == TalentBranchList.melee
+            {
+            0.1*experienceGain
+            0.025*experienceGain
+              0.025*experienceGain
+              0.025*experienceGain
+              0.025*experienceGain
+            }
+            else if game!.player!.equippedWeapon!.talentType == TalentBranchList.bow
+            {
+                0.1*experienceGain
+                0.025*experienceGain
+                  0.025*experienceGain
+                  0.025*experienceGain
+                  0.025*experienceGain
+            }
+            else if game!.player!.equippedWeapon!.talentType == TalentBranchList.mechanical
+            {
+                0.1*experienceGain
+                0.025*experienceGain
+                  0.025*experienceGain
+                  0.025*experienceGain
+                  0.025*experienceGain
+            }
+            else if  game!.player!.equippedWeapon!.talentType == TalentBranchList.alchemy
+            {
+                0.1*experienceGain
+                0.025*experienceGain
+                  0.025*experienceGain
+                  0.025*experienceGain
+                  0.025*experienceGain
+            }
+            else if game!.player!.equippedWeapon!.talentType == TalentBranchList.ancestor
+            {
+                0.1*experienceGain
+                0.025*experienceGain
+                  0.025*experienceGain
+                  0.025*experienceGain
+                  0.025*experienceGain
+            }
+        }
+        if  game!.player!.equippedWeapon!.talentType == TalentBranchList.bow
+        {
+            0.8*experienceGain
+           if game!.player!.equippedWeapon!.talentType == TalentBranchList.martial
+            {
+            0.1*experienceGain
+            0.025*experienceGain
+              0.025*experienceGain
+              0.025*experienceGain
+              0.025*experienceGain
+            }
+            else if game!.player!.equippedWeapon!.talentType == TalentBranchList.melee
+            {
+                0.1*experienceGain
+                0.025*experienceGain
+                  0.025*experienceGain
+                  0.025*experienceGain
+                  0.025*experienceGain
+            }
+            else if game!.player!.equippedWeapon!.talentType == TalentBranchList.mechanical
+            {
+                0.1*experienceGain
+                0.025*experienceGain
+                  0.025*experienceGain
+                  0.025*experienceGain
+                  0.025*experienceGain
+            }
+            else if  game!.player!.equippedWeapon!.talentType == TalentBranchList.alchemy
+            {
+                0.1*experienceGain
+                0.025*experienceGain
+                  0.025*experienceGain
+                  0.025*experienceGain
+                  0.025*experienceGain
+            }
+            else if game!.player!.equippedWeapon!.talentType == TalentBranchList.ancestor
+            {
+                0.1*experienceGain
+                0.025*experienceGain
+                  0.025*experienceGain
+                  0.025*experienceGain
+                  0.025*experienceGain
+            }
+        }
+        if  game!.player!.equippedWeapon!.talentType == TalentBranchList.mechanical
+        {
+            0.8*experienceGain
+           if game!.player!.equippedWeapon!.talentType == TalentBranchList.martial
+            {
+            0.1*experienceGain
+            0.025*experienceGain
+              0.025*experienceGain
+              0.025*experienceGain
+              0.025*experienceGain
+            }
+            else if game!.player!.equippedWeapon!.talentType == TalentBranchList.bow
+            {
+                0.1*experienceGain
+                0.025*experienceGain
+                  0.025*experienceGain
+                  0.025*experienceGain
+                  0.025*experienceGain
+            }
+            else if game!.player!.equippedWeapon!.talentType == TalentBranchList.melee
+            {
+                0.1*experienceGain
+                0.025*experienceGain
+                  0.025*experienceGain
+                  0.025*experienceGain
+                  0.025*experienceGain
+            }
+            else if  game!.player!.equippedWeapon!.talentType == TalentBranchList.alchemy
+            {
+                0.1*experienceGain
+                0.025*experienceGain
+                  0.025*experienceGain
+                  0.025*experienceGain
+                  0.025*experienceGain
+            }
+            else if game!.player!.equippedWeapon!.talentType == TalentBranchList.ancestor
+            {
+                0.1*experienceGain
+                0.025*experienceGain
+                  0.025*experienceGain
+                  0.025*experienceGain
+                  0.025*experienceGain
+            }
+        }
+        if  game!.player!.equippedWeapon!.talentType == TalentBranchList.alchemy
+        {
+            0.8*experienceGain
+            if game!.player!.equippedWeapon!.talentType == TalentBranchList.martial
+            {
+            0.1*experienceGain
+            0.025*experienceGain
+              0.025*experienceGain
+              0.025*experienceGain
+              0.025*experienceGain
+            }
+            else if game!.player!.equippedWeapon!.talentType == TalentBranchList.bow
+            {
+                0.1*experienceGain
+                0.025*experienceGain
+                  0.025*experienceGain
+                  0.025*experienceGain
+                  0.025*experienceGain
+            }
+            else if game!.player!.equippedWeapon!.talentType == TalentBranchList.mechanical
+            {
+                0.1*experienceGain
+                0.025*experienceGain
+                  0.025*experienceGain
+                  0.025*experienceGain
+                  0.025*experienceGain
+            }
+            else  if game!.player!.equippedWeapon!.talentType == TalentBranchList.melee
+            {
+                0.1*experienceGain
+                0.025*experienceGain
+                  0.025*experienceGain
+                  0.025*experienceGain
+                  0.025*experienceGain
+            }
+            else if game!.player!.equippedWeapon!.talentType == TalentBranchList.ancestor
+            {
+                0.1*experienceGain
+                0.025*experienceGain
+                  0.025*experienceGain
+                  0.025*experienceGain
+                  0.025*experienceGain
+            }
+        }
+        if  game!.player!.equippedWeapon!.talentType == TalentBranchList.ancestor
+        {
+            0.8*experienceGain
+           if game!.player!.equippedWeapon!.talentType == TalentBranchList.martial
+            {
+            0.1*experienceGain
+            0.025*experienceGain
+              0.025*experienceGain
+              0.025*experienceGain
+              0.025*experienceGain
+            }
+            else if game!.player!.equippedWeapon!.talentType == TalentBranchList.bow
+            {
+                0.1*experienceGain
+                0.025*experienceGain
+                  0.025*experienceGain
+                  0.025*experienceGain
+                  0.025*experienceGain
+            }
+            else if game!.player!.equippedWeapon!.talentType == TalentBranchList.mechanical
+            {
+                0.1*experienceGain
+                0.025*experienceGain
+                  0.025*experienceGain
+                  0.025*experienceGain
+                  0.025*experienceGain
+            }
+            else if  game!.player!.equippedWeapon!.talentType == TalentBranchList.alchemy
+            {
+                0.1*experienceGain
+                0.025*experienceGain
+                  0.025*experienceGain
+                  0.025*experienceGain
+                  0.025*experienceGain
+            }
+            else if game!.player!.equippedWeapon!.talentType == TalentBranchList.melee
+            {
+                0.1*experienceGain
+                0.025*experienceGain
+                  0.025*experienceGain
+                  0.025*experienceGain
+                  0.025*experienceGain
+            }
+        }
+    }
     
     public func update()
     {
-        updateTalents()
         checkActions()
         moveTo()
         healthRe()
@@ -313,6 +618,7 @@ class PlayerClass
         //print("Health:\(game!.player!.health)")
         //print("Stats Mod: \(equippedWeapon!.statsMod)")
     } // update()
+    
     
     
 } // PlayerClass

@@ -32,6 +32,10 @@ class GameScene: SKScene {
     var buildLabel=SKLabelNode(fontNamed: "Arial")
     var pHealthLabel=SKLabelNode(fontNamed: "Chalkduster")
     var pManaLabel=SKLabelNode(fontNamed: "Chalkduster")
+    var hudBar=SKSpriteNode(imageNamed: "hud01")
+    var hudMana=SKSpriteNode(imageNamed: "hudMana")
+    var hudHealth=SKSpriteNode(imageNamed: "hudHealth")
+    
     
     var actionBarFrame=SKSpriteNode(imageNamed: "actionBarFrame")
     
@@ -43,18 +47,20 @@ class GameScene: SKScene {
     var bgParticle=SKEmitterNode() // This looks crappy, needs to be different
     
     var myLight=SKLightNode()
+
     
       
     
     // Ints
-    var updateCycle:Int=0
+    var updateCycle:Int=0 // Moderates AI updates for performance
+    var talentUpdateCycle:Int=0 // Moderates talent updates for performance
     var entCount:Int=0
     var gameState:Int=STATES.FIGHT
     var MAPSIZE:Int=90
     
     // Core Classes
     var game=GameClass()
-
+    var toolTips:ToolTipClass?
     
     // KB Bools
     var upPressed:Bool=false
@@ -86,13 +92,22 @@ class GameScene: SKScene {
          // Init the game
 
         ///////////////////////////////////////
-         
+
+
+        let trackingArea=NSTrackingArea(rect: view.frame, options: NSTrackingArea.Options(rawValue: UInt(UInt8(NSTrackingArea.Options.activeInKeyWindow.rawValue) | UInt8(NSTrackingArea.Options.mouseMoved.rawValue))), owner: self, userInfo: nil)
+        view.addTrackingArea(trackingArea)
+        
          game=GameClass(theScene: self)
          initInventory(game: game)
          player=PlayerClass(theGame: game)
          game.player=player
          game.player!.equipRefresh()
          gameState=STATES.FIGHT
+        toolTips=ToolTipClass(theGame: game)
+        game.cam=cam
+        
+
+        
         
          player.playerSprite=SKSpriteNode(imageNamed: "body")
         addChild(player.playerSprite!)
@@ -110,8 +125,12 @@ class GameScene: SKScene {
         self.backgroundColor=NSColor.black
         
         // Gen Map
-        tempMap=MapClass(width: MAPSIZE, height: MAPSIZE, theScene: self)
+        tempMap=MapClass(width: MAPSIZE, height: MAPSIZE, theScene: self, theGame:game)
+        
+        
         NUMENEMIES=MAPSIZE*MAPSIZE/tempMap!.ENTSPAWNFACTOR
+        
+        game.map=tempMap
         
         // Setup Labels
         copyrightLabel.position.y = -size.height*0.475
@@ -154,14 +173,14 @@ class GameScene: SKScene {
         cam.addChild(entCountLabel)
         
         pHealthLabel.fontSize=40
-        pHealthLabel.position=CGPoint(x: size.width*0.4, y: -size.height*0.35)
+        pHealthLabel.position=CGPoint(x: -size.width*0.35, y: -size.height*0.245)
         pHealthLabel.text="Health"
         pHealthLabel.zPosition=10000
         pHealthLabel.fontColor=NSColor.red
         cam.addChild(pHealthLabel)
         
         pManaLabel.fontSize=40
-        pManaLabel.position=CGPoint(x: size.width*0.4, y: -size.height*0.4)
+        pManaLabel.position=CGPoint(x: size.width*0.35, y: -size.height*0.245)
         pManaLabel.text="Mana"
         pManaLabel.fontColor=NSColor.blue
         pManaLabel.zPosition=10000
@@ -176,6 +195,22 @@ class GameScene: SKScene {
         cam.addChild(actionBarFrame)
         updateActionBar()
         
+        hudBar.zPosition=9500
+        hudBar.position.y = -size.height*0.35
+        hudBar.setScale(1.25)
+        cam.addChild(hudBar)
+        
+        hudMana.zPosition=9450
+        hudMana.position.y = -size.height*0.35
+        hudMana.position.x = size.width*0.35
+        hudMana.setScale(1.25)
+        cam.addChild(hudMana)
+        
+        hudHealth.zPosition=9450
+        hudHealth.position.y = -size.height*0.35
+        hudHealth.position.x = -size.width*0.35
+        hudHealth.setScale(1.25)
+        cam.addChild(hudHealth)
 
         
         
@@ -221,8 +256,9 @@ class GameScene: SKScene {
     
     func spawnEnemy()
     {
-        let tempEnt=PigEntClass(theGame: game, id: entCount)
-        tempEnt.game=game
+
+        let tempEntHorse=HorseEntClass(theGame: game, id: entCount)
+
         var goodSpawn:Bool=false
         var xp:CGFloat=0
         var yp:CGFloat=0
@@ -247,9 +283,10 @@ class GameScene: SKScene {
                 } // if not nil
             } // for each node at the spot
         } // while we're looking for a good spawn point
-        tempEnt.bodySprite.position.x=xp
-        tempEnt.bodySprite.position.y=yp
-        game.entList.append(tempEnt)
+
+        tempEntHorse.bodySprite.position.x=xp
+        tempEntHorse.bodySprite.position.y=yp
+        game.entList.append(tempEntHorse)
         entCount+=1
         
     } // func spawnEnemy()
@@ -368,7 +405,36 @@ class GameScene: SKScene {
         
         if gameState==STATES.FIGHT
         {
-            // Currently a test of click to move...not sure I like this...maybe remove it?
+            // First we check to see if we clicked on loot
+            for node in self.nodes(at: pos)
+            {
+                if node.name != nil
+                {
+                    if node.name!.contains("loot") && !node.hasActions()
+                    {
+                        // first, drop the loot we have
+                        game.player!.dropLoot(loot: game.player!.equippedWeapon!)
+                        
+                        let last5 = Int(node.name!.suffix(5))
+                        
+                        print("Last 5: \(last5!)")
+                        print("Loot: \(game.lootList[last5!].name)")
+                        
+                        // pick up the loot
+                        game.player!.equippedWeapon=game.lootList[last5!]
+                        game.player!.resetStats()
+                        game.player!.equipRefresh()
+                        // remove the sprite
+                        node.removeFromParent()
+                        
+                    } // if it's loot
+                    
+                } // if name not nil
+                
+            } // for each node
+            
+            
+            // click to attack
             mousePressed=true
             let dx=pos.x-pBody.position.x
             let dy=pos.y-pBody.position.y
@@ -536,6 +602,55 @@ class GameScene: SKScene {
         self.touchDown(atPoint: event.location(in: self))
     } // mouseDown()
     
+    override func mouseMoved(with event: NSEvent) {
+        // turn player to face cursor
+        
+        let dx=event.location(in: self).x - game.player!.playerSprite!.position.x
+        let dy=event.location(in: self).y-game.player!.playerSprite!.position.y
+        
+        let angle=atan2(dy, dx)
+        game.player!.playerSprite!.zRotation=angle
+        
+        
+        // update tooltip if active
+        if toolTips!.active
+        {
+            toolTips!.updateToolTip(loc: event.location(in: self))
+        }
+        
+        
+        
+        // check for mouse over a dropped item
+        for node in self.nodes(at: event.location(in: self))
+        {
+            if node.name != nil
+            {
+                if node.name!.contains("loot")
+                {
+                    if !toolTips!.active
+                    {
+                        // get the number from the loot
+                        let cutString=node.name!.suffix(5)
+                        let lootNum=Int(cutString)
+                        toolTips!.createLoot(num: lootNum!, loc: event.location(in: self))
+                        
+                        print("loot m/o: \(lootNum)")
+                    } // if we don't have an active toolTip
+                } // if it's loot
+                else
+                {
+                    if toolTips!.active && toolTips!.loot >= 0
+                    {
+                        toolTips!.removeToolTip()
+                    } // if we have an active loot tooltip
+                } // if we're not mousing over loot
+            } // if name not nil
+            
+        } // for each node at the spot
+        
+    } // mouseMoved()
+    
+    
     override func mouseDragged(with event: NSEvent) {
         self.touchMoved(toPoint: event.location(in: self))
     } // mouseDragged()
@@ -607,14 +722,14 @@ class GameScene: SKScene {
             
             
         case 23: // 5
-            if player.playerTalents[TalentList.anger].getCooldown() < 0 && player.mana >= player.playerTalents[TalentList.anger].manaCost
+            if player.playerTalents[TalentList.cherryBomb].getCooldown() < 0 && player.mana >= player.playerTalents[TalentList.cherryBomb].manaCost
                      {
-                     player.activeTalents.append(player.playerTalents[TalentList.anger])
-                         player.playerTalents[TalentList.anger].doTalent()
+                     player.activeTalents.append(player.playerTalents[TalentList.cherryBomb])
+                         player.playerTalents[TalentList.cherryBomb].doTalent()
                      }
                      else
                      {
-                         print("Anger on cooldown.")
+                         print("Cherry Bomb on cooldown.")
                      }
             
             
@@ -675,22 +790,28 @@ class GameScene: SKScene {
         case 44: // / (forward slash)
             for ent in game.entList
             {
-                ent.die()
+                ent.remove()
             }
+            
+            
+            
             for node in self.children
             {
                 if node.name != nil
                 {
-                    if node.name!.contains("dng") || node.name!.contains("wall")
+                    if node.name!.contains("dng") || node.name!.contains("wall") || node.name!.contains("loot")
                     {
                         node.removeFromParent()
                     }
                 } // if not nil
             } // for each node
             MAPSIZE=Int(random(min:64, max: 96))
+            game.map!.miniMap!.removeAllChildren()
             
-            tempMap=MapClass(width: MAPSIZE, height: MAPSIZE, theScene: self)
+            tempMap=MapClass(width: MAPSIZE, height: MAPSIZE, theScene: self, theGame:game)
             NUMENEMIES=MAPSIZE*MAPSIZE/tempMap!.ENTSPAWNFACTOR
+            game.lootList.removeAll()
+            game.lootCounter=0
             player.playerSprite!.position.x = CGFloat(tempMap!.roomPoints[tempMap!.startRoomIndex].x)*tempMap!.TILESIZE - (CGFloat(tempMap!.mapWidth)*tempMap!.TILESIZE) / 2
             player.playerSprite!.position.y = CGFloat(tempMap!.roomPoints[tempMap!.startRoomIndex].y)*tempMap!.TILESIZE - (CGFloat(tempMap!.mapHeight)*tempMap!.TILESIZE)/2
             
@@ -700,11 +821,18 @@ class GameScene: SKScene {
             {
                 spawnEnemy()
             } // for
+            
+            game.map=tempMap
+            
+            
         /* Temporarily removing spacebar lock
         case 49: // space - Attack lock
             game.player!.isInAttackMode=true
         */
             
+        case 46:
+            game.map!.miniMap!.isHidden.toggle()
+
 
 
         default:
@@ -803,6 +931,11 @@ class GameScene: SKScene {
     func updateUI()
     {
         updateCooldowns()
+        
+        // update player position on minimap
+        game.map!.playerArrow.position.x = game.player!.playerSprite!.position.x / 6 * 0.15
+        game.map!.playerArrow.position.y = game.player!.playerSprite!.position.y / 6 * 0.15
+        game.map!.playerArrow.zRotation=game.player!.playerSprite!.zRotation
         switch gameState
         {
         case STATES.FIGHT:
@@ -823,6 +956,15 @@ class GameScene: SKScene {
         entCountLabel.text="\(game.entList.count)"
         pHealthLabel.text=String(format: "%2.0f / %2.0f",player.health, player.maxHealth)
         pManaLabel.text=String(format: "%2.0f / %2.0f",player.mana, player.maxMana)
+        
+        // update health and mana balls
+        hudMana.yScale = player.mana/player.maxMana
+        hudMana.position.y = -size.height*0.47 - (1-(175/2*game.player!.mana/game.player!.maxMana))
+        
+        hudHealth.yScale = player.health/player.maxHealth
+        hudHealth.position.y = -size.height*0.47 - (1-(175/2*game.player!.health/game.player!.maxHealth))
+        
+        
     } // updateUI()
     
     func cleanLists()
@@ -858,13 +1000,22 @@ class GameScene: SKScene {
             {
                 updateCycle=0
             }
-            
+            talentUpdateCycle += 1
+            if talentUpdateCycle >= 15
+            {
+                talentUpdateCycle = 0
+            }
 
             keyMovement()
             
             cam.position=player.playerSprite!.position
             myLight.position=player.playerSprite!.position
             player.update()
+            // update player talents
+            if (talentUpdateCycle==0)
+            {
+                player.updateTalents()
+            } 
             
             for ent in game.entList
             {

@@ -17,6 +17,8 @@ class MapClass
 {
     var mapGrid=[Int]()
     var scene:GameScene?
+    var game:GameClass?
+    var miniMap:SKSpriteNode?
     
     var mapWidth:Int=0 // in tile grid spaces
     var mapHeight:Int=0
@@ -56,15 +58,23 @@ class MapClass
         // We need to keep enemies under 200ish
         var ENTSPAWNFACTOR:Int=50
     
+        var playerArrow=SKSpriteNode(imageNamed: "smallRedArrow")
     
     
-    init(width:Int, height:Int, theScene: GameScene)
+    init(width:Int, height:Int, theScene: GameScene, theGame:GameClass)
     {
         scene=theScene // a pointer to our scene
-        
+        game=theGame
         mapWidth=width
         mapHeight=height
-        
+        miniMap=SKSpriteNode(imageNamed: "miniMapFrame")
+        miniMap!.position.x=scene!.size.width*0.3
+        miniMap!.position.y=scene!.size.height*0.3
+        miniMap!.zPosition=12000
+        game!.cam!.addChild(miniMap!)
+        playerArrow.zPosition=100
+        playerArrow.setScale(0.1)
+        miniMap!.addChild(playerArrow)
         ONEBLOCKWIDE=random(min: 0.1, max: 0.9)
         
         // create empty map
@@ -476,6 +486,11 @@ class MapClass
                     scene!.addChild(tempFloor)
                     TILESIZE=tempFloor.size.width
                     
+                    // add Floor tile to minimap
+                    
+
+                    
+                    
                     // check for texture variance
                     let chance=random(min: 0, max: 1)
                     if chance > 0.85
@@ -545,6 +560,19 @@ class MapClass
 
                     scene!.addChild(tempFloor)
                     TILESIZE=tempFloor.size.width
+                    let miniFloor=SKSpriteNode(imageNamed: "stoneFloor00")
+                    miniFloor.setScale(0.15)
+                    miniMap!.addChild(miniFloor)
+                    print("MiniFloorSize: \(miniFloor.size.width)")
+                    miniFloor.position.x = (CGFloat(x)*miniFloor.size.width) - (CGFloat(mapWidth)*miniFloor.size.width)/2
+                    miniFloor.position.y = (CGFloat(y)*miniFloor.size.height) - (CGFloat(mapHeight)*miniFloor.size.width)/2
+ 
+                    print(miniFloor.position)
+                    miniFloor.zPosition=5
+                    
+                    print("mini count: \(miniMap!.children.count)")
+                    
+                    
                 default:
                     break
                     

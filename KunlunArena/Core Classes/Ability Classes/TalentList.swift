@@ -17,7 +17,7 @@ struct TalentList
     static let swordOfLightning:Int=2
     static let fireBreath:Int=3 // Temp
     static let ghostDodge:Int=4
-    static let anger:Int=5
-    
+    static let cherryBomb:Int=5
+    static let angerIssues:Int=6
     
 }

@@ -21,7 +21,7 @@ class SwordsOfLightningTalentClass:PlayerTalentClass
         description="increases attack speed by 100% for 5 seconds"
         isAction=false
         game=theGame
-        COOLDOWN=15
+        COOLDOWN=1
         lengthActive=5
         iconName="solTalentIcon"
     }//init game
@@ -43,6 +43,10 @@ class SwordsOfLightningTalentClass:PlayerTalentClass
         game!.player!.playerTalents[0].COOLDOWN=0
         lastUse=NSDate()
         isActive=true
+        let SOLEffect = SKEmitterNode(fileNamed:"swordsOfLightningEffect.sks")
+        game!.player!.playerSprite!.addChild(SOLEffect!)
+        SOLEffect!.run(SKAction.sequence([SKAction.wait(forDuration: lengthActive-1), SKAction.fadeOut(withDuration: 1), SKAction.removeFromParent()]))
+        
         
     }
     
