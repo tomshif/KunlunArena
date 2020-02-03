@@ -343,7 +343,8 @@ class EntityClass
             
             lootSprite.position=bodySprite.position
             lootSprite.setScale(1.5)
-            lootSprite.run(SKAction.sequence([SKAction.move(by: CGVector(dx: random(min: -50, max: 50), dy: 100), duration: 0.5), SKAction.move(by: CGVector(dx: 0, dy: -100), duration: 0.5)]))
+                let flyDist=random(min: -50, max: 50)
+            lootSprite.run(SKAction.sequence([SKAction.move(by: CGVector(dx: flyDist, dy: 100), duration: 0.5), SKAction.move(by: CGVector(dx: flyDist, dy: -100), duration: 0.5)]))
             lootSprite.run(SKAction.rotate(byAngle: random(min: -CGFloat.pi, max: CGFloat.pi), duration: 1.0))
             
             lootSprite.zPosition=5

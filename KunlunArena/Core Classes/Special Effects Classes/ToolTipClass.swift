@@ -16,10 +16,14 @@ class ToolTipClass
     var type:Int=0
     var loot:Int = -1
     var talent:Int = -1
+    var ttText=SKLabelNode()
+    
     
     init(theGame: GameClass)
     {
         game=theGame
+        game!.scene!.addChild(ttText)
+        
     }
     
     public func createLoot(num: Int, loc: CGPoint)
@@ -27,7 +31,7 @@ class ToolTipClass
         loot=num
         
         // create tooltip text
-        let ttText=SKLabelNode()
+        //let ttText=SKLabelNode()
         ttText.text=game!.lootList[num].name
         ttText.fontColor=game!.lootList[num].itemLevelColor
         ttText.fontName="Arial"
@@ -35,7 +39,7 @@ class ToolTipClass
         ttText.name="toolTip"
         ttText.zPosition=750
         ttText.position=loc
-        game!.scene!.addChild(ttText)
+        //game!.scene!.addChild(ttText)
         
         // create toolTip background
         let ttBG=SKShapeNode(rectOf: CGSize(width: ttText.frame.size.width*1.25, height: ttText.frame.size.height*1.5), cornerRadius: 10)
@@ -45,7 +49,9 @@ class ToolTipClass
         ttBG.alpha=0.65
         ttBG.strokeColor=NSColor.white
         ttBG.name="toolTipBackground"
+        ttText.isHidden=false
         ttText.addChild(ttBG)
+        
         
         
         active=true
@@ -58,6 +64,7 @@ class ToolTipClass
     
     public func updateToolTip(loc: CGPoint)
     {
+        /*
         for node in game!.scene!.children
         {
             if node.name != nil
@@ -69,14 +76,19 @@ class ToolTipClass
             } // if node not nil
             
         } // for each node
-        
+        */
+        //let node=game!.scene!.childNode(withName: "toolTip")
+        ttText.position=loc
     } // updateToolTip()
     
     public func removeToolTip()
     {
         active=false
+        ttText.isHidden=true
         loot = -1
         talent = -1
+        ttText.removeAllChildren()
+        /*
         for node in game!.scene!.children
         {
             if node.name != nil
@@ -88,7 +100,7 @@ class ToolTipClass
                 }
             } // if the name isn't nil
         } // for each node
-        
+        */
     } // removeToolTip()
     
 } // class ToolTipClass

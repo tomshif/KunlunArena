@@ -403,7 +403,9 @@ class GameScene: SKScene {
                 {
                     if node.name!.contains("loot") && !node.hasActions()
                     {
-                        print(node.name!)
+                        // first, drop the loot we have
+                        game.player!.dropLoot(loot: game.player!.equippedWeapon!)
+                        
                         let last5 = Int(node.name!.suffix(5))
                         
                         print("Last 5: \(last5!)")
