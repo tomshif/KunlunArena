@@ -59,7 +59,7 @@ class GameScene: SKScene {
     
     // Core Classes
     var game=GameClass()
-
+    var toolTips:ToolTipClass?
     
     // KB Bools
     var upPressed:Bool=false
@@ -91,13 +91,18 @@ class GameScene: SKScene {
          // Init the game
 
         ///////////////////////////////////////
-         
+
+
+        let trackingArea=NSTrackingArea(rect: view.frame, options: NSTrackingArea.Options(rawValue: UInt(UInt8(NSTrackingArea.Options.activeInKeyWindow.rawValue) | UInt8(NSTrackingArea.Options.mouseMoved.rawValue))), owner: self, userInfo: nil)
+        view.addTrackingArea(trackingArea)
+        
          game=GameClass(theScene: self)
          initInventory(game: game)
          player=PlayerClass(theGame: game)
          game.player=player
          game.player!.equipRefresh()
          gameState=STATES.FIGHT
+        toolTips=ToolTipClass(theGame: game)
         
          player.playerSprite=SKSpriteNode(imageNamed: "body")
         addChild(player.playerSprite!)
@@ -586,6 +591,55 @@ class GameScene: SKScene {
         self.touchDown(atPoint: event.location(in: self))
     } // mouseDown()
     
+    override func mouseMoved(with event: NSEvent) {
+        // turn player to face cursor
+        
+        let dx=event.location(in: self).x - game.player!.playerSprite!.position.x
+        let dy=event.location(in: self).y-game.player!.playerSprite!.position.y
+        
+        let angle=atan2(dy, dx)
+        game.player!.playerSprite!.zRotation=angle
+        
+        
+        // update tooltip if active
+        if toolTips!.active
+        {
+            toolTips!.updateToolTip(loc: event.location(in: self))
+        }
+        
+        
+        
+        // check for mouse over a dropped item
+        for node in self.nodes(at: event.location(in: self))
+        {
+            if node.name != nil
+            {
+                if node.name!.contains("loot")
+                {
+                    if !toolTips!.active
+                    {
+                        // get the number from the loot
+                        let cutString=node.name!.suffix(5)
+                        let lootNum=Int(cutString)
+                        toolTips!.createLoot(num: lootNum!, loc: event.location(in: self))
+                        
+                        print("loot m/o: \(lootNum)")
+                    } // if we don't have an active toolTip
+                } // if it's loot
+                else
+                {
+                    if toolTips!.active && toolTips!.loot >= 0
+                    {
+                        toolTips!.removeToolTip()
+                    } // if we have an active loot tooltip
+                } // if we're not mousing over loot
+            } // if name not nil
+            
+        } // for each node at the spot
+        
+    } // mouseMoved()
+    
+    
     override func mouseDragged(with event: NSEvent) {
         self.touchMoved(toPoint: event.location(in: self))
     } // mouseDragged()
@@ -851,6 +905,7 @@ class GameScene: SKScene {
     func updateUI()
     {
         updateCooldowns()
+        
         switch gameState
         {
         case STATES.FIGHT:

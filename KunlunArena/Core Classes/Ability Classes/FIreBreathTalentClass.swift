@@ -47,6 +47,7 @@ class FireBreathTalentClass:PlayerTalentClass
         fireNode!.zRotation=game!.player!.playerSprite!.zRotation
         
         fireNode!.run(SKAction.sequence([SKAction.wait(forDuration: 1.5),SKAction.removeFromParent()]))
+        fireNode!.name="fireNode"
         fireNode!.setScale(1.3)
         game!.scene!.addChild(fireNode!)
         
@@ -56,6 +57,11 @@ class FireBreathTalentClass:PlayerTalentClass
     override func updateTalent()
     {
         game!.player!.mana -= manaCost/2/4
+        
+        // rotate effect to player
+        let node=game!.scene!.childNode(withName: "fireNode")
+        node?.zRotation=game!.player!.playerSprite!.zRotation
+        
         // check for enemies hit
          
          // determine dx/dy to center of hit area

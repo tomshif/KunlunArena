@@ -58,6 +58,7 @@
 		F4AC646723A00CDD00C64D2E /* SpecialStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AC646623A00CDD00C64D2E /* SpecialStatus.swift */; };
 		F4AC646B23A03DF200C64D2E /* FireSplode.sks in Resources */ = {isa = PBXBuildFile; fileRef = F4AC646923A03DF200C64D2E /* FireSplode.sks */; };
 		F4AC646C23A03DF200C64D2E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F4AC646A23A03DF200C64D2E /* Assets.xcassets */; };
+		F4D8715923E8722700915B37 /* ToolTipClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D8715823E8722700915B37 /* ToolTipClass.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -115,6 +116,7 @@
 		F4AC646623A00CDD00C64D2E /* SpecialStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecialStatus.swift; sourceTree = "<group>"; };
 		F4AC646923A03DF200C64D2E /* FireSplode.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = FireSplode.sks; sourceTree = "<group>"; };
 		F4AC646A23A03DF200C64D2E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F4D8715823E8722700915B37 /* ToolTipClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolTipClass.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,6 +149,7 @@
 			isa = PBXGroup;
 			children = (
 				F46BF48823D264AB005C29EB /* FloatingTextClass.swift */,
+				F4D8715823E8722700915B37 /* ToolTipClass.swift */,
 			);
 			path = "Special Effects Classes";
 			sourceTree = "<group>";
@@ -426,6 +429,7 @@
 				F482DF1F239744D50063CF84 /* GameClass.swift in Sources */,
 				F497A28523E1D88200E4B248 /* FIreBreathTalentClass.swift in Sources */,
 				44C697A223DF768B004CCE49 /* PlayerClass.swift in Sources */,
+				F4D8715923E8722700915B37 /* ToolTipClass.swift in Sources */,
 				F46BF49123D9FAA9005C29EB /* MeleeAttackClass.swift in Sources */,
 				F482DF23239745070063CF84 /* EntityClass.swift in Sources */,
 				F46BF49323DF3974005C29EB /* InventoryColors.swift in Sources */,
