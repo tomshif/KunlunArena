@@ -310,6 +310,7 @@ class EntityClass
     
     public func die()
     {
+        dropLoot()
         healthBar.removeFromParent()
         bodySprite.removeAllChildren()
         bodySprite.removeAllActions()
@@ -317,6 +318,57 @@ class EntityClass
         isDead=true
 
     } // die()
+    
+    public func remove()
+    {
+        // This function is to remove without loot dropping
+        bodySprite.removeAllChildren()
+        bodySprite.removeAllActions()
+        bodySprite.removeFromParent()
+        isDead=true
+        
+    } // remove()
+    
+    
+    internal func dropLoot()
+    {
+        // This function generates a random chance to drop loot
+        // Right now, the chance is high, but it will be reduced. Right now, it uses the generic (completely random) initializer, but we will be able to create a different init for the BaseInventoryClass to generate certain types/qualities/etc of loot
+        let roll=random(min: 0, max: 1)
+        if roll > 0.5
+        {
+            let temploot=BaseInventoryClass(game: game!)
+            let lootSprite=SKSpriteNode(imageNamed: temploot.iconString)
+            lootSprite.name=String(format: "loot%05d",game!.lootCounter)
+            
+            lootSprite.position=bodySprite.position
+            lootSprite.setScale(1.5)
+            lootSprite.run(SKAction.sequence([SKAction.move(by: CGVector(dx: random(min: -50, max: 50), dy: 100), duration: 0.5), SKAction.move(by: CGVector(dx: 0, dy: -100), duration: 0.5)]))
+            lootSprite.run(SKAction.rotate(byAngle: random(min: -CGFloat.pi, max: CGFloat.pi), duration: 1.0))
+            
+            lootSprite.zPosition=5
+            
+            game!.scene!.addChild(lootSprite)
+            
+            let lootGlow=SKSpriteNode(imageNamed: "itemGlow")
+            lootGlow.zPosition = -2
+            let lootaction=SKAction.sequence([SKAction.rotate(byAngle: -CGFloat.pi/2, duration: 0.35), SKAction.rotate(byAngle: CGFloat.pi/2, duration: 0.35)])
+            lootGlow.run(SKAction.repeatForever(lootaction))
+            lootGlow.alpha=0.5
+            let lootsparkle=SKAction.sequence([SKAction.fadeAlpha(to: 0.75, duration: 0.25), SKAction.fadeAlpha(to: 0.5, duration: 0.25)])
+            lootGlow.run(SKAction.repeatForever(lootsparkle))
+            lootSprite.addChild(lootGlow)
+            lootGlow.colorBlendFactor=1.0
+            lootGlow.color=temploot.itemLevelColor
+            
+            
+            // add to the loot list
+            game!.lootCounter+=1
+            game!.lootList.append(temploot)
+            
+        } // if we're dropping loot
+    } // dropLoot()
+    
     
     internal func checkLOS(angle: CGFloat, distance: CGFloat) -> Bool
     {

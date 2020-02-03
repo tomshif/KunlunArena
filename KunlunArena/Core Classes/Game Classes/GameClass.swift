@@ -24,6 +24,9 @@ class GameClass
     var prefixList=[PrefixClass]()
     var baseTypesList=[BaseInvTypesClass]()
     
+    var lootCounter:Int=0
+    var lootList=[BaseInventoryClass]()
+    
     
     init()
     {

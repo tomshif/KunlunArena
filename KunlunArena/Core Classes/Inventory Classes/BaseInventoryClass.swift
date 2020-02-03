@@ -14,6 +14,7 @@ import SpriteKit
 class BaseInventoryClass
 {
     var name:String=""
+    var iconString:String=""
     var iLevel:Int=0
     var iLevelMod:CGFloat=0
     var statsMod:CGFloat=0
@@ -48,7 +49,14 @@ class BaseInventoryClass
         
         // First, pick the type
         invType=Int(random(min: 0, max: CGFloat(game.baseTypesList.count)-0.0000001))
-       
+       if invType <= 9
+       {
+           iconString="weapon0\(invType)"
+       }
+       else
+       {
+           iconString="weapon00"
+       }
         
         
         // Next pick a prefix

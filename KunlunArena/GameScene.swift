@@ -391,7 +391,34 @@ class GameScene: SKScene {
         
         if gameState==STATES.FIGHT
         {
-            // Currently a test of click to move...not sure I like this...maybe remove it?
+            // First we check to see if we clicked on loot
+            for node in self.nodes(at: pos)
+            {
+                if node.name != nil
+                {
+                    if node.name!.contains("loot") && !node.hasActions()
+                    {
+                        print(node.name!)
+                        let last5 = Int(node.name!.suffix(5))
+                        
+                        print("Last 5: \(last5!)")
+                        print("Loot: \(game.lootList[last5!].name)")
+                        
+                        // pick up the loot
+                        game.player!.equippedWeapon=game.lootList[last5!]
+                        game.player!.resetStats()
+                        game.player!.equipRefresh()
+                        // remove the sprite
+                        node.removeFromParent()
+                        
+                    } // if it's loot
+                    
+                } // if name not nil
+                
+            } // for each node
+            
+            
+            // click to attack
             mousePressed=true
             let dx=pos.x-pBody.position.x
             let dy=pos.y-pBody.position.y
