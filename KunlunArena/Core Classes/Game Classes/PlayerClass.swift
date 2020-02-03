@@ -87,8 +87,13 @@ class PlayerClass
         let tempFireBreath=FireBreathTalentClass(theGame: game!)
         playerTalents.append(tempFireBreath)
         
+        // 4
         let tempGhostDodge=GhostDodgeTalentClass(theGame: game!)
         playerTalents.append(tempGhostDodge)
+        
+        // 5
+        let tempCherryBomb=CherryBombTalentClass(theGame: game!)
+        playerTalents.append(tempCherryBomb)
         
         equippedWeapon=BaseInventoryClass(game: game!)
         
@@ -147,7 +152,7 @@ class PlayerClass
         isPlayAction=playerSprite!.hasActions()
     } // checkActions
     
-    private func updateTalents()
+    public func updateTalents()
     {
         if activeTalents.count > 0
         {
@@ -166,6 +171,44 @@ class PlayerClass
             } // for each active talent
         } // if there are active talents
     } // updateTalents()
+    
+    internal func dropLoot(loot: BaseInventoryClass)
+    {
+        // This function generates a random chance to drop loot
+        // Right now, the chance is high, but it will be reduced. Right now, it uses the generic (completely random) initializer, but we will be able to create a different init for the BaseInventoryClass to generate certain types/qualities/etc of loot
+
+
+            let lootSprite=SKSpriteNode(imageNamed: loot.iconString)
+            lootSprite.name=String(format: "loot%05d",game!.lootCounter)
+            
+            lootSprite.position=playerSprite!.position
+            lootSprite.setScale(1.5)
+           let flyDist=random(min: -50, max: 50)
+        lootSprite.run(SKAction.sequence([SKAction.move(by: CGVector(dx: flyDist, dy: 100), duration: 0.5), SKAction.move(by: CGVector(dx: flyDist, dy: -100), duration: 0.5)]))
+            lootSprite.run(SKAction.rotate(byAngle: random(min: -CGFloat.pi, max: CGFloat.pi), duration: 1.0))
+            
+            lootSprite.zPosition=5
+            
+            game!.scene!.addChild(lootSprite)
+            
+            let lootGlow=SKSpriteNode(imageNamed: "itemGlow")
+            lootGlow.zPosition = -2
+            let lootaction=SKAction.sequence([SKAction.rotate(byAngle: -CGFloat.pi/2, duration: 0.35), SKAction.rotate(byAngle: CGFloat.pi/2, duration: 0.35)])
+            lootGlow.run(SKAction.repeatForever(lootaction))
+            lootGlow.alpha=0.5
+            let lootsparkle=SKAction.sequence([SKAction.fadeAlpha(to: 0.75, duration: 0.25), SKAction.fadeAlpha(to: 0.5, duration: 0.25)])
+            lootGlow.run(SKAction.repeatForever(lootsparkle))
+            lootSprite.addChild(lootGlow)
+            lootGlow.colorBlendFactor=1.0
+            lootGlow.color=loot.itemLevelColor
+            
+            
+            // add to the loot list
+            game!.lootCounter+=1
+            game!.lootList.append(loot)
+            
+        
+    } // dropLoot()
     
     public func resetStats()
     {
@@ -296,7 +339,6 @@ class PlayerClass
     
     public func update()
     {
-        updateTalents()
         checkActions()
         moveTo()
         healthRe()

@@ -19,11 +19,11 @@ class MonkeyEntClass:EntityClass
   {
       super.init(theGame: theGame, id: id)
       spriteNamePrefix="monkey"
-      headNum=1
-      bodyNum=1
-      tailNum=1
+      headNum=3
+      bodyNum=3
+      tailNum=3
 
-        health = 42
+    health = 42
       headID=Int(random(min: 0, max: CGFloat(headNum)-0.000000001))
       bodyID=Int(random(min: 0, max: CGFloat(bodyNum)-0.000000001))
       tailID=Int(random(min: 0, max: CGFloat(tailNum)-0.000000001))
@@ -49,7 +49,7 @@ class MonkeyEntClass:EntityClass
         pursueRange=attackRange
     }
       
-    let entColor=NSColor(calibratedRed: random(min: 0.5, max: 0.7), green: random(min: 0.6, max: 0.9), blue: random(min: 0, max: 0.4), alpha: 1.0)
+    let entColor=NSColor(calibratedRed: random(min: 0.3, max: 0.8), green: random(min: 0.3, max: 0.6), blue: random(min: 0.1, max: 0.3), alpha: 1.0)
     bodySprite.color=entColor
     headSprite.color=entColor
     tailSprite.color=entColor

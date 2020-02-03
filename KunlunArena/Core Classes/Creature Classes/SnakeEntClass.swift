@@ -15,9 +15,9 @@ class SnakeEntClass:EntityClass
   {
       super.init(theGame: theGame, id: id)
       spriteNamePrefix="snake"
-      headNum=1
-      bodyNum=1
-      tailNum=1
+      headNum=3
+      bodyNum=3
+      tailNum=3
 
       headID=Int(random(min: 0, max: CGFloat(headNum)-0.000000001))
       bodyID=Int(random(min: 0, max: CGFloat(bodyNum)-0.000000001))
@@ -45,7 +45,7 @@ class SnakeEntClass:EntityClass
         pursueRange=attackRange
     }
       
-    let entColor=NSColor(calibratedRed: random(min: 0.3, max: 0.5), green: random(min: 0.6, max: 0.8), blue: random(min: 0.1, max: 0.4), alpha: 1.0)
+    let entColor=NSColor(calibratedRed: random(min: 0.3, max: 0.4), green: random(min: 0.3, max: 0.6), blue: random(min: 0.1, max: 0.3), alpha: 1.0)
     
     bodySprite.color=entColor
     headSprite.color=entColor

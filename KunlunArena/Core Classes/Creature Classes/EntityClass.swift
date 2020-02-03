@@ -53,6 +53,7 @@ class EntityClass
     var tailSprite=SKSpriteNode()
     var leftSprite=SKSpriteNode()
     var rightSprite=SKSpriteNode()
+    var healthBar=SKSpriteNode()
     
     var spriteScale:CGFloat=1.0
     
@@ -75,9 +76,10 @@ class EntityClass
     // Entity Stats
     var entLevel:Int=1
     var health:CGFloat=10
+    var maxHealth:CGFloat=10
     var mana:CGFloat=20
     var baseDamage:CGFloat=1.0
-    
+    var currentDamage:CGFloat=0
     var damageReduction:CGFloat=0.05 // Modifier applied to incoming damage
     
     
@@ -121,10 +123,9 @@ class EntityClass
         tailSprite.colorBlendFactor=1.0
         leftSprite.colorBlendFactor=1.0
         rightSprite.colorBlendFactor=1.0
-        bodySprite.lightingBitMask=1
-        tailSprite.lightingBitMask=1
-        headSprite.lightingBitMask=1
-        bodySprite.shadowCastBitMask=1
+        healthBar=SKSpriteNode(imageNamed: "entHealthBar")
+        healthBar.setScale(4.0)
+        game!.scene!.addChild(healthBar)
         
         let entColor=NSColor(calibratedRed: random(min: 1, max: 1.0), green: random(min: 0, max: 1), blue: random(min: 0, max: 1), alpha: 1.0)
         bodySprite.color=entColor
@@ -157,7 +158,7 @@ class EntityClass
         tailSprite.zPosition=30
         leftSprite.zPosition=30
         rightSprite.zPosition=30
-        
+        healthBar.zPosition=40
 
         bodySprite.physicsBody=SKPhysicsBody(circleOfRadius: bodySprite.size.width)
         bodySprite.physicsBody!.categoryBitMask=BODYBITMASKS.ENEMY
@@ -171,7 +172,7 @@ class EntityClass
         bodySprite.physicsBody!.affectedByGravity=false
         
         // Setup entity stats
-        baseDamage=baseDamage*CGFloat(entLevel)
+        currentDamage=baseDamage*CGFloat(entLevel)
         
         moveSpeed=random(min: 5.5, max: 10.5)
         TURNRATE=random(min: 0.9, max: 0.9)
@@ -196,7 +197,7 @@ class EntityClass
         }
         print("EntLevel = \(entLevel)")
         health=CGFloat(entLevel)*35+25
-
+        maxHealth=health
         // setup skills
         setupSkills()
         
@@ -210,6 +211,24 @@ class EntityClass
         
     } // setupSkills
     
+    internal func updateHealthBar()
+    {
+        //print("updating health bar")
+        if health/maxHealth > 0.98
+        {
+            healthBar.isHidden=true
+        }
+        else
+        {
+            healthBar.isHidden=false
+            healthBar.xScale=health/maxHealth*4.0
+        }
+        
+        healthBar.position.x = bodySprite.position.x
+        healthBar.position.y = bodySprite.position.y + bodySprite.size.height
+        
+        
+    } // updateHealthBar
     
     public func takeDamage(amount: CGFloat)
     {
@@ -227,7 +246,7 @@ class EntityClass
             tempBlood.position=bodySprite.position
             tempBlood.zPosition=10
             tempBlood.zRotation=random(min: 0, max: CGFloat.pi*2)
-            let distance=random(min: 2, max: 100)
+            let distance=(random(min: 2, max: 100)+random(min: 2, max: 100))/2
             let angle=random(min: 0, max: CGFloat.pi*2)
             let adx=cos(angle)*distance
             let ady=sin(angle)*distance
@@ -291,12 +310,66 @@ class EntityClass
     
     public func die()
     {
+        dropLoot()
+        healthBar.removeFromParent()
         bodySprite.removeAllChildren()
         bodySprite.removeAllActions()
         bodySprite.removeFromParent()
         isDead=true
 
     } // die()
+    
+    public func remove()
+    {
+        // This function is to remove without loot dropping
+        bodySprite.removeAllChildren()
+        bodySprite.removeAllActions()
+        bodySprite.removeFromParent()
+        isDead=true
+        
+    } // remove()
+    
+    
+    internal func dropLoot()
+    {
+        // This function generates a random chance to drop loot
+        // Right now, the chance is high, but it will be reduced. Right now, it uses the generic (completely random) initializer, but we will be able to create a different init for the BaseInventoryClass to generate certain types/qualities/etc of loot
+        let roll=random(min: 0, max: 1)
+        if roll > 0.5
+        {
+            let temploot=BaseInventoryClass(game: game!)
+            let lootSprite=SKSpriteNode(imageNamed: temploot.iconString)
+            lootSprite.name=String(format: "loot%05d",game!.lootCounter)
+            
+            lootSprite.position=bodySprite.position
+            lootSprite.setScale(1.5)
+                let flyDist=random(min: -50, max: 50)
+            lootSprite.run(SKAction.sequence([SKAction.move(by: CGVector(dx: flyDist, dy: 100), duration: 0.5), SKAction.move(by: CGVector(dx: flyDist, dy: -100), duration: 0.5)]))
+            lootSprite.run(SKAction.rotate(byAngle: random(min: -CGFloat.pi, max: CGFloat.pi), duration: 1.0))
+            
+            lootSprite.zPosition=5
+            
+            game!.scene!.addChild(lootSprite)
+            
+            let lootGlow=SKSpriteNode(imageNamed: "itemGlow")
+            lootGlow.zPosition = -2
+            let lootaction=SKAction.sequence([SKAction.rotate(byAngle: -CGFloat.pi/2, duration: 0.35), SKAction.rotate(byAngle: CGFloat.pi/2, duration: 0.35)])
+            lootGlow.run(SKAction.repeatForever(lootaction))
+            lootGlow.alpha=0.5
+            let lootsparkle=SKAction.sequence([SKAction.fadeAlpha(to: 0.75, duration: 0.25), SKAction.fadeAlpha(to: 0.5, duration: 0.25)])
+            lootGlow.run(SKAction.repeatForever(lootsparkle))
+            lootSprite.addChild(lootGlow)
+            lootGlow.colorBlendFactor=1.0
+            lootGlow.color=temploot.itemLevelColor
+            
+            
+            // add to the loot list
+            game!.lootCounter+=1
+            game!.lootList.append(temploot)
+            
+        } // if we're dropping loot
+    } // dropLoot()
+    
     
     internal func checkLOS(angle: CGFloat, distance: CGFloat) -> Bool
     {
@@ -375,6 +448,7 @@ class EntityClass
     ////////////////////
     public func update(cycle: Int)
     {
+        
         // First, let's check our health to see if we should die
         if health <= 0
         {
@@ -386,7 +460,7 @@ class EntityClass
             
  
             pursue()
-            if playerDist <= MELEERANGE
+            if playerDist <= MELEERANGE*2
             {
                 attack()
             }
@@ -402,9 +476,8 @@ class EntityClass
             bodySprite.position.y += moveDY
         } // update sprite position
         
-        // melee attack if in range
-        
-
+        // update healthBar
+        updateHealthBar()
 
     } // update()
     
