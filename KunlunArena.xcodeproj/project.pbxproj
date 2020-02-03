@@ -26,6 +26,8 @@
 		4C45B39023E23160005C778E /* GhostDodgeEmitter.sks in Resources */ = {isa = PBXBuildFile; fileRef = 4C45B38F23E23160005C778E /* GhostDodgeEmitter.sks */; };
 		4C45B39923E4CF9E005C778E /* CherryBombTalentClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C45B39823E4CF9E005C778E /* CherryBombTalentClass.swift */; };
 		4C45B39B23E4D0E5005C778E /* CherryBombEffect.sks in Resources */ = {isa = PBXBuildFile; fileRef = 4C45B39A23E4D0E5005C778E /* CherryBombEffect.sks */; };
+		4C45B39D23E8C7AF005C778E /* VampiricAttackTalentClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C45B39C23E8C7AF005C778E /* VampiricAttackTalentClass.swift */; };
+		4C45B3A123E8C83F005C778E /* VampiricEmmiter.sks in Resources */ = {isa = PBXBuildFile; fileRef = 4C45B3A023E8C83F005C778E /* VampiricEmmiter.sks */; };
 		4CA2857A23DF8BC400A72268 /* GhostDodgeTalent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA2857923DF8BC400A72268 /* GhostDodgeTalent.swift */; };
 		F431F07D23DBD16D00EBD905 /* TalentList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F431F07C23DBD16D00EBD905 /* TalentList.swift */; };
 		F451541B23E314E900B5D04C /* To Do.rtf in Resources */ = {isa = PBXBuildFile; fileRef = F451541A23E314E900B5D04C /* To Do.rtf */; };
@@ -87,6 +89,8 @@
 		4C45B38F23E23160005C778E /* GhostDodgeEmitter.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GhostDodgeEmitter.sks; sourceTree = "<group>"; };
 		4C45B39823E4CF9E005C778E /* CherryBombTalentClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CherryBombTalentClass.swift; sourceTree = "<group>"; };
 		4C45B39A23E4D0E5005C778E /* CherryBombEffect.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = CherryBombEffect.sks; sourceTree = "<group>"; };
+		4C45B39C23E8C7AF005C778E /* VampiricAttackTalentClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VampiricAttackTalentClass.swift; sourceTree = "<group>"; };
+		4C45B3A023E8C83F005C778E /* VampiricEmmiter.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = VampiricEmmiter.sks; sourceTree = "<group>"; };
 		4CA2857923DF8BC400A72268 /* GhostDodgeTalent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GhostDodgeTalent.swift; sourceTree = "<group>"; };
 		F431F07C23DBD16D00EBD905 /* TalentList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalentList.swift; sourceTree = "<group>"; };
 		F451541A23E314E900B5D04C /* To Do.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = "To Do.rtf"; sourceTree = "<group>"; };
@@ -351,6 +355,7 @@
 				F497A28423E1D88200E4B248 /* FIreBreathTalentClass.swift */,
 				4C45B38D23E22FBF005C778E /* AngerIssuesTalentClass.swift */,
 				4C45B39823E4CF9E005C778E /* CherryBombTalentClass.swift */,
+				4C45B39C23E8C7AF005C778E /* VampiricAttackTalentClass.swift */,
 			);
 			path = "Ability Classes";
 			sourceTree = "<group>";
@@ -365,6 +370,7 @@
 				4C45B38F23E23160005C778E /* GhostDodgeEmitter.sks */,
 				F497A28623E1D96C00E4B248 /* FireBreathTalentEmitter.sks */,
 				4C45B39A23E4D0E5005C778E /* CherryBombEffect.sks */,
+				4C45B3A023E8C83F005C778E /* VampiricEmmiter.sks */,
 			);
 			path = Emitters;
 			sourceTree = "<group>";
@@ -435,6 +441,7 @@
 				F482DF08239744050063CF84 /* GameScene.sks in Resources */,
 				F482DF10239744070063CF84 /* Assets.xcassets in Resources */,
 				F4AC646B23A03DF200C64D2E /* FireSplode.sks in Resources */,
+				4C45B3A123E8C83F005C778E /* VampiricEmmiter.sks in Resources */,
 				F482DF13239744070063CF84 /* Main.storyboard in Resources */,
 				44A6261523E4D0ED004ED04A /* swordsOfLightningEffect.sks in Resources */,
 				F45F4AC923ABE9ED0020333B /* Keyboard Commands.rtf in Resources */,
@@ -473,6 +480,7 @@
 				432D90E023E8C71700BA99F8 /* RoosterEntClass.swift in Sources */,
 				F497A28523E1D88200E4B248 /* FIreBreathTalentClass.swift in Sources */,
 				44C697A223DF768B004CCE49 /* PlayerClass.swift in Sources */,
+				4C45B39D23E8C7AF005C778E /* VampiricAttackTalentClass.swift in Sources */,
 				F4D8715923E8722700915B37 /* ToolTipClass.swift in Sources */,
 				432D90DE23E8C71200BA99F8 /* RatEntClass.swift in Sources */,
 				F46BF49123D9FAA9005C29EB /* MeleeAttackClass.swift in Sources */,
