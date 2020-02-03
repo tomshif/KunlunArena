@@ -34,7 +34,13 @@ class FloatingTextClass
         tempLabel.position=ent.bodySprite.position
         tempLabel.name="damageLabel"
         tempLabel.fontName="Chalkboard"
-        tempLabel.run(SKAction.sequence([SKAction.move(by: CGVector(dx: 0, dy: 100), duration: 1),  SKAction.removeFromParent()]))
+        var horzMov=random(min: 25, max: 75)
+        let chance=random(min: 0, max: 1.0)
+        if chance > 0.5
+        {
+            horzMov *= -1
+        }
+        tempLabel.run(SKAction.sequence([SKAction.move(by: CGVector(dx: horzMov, dy: 100), duration: 1),  SKAction.removeFromParent()]))
         tempLabel.run(SKAction.sequence([SKAction.wait(forDuration: 0.8),SKAction.fadeOut(withDuration: 0.2)]))
         tempLabel.fontColor=NSColor.red
         

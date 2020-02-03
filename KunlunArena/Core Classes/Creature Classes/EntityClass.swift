@@ -53,6 +53,7 @@ class EntityClass
     var tailSprite=SKSpriteNode()
     var leftSprite=SKSpriteNode()
     var rightSprite=SKSpriteNode()
+    var healthBar=SKSpriteNode()
     
     var spriteScale:CGFloat=1.0
     
@@ -75,6 +76,7 @@ class EntityClass
     // Entity Stats
     var entLevel:Int=1
     var health:CGFloat=10
+    var maxHealth:CGFloat=10
     var mana:CGFloat=20
     var baseDamage:CGFloat=1.0
     var currentDamage:CGFloat=0
@@ -121,10 +123,9 @@ class EntityClass
         tailSprite.colorBlendFactor=1.0
         leftSprite.colorBlendFactor=1.0
         rightSprite.colorBlendFactor=1.0
-        bodySprite.lightingBitMask=1
-        tailSprite.lightingBitMask=1
-        headSprite.lightingBitMask=1
-        bodySprite.shadowCastBitMask=1
+        healthBar=SKSpriteNode(imageNamed: "entHealthBar")
+        healthBar.setScale(4.0)
+        game!.scene!.addChild(healthBar)
         
         let entColor=NSColor(calibratedRed: random(min: 1, max: 1.0), green: random(min: 0, max: 1), blue: random(min: 0, max: 1), alpha: 1.0)
         bodySprite.color=entColor
@@ -157,7 +158,7 @@ class EntityClass
         tailSprite.zPosition=30
         leftSprite.zPosition=30
         rightSprite.zPosition=30
-        
+        healthBar.zPosition=40
 
         bodySprite.physicsBody=SKPhysicsBody(circleOfRadius: bodySprite.size.width)
         bodySprite.physicsBody!.categoryBitMask=BODYBITMASKS.ENEMY
@@ -196,7 +197,7 @@ class EntityClass
         }
         print("EntLevel = \(entLevel)")
         health=CGFloat(entLevel)*35+25
-
+        maxHealth=health
         // setup skills
         setupSkills()
         
@@ -210,6 +211,24 @@ class EntityClass
         
     } // setupSkills
     
+    internal func updateHealthBar()
+    {
+        //print("updating health bar")
+        if health/maxHealth > 0.98
+        {
+            healthBar.isHidden=true
+        }
+        else
+        {
+            healthBar.isHidden=false
+            healthBar.xScale=health/maxHealth*4.0
+        }
+        
+        healthBar.position.x = bodySprite.position.x
+        healthBar.position.y = bodySprite.position.y + bodySprite.size.height
+        
+        
+    } // updateHealthBar
     
     public func takeDamage(amount: CGFloat)
     {
@@ -227,7 +246,7 @@ class EntityClass
             tempBlood.position=bodySprite.position
             tempBlood.zPosition=10
             tempBlood.zRotation=random(min: 0, max: CGFloat.pi*2)
-            let distance=random(min: 2, max: 100)
+            let distance=(random(min: 2, max: 100)+random(min: 2, max: 100))/2
             let angle=random(min: 0, max: CGFloat.pi*2)
             let adx=cos(angle)*distance
             let ady=sin(angle)*distance
@@ -291,6 +310,7 @@ class EntityClass
     
     public func die()
     {
+        healthBar.removeFromParent()
         bodySprite.removeAllChildren()
         bodySprite.removeAllActions()
         bodySprite.removeFromParent()
@@ -375,6 +395,7 @@ class EntityClass
     ////////////////////
     public func update(cycle: Int)
     {
+        
         // First, let's check our health to see if we should die
         if health <= 0
         {
@@ -386,7 +407,7 @@ class EntityClass
             
  
             pursue()
-            if playerDist <= MELEERANGE
+            if playerDist <= MELEERANGE*2
             {
                 attack()
             }
@@ -402,9 +423,8 @@ class EntityClass
             bodySprite.position.y += moveDY
         } // update sprite position
         
-        // melee attack if in range
-        
-
+        // update healthBar
+        updateHealthBar()
 
     } // update()
     

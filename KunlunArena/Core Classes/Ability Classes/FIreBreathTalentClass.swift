@@ -55,7 +55,7 @@ class FireBreathTalentClass:PlayerTalentClass
     } // doTalent()
     override func updateTalent()
     {
-        game!.player!.mana -= manaCost/2/60
+        game!.player!.mana -= manaCost/2/4
         // check for enemies hit
          
          // determine dx/dy to center of hit area
@@ -72,7 +72,7 @@ class FireBreathTalentClass:PlayerTalentClass
 
              if dist < 100
              {
-                 ent.takeDamage(amount: game!.player!.equippedWeapon!.iLevelMod * game!.player!.equippedWeapon!.modLevel*3/60/2)
+                 ent.takeDamage(amount: game!.player!.equippedWeapon!.iLevelMod * game!.player!.equippedWeapon!.modLevel*3/4/2)
                  
              } // if in range do damage
          } // for each ent

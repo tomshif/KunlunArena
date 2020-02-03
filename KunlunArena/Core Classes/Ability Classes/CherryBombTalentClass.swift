@@ -23,7 +23,7 @@ class CherryBombTalentClass:PlayerTalentClass
         COOLDOWN=10
         lengthActive=1.5
         manaCost=20
-        iconName="cherryBombIcon"
+        iconName="cherryBombTalentIcon"
     } // init game
     
     
@@ -46,7 +46,7 @@ class CherryBombTalentClass:PlayerTalentClass
     } // doTalent()
     override func updateTalent()
     {
-        game!.player!.mana -= manaCost/2/60
+        game!.player!.mana -= manaCost/2/4
          
          // determine dx/dy to center of hit area
          let dx=cos(game!.player!.playerSprite!.zRotation)*300+game!.player!.playerSprite!.position.x
@@ -62,7 +62,7 @@ class CherryBombTalentClass:PlayerTalentClass
 
              if dist < 300
              {
-                 ent.takeDamage(amount: game!.player!.equippedWeapon!.iLevelMod * game!.player!.equippedWeapon!.modLevel*3/60/2)
+                 ent.takeDamage(amount: game!.player!.equippedWeapon!.iLevelMod * game!.player!.equippedWeapon!.modLevel*3/4/2)
                  
              } // if in range do damage
          } // for each ent

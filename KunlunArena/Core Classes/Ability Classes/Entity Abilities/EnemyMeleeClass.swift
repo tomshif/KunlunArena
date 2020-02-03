@@ -27,9 +27,26 @@ class EnemyMeleeClass:EnemySkillClass
     {
         // Pick a spot in front of the enemy and see if player is there
         
-        let dx=cos(entity!.bodySprite.zRotation)*100+entity!.bodySprite.position.x
-        let dy=sin(entity!.bodySprite.zRotation)*100+entity!.bodySprite.position.y
+        let dx=cos(entity!.bodySprite.zRotation)*25+entity!.bodySprite.position.x
+        let dy=sin(entity!.bodySprite.zRotation)*25+entity!.bodySprite.position.y
         
+        // get distance from player to the spot
+        
+        let pdx = game!.player!.playerSprite!.position.x - dx
+        let pdy = game!.player!.playerSprite!.position.y - dy
+        let pDist=hypot(pdy, pdx)
+        
+        if pDist < entity!.bodySprite.size.height*2.5
+        {
+            game!.player!.takeDamage(amount: entity!.currentDamage)
+        }
+        
+        
+        
+        /* Testing a different way to do this...currently, I don't love it. Instead, trying to check distance to the front of the mob and applying damage if the player is within range */
+        
+        
+        /*
         for node in scene!.nodes(at: CGPoint(x: dx, y: dy))
         {
             if node.name != nil
@@ -44,6 +61,7 @@ class EnemyMeleeClass:EnemySkillClass
                 } // if we hit player
             }// if not nil
         } // for each node
+        */
         
         // update our cooldown
         lastUse=NSDate()

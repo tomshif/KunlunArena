@@ -87,12 +87,11 @@ class PlayerClass
         let tempFireBreath=FireBreathTalentClass(theGame: game!)
         playerTalents.append(tempFireBreath)
         
+        // 4
         let tempGhostDodge=GhostDodgeTalentClass(theGame: game!)
         playerTalents.append(tempGhostDodge)
         
-        
-        
-        
+        // 5
         let tempCherryBomb=CherryBombTalentClass(theGame: game!)
         playerTalents.append(tempCherryBomb)
         
@@ -153,7 +152,7 @@ class PlayerClass
         isPlayAction=playerSprite!.hasActions()
     } // checkActions
     
-    private func updateTalents()
+    public func updateTalents()
     {
         if activeTalents.count > 0
         {
@@ -302,7 +301,6 @@ class PlayerClass
     
     public func update()
     {
-        updateTalents()
         checkActions()
         moveTo()
         healthRe()
