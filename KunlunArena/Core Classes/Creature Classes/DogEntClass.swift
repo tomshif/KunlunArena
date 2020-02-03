@@ -58,13 +58,23 @@ class DogEntClass:EntityClass
         mana=15
         MELEERANGE=80
         
-        if spriteScale > 2.5
-        {
-            baseDamage=5
-            health=25
-            mana=20
-        } //spriteScale
     
+        
+        if entLevel >= 2
+         {
+             moveSpeed=random(min: 7.0, max: 10.0)
+             currentDamage=random(min: 3.0, max: 5.0)
+             mana=35
+             MELEERANGE=85
+             
+         }//entLevel >= 2
+         
+         if entLevel == 1
+         {
+             moveSpeed=random(min: 5.5, max: 9.0)
+             currentDamage=random(min: 2.0, max: 3.0)
+             
+         }//entLevel == 1
 
 
 }//Init

@@ -11,6 +11,8 @@ import SpriteKit
 
 class HorseEntClass:EntityClass
 {
+    
+    
     override init(theGame: GameClass, id: Int)
     {
         super.init(theGame: theGame, id: id)
@@ -50,9 +52,25 @@ class HorseEntClass:EntityClass
       headSprite.color=entColor
       tailSprite.color=entColor
       
+   baseDamage=0
+        
+     if entLevel >= 2
+     {
+         moveSpeed=random(min: 7.5, max: 10.0)
+         currentDamage=random(min: 4.0, max: 6.0)
+         mana=35
+         MELEERANGE=85
+         
+     }//entLevel >= 2
+     
+     if entLevel == 1
+     {
+         moveSpeed=random(min: 5.5, max: 9.0)
+         currentDamage=random(min: 1.0, max: 3.0)
+         
+     }//entLevel == 1
       
-      
-      
+        
     } // init scene/ID
       
     
