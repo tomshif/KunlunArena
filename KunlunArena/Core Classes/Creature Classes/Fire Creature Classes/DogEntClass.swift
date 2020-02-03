@@ -83,5 +83,5 @@ class DogEntClass:EntityClass
     
         
     
-}// dogEntClass
+}// DogEntClass
 
