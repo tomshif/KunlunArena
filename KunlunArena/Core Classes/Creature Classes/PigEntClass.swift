@@ -50,7 +50,6 @@ class PigEntClass:EntityClass
     bodySprite.color=entColor
     headSprite.color=entColor
     tailSprite.color=entColor
- 
 
 
     
