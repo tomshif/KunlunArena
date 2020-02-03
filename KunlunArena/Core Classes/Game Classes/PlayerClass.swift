@@ -174,8 +174,9 @@ class PlayerClass
     
     internal func dropLoot(loot: BaseInventoryClass)
     {
-        // This function generates a random chance to drop loot
-        // Right now, the chance is high, but it will be reduced. Right now, it uses the generic (completely random) initializer, but we will be able to create a different init for the BaseInventoryClass to generate certain types/qualities/etc of loot
+        // This function drops a specific piece of loot. Currently, it drops the equipped weapon when the player picks up another weapon.
+        // Will be used from the equipment selection screen for the player to drop loot
+        // Also will be called when the player tries to pick up loot when they are at the max number of items for that type so that there is a visual of the loot being tossed back up in the air (and probably a sound effect along with it).
 
 
             let lootSprite=SKSpriteNode(imageNamed: loot.iconString)
@@ -334,7 +335,7 @@ class PlayerClass
                    {
                        strength = CGFloat(15 + playerLevel*5) + equippedWeapon!.statsMod
                    }
-        }
+        } // if better than common quality
     } // equipRefresh
     
     public func update()

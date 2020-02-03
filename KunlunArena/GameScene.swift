@@ -47,6 +47,7 @@ class GameScene: SKScene {
     var bgParticle=SKEmitterNode() // This looks crappy, needs to be different
     
     var myLight=SKLightNode()
+
     
       
     
@@ -103,6 +104,10 @@ class GameScene: SKScene {
          game.player!.equipRefresh()
          gameState=STATES.FIGHT
         toolTips=ToolTipClass(theGame: game)
+        game.cam=cam
+        
+
+        
         
          player.playerSprite=SKSpriteNode(imageNamed: "body")
         addChild(player.playerSprite!)
@@ -120,8 +125,12 @@ class GameScene: SKScene {
         self.backgroundColor=NSColor.black
         
         // Gen Map
-        tempMap=MapClass(width: MAPSIZE, height: MAPSIZE, theScene: self)
+        tempMap=MapClass(width: MAPSIZE, height: MAPSIZE, theScene: self, theGame:game)
+        
+        
         NUMENEMIES=MAPSIZE*MAPSIZE/tempMap!.ENTSPAWNFACTOR
+        
+        game.map=tempMap
         
         // Setup Labels
         copyrightLabel.position.y = -size.height*0.475
@@ -779,8 +788,11 @@ class GameScene: SKScene {
         case 44: // / (forward slash)
             for ent in game.entList
             {
-                ent.die()
+                ent.remove()
             }
+            
+            
+            
             for node in self.children
             {
                 if node.name != nil
@@ -792,8 +804,9 @@ class GameScene: SKScene {
                 } // if not nil
             } // for each node
             MAPSIZE=Int(random(min:64, max: 96))
+            game.map!.miniMap!.removeAllChildren()
             
-            tempMap=MapClass(width: MAPSIZE, height: MAPSIZE, theScene: self)
+            tempMap=MapClass(width: MAPSIZE, height: MAPSIZE, theScene: self, theGame:game)
             NUMENEMIES=MAPSIZE*MAPSIZE/tempMap!.ENTSPAWNFACTOR
             player.playerSprite!.position.x = CGFloat(tempMap!.roomPoints[tempMap!.startRoomIndex].x)*tempMap!.TILESIZE - (CGFloat(tempMap!.mapWidth)*tempMap!.TILESIZE) / 2
             player.playerSprite!.position.y = CGFloat(tempMap!.roomPoints[tempMap!.startRoomIndex].y)*tempMap!.TILESIZE - (CGFloat(tempMap!.mapHeight)*tempMap!.TILESIZE)/2
@@ -804,11 +817,18 @@ class GameScene: SKScene {
             {
                 spawnEnemy()
             } // for
+            
+            game.map=tempMap
+            
+            
         /* Temporarily removing spacebar lock
         case 49: // space - Attack lock
             game.player!.isInAttackMode=true
         */
             
+        case 46:
+            game.map!.miniMap!.isHidden.toggle()
+
 
 
         default:
@@ -908,6 +928,10 @@ class GameScene: SKScene {
     {
         updateCooldowns()
         
+        // update player position on minimap
+        game.map!.playerArrow.position.x = game.player!.playerSprite!.position.x / 6 * 0.15
+        game.map!.playerArrow.position.y = game.player!.playerSprite!.position.y / 6 * 0.15
+        game.map!.playerArrow.zRotation=game.player!.playerSprite!.zRotation
         switch gameState
         {
         case STATES.FIGHT:

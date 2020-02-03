@@ -31,7 +31,6 @@ class ToolTipClass
         loot=num
         
         // create tooltip text
-        //let ttText=SKLabelNode()
         ttText.text=game!.lootList[num].name
         ttText.fontColor=game!.lootList[num].itemLevelColor
         ttText.fontName="Arial"
@@ -39,7 +38,7 @@ class ToolTipClass
         ttText.name="toolTip"
         ttText.zPosition=750
         ttText.position=loc
-        //game!.scene!.addChild(ttText)
+        
         
         // create toolTip background
         let ttBG=SKShapeNode(rectOf: CGSize(width: ttText.frame.size.width*1.25, height: ttText.frame.size.height*1.5), cornerRadius: 10)
@@ -64,20 +63,7 @@ class ToolTipClass
     
     public func updateToolTip(loc: CGPoint)
     {
-        /*
-        for node in game!.scene!.children
-        {
-            if node.name != nil
-            {
-                if node.name!.contains("toolTip")
-                {
-                    node.position=loc
-                }
-            } // if node not nil
-            
-        } // for each node
-        */
-        //let node=game!.scene!.childNode(withName: "toolTip")
+
         ttText.position=loc
     } // updateToolTip()
     
@@ -88,19 +74,7 @@ class ToolTipClass
         loot = -1
         talent = -1
         ttText.removeAllChildren()
-        /*
-        for node in game!.scene!.children
-        {
-            if node.name != nil
-            {
-                if node.name!.contains("toolTip")
-                {
-                    node.removeAllChildren()
-                    node.removeFromParent()
-                }
-            } // if the name isn't nil
-        } // for each node
-        */
+
     } // removeToolTip()
     
 } // class ToolTipClass

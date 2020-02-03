@@ -46,6 +46,7 @@ class BaseInventoryClass
         iLevel=Int(random(min: 1, max: 20))
         iLevelMod=CGFloat(iLevel)*1.0525
         
+
         
         // First, pick the type
         invType=Int(random(min: 0, max: CGFloat(game.baseTypesList.count)-0.0000001))
