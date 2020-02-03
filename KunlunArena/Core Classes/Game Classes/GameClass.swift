@@ -19,10 +19,16 @@ class GameClass
     var scene:SKScene?
     var player:PlayerClass?
     var floatText:FloatingTextClass?
+    var cam:SKCameraNode?
+    var map:MapClass?
+    
     var entList=[EntityClass]() // needs to move to GameClass
     var suffixList=[SuffixClass]()
     var prefixList=[PrefixClass]()
     var baseTypesList=[BaseInvTypesClass]()
+    
+    var lootCounter:Int=0
+    var lootList=[BaseInventoryClass]()
     
     
     init()
@@ -34,7 +40,7 @@ class GameClass
     {
         scene=theScene
         floatText=FloatingTextClass(theScene: scene!)
-        
+
     } // init(theScene)
     
 } // class GameClass

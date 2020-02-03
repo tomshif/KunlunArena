@@ -15,9 +15,9 @@ class PigEntClass:EntityClass
   {
       super.init(theGame: theGame, id: id)
       spriteNamePrefix="pig"
-      headNum=1
-      bodyNum=1
-      tailNum=1
+      headNum=3
+      bodyNum=3
+      tailNum=3
 
       headID=Int(random(min: 0, max: CGFloat(headNum)-0.000000001))
       bodyID=Int(random(min: 0, max: CGFloat(bodyNum)-0.000000001))
@@ -45,13 +45,27 @@ class PigEntClass:EntityClass
         pursueRange=attackRange
     }
       
-    let entColor=NSColor(calibratedRed: random(min: 0.3, max: 0.5), green: random(min: 0.6, max: 0.8), blue: random(min: 0.1, max: 0.4), alpha: 1.0)
+    let entColor=NSColor(calibratedRed: random(min: 1, max: 1.0), green: random(min: 1, max: 1.0), blue: random(min: 1, max: 1.0), alpha: 1.0)
     
     bodySprite.color=entColor
     headSprite.color=entColor
     tailSprite.color=entColor
 
-
+    if entLevel >= 2
+    {
+        moveSpeed=random(min: 7.0, max: 10.0)
+        currentDamage=random(min: 3.0, max: 5.0)
+        mana=35
+        MELEERANGE=85
+        
+    }//entLevel >= 2
+    
+    if entLevel == 1
+    {
+        moveSpeed=random(min: 5.5, max: 9.0)
+        currentDamage=random(min: 2.0, max: 3.0)
+        
+    }//entLevel == 1
     
     
     

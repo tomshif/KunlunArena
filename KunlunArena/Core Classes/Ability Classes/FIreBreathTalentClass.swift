@@ -47,6 +47,7 @@ class FireBreathTalentClass:PlayerTalentClass
         fireNode!.zRotation=game!.player!.playerSprite!.zRotation
         
         fireNode!.run(SKAction.sequence([SKAction.wait(forDuration: 1.5),SKAction.removeFromParent()]))
+        fireNode!.name="fireNode"
         fireNode!.setScale(1.3)
         game!.scene!.addChild(fireNode!)
         
@@ -55,7 +56,12 @@ class FireBreathTalentClass:PlayerTalentClass
     } // doTalent()
     override func updateTalent()
     {
-        game!.player!.mana -= manaCost/2/60
+        game!.player!.mana -= manaCost/2/4
+        
+        // rotate effect to player
+        let node=game!.scene!.childNode(withName: "fireNode")
+        node?.zRotation=game!.player!.playerSprite!.zRotation
+        
         // check for enemies hit
          
          // determine dx/dy to center of hit area
@@ -72,7 +78,7 @@ class FireBreathTalentClass:PlayerTalentClass
 
              if dist < 100
              {
-                 ent.takeDamage(amount: game!.player!.equippedWeapon!.iLevelMod * game!.player!.equippedWeapon!.modLevel*3/60/2)
+                 ent.takeDamage(amount: game!.player!.equippedWeapon!.iLevelMod * game!.player!.equippedWeapon!.modLevel*3/4/2)
                  
              } // if in range do damage
          } // for each ent

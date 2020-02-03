@@ -1,29 +1,24 @@
 //
-//  MonkeyEntClass.swift
+//  DragonEntClass.swift
 //  KunlunArena
 //
-//  Created by 8 - Game Design on 1/23/20.
+//  Created by 8 - Game Design on 1/29/20.
 //  Copyright © 2020 LCS Game Design. All rights reserved.
 //
-
-
-// I'm just typing random stuff here because Xcode is stupid.
-
 
 import Foundation
 import SpriteKit
 
-class MonkeyEntClass:EntityClass
+class DragonEntClass:EntityClass
 {
   override init(theGame: GameClass, id: Int)
   {
       super.init(theGame: theGame, id: id)
-      spriteNamePrefix="monkey"
-      headNum=1
-      bodyNum=1
-      tailNum=1
+      spriteNamePrefix="dragon"
+      headNum=3
+      bodyNum=3
+      tailNum=3
 
-        health = 42
       headID=Int(random(min: 0, max: CGFloat(headNum)-0.000000001))
       bodyID=Int(random(min: 0, max: CGFloat(bodyNum)-0.000000001))
       tailID=Int(random(min: 0, max: CGFloat(tailNum)-0.000000001))
@@ -36,10 +31,11 @@ class MonkeyEntClass:EntityClass
       bodySprite.setScale(spriteScale)
     
     
-    moveSpeed=random(min: 5.5, max: 10.5)
-    TURNRATE=random(min: 0.9, max: 0.9)
-    attackRange=random(min: 25, max: 200)
+    moveSpeed=random(min: 5.7, max: 10.3)
+    TURNRATE=random(min: 0.8, max: 0.8)
+    attackRange=random(min: 25, max: 150)
     VISIONDIST=random(min: 500, max: 500)
+    
     if attackRange > 45
     {
         pursueRange=attackRange*2
@@ -49,19 +45,36 @@ class MonkeyEntClass:EntityClass
         pursueRange=attackRange
     }
       
-    let entColor=NSColor(calibratedRed: random(min: 0.5, max: 0.7), green: random(min: 0.6, max: 0.9), blue: random(min: 0, max: 0.4), alpha: 1.0)
+    let entColor=NSColor(calibratedRed: random(min: 0.1, max: 1.0), green: random(min: 0.1, max: 1.0), blue: random(min: 0.1, max: 1.0), alpha: 1.0)
+    
     bodySprite.color=entColor
     headSprite.color=entColor
     tailSprite.color=entColor
-    
-    
+ 
+
+
+    if entLevel >= 2
+        {
+            moveSpeed=random(min: 5.5, max: 8.5)
+            currentDamage=random(min: 4.0, max: 6.0)
+            mana=35
+            MELEERANGE=85
+            
+        }//entLevel >= 2
+        
+        if entLevel == 1
+        {
+            moveSpeed=random(min: 4.5, max: 7.5)
+            currentDamage=random(min: 1.0, max: 3.0)
+            
+        }//entLevel == 1
     
     
   } // init scene/ID
-    
-  
-    
-    
+
+
     
     
-}// class MonkeyEntClass
+    
+    
+}// class PigEntClass
