@@ -821,7 +821,17 @@ class GameScene: SKScene {
                 ent.remove()
             }
             
-            
+            for node in cam.children
+            {
+                if node.name != nil
+                {
+                    if node.name!.contains("miniMap")
+                    {
+                        node.removeAllChildren()
+                        node.removeFromParent()
+                    } // if minimap
+                } // if name not nil
+            } // for each camera node
             
             for node in self.children
             {

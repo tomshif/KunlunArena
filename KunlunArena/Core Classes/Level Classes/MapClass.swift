@@ -71,6 +71,7 @@ class MapClass
         miniMap!.position.x=scene!.size.width*0.3
         miniMap!.position.y=scene!.size.height*0.3
         miniMap!.zPosition=12000
+        miniMap!.name="miniMap"
         game!.cam!.addChild(miniMap!)
         playerArrow.zPosition=100
         playerArrow.setScale(0.1)
