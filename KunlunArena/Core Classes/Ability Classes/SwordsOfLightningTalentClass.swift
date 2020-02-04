@@ -40,6 +40,8 @@ class SwordsOfLightningTalentClass:PlayerTalentClass
     
     override func doTalent()
     {
+        super.doTalent()
+        
         game!.player!.playerTalents[0].COOLDOWN=0
         lastUse=NSDate()
         isActive=true

@@ -45,6 +45,8 @@ class AngerIssuesTalentClass:PlayerTalentClass
     
     override func doTalent()
     {
+        super.doTalent()
+        
         print("ANGER!!!!")
 
         lastUse=NSDate()

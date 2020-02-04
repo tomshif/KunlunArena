@@ -48,6 +48,9 @@ class PlayerClass
     var maxMana:CGFloat=20
     var experienceGain:CGFloat=0
 
+    var globalCooldown:CGFloat=0.5
+    var lastAction=NSDate()
+    
     
     
     let BASEREGENMANA:CGFloat=3
@@ -209,6 +212,14 @@ class PlayerClass
             
         
     } // dropLoot()
+    
+    public func getGlobalCooldownRatio() -> CGFloat
+    {
+        let cooldown = globalCooldown -  CGFloat(-lastAction.timeIntervalSinceNow) 
+        
+        return cooldown/globalCooldown
+        
+    } // getGlobalCooldownRatio()
     
     public func resetStats()
     {

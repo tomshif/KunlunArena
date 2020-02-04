@@ -559,24 +559,52 @@ class GameScene: SKScene {
     
     func updateCooldowns()
     {
+        
+        // first update global cooldowns
+        if actionCoolDowns.count > 0
+         {
+             for i in 1..<player.playerTalents.count
+             {
+                 // get the cooldown remaing %
+                if player.getGlobalCooldownRatio() > 0
+                 {
+                    print(player.getGlobalCooldownRatio())
+                    actionCoolDowns[i-1].isHidden=false
+                     actionCoolDowns[i-1].yScale=player.getGlobalCooldownRatio()
+                     actionCoolDowns[i-1].position.y = -32*(1-player.getGlobalCooldownRatio())
+                 } // if on cooldown
+                 
+                else
+                 {
+                     actionCoolDowns[i-1].isHidden=true
+                     
+                 } // else
+             } // for each action cooldown sprite
+         } // if we have action cooldown sprites in our list
+        
+        // Then update individual cooldowns
         if actionCoolDowns.count > 0
         {
             for i in 1..<player.playerTalents.count
             {
                 // get the cooldown remaing %
-                if player.playerTalents[i].getCooldown() > 0
+                if player.playerTalents[i].getCooldown() > 0 && player.getGlobalCooldownRatio() < 0
                 {
                     actionCoolDowns[i-1].isHidden=false
                     actionCoolDowns[i-1].yScale=player.playerTalents[i].getCooldownRatio()
                     actionCoolDowns[i-1].position.y = -32*(1-player.playerTalents[i].getCooldownRatio())
                 } // if on cooldown
-                else
+                else if player.playerTalents[i].getCooldown() < 0 && player.getGlobalCooldownRatio() < 0
                 {
                     actionCoolDowns[i-1].isHidden=true
                     
                 } // else
             } // for each action cooldown sprite
         } // if we have action cooldown sprites in our list
+        
+        
+
+        
         
     } // updateCooldowns()
     
@@ -689,7 +717,7 @@ class GameScene: SKScene {
             }
             
         case 19: // 2
-            if player.playerTalents[TalentList.swordOfLightning].getCooldown() < 0 && player.mana >= player.playerTalents[TalentList.swordOfLightning].manaCost
+            if player.playerTalents[TalentList.swordOfLightning].getCooldown() < 0 && player.mana >= player.playerTalents[TalentList.swordOfLightning].manaCost && player.getGlobalCooldownRatio() < 0
                      {
                      player.activeTalents.append(player.playerTalents[TalentList.swordOfLightning])
                          player.playerTalents[TalentList.swordOfLightning].doTalent()
@@ -700,7 +728,7 @@ class GameScene: SKScene {
                      }
             
         case 20: // 3
-            if player.playerTalents[TalentList.fireBreath].getCooldown() < 0 && player.mana >= player.playerTalents[TalentList.fireBreath].manaCost
+            if player.playerTalents[TalentList.fireBreath].getCooldown() < 0 && player.mana >= player.playerTalents[TalentList.fireBreath].manaCost && player.getGlobalCooldownRatio() < 0
                      {
                      player.activeTalents.append(player.playerTalents[TalentList.fireBreath])
                          player.playerTalents[TalentList.fireBreath].doTalent()
@@ -710,7 +738,7 @@ class GameScene: SKScene {
                          print("Fire Breath on cooldown.")
                      }
         case 21: // 4
-            if player.playerTalents[TalentList.ghostDodge].getCooldown() < 0 && player.mana >= player.playerTalents[TalentList.ghostDodge].manaCost
+            if player.playerTalents[TalentList.ghostDodge].getCooldown() < 0 && player.mana >= player.playerTalents[TalentList.ghostDodge].manaCost && player.getGlobalCooldownRatio() < 0
                      {
                      player.activeTalents.append(player.playerTalents[TalentList.ghostDodge])
                          player.playerTalents[TalentList.ghostDodge].doTalent()
@@ -722,7 +750,7 @@ class GameScene: SKScene {
             
             
         case 23: // 5
-            if player.playerTalents[TalentList.cherryBomb].getCooldown() < 0 && player.mana >= player.playerTalents[TalentList.cherryBomb].manaCost
+            if player.playerTalents[TalentList.cherryBomb].getCooldown() < 0 && player.mana >= player.playerTalents[TalentList.cherryBomb].manaCost && player.getGlobalCooldownRatio() < 0
                      {
                      player.activeTalents.append(player.playerTalents[TalentList.cherryBomb])
                          player.playerTalents[TalentList.cherryBomb].doTalent()

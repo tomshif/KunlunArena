@@ -51,8 +51,8 @@ class GhostDodgeTalentClass:PlayerTalentClass
     
     override func doTalent()
     {
-        // This method will be called when the talent is first begun.
-        // Note that this will always be called from the GameScene and should not be called internally.
+        super.doTalent()
+
         let ghostEffect = SKEmitterNode(fileNamed: "GhostDodgeEmitter.sks")
         ghostEffect!.name="ghostTalentEffect"
         game!.player!.playerSprite!.addChild(ghostEffect!)

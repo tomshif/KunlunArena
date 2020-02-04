@@ -23,6 +23,7 @@ class VampiricAttackTalentClass:PlayerTalentClass
     
     override func doTalent()
     {
+        super.doTalent()
         // To do the attack, we check a spot a set distance from the player and see if there is an entity body there. If there is, we hit it. Since entities collide with each other, there should never be more than one body there.
         
         // First we queue up an SKAction for our attack animation
