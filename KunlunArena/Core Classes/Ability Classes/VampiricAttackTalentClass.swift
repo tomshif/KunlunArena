@@ -18,6 +18,7 @@ class VampiricAttackTalentClass:PlayerTalentClass
         name="VampireAttack"
         description="Drain the energy from the enemy and feast on the energy to regen health"
         COOLDOWN=0.15
+        isActive = false
         
     } // init(game)
     
@@ -25,6 +26,8 @@ class VampiricAttackTalentClass:PlayerTalentClass
     {
         super.doTalent()
         // To do the attack, we check a spot a set distance from the player and see if there is an entity body there. If there is, we hit it. Since entities collide with each other, there should never be more than one body there.
+        
+        isActive = true
         
         // First we queue up an SKAction for our attack animation
         let attackSeq=SKAction.sequence([SKAction.scale(to: 1.5, duration: 0.1), SKAction.scale(to: 1.0, duration: 0.1)])
@@ -71,4 +74,16 @@ class VampiricAttackTalentClass:PlayerTalentClass
         lastUse=NSDate()
         
     } // doTalent()
-} // MeleeAttackClass
+    
+    override func updateTalent()
+    {
+        
+        
+    }//update talent
+    
+    override func removeTalent()
+    {
+        isActive = false
+    }//remove talent
+    
+} // VampireAttackClass
