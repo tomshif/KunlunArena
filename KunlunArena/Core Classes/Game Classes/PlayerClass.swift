@@ -117,6 +117,10 @@ class PlayerClass
         let tempFlower=BloomingFlowerTalentClass(theGame: game!)
         playerTalents.append(tempFlower)
         
+        //8 vampire attack
+        let tempVampire=VampiricAttackTalentClass(theGame: game!)
+        playerTalents.append(tempVampire)
+        
         equippedWeapon=BaseInventoryClass(game: game!, level: 1)
         resetStats()
         equipRefresh()

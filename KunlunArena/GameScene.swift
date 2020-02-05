@@ -781,6 +781,17 @@ class GameScene: SKScene {
         case 27: // -
             zoomOutPressed=true
             
+        case 28: // 8
+            if player.playerTalents[TalentList.vampireAttack].getCooldown() < 0 && player.mana >= player.playerTalents[TalentList.vampireAttack].manaCost && player.getGlobalCooldownRatio() < 0
+                     {
+                     player.activeTalents.append(player.playerTalents[TalentList.vampireAttack])
+                         player.playerTalents[TalentList.vampireAttack].doTalent()
+                     }
+                     else
+                     {
+                         print("vampireAttack on cooldown.")
+                     }
+            
         case 24: // +
             zoomInPressed=true
             
