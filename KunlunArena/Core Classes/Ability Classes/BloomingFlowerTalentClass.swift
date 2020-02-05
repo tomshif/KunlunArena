@@ -22,9 +22,9 @@ class BloomingFlowerTalentClass:PlayerTalentClass
        description="Flowers bloom in the area around the player, healing over time."
        isAction=false
        game=theGame
-       COOLDOWN=1
-       lengthActive=10
-       manaCost=2
+       COOLDOWN=15
+       lengthActive=5
+       manaCost=15
        iconName="bloomingFlowerTalentIcon"
    } // init game
    
