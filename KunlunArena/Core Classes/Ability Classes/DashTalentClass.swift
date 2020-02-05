@@ -68,6 +68,8 @@ class DashTalentClass:PlayerTalentClass
     
     override func doTalent()
     {
+        super.doTalent()
+        
         // This method will be called when the talent is first begun.
         // Note that this will always be called from the GameScene and should not be called internally.
         game!.player!.mana-=manaCost

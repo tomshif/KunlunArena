@@ -24,5 +24,6 @@ struct STATES
     static let SPAWNENT:Int=4
     static let PAUSE:Int=6
     static let ITEM:Int=8
+    static let HUB:Int=10
     
 } // struct STATES

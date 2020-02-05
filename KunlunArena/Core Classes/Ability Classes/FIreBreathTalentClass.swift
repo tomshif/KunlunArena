@@ -34,6 +34,8 @@ class FireBreathTalentClass:PlayerTalentClass
     
     override func doTalent()
     {
+        super.doTalent()
+        
         oldMovementSpeed=game!.player!.moveSpeed
         game!.player!.moveSpeed=0
         

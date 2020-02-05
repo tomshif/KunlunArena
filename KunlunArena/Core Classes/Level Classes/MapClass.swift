@@ -19,6 +19,7 @@ class MapClass
     var scene:GameScene?
     var game:GameClass?
     var miniMap:SKSpriteNode?
+    var mapType:Int=MapTypes.Rat
     
     var mapWidth:Int=0 // in tile grid spaces
     var mapHeight:Int=0
@@ -71,6 +72,7 @@ class MapClass
         miniMap!.position.x=scene!.size.width*0.3
         miniMap!.position.y=scene!.size.height*0.3
         miniMap!.zPosition=12000
+        miniMap!.name="miniMap"
         game!.cam!.addChild(miniMap!)
         playerArrow.zPosition=100
         playerArrow.setScale(0.1)
@@ -101,7 +103,7 @@ class MapClass
     } // init()
     
     
-    private func createMap()
+    internal func createMap()
     {
         // ** choose number of rooms **
         // This is chosen based on the size of the map.
@@ -581,7 +583,7 @@ class MapClass
         } // for y
     } // func drawMap()
     
-    private func convertXY(x: Int, y:Int) -> Int
+    internal func convertXY(x: Int, y:Int) -> Int
     {
         return y*mapWidth+x
     } // func convertXY()

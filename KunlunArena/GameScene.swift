@@ -15,7 +15,7 @@ import GameplayKit
 
 class GameScene: SKScene {
     
-    let BUILDVERSION:String="Tech Demo 0.05a"
+    let BUILDVERSION:String="Pre Alpha 0.27.3c"
     
     // SK Nodes
     var cam=SKCameraNode()
@@ -102,7 +102,7 @@ class GameScene: SKScene {
          player=PlayerClass(theGame: game)
          game.player=player
          game.player!.equipRefresh()
-         gameState=STATES.FIGHT
+         gameState=STATES.HUB
         toolTips=ToolTipClass(theGame: game)
         game.cam=cam
         
@@ -114,8 +114,8 @@ class GameScene: SKScene {
         pBody=player.playerSprite!
         
         
-        MAPSIZE=Int(random(min:64, max: 96))
-        
+        // MAPSIZE=Int(random(min:64, max: 96))
+        MAPSIZE=Int(random(min:28, max: 28))
         //addChild(myLight)
         myLight.falloff=1
         
@@ -125,7 +125,7 @@ class GameScene: SKScene {
         self.backgroundColor=NSColor.black
         
         // Gen Map
-        tempMap=MapClass(width: MAPSIZE, height: MAPSIZE, theScene: self, theGame:game)
+        tempMap=HubMapClass(width: MAPSIZE, height: MAPSIZE, theScene: self, theGame:game)
         
         
         NUMENEMIES=MAPSIZE*MAPSIZE/tempMap!.ENTSPAWNFACTOR
@@ -237,13 +237,6 @@ class GameScene: SKScene {
         player.playerSprite!.position.y = CGFloat(tempMap!.roomPoints[tempMap!.startRoomIndex].y)*tempMap!.TILESIZE - (CGFloat(tempMap!.mapHeight)*tempMap!.TILESIZE)/2
         
         
-        // create a bunch of temp entities
-        for _ in 1...NUMENEMIES
-        {
-            spawnEnemy()
-        } // for
-        
-        
         // Initializer UI Elements
         
         // Item Window
@@ -257,7 +250,7 @@ class GameScene: SKScene {
     func spawnEnemy()
     {
 
-        let tempEntHorse=HorseEntClass(theGame: game, id: entCount)
+        let tempEntHorse=DragonEntClass(theGame: game, id: entCount)
 
         var goodSpawn:Bool=false
         var xp:CGFloat=0
@@ -559,24 +552,52 @@ class GameScene: SKScene {
     
     func updateCooldowns()
     {
+        
+        // first update global cooldowns
+        if actionCoolDowns.count > 0
+         {
+             for i in 1..<player.playerTalents.count
+             {
+                 // get the cooldown remaing %
+                if player.getGlobalCooldownRatio() > 0
+                 {
+                    print(player.getGlobalCooldownRatio())
+                    actionCoolDowns[i-1].isHidden=false
+                     actionCoolDowns[i-1].yScale=player.getGlobalCooldownRatio()
+                     actionCoolDowns[i-1].position.y = -32*(1-player.getGlobalCooldownRatio())
+                 } // if on cooldown
+                 
+                else
+                 {
+                     actionCoolDowns[i-1].isHidden=true
+                     
+                 } // else
+             } // for each action cooldown sprite
+         } // if we have action cooldown sprites in our list
+        
+        // Then update individual cooldowns
         if actionCoolDowns.count > 0
         {
             for i in 1..<player.playerTalents.count
             {
                 // get the cooldown remaing %
-                if player.playerTalents[i].getCooldown() > 0
+                if player.playerTalents[i].getCooldown() > 0 //&& player.getGlobalCooldownRatio() < 0
                 {
                     actionCoolDowns[i-1].isHidden=false
                     actionCoolDowns[i-1].yScale=player.playerTalents[i].getCooldownRatio()
                     actionCoolDowns[i-1].position.y = -32*(1-player.playerTalents[i].getCooldownRatio())
                 } // if on cooldown
-                else
+                else if player.playerTalents[i].getCooldown() < 0 && player.getGlobalCooldownRatio() < 0
                 {
                     actionCoolDowns[i-1].isHidden=true
                     
                 } // else
             } // for each action cooldown sprite
         } // if we have action cooldown sprites in our list
+        
+        
+
+        
         
     } // updateCooldowns()
     
@@ -689,7 +710,7 @@ class GameScene: SKScene {
             }
             
         case 19: // 2
-            if player.playerTalents[TalentList.swordOfLightning].getCooldown() < 0 && player.mana >= player.playerTalents[TalentList.swordOfLightning].manaCost
+            if player.playerTalents[TalentList.swordOfLightning].getCooldown() < 0 && player.mana >= player.playerTalents[TalentList.swordOfLightning].manaCost && player.getGlobalCooldownRatio() < 0
                      {
                      player.activeTalents.append(player.playerTalents[TalentList.swordOfLightning])
                          player.playerTalents[TalentList.swordOfLightning].doTalent()
@@ -700,7 +721,7 @@ class GameScene: SKScene {
                      }
             
         case 20: // 3
-            if player.playerTalents[TalentList.fireBreath].getCooldown() < 0 && player.mana >= player.playerTalents[TalentList.fireBreath].manaCost
+            if player.playerTalents[TalentList.fireBreath].getCooldown() < 0 && player.mana >= player.playerTalents[TalentList.fireBreath].manaCost && player.getGlobalCooldownRatio() < 0
                      {
                      player.activeTalents.append(player.playerTalents[TalentList.fireBreath])
                          player.playerTalents[TalentList.fireBreath].doTalent()
@@ -710,7 +731,7 @@ class GameScene: SKScene {
                          print("Fire Breath on cooldown.")
                      }
         case 21: // 4
-            if player.playerTalents[TalentList.ghostDodge].getCooldown() < 0 && player.mana >= player.playerTalents[TalentList.ghostDodge].manaCost
+            if player.playerTalents[TalentList.ghostDodge].getCooldown() < 0 && player.mana >= player.playerTalents[TalentList.ghostDodge].manaCost && player.getGlobalCooldownRatio() < 0
                      {
                      player.activeTalents.append(player.playerTalents[TalentList.ghostDodge])
                          player.playerTalents[TalentList.ghostDodge].doTalent()
@@ -722,7 +743,7 @@ class GameScene: SKScene {
             
             
         case 23: // 5
-            if player.playerTalents[TalentList.cherryBomb].getCooldown() < 0 && player.mana >= player.playerTalents[TalentList.cherryBomb].manaCost
+            if player.playerTalents[TalentList.cherryBomb].getCooldown() < 0 && player.mana >= player.playerTalents[TalentList.cherryBomb].manaCost && player.getGlobalCooldownRatio() < 0
                      {
                      player.activeTalents.append(player.playerTalents[TalentList.cherryBomb])
                          player.playerTalents[TalentList.cherryBomb].doTalent()
@@ -731,6 +752,30 @@ class GameScene: SKScene {
                      {
                          print("Cherry Bomb on cooldown.")
                      }
+            
+        case 22: // 6
+            if player.playerTalents[TalentList.angerIssues].getCooldown() < 0 && player.mana >= player.playerTalents[TalentList.angerIssues].manaCost && player.getGlobalCooldownRatio() < 0
+                     {
+                     player.activeTalents.append(player.playerTalents[TalentList.angerIssues])
+                         player.playerTalents[TalentList.angerIssues].doTalent()
+                     }
+                     else
+                     {
+                         print("angerIssues on cooldown.")
+                     }
+            
+            
+        case 26: // 7
+            if player.playerTalents[TalentList.bloomingFlower].getCooldown() < 0 && player.mana >= player.playerTalents[TalentList.bloomingFlower].manaCost && player.getGlobalCooldownRatio() < 0
+                     {
+                     player.activeTalents.append(player.playerTalents[TalentList.bloomingFlower])
+                         player.playerTalents[TalentList.bloomingFlower].doTalent()
+                     }
+                     else
+                     {
+                         print("bloomingFlower on cooldown.")
+                     }
+            
             
             
         case 27: // -
@@ -793,7 +838,17 @@ class GameScene: SKScene {
                 ent.remove()
             }
             
-            
+            for node in cam.children
+            {
+                if node.name != nil
+                {
+                    if node.name!.contains("miniMap")
+                    {
+                        node.removeAllChildren()
+                        node.removeFromParent()
+                    } // if minimap
+                } // if name not nil
+            } // for each camera node
             
             for node in self.children
             {
@@ -949,6 +1004,8 @@ class GameScene: SKScene {
             stateLabel.text="Spawn Ent State"
         case STATES.ITEM:
             stateLabel.text="Item Test State"
+        case STATES.HUB:
+            stateLabel.text="Hub"
         default:
             stateLabel.text="Error in State"
         } // switch gameState
@@ -979,6 +1036,131 @@ class GameScene: SKScene {
         } // for each ent
     } // clean lists
     
+    func spawnFireMap()
+    {
+        
+        // This will need to be modified for different fire maps (Snake, Dog, Pig, Dragon)
+        
+        gameState=STATES.FIGHT
+        removeMap()
+        MAPSIZE=Int(random(min:64, max: 96))
+        game.map!.miniMap!.removeAllChildren()
+        
+        tempMap=MapClass(width: MAPSIZE, height: MAPSIZE, theScene: self, theGame:game)
+        NUMENEMIES=MAPSIZE*MAPSIZE/tempMap!.ENTSPAWNFACTOR
+        game.lootList.removeAll()
+        game.lootCounter=0
+        player.playerSprite!.position.x = CGFloat(tempMap!.roomPoints[tempMap!.startRoomIndex].x)*tempMap!.TILESIZE - (CGFloat(tempMap!.mapWidth)*tempMap!.TILESIZE) / 2
+        player.playerSprite!.position.y = CGFloat(tempMap!.roomPoints[tempMap!.startRoomIndex].y)*tempMap!.TILESIZE - (CGFloat(tempMap!.mapHeight)*tempMap!.TILESIZE)/2
+        
+        
+        // create a bunch of temp entities
+        for _ in 1...NUMENEMIES
+        {
+            spawnEnemy()
+        } // for
+        
+        game.map=tempMap
+    }
+    
+    func spawnEarthMap()
+    {
+        // This will need to be modified for different earth maps (Rat, Goat, Monkey, Ox)
+        
+        gameState=STATES.FIGHT
+        removeMap()
+        MAPSIZE=Int(random(min:64, max: 96))
+        game.map!.miniMap!.removeAllChildren()
+        
+        tempMap=MapClass(width: MAPSIZE, height: MAPSIZE, theScene: self, theGame:game)
+        NUMENEMIES=MAPSIZE*MAPSIZE/tempMap!.ENTSPAWNFACTOR
+        game.lootList.removeAll()
+        game.lootCounter=0
+        player.playerSprite!.position.x = CGFloat(tempMap!.roomPoints[tempMap!.startRoomIndex].x)*tempMap!.TILESIZE - (CGFloat(tempMap!.mapWidth)*tempMap!.TILESIZE) / 2
+        player.playerSprite!.position.y = CGFloat(tempMap!.roomPoints[tempMap!.startRoomIndex].y)*tempMap!.TILESIZE - (CGFloat(tempMap!.mapHeight)*tempMap!.TILESIZE)/2
+        
+        
+        // create a bunch of temp entities
+        for _ in 1...NUMENEMIES
+        {
+            spawnEnemy()
+        } // for
+        
+        game.map=tempMap
+        
+    } // spawnEarthMap()
+    
+    
+    func checkHubPortals()
+    {
+        for node in self.nodes(at: game.player!.playerSprite!.position)
+        {
+            if node.name != nil
+            {
+                if node.name!.contains("hubEarthPortal")
+                {
+                    spawnEarthMap()
+                } // if it's an earth portal
+                else if node.name!.contains("hubFirePortal")
+                {
+                    spawnFireMap()
+                }
+            } // if it's not nil
+        } // for each node at the player's position
+    } // checkHubPortals()
+    
+    func removeMap()
+    {
+        for ent in game.entList
+        {
+            ent.remove()
+        }
+        
+        for node in cam.children
+        {
+            if node.name != nil
+            {
+                if node.name!.contains("miniMap")
+                {
+                    node.removeAllChildren()
+                    node.removeFromParent()
+                } // if minimap
+            } // if name not nil
+        } // for each camera node
+        
+        for node in self.children
+        {
+            if node.name != nil
+            {
+                if node.name!.contains("dng") || node.name!.contains("wall") || node.name!.contains("loot") || node.name!.contains("hub")
+                {
+                    node.removeFromParent()
+                }
+            } // if not nil
+        } // for each node
+        
+    } // removeMap()
+    
+    func checkPlayerDeath()
+    {
+        if game.player!.health < 0
+        {
+            // player is dead, respawn in the hub
+            removeMap()
+            MAPSIZE=Int(random(min:28, max: 28))
+            tempMap=HubMapClass(width: MAPSIZE, height: MAPSIZE, theScene: self, theGame:game)
+
+            game.map=tempMap
+
+            player.playerSprite!.position.x = CGFloat(tempMap!.roomPoints[tempMap!.startRoomIndex].x)*tempMap!.TILESIZE - (CGFloat(tempMap!.mapWidth)*tempMap!.TILESIZE) / 2
+            player.playerSprite!.position.y = CGFloat(tempMap!.roomPoints[tempMap!.startRoomIndex].y)*tempMap!.TILESIZE - (CGFloat(tempMap!.mapHeight)*tempMap!.TILESIZE)/2
+            
+            game.player!.health=game.player!.maxHealth
+            game.player!.mana=game.player!.maxMana
+            gameState=STATES.HUB
+        } // if player is dead
+    } // checkPlayerDeath
+    
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
         
@@ -986,11 +1168,18 @@ class GameScene: SKScene {
         updateUI()
         cleanLists()
         
+        if game.map!.mapType==MapTypes.Hub
+        {
+            gameState=STATES.HUB
+            
+        }
+        
+        
         if gameState != STATES.ITEM
         {
             itemScreen.isHidden=true
         }
-        if gameState==STATES.FIGHT
+        if gameState==STATES.FIGHT || gameState == STATES.HUB
         {
             
             
@@ -1016,13 +1205,22 @@ class GameScene: SKScene {
             {
                 player.updateTalents()
             } 
-            
+            if gameState==STATES.FIGHT
+            {
+                checkPlayerDeath()
+            }
             for ent in game.entList
             {
                 ent.update(cycle: updateCycle)
             }
+            
+            // if we're in Hub State, check for player walking into portal
+            if gameState == STATES.HUB
+            {
+                checkHubPortals()
+            }
         } // if we're in fight state
-        else
+        else if gameState==STATES.ITEM
         {
             itemScreen.isHidden=false
         }

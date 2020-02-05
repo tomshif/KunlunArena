@@ -94,6 +94,10 @@ class PlayerTalentClass
         // For one shot talents, this will handle everything all in one
         // Note that this will always be called from the GameScene and should not be called internally.
         
+        
+        // Update Global Cooldown
+        game!.player!.lastAction=NSDate()
+        
     } // doTalent()
     
     

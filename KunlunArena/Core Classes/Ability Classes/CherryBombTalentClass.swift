@@ -29,6 +29,7 @@ class CherryBombTalentClass:PlayerTalentClass
     
     override func doTalent()
     {
+        super.doTalent()
         
         lastUse=NSDate()
         isActive=true

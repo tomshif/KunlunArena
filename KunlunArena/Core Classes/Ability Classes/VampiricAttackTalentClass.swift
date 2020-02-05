@@ -1,34 +1,33 @@
 //
-//  MeleeAttack.swift
+//  VampiricAttack.swift
 //  KunlunArena
 //
-//  Created by Tom Shiflet on 1/23/20.
+//  Created by Michael Ramirez on 2/3/20.
 //  Copyright © 2020 LCS Game Design. All rights reserved.
 //
-// This is an example class of a simple melee attack that shows how to find targets from the GameClass and detect whether we have hit them.
-// By default this plain melee attack will be performed by holding the space bar (which also locks the player into spot) while clicking.
 
 import Foundation
 import SpriteKit
 
-
-class MeleeAttackClass:PlayerTalentClass
+class VampiricAttackTalentClass:PlayerTalentClass
 {
     var attackDistance:CGFloat=50
     
     override init(theGame: GameClass) {
         super.init(theGame: theGame)
-        name="Attack"
-        description="Standard melee attack"
-        COOLDOWN=0.25 // This will actually come from the equipped weapon eventually, but for now we're hardcoding it.
+        name="VampireAttack"
+        description="Drain the energy from the enemy and feast on the energy to regen health"
+        COOLDOWN=0.15
+        isActive = false
         
     } // init(game)
     
     override func doTalent()
     {
+        super.doTalent()
         // To do the attack, we check a spot a set distance from the player and see if there is an entity body there. If there is, we hit it. Since entities collide with each other, there should never be more than one body there.
         
-        super.doTalent()
+        isActive = true
         
         // First we queue up an SKAction for our attack animation
         let attackSeq=SKAction.sequence([SKAction.scale(to: 1.5, duration: 0.1), SKAction.scale(to: 1.0, duration: 0.1)])
@@ -75,5 +74,16 @@ class MeleeAttackClass:PlayerTalentClass
         lastUse=NSDate()
         
     } // doTalent()
-} // MeleeAttackClass
-
+    
+    override func updateTalent()
+    {
+        
+        
+    }//update talent
+    
+    override func removeTalent()
+    {
+        isActive = false
+    }//remove talent
+    
+} // VampireAttackClass

@@ -322,6 +322,7 @@ class EntityClass
     public func remove()
     {
         // This function is to remove without loot dropping
+        healthBar.removeFromParent()
         bodySprite.removeAllChildren()
         bodySprite.removeAllActions()
         bodySprite.removeFromParent()

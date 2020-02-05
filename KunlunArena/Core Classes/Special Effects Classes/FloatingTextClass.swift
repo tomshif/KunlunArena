@@ -91,13 +91,22 @@ class FloatingTextClass
     // Overload for player
     public func healLabel(amount: CGFloat, player: PlayerClass)
     {
-        let tempLabel=SKLabelNode(text: String(format:"-%2.0f", amount))
+        let tempLabel=SKLabelNode(text: String(format:"+%2.0f", amount))
 
         tempLabel.zPosition=zPos
         tempLabel.position=player.playerSprite!.position
         tempLabel.name="healLabel"
         tempLabel.fontName="Chalkboard"
-        tempLabel.run(SKAction.sequence([SKAction.move(by: CGVector(dx: 10, dy: 100), duration: 1),  SKAction.removeFromParent()]))
+        let driftSide=Int(random(min: 0, max: 2))
+        var drift=random(min: 25, max: 50)
+
+        
+        if driftSide > 0
+        {
+            drift = -drift
+        }
+
+        tempLabel.run(SKAction.sequence([SKAction.move(by: CGVector(dx: drift, dy: 100), duration: 1),  SKAction.removeFromParent()]))
         tempLabel.run(SKAction.sequence([SKAction.wait(forDuration: 0.8),SKAction.fadeOut(withDuration: 0.2)]))
         tempLabel.fontColor=NSColor.green
         
