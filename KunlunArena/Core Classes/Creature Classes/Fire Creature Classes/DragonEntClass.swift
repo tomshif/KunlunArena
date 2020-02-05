@@ -35,9 +35,9 @@ class DragonEntClass:EntityClass
       bodySprite.setScale(spriteScale)
     
     
-    moveSpeed=random(min: 5.7, max: 10.3)
+    moveSpeed=random(min: 5.0, max: 5.5)
     TURNRATE=random(min: 0.8, max: 0.8)
-    attackRange=random(min: 25, max: 150)
+    attackRange=random(min: 50, max: 150)
     VISIONDIST=random(min: 500, max: 500)
     
     if attackRange > 45
@@ -58,20 +58,25 @@ class DragonEntClass:EntityClass
 
 
     if entLevel >= 2
-        {
-            moveSpeed=random(min: 5.5, max: 8.5)
-            currentDamage=random(min: 4.0, max: 6.0)
-            mana=35
-            MELEERANGE=85
-            
-        }//entLevel >= 2
+    {
+        currentDamage=random(min: 4.0, max: 6.0)
+    }//entLevel >= 2
         
-        if entLevel == 1
-        {
-            moveSpeed=random(min: 4.5, max: 7.5)
-            currentDamage=random(min: 1.0, max: 3.0)
-            
-        }//entLevel == 1
+    if entLevel == 1
+    {
+        currentDamage=random(min: 1.0, max: 3.0)
+    }//entLevel == 1
+    
+    if  spriteScale >= 2.5
+    {
+        moveSpeed=random(min: 4.5, max: 6.5)
+    }// moveSpeed
+    
+    if  spriteScale <= 2.0
+    {
+        moveSpeed=random(min: 5.5, max: 8.5)
+    }//moveSpeed
+    
     
     
   } // init scene/ID
