@@ -96,6 +96,14 @@ class PlayerClass
         let tempCherryBomb=CherryBombTalentClass(theGame: game!)
         playerTalents.append(tempCherryBomb)
         
+        // 6 Anger Issues
+        let tempAnger=AngerIssuesTalentClass(theGame: game!)
+        playerTalents.append(tempAnger)
+        
+        // 7 Blooming Flower
+        let tempFlower=BloomingFlowerTalentClass(theGame: game!)
+        playerTalents.append(tempFlower)
+        
         equippedWeapon=BaseInventoryClass(game: game!, level: 1)
         resetStats()
         equipRefresh()
@@ -266,6 +274,17 @@ class PlayerClass
             
 
     } // takeDamage()
+    
+    public func receiveHealing(amount: CGFloat)
+    {
+
+        health += amount
+
+        
+        // create a flash effect to indicate it got hit
+        game!.floatText!.healLabel(amount: amount, player: self)
+        
+    } // receiveHealing
     
     public func equipRefresh()
     {
