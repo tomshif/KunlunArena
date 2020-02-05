@@ -19,5 +19,6 @@ struct TalentList
     static let ghostDodge:Int=4
     static let cherryBomb:Int=5
     static let angerIssues:Int=6
+    static let bloomingFlower:Int=7
     
 }

@@ -15,7 +15,7 @@ import GameplayKit
 
 class GameScene: SKScene {
     
-    let BUILDVERSION:String="Tech Demo 0.05a"
+    let BUILDVERSION:String="Pre Alpha 0.27.3c"
     
     // SK Nodes
     var cam=SKCameraNode()
@@ -753,6 +753,30 @@ class GameScene: SKScene {
                          print("Cherry Bomb on cooldown.")
                      }
             
+        case 22: // 6
+            if player.playerTalents[TalentList.angerIssues].getCooldown() < 0 && player.mana >= player.playerTalents[TalentList.angerIssues].manaCost && player.getGlobalCooldownRatio() < 0
+                     {
+                     player.activeTalents.append(player.playerTalents[TalentList.angerIssues])
+                         player.playerTalents[TalentList.angerIssues].doTalent()
+                     }
+                     else
+                     {
+                         print("angerIssues on cooldown.")
+                     }
+            
+            
+        case 26: // 7
+            if player.playerTalents[TalentList.bloomingFlower].getCooldown() < 0 && player.mana >= player.playerTalents[TalentList.bloomingFlower].manaCost && player.getGlobalCooldownRatio() < 0
+                     {
+                     player.activeTalents.append(player.playerTalents[TalentList.bloomingFlower])
+                         player.playerTalents[TalentList.bloomingFlower].doTalent()
+                     }
+                     else
+                     {
+                         print("bloomingFlower on cooldown.")
+                     }
+            
+            
             
         case 27: // -
             zoomOutPressed=true
@@ -1143,6 +1167,13 @@ class GameScene: SKScene {
         
         updateUI()
         cleanLists()
+        
+        if game.map!.mapType==MapTypes.Hub
+        {
+            gameState=STATES.HUB
+            
+        }
+        
         
         if gameState != STATES.ITEM
         {
