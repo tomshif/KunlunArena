@@ -51,7 +51,7 @@ class AngerIssuesTalentClass:PlayerTalentClass
 
         lastUse=NSDate()
         isActive=true
-        let fireNode=SKEmitterNode(fileNamed: "Test.sks")
+        let fireNode=SKEmitterNode(fileNamed: "AngerIssuesEmitter.sks")
         
         fireNode!.zPosition=game!.player!.playerSprite!.zPosition-0.00001
         
