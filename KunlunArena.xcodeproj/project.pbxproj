@@ -44,6 +44,9 @@
 		F46BF49323DF3974005C29EB /* InventoryColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46BF49223DF3974005C29EB /* InventoryColors.swift */; };
 		F46BF49523DF3A01005C29EB /* SuffixEffects.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46BF49423DF3A01005C29EB /* SuffixEffects.swift */; };
 		F46BF49723DF4100005C29EB /* BaseInvTypesClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46BF49623DF4100005C29EB /* BaseInvTypesClass.swift */; };
+		F473B86E23EA20EC0088C885 /* HubMapClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F473B86D23EA20EC0088C885 /* HubMapClass.swift */; };
+		F473B87023EB154B0088C885 /* MapTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = F473B86F23EB154B0088C885 /* MapTypes.swift */; };
+		F473B87223EB18280088C885 /* PortalEmitter.sks in Resources */ = {isa = PBXBuildFile; fileRef = F473B87123EB18280088C885 /* PortalEmitter.sks */; };
 		F482DF06239744050063CF84 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F482DF05239744050063CF84 /* AppDelegate.swift */; };
 		F482DF08239744050063CF84 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = F482DF07239744050063CF84 /* GameScene.sks */; };
 		F482DF0C239744050063CF84 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = F482DF0B239744050063CF84 /* GameScene.swift */; };
@@ -107,6 +110,9 @@
 		F46BF49223DF3974005C29EB /* InventoryColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryColors.swift; sourceTree = "<group>"; };
 		F46BF49423DF3A01005C29EB /* SuffixEffects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuffixEffects.swift; sourceTree = "<group>"; };
 		F46BF49623DF4100005C29EB /* BaseInvTypesClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseInvTypesClass.swift; sourceTree = "<group>"; };
+		F473B86D23EA20EC0088C885 /* HubMapClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HubMapClass.swift; sourceTree = "<group>"; };
+		F473B86F23EB154B0088C885 /* MapTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapTypes.swift; sourceTree = "<group>"; };
+		F473B87123EB18280088C885 /* PortalEmitter.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = PortalEmitter.sks; sourceTree = "<group>"; };
 		F482DF02239744050063CF84 /* KunlunArena.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KunlunArena.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F482DF05239744050063CF84 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F482DF07239744050063CF84 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -183,6 +189,8 @@
 			isa = PBXGroup;
 			children = (
 				F45F4B1B23B64F5B0020333B /* MapClass.swift */,
+				F473B86D23EA20EC0088C885 /* HubMapClass.swift */,
+				F473B86F23EB154B0088C885 /* MapTypes.swift */,
 			);
 			path = "Level Classes";
 			sourceTree = "<group>";
@@ -371,6 +379,7 @@
 				F497A28623E1D96C00E4B248 /* FireBreathTalentEmitter.sks */,
 				4C45B39A23E4D0E5005C778E /* CherryBombEffect.sks */,
 				4C45B3A023E8C83F005C778E /* VampiricEmmiter.sks */,
+				F473B87123EB18280088C885 /* PortalEmitter.sks */,
 			);
 			path = Emitters;
 			sourceTree = "<group>";
@@ -433,6 +442,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F473B87223EB18280088C885 /* PortalEmitter.sks in Resources */,
 				4C45B39B23E4D0E5005C778E /* CherryBombEffect.sks in Resources */,
 				F497A28723E1D96C00E4B248 /* FireBreathTalentEmitter.sks in Resources */,
 				F45F4B1E23B652ED0020333B /* SmokeBG.sks in Resources */,
@@ -474,6 +484,7 @@
 				F482DF0C239744050063CF84 /* GameScene.swift in Sources */,
 				F46BF48D23D8C9CD005C29EB /* SuffixClass.swift in Sources */,
 				F46BF48B23D772A4005C29EB /* TestEntClass.swift in Sources */,
+				F473B87023EB154B0088C885 /* MapTypes.swift in Sources */,
 				F497A28C23E21D8400E4B248 /* EnemyMeleeClass.swift in Sources */,
 				F4AC6461239FF6B800C64D2E /* EnemySkillClass.swift in Sources */,
 				F482DF1F239744D50063CF84 /* GameClass.swift in Sources */,
@@ -487,6 +498,7 @@
 				F482DF23239745070063CF84 /* EntityClass.swift in Sources */,
 				F46BF49323DF3974005C29EB /* InventoryColors.swift in Sources */,
 				F4AC645623982E2200C64D2E /* States.swift in Sources */,
+				F473B86E23EA20EC0088C885 /* HubMapClass.swift in Sources */,
 				4314BA9623E4D60A0018A07D /* HorseEntClass.swift in Sources */,
 				F46BF49523DF3A01005C29EB /* SuffixEffects.swift in Sources */,
 				F46BF49723DF4100005C29EB /* BaseInvTypesClass.swift in Sources */,

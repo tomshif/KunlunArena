@@ -48,7 +48,7 @@ class PlayerClass
     var maxMana:CGFloat=20
     var experienceGain:CGFloat=0
 
-    var globalCooldown:CGFloat=0.5
+    var globalCooldown:CGFloat=0.3
     var lastAction=NSDate()
     
     

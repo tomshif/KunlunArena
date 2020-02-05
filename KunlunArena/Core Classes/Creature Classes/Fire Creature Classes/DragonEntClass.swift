@@ -22,11 +22,15 @@ class DragonEntClass:EntityClass
       headID=Int(random(min: 0, max: CGFloat(headNum)-0.000000001))
       bodyID=Int(random(min: 0, max: CGFloat(bodyNum)-0.000000001))
       tailID=Int(random(min: 0, max: CGFloat(tailNum)-0.000000001))
-      
-      
+      let wingID=Int(random(min: 0, max: CGFloat(tailNum)-0.000000001))
+      rightID=wingID
+    leftID=wingID
+    
       headSprite.texture=SKTexture(imageNamed: "\(spriteNamePrefix)Head0\(headID)")
       bodySprite.texture=SKTexture(imageNamed: "\(spriteNamePrefix)Body0\(bodyID)")
       tailSprite.texture=SKTexture(imageNamed: "\(spriteNamePrefix)Tail0\(tailID)")
+    leftSprite.texture=SKTexture(imageNamed: "\(spriteNamePrefix)Left0\(leftID)")
+    rightSprite.texture=SKTexture(imageNamed: "\(spriteNamePrefix)Right0\(rightID)")
       spriteScale=random(min: 1.5, max: 3.5)
       bodySprite.setScale(spriteScale)
     

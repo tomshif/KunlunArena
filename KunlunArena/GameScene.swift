@@ -102,7 +102,7 @@ class GameScene: SKScene {
          player=PlayerClass(theGame: game)
          game.player=player
          game.player!.equipRefresh()
-         gameState=STATES.FIGHT
+         gameState=STATES.HUB
         toolTips=ToolTipClass(theGame: game)
         game.cam=cam
         
@@ -114,8 +114,8 @@ class GameScene: SKScene {
         pBody=player.playerSprite!
         
         
-        MAPSIZE=Int(random(min:64, max: 96))
-        
+        // MAPSIZE=Int(random(min:64, max: 96))
+        MAPSIZE=Int(random(min:28, max: 28))
         //addChild(myLight)
         myLight.falloff=1
         
@@ -125,7 +125,7 @@ class GameScene: SKScene {
         self.backgroundColor=NSColor.black
         
         // Gen Map
-        tempMap=MapClass(width: MAPSIZE, height: MAPSIZE, theScene: self, theGame:game)
+        tempMap=HubMapClass(width: MAPSIZE, height: MAPSIZE, theScene: self, theGame:game)
         
         
         NUMENEMIES=MAPSIZE*MAPSIZE/tempMap!.ENTSPAWNFACTOR
@@ -237,13 +237,6 @@ class GameScene: SKScene {
         player.playerSprite!.position.y = CGFloat(tempMap!.roomPoints[tempMap!.startRoomIndex].y)*tempMap!.TILESIZE - (CGFloat(tempMap!.mapHeight)*tempMap!.TILESIZE)/2
         
         
-        // create a bunch of temp entities
-        for _ in 1...NUMENEMIES
-        {
-            spawnEnemy()
-        } // for
-        
-        
         // Initializer UI Elements
         
         // Item Window
@@ -257,7 +250,7 @@ class GameScene: SKScene {
     func spawnEnemy()
     {
 
-        let tempEntHorse=HorseEntClass(theGame: game, id: entCount)
+        let tempEntHorse=DragonEntClass(theGame: game, id: entCount)
 
         var goodSpawn:Bool=false
         var xp:CGFloat=0
@@ -588,7 +581,7 @@ class GameScene: SKScene {
             for i in 1..<player.playerTalents.count
             {
                 // get the cooldown remaing %
-                if player.playerTalents[i].getCooldown() > 0 && player.getGlobalCooldownRatio() < 0
+                if player.playerTalents[i].getCooldown() > 0 //&& player.getGlobalCooldownRatio() < 0
                 {
                     actionCoolDowns[i-1].isHidden=false
                     actionCoolDowns[i-1].yScale=player.playerTalents[i].getCooldownRatio()
@@ -987,6 +980,8 @@ class GameScene: SKScene {
             stateLabel.text="Spawn Ent State"
         case STATES.ITEM:
             stateLabel.text="Item Test State"
+        case STATES.HUB:
+            stateLabel.text="Hub"
         default:
             stateLabel.text="Error in State"
         } // switch gameState
@@ -1017,6 +1012,131 @@ class GameScene: SKScene {
         } // for each ent
     } // clean lists
     
+    func spawnFireMap()
+    {
+        
+        // This will need to be modified for different fire maps (Snake, Dog, Pig, Dragon)
+        
+        gameState=STATES.FIGHT
+        removeMap()
+        MAPSIZE=Int(random(min:64, max: 96))
+        game.map!.miniMap!.removeAllChildren()
+        
+        tempMap=MapClass(width: MAPSIZE, height: MAPSIZE, theScene: self, theGame:game)
+        NUMENEMIES=MAPSIZE*MAPSIZE/tempMap!.ENTSPAWNFACTOR
+        game.lootList.removeAll()
+        game.lootCounter=0
+        player.playerSprite!.position.x = CGFloat(tempMap!.roomPoints[tempMap!.startRoomIndex].x)*tempMap!.TILESIZE - (CGFloat(tempMap!.mapWidth)*tempMap!.TILESIZE) / 2
+        player.playerSprite!.position.y = CGFloat(tempMap!.roomPoints[tempMap!.startRoomIndex].y)*tempMap!.TILESIZE - (CGFloat(tempMap!.mapHeight)*tempMap!.TILESIZE)/2
+        
+        
+        // create a bunch of temp entities
+        for _ in 1...NUMENEMIES
+        {
+            spawnEnemy()
+        } // for
+        
+        game.map=tempMap
+    }
+    
+    func spawnEarthMap()
+    {
+        // This will need to be modified for different earth maps (Rat, Goat, Monkey, Ox)
+        
+        gameState=STATES.FIGHT
+        removeMap()
+        MAPSIZE=Int(random(min:64, max: 96))
+        game.map!.miniMap!.removeAllChildren()
+        
+        tempMap=MapClass(width: MAPSIZE, height: MAPSIZE, theScene: self, theGame:game)
+        NUMENEMIES=MAPSIZE*MAPSIZE/tempMap!.ENTSPAWNFACTOR
+        game.lootList.removeAll()
+        game.lootCounter=0
+        player.playerSprite!.position.x = CGFloat(tempMap!.roomPoints[tempMap!.startRoomIndex].x)*tempMap!.TILESIZE - (CGFloat(tempMap!.mapWidth)*tempMap!.TILESIZE) / 2
+        player.playerSprite!.position.y = CGFloat(tempMap!.roomPoints[tempMap!.startRoomIndex].y)*tempMap!.TILESIZE - (CGFloat(tempMap!.mapHeight)*tempMap!.TILESIZE)/2
+        
+        
+        // create a bunch of temp entities
+        for _ in 1...NUMENEMIES
+        {
+            spawnEnemy()
+        } // for
+        
+        game.map=tempMap
+        
+    } // spawnEarthMap()
+    
+    
+    func checkHubPortals()
+    {
+        for node in self.nodes(at: game.player!.playerSprite!.position)
+        {
+            if node.name != nil
+            {
+                if node.name!.contains("hubEarthPortal")
+                {
+                    spawnEarthMap()
+                } // if it's an earth portal
+                else if node.name!.contains("hubFirePortal")
+                {
+                    spawnFireMap()
+                }
+            } // if it's not nil
+        } // for each node at the player's position
+    } // checkHubPortals()
+    
+    func removeMap()
+    {
+        for ent in game.entList
+        {
+            ent.remove()
+        }
+        
+        for node in cam.children
+        {
+            if node.name != nil
+            {
+                if node.name!.contains("miniMap")
+                {
+                    node.removeAllChildren()
+                    node.removeFromParent()
+                } // if minimap
+            } // if name not nil
+        } // for each camera node
+        
+        for node in self.children
+        {
+            if node.name != nil
+            {
+                if node.name!.contains("dng") || node.name!.contains("wall") || node.name!.contains("loot") || node.name!.contains("hub")
+                {
+                    node.removeFromParent()
+                }
+            } // if not nil
+        } // for each node
+        
+    } // removeMap()
+    
+    func checkPlayerDeath()
+    {
+        if game.player!.health < 0
+        {
+            // player is dead, respawn in the hub
+            removeMap()
+            MAPSIZE=Int(random(min:28, max: 28))
+            tempMap=HubMapClass(width: MAPSIZE, height: MAPSIZE, theScene: self, theGame:game)
+
+            game.map=tempMap
+
+            player.playerSprite!.position.x = CGFloat(tempMap!.roomPoints[tempMap!.startRoomIndex].x)*tempMap!.TILESIZE - (CGFloat(tempMap!.mapWidth)*tempMap!.TILESIZE) / 2
+            player.playerSprite!.position.y = CGFloat(tempMap!.roomPoints[tempMap!.startRoomIndex].y)*tempMap!.TILESIZE - (CGFloat(tempMap!.mapHeight)*tempMap!.TILESIZE)/2
+            
+            game.player!.health=game.player!.maxHealth
+            game.player!.mana=game.player!.maxMana
+            gameState=STATES.HUB
+        } // if player is dead
+    } // checkPlayerDeath
+    
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
         
@@ -1028,7 +1148,7 @@ class GameScene: SKScene {
         {
             itemScreen.isHidden=true
         }
-        if gameState==STATES.FIGHT
+        if gameState==STATES.FIGHT || gameState == STATES.HUB
         {
             
             
@@ -1054,13 +1174,22 @@ class GameScene: SKScene {
             {
                 player.updateTalents()
             } 
-            
+            if gameState==STATES.FIGHT
+            {
+                checkPlayerDeath()
+            }
             for ent in game.entList
             {
                 ent.update(cycle: updateCycle)
             }
+            
+            // if we're in Hub State, check for player walking into portal
+            if gameState == STATES.HUB
+            {
+                checkHubPortals()
+            }
         } // if we're in fight state
-        else
+        else if gameState==STATES.ITEM
         {
             itemScreen.isHidden=false
         }
