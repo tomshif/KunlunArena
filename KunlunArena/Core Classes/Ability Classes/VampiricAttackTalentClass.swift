@@ -42,7 +42,7 @@ class VampiricAttackTalentClass:PlayerTalentClass
         
         vampireEffect!.zPosition = 200
         vampireEffect!.alpha=1
-        vampireEffect!.run(SKAction.sequence([SKAction.wait(forDuration: 4),SKAction.fadeOut(withDuration: 1.0), SKAction.removeFromParent()]))
+        vampireEffect!.run(SKAction.sequence([SKAction.wait(forDuration: 10),SKAction.fadeOut(withDuration: 1.0), SKAction.removeFromParent()]))
         
         
         
