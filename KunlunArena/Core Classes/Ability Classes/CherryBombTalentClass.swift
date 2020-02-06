@@ -34,35 +34,37 @@ class CherryBombTalentClass:PlayerTalentClass
         lastUse=NSDate()
         isActive=true
         
-        let cherryNode=SKEmitterNode(fileNamed: "CherryBombEffect")
-        cherryNode!.position=game!.player!.playerSprite!.position
-        cherryNode!.zPosition=game!.player!.playerSprite!.zPosition-0.00001
-        cherryNode!.zRotation=game!.player!.playerSprite!.zRotation
-        
-        cherryNode!.run(SKAction.sequence([SKAction.wait(forDuration: 2),SKAction.removeFromParent()]))
-        game!.scene!.addChild(cherryNode!)
-        
         
         game!.player!.mana -= manaCost
         
         // determine dx/dy to center of hit area
-        let dx=cos(game!.player!.playerSprite!.zRotation)*300+game!.player!.playerSprite!.position.x
-        let dy=sin(game!.player!.playerSprite!.zRotation)*300+game!.player!.playerSprite!.position.y
+        let dx=cos(game!.player!.playerSprite!.zRotation)*200+game!.player!.playerSprite!.position.x
+        let dy=sin(game!.player!.playerSprite!.zRotation)*200+game!.player!.playerSprite!.position.y
         
         // check for all enemies within 100 pixels of this spot
+        var dist:CGFloat=0
         for ent in game!.entList
         {
             // compute distance of ent from center of area
+            
             let entdx=dx-ent.bodySprite.position.x
             let entdy=dy-ent.bodySprite.position.y
             let dist=hypot(entdy,entdx)
-
-            if dist < 300
+            
+            if dist < 100
             {
                 ent.takeDamage(amount: game!.player!.equippedWeapon!.iLevelMod * game!.player!.equippedWeapon!.modLevel*5)
                 
             } // if in range do damage
         } // for each ent
+        
+        let cherryNode=SKEmitterNode(fileNamed: "CherryBombEffect")
+        cherryNode!.position=CGPoint(x: dx, y: dy)
+        cherryNode!.zPosition=game!.player!.playerSprite!.zPosition-0.00001
+        cherryNode!.zRotation=game!.player!.playerSprite!.zRotation
+        
+        cherryNode!.run(SKAction.sequence([SKAction.wait(forDuration: 2),SKAction.removeFromParent()]))
+        game!.scene!.addChild(cherryNode!)
         
     } // doTalent()
     override func updateTalent()
