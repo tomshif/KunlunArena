@@ -394,15 +394,31 @@ class GameScene: SKScene {
         } // for y
     } // drawGrid()
     
+    func callActionButton(num: Int)
+    {
+        if player.playerTalents[num].getCooldown() < 0 && player.mana >= player.playerTalents[num].manaCost && player.getGlobalCooldownRatio() < 0
+                 {
+                 player.activeTalents.append(player.playerTalents[num])
+                     player.playerTalents[num].doTalent()
+                 }
+                 else
+                 {
+                    print("\(player.playerTalents[num].name) on cooldown or OOM.")
+                 }
+        
+    }
+    
     func touchDown(atPoint pos : CGPoint) {
         
         if gameState==STATES.FIGHT
         {
-            // First we check to see if we clicked on loot
+            var otherAction:Bool=false
+            
             for node in self.nodes(at: pos)
             {
                 if node.name != nil
                 {
+                    // First we check to see if we clicked on loot
                     if node.name!.contains("loot") && !node.hasActions()
                     {
                         // first, drop the loot we have
@@ -419,27 +435,42 @@ class GameScene: SKScene {
                         game.player!.equipRefresh()
                         // remove the sprite
                         node.removeFromParent()
-                        
+                        otherAction=true
                     } // if it's loot
                     
+                    if node.name!.contains("actButton")
+                    {
+                        let suffix=node.name!.suffix(1)
+                        let buttonNum=Int(suffix)
+                        print("Clicked action button \(buttonNum)")
+                        callActionButton(num: buttonNum!)
+                        otherAction=true
+                        
+                    } // if it's an action button
+                    
+
                 } // if name not nil
                 
             } // for each node
             
+
             
             // click to attack
-            mousePressed=true
-            let dx=pos.x-pBody.position.x
-            let dy=pos.y-pBody.position.y
-            let angle=atan2(dy,dx)
-            pBody.zRotation=angle
-            //player.moveToPoint=pos
-            //player.isMovingToPoint=true
-            
-            if player.playerTalents[0].getCooldown() < 0
+            if (!otherAction)
             {
-                player.playerTalents[0].doTalent()
-            } // if we're not on cooldown
+                mousePressed=true
+                let dx=pos.x-pBody.position.x
+                let dy=pos.y-pBody.position.y
+                let angle=atan2(dy,dx)
+                pBody.zRotation=angle
+                //player.moveToPoint=pos
+                //player.isMovingToPoint=true
+                
+                if player.playerTalents[0].getCooldown() < 0
+                {
+                    player.playerTalents[0].doTalent()
+                } // if we're not on cooldown
+            }
         } // if play state
         /*
         else if gameState==STATES.FIGHT  && player.isInAttackMode
@@ -561,7 +592,7 @@ class GameScene: SKScene {
                  // get the cooldown remaing %
                 if player.getGlobalCooldownRatio() > 0
                  {
-                    print(player.getGlobalCooldownRatio())
+                    
                     actionCoolDowns[i-1].isHidden=false
                      actionCoolDowns[i-1].yScale=player.getGlobalCooldownRatio()
                      actionCoolDowns[i-1].position.y = -32*(1-player.getGlobalCooldownRatio())
