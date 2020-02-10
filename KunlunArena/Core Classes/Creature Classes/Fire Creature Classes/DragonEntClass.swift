@@ -77,13 +77,23 @@ class DragonEntClass:EntityClass
         moveSpeed=random(min: 5.5, max: 8.5)
     }//moveSpeed
     
-    
+
     
   } // init scene/ID
 
+    
+    override func attack() {
+         
+         SKAction.playSoundFileNamed("dragonRoar.mp3", waitForCompletion: false)
+         
+         
+          if skillList[0].getCooldown() < 0
+                {
+                    skillList[0].doSkill()
+                }
 
-    
-    
+         
+     }//override atack
     
     
 }// class DragonEntClass
