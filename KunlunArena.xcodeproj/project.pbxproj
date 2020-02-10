@@ -17,6 +17,7 @@
 		4346BEC123DA456500F6300D /* DragonEntClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4346BEC023DA456500F6300D /* DragonEntClass.swift */; };
 		4351F38C23DB9B6F002A48A9 /* PigEntClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4351F38B23DB9B6F002A48A9 /* PigEntClass.swift */; };
 		4388593323E384170048F4DB /* MonkeyEntClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4388593223E384170048F4DB /* MonkeyEntClass.swift */; };
+		439AED7723F2051100D4DE3E /* EnemyPoisonClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 439AED7623F2051100D4DE3E /* EnemyPoisonClass.swift */; };
 		43F34FBC23EB69CA008701F9 /* AngerIssuesEmitter.sks in Resources */ = {isa = PBXBuildFile; fileRef = 43F34FBB23EB69CA008701F9 /* AngerIssuesEmitter.sks */; };
 		4454C2E623E2176F00473804 /* DogEntClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4454C2E523E2176F00473804 /* DogEntClass.swift */; };
 		44698E3D23F1EC6400A11A00 /* snakehit.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 44698E3C23F1EC6400A11A00 /* snakehit.mp3 */; };
@@ -107,6 +108,7 @@
 		4346BEC023DA456500F6300D /* DragonEntClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragonEntClass.swift; sourceTree = "<group>"; };
 		4351F38B23DB9B6F002A48A9 /* PigEntClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PigEntClass.swift; sourceTree = "<group>"; };
 		4388593223E384170048F4DB /* MonkeyEntClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonkeyEntClass.swift; sourceTree = "<group>"; };
+		439AED7623F2051100D4DE3E /* EnemyPoisonClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnemyPoisonClass.swift; sourceTree = "<group>"; };
 		43F34FBB23EB69CA008701F9 /* AngerIssuesEmitter.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = AngerIssuesEmitter.sks; sourceTree = "<group>"; };
 		4454C2E523E2176F00473804 /* DogEntClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogEntClass.swift; sourceTree = "<group>"; };
 		44698E3C23F1EC6400A11A00 /* snakehit.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = snakehit.mp3; sourceTree = "<group>"; };
@@ -376,6 +378,7 @@
 			isa = PBXGroup;
 			children = (
 				F4AC6460239FF6B800C64D2E /* EnemySkillClass.swift */,
+				439AED7623F2051100D4DE3E /* EnemyPoisonClass.swift */,
 				F497A28B23E21D8400E4B248 /* EnemyMeleeClass.swift */,
 				F4460B7323F1F6CA00DDCDF6 /* EnemyBlinkClass.swift */,
 			);
@@ -581,6 +584,7 @@
 				F4AC6465239FF7A300C64D2E /* PrefixClass.swift in Sources */,
 				F473B87423EB4BA50088C885 /* BloomingFlowerTalentClass.swift in Sources */,
 				F4AC646723A00CDD00C64D2E /* SpecialStatus.swift in Sources */,
+				439AED7723F2051100D4DE3E /* EnemyPoisonClass.swift in Sources */,
 				4CA2857A23DF8BC400A72268 /* GhostDodgeTalent.swift in Sources */,
 				4C45B38E23E22FBF005C778E /* AngerIssuesTalentClass.swift in Sources */,
 				F46BF48F23D8CA31005C29EB /* InventoryInit.swift in Sources */,
