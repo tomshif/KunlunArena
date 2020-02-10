@@ -209,6 +209,9 @@ class EntityClass
         let tempMelee=EnemyMeleeClass(theGame: game!, ent: self)
         skillList.append(tempMelee)
         
+        // 1
+        let tempBlink=EnemyBlinkClass(theGame: game!, ent: self)
+        skillList.append(tempBlink)
     } // setupSkills
     
     internal func updateHealthBar()
@@ -338,7 +341,7 @@ class EntityClass
         let roll=random(min: 0, max: 1)
         if roll > 0.9
         {
-            let temploot=BaseInventoryClass(game: game!, level: entLevel)
+            let temploot=BaseInventoryClass(theGame: game!, level: entLevel)
             let lootSprite=SKSpriteNode(imageNamed: temploot.iconString)
             lootSprite.name=String(format: "loot%05d",game!.lootCounter)
             
@@ -435,7 +438,11 @@ class EntityClass
     
     internal func attack()
     {
-        if skillList[0].getCooldown() < 0
+        if skillList[1].getCooldown() < 0
+        {
+            skillList[1].doSkill()
+        }
+        else if skillList[0].getCooldown() < 0
         {
             skillList[0].doSkill()
         }

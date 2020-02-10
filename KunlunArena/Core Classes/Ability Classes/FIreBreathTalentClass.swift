@@ -42,7 +42,7 @@ class FireBreathTalentClass:PlayerTalentClass
         lastUse=NSDate()
         isActive=true
         
-        print("Fire Breath")
+
         let fireNode=SKEmitterNode(fileNamed: "FireBreathTalentEmitter.sks")
         fireNode!.position=game!.player!.playerSprite!.position
         fireNode!.zPosition=game!.player!.playerSprite!.zPosition-0.00001

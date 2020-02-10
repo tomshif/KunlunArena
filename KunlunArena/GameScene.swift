@@ -829,7 +829,7 @@ class GameScene: SKScene {
         case 29: // 0 -- generate new weapon
             if gameState==STATES.ITEM
             {
-            game.player!.equippedWeapon=BaseInventoryClass(game: game)
+                game.player!.equippedWeapon=BaseInventoryClass(theGame: game, level: game.player!.equippedWeapon!.iLevel)
                 game.player!.resetStats()
                 game.player!.equipRefresh()
                 updateItemScreen()

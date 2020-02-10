@@ -121,7 +121,7 @@ class PlayerClass
         let tempVampire=VampiricAttackTalentClass(theGame: game!)
         playerTalents.append(tempVampire)
         
-        equippedWeapon=BaseInventoryClass(game: game!, level: 1)
+        equippedWeapon=BaseInventoryClass(theGame: game!, level: 1)
         resetStats()
         equipRefresh()
     } // init - game
