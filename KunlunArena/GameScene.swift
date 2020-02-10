@@ -729,6 +729,9 @@ class GameScene: SKScene {
         case 14: // e
             attack()
             
+        //case 16: //y //This is a temp for leveling stuff
+            //game.player.reciveXp()
+            
         case 18: // 1
             if player.playerTalents[TalentList.dash].getCooldown() < 0 && player.mana >= player.playerTalents[TalentList.dash].manaCost
             {
