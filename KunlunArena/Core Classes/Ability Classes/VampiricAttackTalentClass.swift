@@ -16,20 +16,43 @@ class VampiricAttackTalentClass:PlayerTalentClass
     override init(theGame: GameClass) {
         super.init(theGame: theGame)
         name="VampireAttack"
-        description="Drain the energy from the enemy and feast on the energy to regen health"
-        COOLDOWN=0.15
+        description="Summon an uncotroable vampire spirit that attacks the enemys and drains there health"
+        COOLDOWN=15
         isActive = false
-        
+        lengthActive=10
+        manaCost=5
+        iconName = "vampireAttackTalentIcon"
     } // init(game)
     
     override func doTalent()
     {
         super.doTalent()
         // To do the attack, we check a spot a set distance from the player and see if there is an entity body there. If there is, we hit it. Since entities collide with each other, there should never be more than one body there.
-        
         isActive = true
         
-        // First we queue up an SKAction for our attack animation
+        
+        game!.player!.playerTalents[0].COOLDOWN=0.2
+        
+        
+        let vampireEffect = SKEmitterNode(fileNamed: "VampiricEmmiter.sks")
+        vampireEffect!.name="ghostTalentEffect"
+        game!.player!.playerSprite!.addChild(vampireEffect!)
+        
+        
+        
+        vampireEffect!.zPosition = 200
+        vampireEffect!.alpha=1
+        vampireEffect!.run(SKAction.sequence([SKAction.wait(forDuration: 10),SKAction.fadeOut(withDuration: 1.0), SKAction.removeFromParent()]))
+        
+        
+        
+        // reset cooldown timer
+        lastUse=NSDate()
+        
+    } // doTalent()
+    
+    override func updateTalent()
+    {
         let attackSeq=SKAction.sequence([SKAction.scale(to: 1.5, duration: 0.1), SKAction.scale(to: 1.0, duration: 0.1)])
         game!.player!.playerSprite!.run(attackSeq)
         
@@ -56,6 +79,10 @@ class VampiricAttackTalentClass:PlayerTalentClass
                             // we have found our entity, so we apply the damage based on the player's current damage
                             entity.takeDamage(amount: game!.player!.equippedWeapon!.iLevelMod * game!.player!.equippedWeapon!.modLevel)
                             
+                            let totalHealAmount = game!.player!.equippedWeapon!.modLevel*CGFloat(game!.player!.equippedWeapon!.iLevel)*game!.player!.wisdom*0.05
+                            
+                            game!.player!.receiveHealing(amount: totalHealAmount)
+                            
                             found=true
                             break
                         } // if
@@ -70,19 +97,11 @@ class VampiricAttackTalentClass:PlayerTalentClass
             }
         } // for each node in the scene
         
-        // reset cooldown timer
-        lastUse=NSDate()
-        
-    } // doTalent()
-    
-    override func updateTalent()
-    {
-        
-        
     }//update talent
     
     override func removeTalent()
     {
+        game!.player!.playerTalents[0].COOLDOWN=0.25
         isActive = false
     }//remove talent
     

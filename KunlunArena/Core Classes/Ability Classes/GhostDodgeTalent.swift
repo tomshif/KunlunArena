@@ -59,7 +59,7 @@ class GhostDodgeTalentClass:PlayerTalentClass
         ghostEffect!.zPosition = 200
         ghostEffect!.alpha=1
         ghostEffect!.run(SKAction.sequence([SKAction.wait(forDuration: 4),SKAction.fadeOut(withDuration: 1.0), SKAction.removeFromParent()]))
-        //game!.player!.playerTalents[0].COOLDOWN=0
+        
         oldArmor = game!.player!.damageReduction
         game!.player!.damageReduction = 1
         lastUse=NSDate()

@@ -77,6 +77,12 @@ class SnakeEntClass:EntityClass
   } // init scene/ID
 
 
+    override func attack() {
+        // play sound
+        
+        
+        super.attack()
+    }
     
     
     

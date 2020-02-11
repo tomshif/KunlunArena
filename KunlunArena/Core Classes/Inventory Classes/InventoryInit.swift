@@ -360,4 +360,51 @@ func initInventory(game: GameClass)
     suf17.name="of the Waves"
     suf17.effects=suffixEffects.MANA*suffixEffects.MANAREGEN
     game.suffixList.append(suf17)
+    
+    let suf18=SuffixClass()
+    suf18.name="of the Snake"
+    suf18.effects=suffixEffects.WISDOM*suffixEffects.MOVESPEED
+    game.suffixList.append(suf18)
+    
+    let suf19=SuffixClass()
+    suf19.name="of the Dog"
+    suf19.effects=suffixEffects.WISDOM*suffixEffects.MANAREGEN
+    game.suffixList.append(suf19)
+    
+    let suf20=SuffixClass()
+    suf20.name="of the Pig"
+    suf20.effects=suffixEffects.WISDOM*suffixEffects.HEALTHREGEN
+    game.suffixList.append(suf20)
+    
+    let suf21=SuffixClass()
+    
+    suf21.name="of the Dragon"
+    suf21.effects=suffixEffects.WISDOM*suffixEffects.MANA
+    game.suffixList.append(suf21)
+    
+    let suf22=SuffixClass()
+    suf22.name="of the Fire"
+    suf22.effects=suffixEffects.WISDOM*suffixEffects.HEALTH
+    game.suffixList.append(suf22)
+    
+    let suf23=SuffixClass()
+    suf23.name="of the Inferno"
+    suf23.effects=suffixEffects.STRENGTH*suffixEffects.ATTACKSPEED
+    game.suffixList.append(suf23)
+    
+    let suf24=SuffixClass()
+    suf24.name="of Creation"
+    suf24.effects=suffixEffects.HEALTH*suffixEffects.HEALTHREGEN
+    game.suffixList.append(suf24)
+    
+    let suf25=SuffixClass()
+    suf25.name="of the Wildfire"
+    suf25.effects=suffixEffects.MANA*suffixEffects.HEALTH
+    game.suffixList.append(suf25)
+    
+    let suf26=SuffixClass()
+    suf26.name="of Blazing"
+    suf26.effects=suffixEffects.MANA*suffixEffects.MANAREGEN
+    game.suffixList.append(suf26)
+    
 }
