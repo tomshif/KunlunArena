@@ -43,16 +43,13 @@ class GhostDodgeTalentClass:PlayerTalentClass
     
     override func updateTalent()
     {
-        // This method is called each frame while the method is active
-        // If the talent is a one shot thing, this method won't need to do anything.
-        // Note that this will always be called from the GameScene and should not be called internally.
-
+        
     } // updateTalent()
     
     override func doTalent()
     {
-        // This method will be called when the talent is first begun.
-        // Note that this will always be called from the GameScene and should not be called internally.
+        super.doTalent()
+
         let ghostEffect = SKEmitterNode(fileNamed: "GhostDodgeEmitter.sks")
         ghostEffect!.name="ghostTalentEffect"
         game!.player!.playerSprite!.addChild(ghostEffect!)
@@ -62,7 +59,7 @@ class GhostDodgeTalentClass:PlayerTalentClass
         ghostEffect!.zPosition = 200
         ghostEffect!.alpha=1
         ghostEffect!.run(SKAction.sequence([SKAction.wait(forDuration: 4),SKAction.fadeOut(withDuration: 1.0), SKAction.removeFromParent()]))
-        //game!.player!.playerTalents[0].COOLDOWN=0
+        
         oldArmor = game!.player!.damageReduction
         game!.player!.damageReduction = 1
         lastUse=NSDate()

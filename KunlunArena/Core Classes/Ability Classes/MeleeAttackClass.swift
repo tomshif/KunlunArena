@@ -27,6 +27,8 @@ class MeleeAttackClass:PlayerTalentClass
     {
         // To do the attack, we check a spot a set distance from the player and see if there is an entity body there. If there is, we hit it. Since entities collide with each other, there should never be more than one body there.
         
+        super.doTalent()
+        
         // First we queue up an SKAction for our attack animation
         let attackSeq=SKAction.sequence([SKAction.scale(to: 1.5, duration: 0.1), SKAction.scale(to: 1.0, duration: 0.1)])
         game!.player!.playerSprite!.run(attackSeq)

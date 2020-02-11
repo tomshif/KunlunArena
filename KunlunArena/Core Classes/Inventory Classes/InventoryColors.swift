@@ -11,7 +11,7 @@ import SpriteKit
 
 struct invColors
 {
-    static let COMMON=NSColor.gray
+    static let COMMON=NSColor.white
     static let UNCOMMON=NSColor.green
     static let RARE=NSColor.blue
     static let EPIC=NSColor.purple

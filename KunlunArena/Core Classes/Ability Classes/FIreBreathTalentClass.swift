@@ -34,13 +34,15 @@ class FireBreathTalentClass:PlayerTalentClass
     
     override func doTalent()
     {
+        super.doTalent()
+        
         oldMovementSpeed=game!.player!.moveSpeed
         game!.player!.moveSpeed=0
         
         lastUse=NSDate()
         isActive=true
         
-        print("Fire Breath")
+
         let fireNode=SKEmitterNode(fileNamed: "FireBreathTalentEmitter.sks")
         fireNode!.position=game!.player!.playerSprite!.position
         fireNode!.zPosition=game!.player!.playerSprite!.zPosition-0.00001
