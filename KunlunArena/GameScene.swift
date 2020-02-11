@@ -250,7 +250,7 @@ class GameScene: SKScene {
     func spawnEnemy()
     {
 
-        let tempEntHorse=DragonEntClass(theGame: game, id: entCount)
+        let tempEntSnake=SnakeEntClass(theGame: game, id: entCount)
 
         var goodSpawn:Bool=false
         var xp:CGFloat=0
@@ -277,9 +277,9 @@ class GameScene: SKScene {
             } // for each node at the spot
         } // while we're looking for a good spawn point
 
-        tempEntHorse.bodySprite.position.x=xp
-        tempEntHorse.bodySprite.position.y=yp
-        game.entList.append(tempEntHorse)
+        tempEntSnake.bodySprite.position.x=xp
+        tempEntSnake.bodySprite.position.y=yp
+        game.entList.append(tempEntSnake)
         entCount+=1
         
     } // func spawnEnemy()
