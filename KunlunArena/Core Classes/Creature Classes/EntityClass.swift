@@ -31,7 +31,7 @@ class EntityClass
     // ent<Type>0<Single digit number>
     // for example a pig part would be
     // "entPig01"
-    var spriteNamePrefix:String="pig"
+    var spriteNamePrefix:String="dragon"
     
     // the number of possible combinations for each sprite part.
     var headNum:Int=0

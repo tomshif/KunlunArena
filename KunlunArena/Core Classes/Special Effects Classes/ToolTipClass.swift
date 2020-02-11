@@ -51,6 +51,36 @@ class ToolTipClass
         ttText.isHidden=false
         ttText.addChild(ttBG)
         
+        let ttIL=SKShapeNode(rectOf: CGSize(width: ttText.frame.size.width*1.10, height:ttText.frame.size.height*1.30), cornerRadius: 10)
+        ttIL.position.y=ttIL.frame.size.height*0.15
+        ttIL.zPosition = 305
+        ttIL.fillColor=NSColor.white
+        ttIL.alpha=0.65
+        ttIL.strokeColor=NSColor.white
+        ttIL.name="ItemLabel"
+        ttText.isHidden=false
+        ttText.addChild(ttIL)
+        
+        let ttD=SKShapeNode(rectOf: CGSize(width: ttText.frame.size.width*1.10, height:ttText.frame.size.height*1.30), cornerRadius: 10)
+        ttD.position.y=ttD.frame.size.height*0.35
+        ttD.zPosition=305
+        ttD.fillColor=NSColor.white
+        ttD.alpha=0.65
+        ttD.strokeColor=NSColor.white
+        ttD.name="Damage"
+        ttText.isHidden=false
+        ttText.addChild(ttD)
+        
+        let ttH=SKShapeNode(rectOf: CGSize(width: ttText.frame.size.width*1.10, height:ttText.frame.size.height*1.30), cornerRadius: 10)
+        ttH.position.y=ttIL.frame.size.height*0.65
+        ttH.zPosition = 305
+        ttH.fillColor=NSColor.white
+        ttH.alpha=0.65
+        ttH.strokeColor=NSColor.white
+        ttH.name="Heal"
+        ttText.isHidden=false
+        ttText.addChild(ttH)
+        
         
         
         active=true
