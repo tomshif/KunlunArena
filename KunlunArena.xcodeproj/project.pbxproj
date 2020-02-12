@@ -338,7 +338,6 @@
 				F46BF48723D26484005C29EB /* Special Effects Classes */,
 				F45F4AC723ABE7020020333B /* Level Classes */,
 				F4AC645D239FF68C00C64D2E /* Ability Classes */,
-				F45F4B1623B4404E0020333B /* Init Files */,
 				F4AC645223982D3C00C64D2E /* Inventory Classes */,
 				F482DF242397493C0063CF84 /* Utility Classes */,
 				F482DF1D239744830063CF84 /* Creature Classes */,
@@ -447,6 +446,7 @@
 		F4AC645D239FF68C00C64D2E /* Ability Classes */ = {
 			isa = PBXGroup;
 			children = (
+				F45F4B1623B4404E0020333B /* Init Files */,
 				F497A28823E2026B00E4B248 /* Entity Abilities */,
 				F4AC645E239FF6A500C64D2E /* PlayerTalentClass.swift */,
 				F46BF49023D9FAA9005C29EB /* MeleeAttackClass.swift */,

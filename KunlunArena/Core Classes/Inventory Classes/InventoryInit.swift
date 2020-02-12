@@ -116,7 +116,40 @@ func initInventory(game: GameClass)
     
     let type32=BaseInvTypesClass(n: "Ru Yi", m: 1.5,t: 5)
     game.baseTypesList.append(type32)
+    //weapons
     
+    let type33=BaseInvTypesClass(n: "Helmet", m: 1, t: 1)
+    game.baseTypesList.append(type33)
+    
+    let type34=BaseInvTypesClass(n: "Helmet", m: 1, t: 1)
+       game.baseTypesList.append(type34)
+    
+    let type35=BaseInvTypesClass(n: "Helmet", m: 1, t: 1)
+       game.baseTypesList.append(type35)
+    
+    let type36=BaseInvTypesClass(n: "Helmet", m: 1, t: 1)
+       game.baseTypesList.append(type36)
+    
+    let type37=BaseInvTypesClass(n: "Helmet", m: 1, t: 1)
+       game.baseTypesList.append(type37)
+    
+    let type38=BaseInvTypesClass(n: "Helmet", m: 1, t: 1)
+       game.baseTypesList.append(type38)
+    
+    let type39=BaseInvTypesClass(n: "Helmet", m: 1, t: 1)
+       game.baseTypesList.append(type39)
+    
+    let type40=BaseInvTypesClass(n: "Helmet", m: 1, t: 1)
+       game.baseTypesList.append(type40)
+    
+    let type41=BaseInvTypesClass(n: "Helmet", m: 1, t: 1)
+       game.baseTypesList.append(type41)
+    
+    let type42=BaseInvTypesClass(n: "Helmet", m: 1, t: 1)
+       game.baseTypesList.append(type42)
+    
+    let type43=BaseInvTypesClass(n: "Helmet", m: 1, t: 1)
+       game.baseTypesList.append(type43)
     // Add each of the prefixes to the list
     
     let pre00=PrefixClass()
