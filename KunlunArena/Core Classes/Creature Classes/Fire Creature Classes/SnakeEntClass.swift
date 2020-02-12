@@ -11,6 +11,7 @@ import SpriteKit
 
 class SnakeEntClass:EntityClass
 {
+     var snakeSoundAction=SKAction.playSoundFileNamed("scratchQuick.mp3", waitForCompletion: true)
   override init(theGame: GameClass, id: Int)
   {
       super.init(theGame: theGame, id: id)
@@ -77,15 +78,26 @@ class SnakeEntClass:EntityClass
   } // init scene/ID
 
 
-    override func attack() {
-        // play sound
-        
-        
-        super.attack()
-    }
-    
+ override func attack() {
+         
+   
+        if !bodySprite.hasActions()
+        {
+            bodySprite.run(snakeSoundAction)
+        }
+        if skillList[1].getCooldown() < 0
+        {
+            skillList[1].doSkill()
+        }
+        else if skillList[0].getCooldown() < 0
+        {
+            skillList[0].doSkill()
+        }
+    }//attack
+
     
     
     
 }// class SnakeEntClass
+
 
