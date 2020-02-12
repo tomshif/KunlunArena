@@ -71,7 +71,7 @@ class BaseInventoryClass
             generateWeapon(level: level)
             
         case INVENTORYSLOTS.head:
-            break
+            generateHead(level: level)
             
         default:
             print("Inventory generation error -- invalid slot")
@@ -194,6 +194,11 @@ class BaseInventoryClass
             {
                 attackSpeedFactor *= 1-statsMod/100
             }
+    }
+    
+    internal func generateHead(level: Int)
+    {
+        
     }
     
     public func getFirstEffectString() -> String

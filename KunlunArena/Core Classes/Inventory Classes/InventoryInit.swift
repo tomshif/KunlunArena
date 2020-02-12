@@ -116,40 +116,58 @@ func initInventory(game: GameClass)
     
     let type32=BaseInvTypesClass(n: "Ru Yi", m: 1.5,t: 5)
     game.baseTypesList.append(type32)
-    //weapons
+
+    // WEAPONS ^^^
+    
     
     let type33=BaseInvTypesClass(n: "Helmet", m: 1, t: 1)
     game.baseTypesList.append(type33)
     
-    let type34=BaseInvTypesClass(n: "Helmet", m: 1, t: 1)
+    let type34=BaseInvTypesClass(n: "Helm", m: 1, t: 1)
        game.baseTypesList.append(type34)
     
-    let type35=BaseInvTypesClass(n: "Helmet", m: 1, t: 1)
+    let type35=BaseInvTypesClass(n: "Hat", m: 1, t: 1)
        game.baseTypesList.append(type35)
     
-    let type36=BaseInvTypesClass(n: "Helmet", m: 1, t: 1)
+    let type36=BaseInvTypesClass(n: "Cap", m: 1, t: 1)
        game.baseTypesList.append(type36)
     
-    let type37=BaseInvTypesClass(n: "Helmet", m: 1, t: 1)
+    let type37=BaseInvTypesClass(n: "Skull Cap", m: 1, t: 1)
        game.baseTypesList.append(type37)
     
-    let type38=BaseInvTypesClass(n: "Helmet", m: 1, t: 1)
+    let type38=BaseInvTypesClass(n: "Combat Helmet", m: 1, t: 1)
        game.baseTypesList.append(type38)
     
-    let type39=BaseInvTypesClass(n: "Helmet", m: 1, t: 1)
+    let type39=BaseInvTypesClass(n: "Warring States Helmet", m: 1, t: 1)
        game.baseTypesList.append(type39)
     
-    let type40=BaseInvTypesClass(n: "Helmet", m: 1, t: 1)
+    let type40=BaseInvTypesClass(n: "Mask", m: 1, t: 1)
        game.baseTypesList.append(type40)
     
-    let type41=BaseInvTypesClass(n: "Helmet", m: 1, t: 1)
+    let type41=BaseInvTypesClass(n: "Han Helmet", m: 1, t: 1)
        game.baseTypesList.append(type41)
     
-    let type42=BaseInvTypesClass(n: "Helmet", m: 1, t: 1)
+    let type42=BaseInvTypesClass(n: "shānwénkǎi Helmet", m: 1, t: 1)
        game.baseTypesList.append(type42)
     
-    let type43=BaseInvTypesClass(n: "Helmet", m: 1, t: 1)
+    let type43=BaseInvTypesClass(n: "Jin Helm", m: 1, t: 1)
        game.baseTypesList.append(type43)
+    
+    let type44=BaseInvTypesClass(n: "Yuan Cap", m: 1, t: 1)
+    game.baseTypesList.append(type44)
+    
+    let type45=BaseInvTypesClass(n: "Mongol hat", m: 1, t: 1)
+    game.baseTypesList.append(type45)
+    
+    let type46=BaseInvTypesClass(n: "Ming Phoenix Helmet", m: 1, t: 1)
+    game.baseTypesList.append(type46)
+    
+    let type47=BaseInvTypesClass(n: "Qing Parade Helmet", m: 1, t: 1)
+    game.baseTypesList.append(type47)
+    
+    // HELMETS ^^^
+    
+    
     // Add each of the prefixes to the list
     
     let pre00=PrefixClass()
