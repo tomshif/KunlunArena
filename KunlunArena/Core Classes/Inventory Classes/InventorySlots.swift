@@ -17,10 +17,8 @@ import Foundation
 
 struct INVENTORYSLOTS
 {
-    static let melee:Int=0
-    static let ranged:Int=2
-    static let alchemy:Int=4
-    static let body:Int=6
-    static let head:Int=8
-    static let cape:Int=10
+    static let weapon:Int=0
+    static let body:Int=2
+    static let head:Int=4
+    static let boots:Int=6
 } // struct INVENTORYSLOTS

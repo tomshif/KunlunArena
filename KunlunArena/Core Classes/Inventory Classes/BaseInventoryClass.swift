@@ -63,119 +63,138 @@ class BaseInventoryClass
     internal func generateItem(level: Int)
     {
         // Set iLevel
-        iLevel=level
+        invSlot=INVENTORYSLOTS.weapon
         
-        // First, pick the type
-        invType=Int(random(min: 0, max: CGFloat(game!.baseTypesList.count)-0.0000001))
-       if invType <= 9
-       {
-           iconString="weapon0\(invType)"
-       }
-       else
-       {
-           iconString="weapon00"
-       }
-        
-        
-        // Next pick a prefix
-        // For now this is hard coded to be more likely to be more common quality...eventually this probably will be replaced with a different system in a different place
-        let chance=random(min: 0, max: 1)
-        var chanceType=0
-        if chance < 0.6
+        switch invSlot
         {
-            chanceType=1
-        }
-        else if chance < 0.75
-        {
-            chanceType=2
-        }
-        else if chance < 0.98
-        {
-            chanceType=3
-        }
-        else if chance < 0.998
-        {
-            chanceType=4
-        }
-        else
-        {
-            chanceType=5
-        }
-        
-        var foundType=false
-        while foundType==false
-        {
-            prefixNum=Int(random(min: 0, max: CGFloat(game!.prefixList.count)-0.0000001))
-            if game!.prefixList[prefixNum].rarity==chanceType
-            {
-                foundType=true
-            }
-        } // while
-    
-        rarity=chanceType
-        if chanceType==1
-        {
-            itemLevelColor=invColors.COMMON
-        }
-        else if chanceType==2
-        {
-            itemLevelColor=invColors.UNCOMMON
-        }
-        else if chanceType==3
-        {
-            itemLevelColor=invColors.RARE
-        }
-        else if chanceType==4
-        {
-            itemLevelColor=invColors.EPIC
-        }
-        else if chanceType==5
-        {
-            itemLevelColor=invColors.LEGENDARY
-        }
-        
-        
-        // next pick a suffix
-        // Common Types (1) do not have suffices, so use suffixList[0]
-        if game!.prefixList[prefixNum].rarity==1
-        {
-            suffixNum=0
-        }
-        else
-        {
-            suffixNum=Int(random(min: 1, max: CGFloat(game!.suffixList.count)-0.0000001))
-        }
-        // Get the effects from the suffix
-        effects=game!.suffixList[suffixNum].effects
-        
-        // Combine pieces
-        
-        // first check for weapon effects (such as attack speed)
-
-        
-        name="\(game!.prefixList[prefixNum].name) \(game!.baseTypesList[invType].name) \(game!.suffixList[suffixNum].name)"
-
-        
-        modLevel=game!.prefixList[prefixNum].base*game!.baseTypesList[invType].modifier
-        
-        talentType=game!.baseTypesList[invType].talentType
-        attackSpeedFactor=game!.baseTypesList[invType].modifier
-        
-        
-       if game!.prefixList[prefixNum].rarity==1
-       {
-        statsMod=0
-        }
-        else
-       {
-        statsMod=CGFloat(iLevel)*CGFloat(game!.prefixList[prefixNum].rarity)/2+BASEEFFECTSMOD
-        }
-        
-        if (effects % suffixEffects.ATTACKSPEED == 0 && game!.prefixList[prefixNum].rarity != 1)
-        {
-            attackSpeedFactor *= 1-statsMod/100
+        case INVENTORYSLOTS.weapon:
+            generateWeapon(level: level)
+            
+        case INVENTORYSLOTS.head:
+            break
+            
+        default:
+            print("Inventory generation error -- invalid slot")
+            
         }
     } // generateItem()
+    
+    internal func generateWeapon(level: Int)
+    {
+
+            iLevel=level
+            
+            // First, pick the type
+        invType=Int(random(min: 0, max: (33-0.0000001)))
+           if invType <= 9
+           {
+               iconString="weapon0\(invType)"
+           }
+           else
+           {
+               iconString="weapon00"
+           }
+            
+            
+            // Next pick a prefix
+            // For now this is hard coded to be more likely to be more common quality...eventually this probably will be replaced with a different system in a different place
+            let chance=random(min: 0, max: 1)
+            var chanceType=0
+            if chance < 0.6
+            {
+                chanceType=1
+            }
+            else if chance < 0.75
+            {
+                chanceType=2
+            }
+            else if chance < 0.98
+            {
+                chanceType=3
+            }
+            else if chance < 0.998
+            {
+                chanceType=4
+            }
+            else
+            {
+                chanceType=5
+            }
+            
+            var foundType=false
+            while foundType==false
+            {
+                prefixNum=Int(random(min: 0, max: CGFloat(game!.prefixList.count)-0.0000001))
+                if game!.prefixList[prefixNum].rarity==chanceType
+                {
+                    foundType=true
+                }
+            } // while
+        
+            rarity=chanceType
+            if chanceType==1
+            {
+                itemLevelColor=invColors.COMMON
+            }
+            else if chanceType==2
+            {
+                itemLevelColor=invColors.UNCOMMON
+            }
+            else if chanceType==3
+            {
+                itemLevelColor=invColors.RARE
+            }
+            else if chanceType==4
+            {
+                itemLevelColor=invColors.EPIC
+            }
+            else if chanceType==5
+            {
+                itemLevelColor=invColors.LEGENDARY
+            }
+            
+            
+            // next pick a suffix
+            // Common Types (1) do not have suffices, so use suffixList[0]
+            if game!.prefixList[prefixNum].rarity==1
+            {
+                suffixNum=0
+            }
+            else
+            {
+                suffixNum=Int(random(min: 1, max: CGFloat(game!.suffixList.count)-0.0000001))
+            }
+            // Get the effects from the suffix
+            effects=game!.suffixList[suffixNum].effects
+            
+            // Combine pieces
+            
+            // first check for weapon effects (such as attack speed)
+
+            
+            name="\(game!.prefixList[prefixNum].name) \(game!.baseTypesList[invType].name) \(game!.suffixList[suffixNum].name)"
+
+            
+            modLevel=game!.prefixList[prefixNum].base*game!.baseTypesList[invType].modifier
+            
+            talentType=game!.baseTypesList[invType].talentType
+            attackSpeedFactor=game!.baseTypesList[invType].modifier
+            
+            
+           if game!.prefixList[prefixNum].rarity==1
+           {
+            statsMod=0
+            }
+            else
+           {
+            statsMod=CGFloat(iLevel)*CGFloat(game!.prefixList[prefixNum].rarity)/2+BASEEFFECTSMOD
+            }
+            
+            if (effects % suffixEffects.ATTACKSPEED == 0 && game!.prefixList[prefixNum].rarity != 1)
+            {
+                attackSpeedFactor *= 1-statsMod/100
+            }
+    }
     
     public func getFirstEffectString() -> String
     {
