@@ -319,6 +319,7 @@ class EntityClass
         bodySprite.removeAllActions()
         bodySprite.removeFromParent()
         isDead=true
+        game!.player!.receiveEX()
 
     } // die()
     

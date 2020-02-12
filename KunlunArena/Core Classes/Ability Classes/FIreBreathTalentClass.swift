@@ -16,6 +16,7 @@ import SpriteKit
 class FireBreathTalentClass:PlayerTalentClass
 {
     var oldMovementSpeed:CGFloat=0
+    var fireSundAction=SKAction.playSoundFileNamed("flameThrower", waitForCompletion: true)
     
     override init(theGame: GameClass)
     {
@@ -53,6 +54,7 @@ class FireBreathTalentClass:PlayerTalentClass
         fireNode!.setScale(1.3)
         game!.scene!.addChild(fireNode!)
         
+        game!.player!.playerSprite?.run(fireSundAction)
  
         
     } // doTalent()
@@ -92,5 +94,9 @@ class FireBreathTalentClass:PlayerTalentClass
         game!.player!.moveSpeed=oldMovementSpeed
         isActive=false
     } // removeTalent()
+    
+    
+    
+    
     
 } // FireBreathTalentClass

@@ -11,6 +11,7 @@ import SpriteKit
 
 class DragonEntClass:EntityClass
 {
+    var dragonSoundAction=SKAction.playSoundFileNamed("goat.mp3", waitForCompletion: true)
   override init(theGame: GameClass, id: Int)
   {
       super.init(theGame: theGame, id: id)
@@ -84,13 +85,19 @@ class DragonEntClass:EntityClass
     
     override func attack() {
          
-         SKAction.playSoundFileNamed("dragonRoar.mp3", waitForCompletion: false)
-         
-         
-          if skillList[0].getCooldown() < 0
-                {
-                    skillList[0].doSkill()
-                }
+   
+        if !bodySprite.hasActions()
+        {
+            bodySprite.run(dragonSoundAction)
+        }
+        if skillList[1].getCooldown() < 0
+        {
+            skillList[1].doSkill()
+        }
+        else if skillList[0].getCooldown() < 0
+        {
+            skillList[0].doSkill()
+        }
 
          
      }//override atack
