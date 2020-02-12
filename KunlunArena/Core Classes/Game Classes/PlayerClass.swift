@@ -46,7 +46,6 @@ class PlayerClass
     var moveSpeed:CGFloat=10
     var maxHealth:CGFloat=20
     var maxMana:CGFloat=20
-    var experienceGain:CGFloat=0
     var baseExUp:CGFloat=1000
     var experienceMelee:CGFloat=0
     var experienceMartial:CGFloat=0
@@ -383,7 +382,7 @@ class PlayerClass
                    }
         } // if better than common quality
     } // equipRefresh
-    public func receiveEX()
+    public func receiveEX(experienceGain:CGFloat=100) //100 is temp
     {
         if  game!.player!.equippedWeapon!.talentType == TalentBranchList.melee
         {
@@ -481,7 +480,6 @@ class PlayerClass
         healthRe()
         manaRe()
         LevelUp()
-        receiveEX()
         
         
         // test
