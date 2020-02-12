@@ -53,6 +53,7 @@
 		F431F07D23DBD16D00EBD905 /* TalentList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F431F07C23DBD16D00EBD905 /* TalentList.swift */; };
 		F4460B7223F1EDE800DDCDF6 /* BaseWeaponClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4460B7123F1EDE800DDCDF6 /* BaseWeaponClass.swift */; };
 		F4460B7423F1F6CA00DDCDF6 /* EnemyBlinkClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4460B7323F1F6CA00DDCDF6 /* EnemyBlinkClass.swift */; };
+		F4460B7623F35F9300DDCDF6 /* dragonBiteQuick.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F4460B7523F35F9300DDCDF6 /* dragonBiteQuick.mp3 */; };
 		F451541B23E314E900B5D04C /* To Do.rtf in Resources */ = {isa = PBXBuildFile; fileRef = F451541A23E314E900B5D04C /* To Do.rtf */; };
 		F45F4AC623ABDD080020333B /* BodyBitMasks.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45F4AC523ABDD080020333B /* BodyBitMasks.swift */; };
 		F45F4AC923ABE9ED0020333B /* Keyboard Commands.rtf in Resources */ = {isa = PBXBuildFile; fileRef = F45F4AC823ABE9ED0020333B /* Keyboard Commands.rtf */; };
@@ -143,6 +144,7 @@
 		F431F07C23DBD16D00EBD905 /* TalentList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalentList.swift; sourceTree = "<group>"; };
 		F4460B7123F1EDE800DDCDF6 /* BaseWeaponClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseWeaponClass.swift; sourceTree = "<group>"; };
 		F4460B7323F1F6CA00DDCDF6 /* EnemyBlinkClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnemyBlinkClass.swift; sourceTree = "<group>"; };
+		F4460B7523F35F9300DDCDF6 /* dragonBiteQuick.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = dragonBiteQuick.mp3; sourceTree = "<group>"; };
 		F451541A23E314E900B5D04C /* To Do.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = "To Do.rtf"; sourceTree = "<group>"; };
 		F45F4AC523ABDD080020333B /* BodyBitMasks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyBitMasks.swift; sourceTree = "<group>"; };
 		F45F4AC823ABE9ED0020333B /* Keyboard Commands.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = "Keyboard Commands.rtf"; sourceTree = "<group>"; };
@@ -248,6 +250,7 @@
 				44698E3E23F1F4F400A11A00 /* pigsnort.mp3 */,
 				44698E4023F1F50100A11A00 /* dogbrk.mp3 */,
 				44698E4223F1F51900A11A00 /* dragonBreath.mp3 */,
+				F4460B7523F35F9300DDCDF6 /* dragonBiteQuick.mp3 */,
 				44698E4423F1F51F00A11A00 /* dragonRoar.mp3 */,
 				44698E4623F1F52800A11A00 /* horseNeigh.mp3 */,
 				44698E4823F1F52B00A11A00 /* horse.mp3 */,
@@ -539,6 +542,7 @@
 				44698E5B23F1F56600A11A00 /* scratching.mp3 in Resources */,
 				44698E4123F1F50100A11A00 /* dogbrk.mp3 in Resources */,
 				44698E4F23F1F53E00A11A00 /* roosterCrow.mp3 in Resources */,
+				F4460B7623F35F9300DDCDF6 /* dragonBiteQuick.mp3 in Resources */,
 				44698E6323F1F57800A11A00 /* cowMoo.mp3 in Resources */,
 				4C45B39B23E4D0E5005C778E /* CherryBombEffect.sks in Resources */,
 				F497A28723E1D96C00E4B248 /* FireBreathTalentEmitter.sks in Resources */,
