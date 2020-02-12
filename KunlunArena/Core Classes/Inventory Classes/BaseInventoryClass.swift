@@ -76,7 +76,7 @@ class BaseInventoryClass
         default:
             print("Inventory generation error -- invalid slot")
             
-        }
+        } // switch
     } // generateItem()
     
     internal func generateWeapon(level: Int)
@@ -85,7 +85,7 @@ class BaseInventoryClass
             iLevel=level
             
             // First, pick the type
-        invType=Int(random(min: 0, max: (33-0.0000001)))
+        invType=Int(random(min: 0, max: (CGFloat(INVENTORYSLOTS.NUMWEAPONS)-0.0000001)))
            if invType <= 9
            {
                iconString="weapon0\(invType)"
