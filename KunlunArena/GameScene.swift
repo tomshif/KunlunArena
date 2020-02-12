@@ -730,6 +730,7 @@ class GameScene: SKScene {
             attack()
             
         case 16: //y //This is a temp for leveling stuff
+            game.player!.receiveEX()
             print("melee level is \(game.player!.meleeLv)")
             print("melee exp is \(game.player!.experienceMelee)")
             

@@ -470,7 +470,21 @@ class PlayerClass
         {
             experienceMelee-=baseExUp
             meleeLv+=1
+            levelUpEffect()
         }
+    }
+    
+    func levelUpEffect()
+    {
+        let levelUpEffect = SKEmitterNode(fileNamed: "levelUp.sks")
+        levelUpEffect!.name="ghostTalentEffect"
+        game!.player!.playerSprite!.addChild(levelUpEffect!)
+        
+        
+        
+        levelUpEffect!.zPosition = 200
+        levelUpEffect!.alpha=1
+        levelUpEffect!.run(SKAction.sequence([SKAction.wait(forDuration: 1),SKAction.fadeOut(withDuration: 1.0), SKAction.removeFromParent()]))
     }
     
     public func update()
