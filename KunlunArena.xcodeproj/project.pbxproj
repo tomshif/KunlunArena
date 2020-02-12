@@ -45,6 +45,7 @@
 		44B8DBBA23DA2D30002BA761 /* SnakeEntClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B8DBB923DA2D30002BA761 /* SnakeEntClass.swift */; };
 		44C697A223DF768B004CCE49 /* PlayerClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C697A123DF768B004CCE49 /* PlayerClass.swift */; };
 		44F62E7423DA451B004C8469 /* SwordsOfLightningTalentClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F62E7323DA451B004C8469 /* SwordsOfLightningTalentClass.swift */; };
+		4C34DF6923F358AB0056EC77 /* levelUp.sks in Resources */ = {isa = PBXBuildFile; fileRef = 4C34DF6823F358AB0056EC77 /* levelUp.sks */; };
 		4C45B38E23E22FBF005C778E /* AngerIssuesTalentClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C45B38D23E22FBF005C778E /* AngerIssuesTalentClass.swift */; };
 		4C45B39023E23160005C778E /* GhostDodgeEmitter.sks in Resources */ = {isa = PBXBuildFile; fileRef = 4C45B38F23E23160005C778E /* GhostDodgeEmitter.sks */; };
 		4C45B39923E4CF9E005C778E /* CherryBombTalentClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C45B39823E4CF9E005C778E /* CherryBombTalentClass.swift */; };
@@ -137,6 +138,7 @@
 		44B8DBB923DA2D30002BA761 /* SnakeEntClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnakeEntClass.swift; sourceTree = "<group>"; };
 		44C697A123DF768B004CCE49 /* PlayerClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerClass.swift; sourceTree = "<group>"; };
 		44F62E7323DA451B004C8469 /* SwordsOfLightningTalentClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwordsOfLightningTalentClass.swift; sourceTree = "<group>"; };
+		4C34DF6823F358AB0056EC77 /* levelUp.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = levelUp.sks; sourceTree = "<group>"; };
 		4C45B38D23E22FBF005C778E /* AngerIssuesTalentClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AngerIssuesTalentClass.swift; sourceTree = "<group>"; };
 		4C45B38F23E23160005C778E /* GhostDodgeEmitter.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GhostDodgeEmitter.sks; sourceTree = "<group>"; };
 		4C45B39823E4CF9E005C778E /* CherryBombTalentClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CherryBombTalentClass.swift; sourceTree = "<group>"; };
@@ -474,6 +476,7 @@
 				4C45B39A23E4D0E5005C778E /* CherryBombEffect.sks */,
 				4C45B3A023E8C83F005C778E /* VampiricEmmiter.sks */,
 				F473B87123EB18280088C885 /* PortalEmitter.sks */,
+				4C34DF6823F358AB0056EC77 /* levelUp.sks */,
 			);
 			path = Emitters;
 			sourceTree = "<group>";
@@ -567,6 +570,7 @@
 				44A6261523E4D0ED004ED04A /* swordsOfLightningEffect.sks in Resources */,
 				F45F4AC923ABE9ED0020333B /* Keyboard Commands.rtf in Resources */,
 				44698E4323F1F51900A11A00 /* dragonBreath.mp3 in Resources */,
+				4C34DF6923F358AB0056EC77 /* levelUp.sks in Resources */,
 				F4AC646C23A03DF200C64D2E /* Assets.xcassets in Resources */,
 				44698E4D23F1F53900A11A00 /* chicken.mp3 in Resources */,
 				44698E4723F1F52800A11A00 /* horseNeigh.mp3 in Resources */,
