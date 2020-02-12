@@ -69,6 +69,7 @@ class EnemyBlinkClass:EnemySkillClass
                 ySpot=entity!.bodySprite.position.y
                 print("Blink failover")
             }
+            
         } // while we're not all good
         
         // Now that we have found a spot, teleport to it
