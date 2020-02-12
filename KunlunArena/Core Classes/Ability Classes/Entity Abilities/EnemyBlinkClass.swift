@@ -11,6 +11,8 @@ import SpriteKit
 
 class EnemyBlinkClass:EnemySkillClass
 {
+    var teleportSoundAction=SKAction.playSoundFileNamed("teleport", waitForCompletion: true)
+    
     override init(theGame: GameClass, ent: EntityClass)
     {
         super.init(theGame: theGame, ent: ent)
@@ -74,6 +76,8 @@ class EnemyBlinkClass:EnemySkillClass
         
         // Now that we have found a spot, teleport to it
         entity!.bodySprite.position=CGPoint(x: xSpot, y: ySpot)
+        
+        entity!.bodySprite.run(teleportSoundAction)
         
     } // doSkill()
     

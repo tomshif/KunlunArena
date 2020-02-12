@@ -20,27 +20,11 @@
 		4388593323E384170048F4DB /* MonkeyEntClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4388593223E384170048F4DB /* MonkeyEntClass.swift */; };
 		439AED7723F2051100D4DE3E /* EnemyPoisonClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 439AED7623F2051100D4DE3E /* EnemyPoisonClass.swift */; };
 		43F34FBC23EB69CA008701F9 /* AngerIssuesEmitter.sks in Resources */ = {isa = PBXBuildFile; fileRef = 43F34FBB23EB69CA008701F9 /* AngerIssuesEmitter.sks */; };
+		440E1EE523F491FF007D5700 /* quickBite.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 440E1EE423F491FF007D5700 /* quickBite.mp3 */; };
+		440E1EE723F4959C007D5700 /* scratchQuick.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 440E1EE623F4959C007D5700 /* scratchQuick.mp3 */; };
+		440E1EE923F4968B007D5700 /* teleport.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 440E1EE823F4968B007D5700 /* teleport.mp3 */; };
+		440E1EEB23F497CE007D5700 /* flameThrower.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 440E1EEA23F497CE007D5700 /* flameThrower.mp3 */; };
 		4454C2E623E2176F00473804 /* DogEntClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4454C2E523E2176F00473804 /* DogEntClass.swift */; };
-		44698E3D23F1EC6400A11A00 /* snakehit.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 44698E3C23F1EC6400A11A00 /* snakehit.mp3 */; };
-		44698E3F23F1F4F400A11A00 /* pigsnort.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 44698E3E23F1F4F400A11A00 /* pigsnort.mp3 */; };
-		44698E4123F1F50100A11A00 /* dogbrk.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 44698E4023F1F50100A11A00 /* dogbrk.mp3 */; };
-		44698E4323F1F51900A11A00 /* dragonBreath.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 44698E4223F1F51900A11A00 /* dragonBreath.mp3 */; };
-		44698E4523F1F51F00A11A00 /* dragonRoar.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 44698E4423F1F51F00A11A00 /* dragonRoar.mp3 */; };
-		44698E4723F1F52800A11A00 /* horseNeigh.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 44698E4623F1F52800A11A00 /* horseNeigh.mp3 */; };
-		44698E4923F1F52B00A11A00 /* horse.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 44698E4823F1F52B00A11A00 /* horse.mp3 */; };
-		44698E4B23F1F53500A11A00 /* rooster.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 44698E4A23F1F53500A11A00 /* rooster.mp3 */; };
-		44698E4D23F1F53900A11A00 /* chicken.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 44698E4C23F1F53900A11A00 /* chicken.mp3 */; };
-		44698E4F23F1F53E00A11A00 /* roosterCrow.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 44698E4E23F1F53E00A11A00 /* roosterCrow.mp3 */; };
-		44698E5123F1F54800A11A00 /* tiger.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 44698E5023F1F54800A11A00 /* tiger.mp3 */; };
-		44698E5323F1F55100A11A00 /* goat.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 44698E5223F1F55100A11A00 /* goat.mp3 */; };
-		44698E5523F1F55700A11A00 /* monkeypatas.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 44698E5423F1F55700A11A00 /* monkeypatas.mp3 */; };
-		44698E5723F1F55B00A11A00 /* chimp.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 44698E5623F1F55B00A11A00 /* chimp.mp3 */; };
-		44698E5923F1F55F00A11A00 /* ape.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 44698E5823F1F55F00A11A00 /* ape.mp3 */; };
-		44698E5B23F1F56600A11A00 /* scratching.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 44698E5A23F1F56600A11A00 /* scratching.mp3 */; };
-		44698E5D23F1F56B00A11A00 /* rat.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 44698E5C23F1F56B00A11A00 /* rat.mp3 */; };
-		44698E5F23F1F57200A11A00 /* cow.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 44698E5E23F1F57200A11A00 /* cow.mp3 */; };
-		44698E6123F1F57500A11A00 /* cow2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 44698E6023F1F57500A11A00 /* cow2.mp3 */; };
-		44698E6323F1F57800A11A00 /* cowMoo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 44698E6223F1F57700A11A00 /* cowMoo.mp3 */; };
 		44A6261523E4D0ED004ED04A /* swordsOfLightningEffect.sks in Resources */ = {isa = PBXBuildFile; fileRef = 44A6261423E4D0ED004ED04A /* swordsOfLightningEffect.sks */; };
 		44B8DBBA23DA2D30002BA761 /* SnakeEntClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B8DBB923DA2D30002BA761 /* SnakeEntClass.swift */; };
 		44C697A223DF768B004CCE49 /* PlayerClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C697A123DF768B004CCE49 /* PlayerClass.swift */; };
@@ -113,27 +97,11 @@
 		4388593223E384170048F4DB /* MonkeyEntClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonkeyEntClass.swift; sourceTree = "<group>"; };
 		439AED7623F2051100D4DE3E /* EnemyPoisonClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnemyPoisonClass.swift; sourceTree = "<group>"; };
 		43F34FBB23EB69CA008701F9 /* AngerIssuesEmitter.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = AngerIssuesEmitter.sks; sourceTree = "<group>"; };
+		440E1EE423F491FF007D5700 /* quickBite.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = quickBite.mp3; sourceTree = "<group>"; };
+		440E1EE623F4959C007D5700 /* scratchQuick.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = scratchQuick.mp3; sourceTree = "<group>"; };
+		440E1EE823F4968B007D5700 /* teleport.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = teleport.mp3; sourceTree = "<group>"; };
+		440E1EEA23F497CE007D5700 /* flameThrower.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = flameThrower.mp3; sourceTree = "<group>"; };
 		4454C2E523E2176F00473804 /* DogEntClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogEntClass.swift; sourceTree = "<group>"; };
-		44698E3C23F1EC6400A11A00 /* snakehit.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = snakehit.mp3; sourceTree = "<group>"; };
-		44698E3E23F1F4F400A11A00 /* pigsnort.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = pigsnort.mp3; sourceTree = "<group>"; };
-		44698E4023F1F50100A11A00 /* dogbrk.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = dogbrk.mp3; sourceTree = "<group>"; };
-		44698E4223F1F51900A11A00 /* dragonBreath.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = dragonBreath.mp3; sourceTree = "<group>"; };
-		44698E4423F1F51F00A11A00 /* dragonRoar.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = dragonRoar.mp3; sourceTree = "<group>"; };
-		44698E4623F1F52800A11A00 /* horseNeigh.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = horseNeigh.mp3; sourceTree = "<group>"; };
-		44698E4823F1F52B00A11A00 /* horse.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = horse.mp3; sourceTree = "<group>"; };
-		44698E4A23F1F53500A11A00 /* rooster.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = rooster.mp3; sourceTree = "<group>"; };
-		44698E4C23F1F53900A11A00 /* chicken.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = chicken.mp3; sourceTree = "<group>"; };
-		44698E4E23F1F53E00A11A00 /* roosterCrow.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = roosterCrow.mp3; sourceTree = "<group>"; };
-		44698E5023F1F54800A11A00 /* tiger.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = tiger.mp3; sourceTree = "<group>"; };
-		44698E5223F1F55100A11A00 /* goat.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = goat.mp3; sourceTree = "<group>"; };
-		44698E5423F1F55700A11A00 /* monkeypatas.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = monkeypatas.mp3; sourceTree = "<group>"; };
-		44698E5623F1F55B00A11A00 /* chimp.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = chimp.mp3; sourceTree = "<group>"; };
-		44698E5823F1F55F00A11A00 /* ape.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = ape.mp3; sourceTree = "<group>"; };
-		44698E5A23F1F56600A11A00 /* scratching.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = scratching.mp3; sourceTree = "<group>"; };
-		44698E5C23F1F56B00A11A00 /* rat.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = rat.mp3; sourceTree = "<group>"; };
-		44698E5E23F1F57200A11A00 /* cow.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = cow.mp3; sourceTree = "<group>"; };
-		44698E6023F1F57500A11A00 /* cow2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = cow2.mp3; sourceTree = "<group>"; };
-		44698E6223F1F57700A11A00 /* cowMoo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = cowMoo.mp3; sourceTree = "<group>"; };
 		44A6261423E4D0ED004ED04A /* swordsOfLightningEffect.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = swordsOfLightningEffect.sks; sourceTree = "<group>"; };
 		44B8DBB923DA2D30002BA761 /* SnakeEntClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnakeEntClass.swift; sourceTree = "<group>"; };
 		44C697A123DF768B004CCE49 /* PlayerClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerClass.swift; sourceTree = "<group>"; };
@@ -250,27 +218,11 @@
 		44698E3B23F1EC2200A11A00 /* Entity Sounds */ = {
 			isa = PBXGroup;
 			children = (
-				44698E3C23F1EC6400A11A00 /* snakehit.mp3 */,
-				44698E3E23F1F4F400A11A00 /* pigsnort.mp3 */,
-				44698E4023F1F50100A11A00 /* dogbrk.mp3 */,
-				44698E4223F1F51900A11A00 /* dragonBreath.mp3 */,
 				F4460B7523F35F9300DDCDF6 /* dragonBiteQuick.mp3 */,
-				44698E4423F1F51F00A11A00 /* dragonRoar.mp3 */,
-				44698E4623F1F52800A11A00 /* horseNeigh.mp3 */,
-				44698E4823F1F52B00A11A00 /* horse.mp3 */,
-				44698E4A23F1F53500A11A00 /* rooster.mp3 */,
-				44698E4C23F1F53900A11A00 /* chicken.mp3 */,
-				44698E4E23F1F53E00A11A00 /* roosterCrow.mp3 */,
-				44698E5023F1F54800A11A00 /* tiger.mp3 */,
-				44698E5223F1F55100A11A00 /* goat.mp3 */,
-				44698E5423F1F55700A11A00 /* monkeypatas.mp3 */,
-				44698E5623F1F55B00A11A00 /* chimp.mp3 */,
-				44698E5823F1F55F00A11A00 /* ape.mp3 */,
-				44698E5A23F1F56600A11A00 /* scratching.mp3 */,
-				44698E5C23F1F56B00A11A00 /* rat.mp3 */,
-				44698E5E23F1F57200A11A00 /* cow.mp3 */,
-				44698E6023F1F57500A11A00 /* cow2.mp3 */,
-				44698E6223F1F57700A11A00 /* cowMoo.mp3 */,
+				440E1EE423F491FF007D5700 /* quickBite.mp3 */,
+				440E1EE623F4959C007D5700 /* scratchQuick.mp3 */,
+				440E1EE823F4968B007D5700 /* teleport.mp3 */,
+				440E1EEA23F497CE007D5700 /* flameThrower.mp3 */,
 			);
 			path = "Entity Sounds";
 			sourceTree = "<group>";
@@ -539,42 +491,26 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				44698E4923F1F52B00A11A00 /* horse.mp3 in Resources */,
 				F473B87223EB18280088C885 /* PortalEmitter.sks in Resources */,
-				44698E3D23F1EC6400A11A00 /* snakehit.mp3 in Resources */,
-				44698E5923F1F55F00A11A00 /* ape.mp3 in Resources */,
-				44698E3F23F1F4F400A11A00 /* pigsnort.mp3 in Resources */,
-				44698E4523F1F51F00A11A00 /* dragonRoar.mp3 in Resources */,
-				44698E5B23F1F56600A11A00 /* scratching.mp3 in Resources */,
-				44698E4123F1F50100A11A00 /* dogbrk.mp3 in Resources */,
-				44698E4F23F1F53E00A11A00 /* roosterCrow.mp3 in Resources */,
+				440E1EE523F491FF007D5700 /* quickBite.mp3 in Resources */,
+				440E1EE923F4968B007D5700 /* teleport.mp3 in Resources */,
 				F4460B7623F35F9300DDCDF6 /* dragonBiteQuick.mp3 in Resources */,
-				44698E6323F1F57800A11A00 /* cowMoo.mp3 in Resources */,
 				4C45B39B23E4D0E5005C778E /* CherryBombEffect.sks in Resources */,
 				F497A28723E1D96C00E4B248 /* FireBreathTalentEmitter.sks in Resources */,
-				44698E5523F1F55700A11A00 /* monkeypatas.mp3 in Resources */,
-				44698E5D23F1F56B00A11A00 /* rat.mp3 in Resources */,
 				F45F4B1E23B652ED0020333B /* SmokeBG.sks in Resources */,
-				44698E5123F1F54800A11A00 /* tiger.mp3 in Resources */,
 				4C45B39023E23160005C778E /* GhostDodgeEmitter.sks in Resources */,
+				440E1EE723F4959C007D5700 /* scratchQuick.mp3 in Resources */,
 				F451541B23E314E900B5D04C /* To Do.rtf in Resources */,
-				44698E6123F1F57500A11A00 /* cow2.mp3 in Resources */,
-				44698E4B23F1F53500A11A00 /* rooster.mp3 in Resources */,
 				F482DF08239744050063CF84 /* GameScene.sks in Resources */,
 				F482DF10239744070063CF84 /* Assets.xcassets in Resources */,
 				F4AC646B23A03DF200C64D2E /* FireSplode.sks in Resources */,
-				44698E5F23F1F57200A11A00 /* cow.mp3 in Resources */,
 				43F34FBC23EB69CA008701F9 /* AngerIssuesEmitter.sks in Resources */,
+				440E1EEB23F497CE007D5700 /* flameThrower.mp3 in Resources */,
 				4C45B3A123E8C83F005C778E /* VampiricEmmiter.sks in Resources */,
 				F482DF13239744070063CF84 /* Main.storyboard in Resources */,
-				44698E5323F1F55100A11A00 /* goat.mp3 in Resources */,
 				44A6261523E4D0ED004ED04A /* swordsOfLightningEffect.sks in Resources */,
 				F45F4AC923ABE9ED0020333B /* Keyboard Commands.rtf in Resources */,
-				44698E4323F1F51900A11A00 /* dragonBreath.mp3 in Resources */,
 				F4AC646C23A03DF200C64D2E /* Assets.xcassets in Resources */,
-				44698E4D23F1F53900A11A00 /* chicken.mp3 in Resources */,
-				44698E4723F1F52800A11A00 /* horseNeigh.mp3 in Resources */,
-				44698E5723F1F55B00A11A00 /* chimp.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
