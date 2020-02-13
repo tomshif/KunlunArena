@@ -34,10 +34,16 @@ class EnemyDivideClass:EnemySkillClass
            {
                if node.name!.contains("snake")
                {
-                    //if health < maxHealth*0.25
-                    //{
-                       // break
-                    //}// checking snake's health is 25% left
+                if entity!.health < entity!.maxHealth*0.25
+                    {
+                        
+                        
+                        if node.name!.contains("childSnake")
+                        {
+                          break
+                        }// checking if its a child snake if not spawn a second snake else do nothing
+                        
+                    }// checking snake's health is 25% left
                 
                } // if it's a snake
                
@@ -62,5 +68,6 @@ class EnemyDivideClass:EnemySkillClass
         }
     }
     
+
 
 } // class EnemyPoisonClass
