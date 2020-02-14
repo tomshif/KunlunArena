@@ -198,6 +198,20 @@ class BaseInventoryClass
     
     internal func generateHead(level: Int)
     {
+        iLevel=level
+        
+        invType=Int(random(min: 0, max: (CGFloat(INVENTORYSLOTS.NUMHELMETS)-0.0000001)))
+        if invType <= 42 && invType > 32
+        {
+            iconString="helmet3\(invType)"
+        }
+        else
+        {
+            iconString="helmet33"
+        }
+        
+        
+        
         
     }
     
