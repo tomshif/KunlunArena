@@ -23,5 +23,6 @@ struct TalentList
     static let vampireAttack:Int=8
     static let howlingWind:Int=9
     static let ancientShield:Int=10
+    static let tigerClaws:Int=11
     
 }
