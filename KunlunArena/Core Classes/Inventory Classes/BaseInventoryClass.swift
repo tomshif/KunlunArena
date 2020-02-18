@@ -68,7 +68,17 @@ class BaseInventoryClass
         
         // Determine type of item
         // TEMP - Hardcoded to weapon right now until helmets are ready
-        invSlot=INVENTORYSLOTS.weapon
+    
+        
+        let equipmentChoice:CGFloat=random(min: 0, max: 1.99999999999)
+        if equipmentChoice<1
+        {
+            invSlot=INVENTORYSLOTS.weapon
+        }
+        else
+        {
+            invSlot=INVENTORYSLOTS.head
+        }
         
         switch invSlot
         {
@@ -205,16 +215,108 @@ class BaseInventoryClass
     {
         iLevel=level
         
-        invType=Int(random(min: 0, max: (CGFloat(INVENTORYSLOTS.NUMHELMETS)-0.0000001)))
-        if invType <= 42 && invType > 32
+        invType=Int(random(min: 34, max: 34+(CGFloat(INVENTORYSLOTS.NUMHELMETS)-0.0000001)))
+        if invType <= 47 && invType > 32
         {
-            iconString="helmet3\(invType)"
-        }
-        else
-        {
-            iconString="helmet33"
+            iconString="helmet\(invType)"
         }
         
+        let chance=random(min: 0, max: 1)
+            var chanceType=0
+            if chance < 0.6
+            {
+                chanceType=1
+            }
+            else if chance < 0.75
+            {
+                chanceType=2
+            }
+            else if chance < 0.98
+            {
+                chanceType=3
+            }
+            else if chance < 0.998
+            {
+                chanceType=4
+            }
+            else
+            {
+                chanceType=5
+            }
+            
+            var foundType=false
+            while foundType==false
+            {
+                prefixNum=Int(random(min: 0, max: CGFloat(game!.prefixList.count)-0.0000001))
+                if game!.prefixList[prefixNum].rarity==chanceType
+                {
+                    foundType=true
+                }
+            } // while
+        
+            rarity=chanceType
+            if chanceType==1
+            {
+                itemLevelColor=invColors.COMMON
+            }
+            else if chanceType==2
+            {
+                itemLevelColor=invColors.UNCOMMON
+            }
+            else if chanceType==3
+            {
+                itemLevelColor=invColors.RARE
+            }
+            else if chanceType==4
+            {
+                itemLevelColor=invColors.EPIC
+            }
+            else if chanceType==5
+            {
+                itemLevelColor=invColors.LEGENDARY
+            }
+            
+            
+            // next pick a suffix
+            // Common Types (1) do not have suffices, so use suffixList[0]
+            if game!.prefixList[prefixNum].rarity==1
+            {
+                suffixNum=0
+            }
+            else
+            {
+                suffixNum=Int(random(min: 1, max: CGFloat(game!.suffixList.count)-0.0000001))
+            }
+            // Get the effects from the suffix
+            effects=game!.suffixList[suffixNum].effects
+            
+            // Combine pieces
+            
+            // first check for weapon effects (such as attack speed)
+
+            
+            name="\(game!.prefixList[prefixNum].name) \(game!.baseTypesList[invType].name) \(game!.suffixList[suffixNum].name)"
+
+            
+            modLevel=game!.prefixList[prefixNum].base*game!.baseTypesList[invType].modifier
+            
+            talentType=game!.baseTypesList[invType].talentType
+            attackSpeedFactor=game!.baseTypesList[invType].modifier
+            
+            
+           if game!.prefixList[prefixNum].rarity==1
+           {
+            statsMod=0
+            }
+            else
+           {
+            statsMod=CGFloat(iLevel)*CGFloat(game!.prefixList[prefixNum].rarity)/2+BASEEFFECTSMOD
+            }
+            
+            if (effects % suffixEffects.ATTACKSPEED == 0 && game!.prefixList[prefixNum].rarity != 1)
+            {
+                attackSpeedFactor *= 1-statsMod/100
+            }
         
         
         

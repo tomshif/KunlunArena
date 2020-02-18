@@ -23,7 +23,7 @@ struct INVENTORYSLOTS
     static let boots:Int=6
     
     static let NUMWEAPONS:Int=33
-    static let NUMHELMETS:Int=0
+    static let NUMHELMETS:Int=14
     static let NUMBODY:Int=0
     static let NUMFEET:Int=0
 } // struct INVENTORYSLOTS
