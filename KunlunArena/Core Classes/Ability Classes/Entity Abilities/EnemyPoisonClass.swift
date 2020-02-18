@@ -18,7 +18,7 @@ class EnemyPoisonClass:EnemySkillClass
         
         manaCost=17
         COOLDOWN=8
-        lengthActive=0.3
+        lengthActive=10
         tier=0
     } // init
     

@@ -11,6 +11,8 @@ import SpriteKit
 
 class EnemyFireClass:EnemySkillClass
 {
+    var oldMovementSpeed:CGFloat=0
+    
     override init(theGame: GameClass, ent: EntityClass)
     {
         super.init(theGame: theGame, ent: ent)
@@ -22,6 +24,31 @@ class EnemyFireClass:EnemySkillClass
     } // init
     
     override func doSkill()
+    {
+        super.doSkill()
+        oldMovementSpeed=entity!.moveSpeed
+        entity!.moveSpeed=0
+        
+        lastUse=NSDate()
+        isActive=true
+        
+
+        let fireNode=SKEmitterNode(fileNamed: "FireBreathTalentEmitter.sks")
+        fireNode!.position=entity!.bodySprite.position
+        fireNode!.zPosition=entity!.bodySprite.zPosition-0.00001
+        fireNode!.zRotation=entity!.bodySprite.zRotation
+        
+        fireNode!.run(SKAction.sequence([SKAction.wait(forDuration: 1.5),SKAction.removeFromParent()]))
+        fireNode!.name="fireNode"
+        fireNode!.setScale(1.3)
+        game!.scene!.addChild(fireNode!)
+        
+        print("BREATHING FIRE!!!!!")
+        
+    }
+    
+    
+    override func updateSkill()
     {
         // Pick a spot in front of the enemy and see if player is there
         
@@ -36,7 +63,13 @@ class EnemyFireClass:EnemySkillClass
         
         if pDist < 100
         {
-            game!.player!.takeDamage(amount: entity!.currentDamage)
+            game!.player!.takeDamage(amount: entity!.currentDamage/4)
         }
     }
+    
+    override func removeSkill()
+    {
+        entity!.moveSpeed=oldMovementSpeed
+    }
+    
 }
