@@ -587,7 +587,7 @@ class GameScene: SKScene {
         // first update global cooldowns
         if actionCoolDowns.count > 0
          {
-             for i in 1..<player.playerTalents.count
+            for i in 1..<actionCoolDowns.count
              {
                  // get the cooldown remaing %
                 if player.getGlobalCooldownRatio() > 0
@@ -609,11 +609,12 @@ class GameScene: SKScene {
         // Then update individual cooldowns
         if actionCoolDowns.count > 0
         {
-            for i in 1..<player.playerTalents.count
+            for i in 1..<actionCoolDowns.count
             {
                 // get the cooldown remaing %
                 if player.playerTalents[i].getCooldown() > 0 //&& player.getGlobalCooldownRatio() < 0
                 {
+                    
                     actionCoolDowns[i-1].isHidden=false
                     actionCoolDowns[i-1].yScale=player.playerTalents[i].getCooldownRatio()
                     actionCoolDowns[i-1].position.y = -32*(1-player.playerTalents[i].getCooldownRatio())
@@ -830,6 +831,17 @@ class GameScene: SKScene {
             
         case 24: // +
             zoomInPressed=true
+            
+        case 25: // temp 9 --
+            if player.playerTalents[TalentList.howlingWind].getCooldown() < 0 && player.mana >= player.playerTalents[TalentList.howlingWind].manaCost && player.getGlobalCooldownRatio() < 0
+                     {
+                     player.activeTalents.append(player.playerTalents[TalentList.howlingWind])
+                         player.playerTalents[TalentList.howlingWind].doTalent()
+                     }
+                     else
+                     {
+                         print("howlingWind on cooldown.")
+                     }
             
         case 29: // 0 -- generate new weapon
             if gameState==STATES.ITEM

@@ -81,6 +81,8 @@
 		F4AC646723A00CDD00C64D2E /* SpecialStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AC646623A00CDD00C64D2E /* SpecialStatus.swift */; };
 		F4AC646B23A03DF200C64D2E /* FireSplode.sks in Resources */ = {isa = PBXBuildFile; fileRef = F4AC646923A03DF200C64D2E /* FireSplode.sks */; };
 		F4AC646C23A03DF200C64D2E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F4AC646A23A03DF200C64D2E /* Assets.xcassets */; };
+		F4C775AB23F8E0270062A912 /* HowlingWindTalentClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C775AA23F8E0270062A912 /* HowlingWindTalentClass.swift */; };
+		F4C775AD23F8E1120062A912 /* HowlingWindEmitter.sks in Resources */ = {isa = PBXBuildFile; fileRef = F4C775AC23F8E1120062A912 /* HowlingWindEmitter.sks */; };
 		F4D8715923E8722700915B37 /* ToolTipClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D8715823E8722700915B37 /* ToolTipClass.swift */; };
 /* End PBXBuildFile section */
 
@@ -162,6 +164,8 @@
 		F4AC646623A00CDD00C64D2E /* SpecialStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecialStatus.swift; sourceTree = "<group>"; };
 		F4AC646923A03DF200C64D2E /* FireSplode.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = FireSplode.sks; sourceTree = "<group>"; };
 		F4AC646A23A03DF200C64D2E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F4C775AA23F8E0270062A912 /* HowlingWindTalentClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HowlingWindTalentClass.swift; sourceTree = "<group>"; };
+		F4C775AC23F8E1120062A912 /* HowlingWindEmitter.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = HowlingWindEmitter.sks; sourceTree = "<group>"; };
 		F4D8715823E8722700915B37 /* ToolTipClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolTipClass.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -414,6 +418,7 @@
 				4C45B39823E4CF9E005C778E /* CherryBombTalentClass.swift */,
 				4C45B39C23E8C7AF005C778E /* VampiricAttackTalentClass.swift */,
 				F473B87323EB4BA50088C885 /* BloomingFlowerTalentClass.swift */,
+				F4C775AA23F8E0270062A912 /* HowlingWindTalentClass.swift */,
 			);
 			path = "Ability Classes";
 			sourceTree = "<group>";
@@ -432,6 +437,7 @@
 				4C45B3A023E8C83F005C778E /* VampiricEmmiter.sks */,
 				F473B87123EB18280088C885 /* PortalEmitter.sks */,
 				4C34DF6823F358AB0056EC77 /* levelUp.sks */,
+				F4C775AC23F8E1120062A912 /* HowlingWindEmitter.sks */,
 			);
 			path = Emitters;
 			sourceTree = "<group>";
@@ -505,6 +511,7 @@
 				440E1EE723F4959C007D5700 /* scratchQuick.mp3 in Resources */,
 				F451541B23E314E900B5D04C /* To Do.rtf in Resources */,
 				F482DF08239744050063CF84 /* GameScene.sks in Resources */,
+				F4C775AD23F8E1120062A912 /* HowlingWindEmitter.sks in Resources */,
 				F482DF10239744070063CF84 /* Assets.xcassets in Resources */,
 				F4AC646B23A03DF200C64D2E /* FireSplode.sks in Resources */,
 				43F34FBC23EB69CA008701F9 /* AngerIssuesEmitter.sks in Resources */,
@@ -513,7 +520,6 @@
 				F482DF13239744070063CF84 /* Main.storyboard in Resources */,
 				44A6261523E4D0ED004ED04A /* swordsOfLightningEffect.sks in Resources */,
 				F45F4AC923ABE9ED0020333B /* Keyboard Commands.rtf in Resources */,
-				44698E4323F1F51900A11A00 /* dragonBreath.mp3 in Resources */,
 				4C34DF6923F358AB0056EC77 /* levelUp.sks in Resources */,
 				F4AC646C23A03DF200C64D2E /* Assets.xcassets in Resources */,
 			);
@@ -579,6 +585,7 @@
 				4C45B39923E4CF9E005C778E /* CherryBombTalentClass.swift in Sources */,
 				F46BF48923D264AB005C29EB /* FloatingTextClass.swift in Sources */,
 				432D90D823E8C6EC00BA99F8 /* GoatEntClass.swift in Sources */,
+				F4C775AB23F8E0270062A912 /* HowlingWindTalentClass.swift in Sources */,
 				4346BEC123DA456500F6300D /* DragonEntClass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

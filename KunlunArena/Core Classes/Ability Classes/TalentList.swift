@@ -21,4 +21,5 @@ struct TalentList
     static let angerIssues:Int=6
     static let bloomingFlower:Int=7
     static let vampireAttack:Int=8
+    static let howlingWind:Int=9
 }

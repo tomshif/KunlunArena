@@ -120,6 +120,12 @@ class PlayerClass
         let tempVampire=VampiricAttackTalentClass(theGame: game!)
         playerTalents.append(tempVampire)
         
+        
+        //9 howling wind
+        let tempWind=HowlingWindTalentClass(theGame: game!)
+        playerTalents.append(tempWind)
+        
+        
         equippedWeapon=BaseInventoryClass(theGame: game!, level: 1)
         resetStats()
         equipRefresh()
