@@ -21,7 +21,6 @@ class MeleeAttackClass:PlayerTalentClass
         name="Attack"
         description="Standard melee attack"
         COOLDOWN=0.25 // This will actually come from the equipped weapon eventually, but for now we're hardcoding it.
-        
     } // init(game)
     
     override func doTalent()
@@ -76,4 +75,5 @@ class MeleeAttackClass:PlayerTalentClass
         
     } // doTalent()
 } // MeleeAttackClass
+
 

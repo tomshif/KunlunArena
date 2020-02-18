@@ -46,7 +46,6 @@ class PlayerClass
     var moveSpeed:CGFloat=10
     var maxHealth:CGFloat=20
     var maxMana:CGFloat=20
-    var experienceGain:CGFloat=0
     var baseExUp:CGFloat=1000
     var experienceMelee:CGFloat=0
     var experienceMartial:CGFloat=0
@@ -120,6 +119,16 @@ class PlayerClass
         //8 vampire attack
         let tempVampire=VampiricAttackTalentClass(theGame: game!)
         playerTalents.append(tempVampire)
+        
+        
+        //9 howling wind
+        let tempWind=HowlingWindTalentClass(theGame: game!)
+        playerTalents.append(tempWind)
+        
+        // 10 ancient shield
+        let tempShield=AncientShieldTalentClass(theGame: game!)
+        playerTalents.append(tempShield)
+        
         
         equippedWeapon=BaseInventoryClass(theGame: game!, level: 1)
         resetStats()
@@ -383,7 +392,7 @@ class PlayerClass
                    }
         } // if better than common quality
     } // equipRefresh
-    public func receiveEX()
+    public func receiveEX(experienceGain:CGFloat=100) //100 is temp
     {
         if  game!.player!.equippedWeapon!.talentType == TalentBranchList.melee
         {
@@ -471,7 +480,21 @@ class PlayerClass
         {
             experienceMelee-=baseExUp
             meleeLv+=1
+            levelUpEffect()
         }
+    }
+    
+    func levelUpEffect()
+    {
+        let levelUpEffect = SKEmitterNode(fileNamed: "levelUp.sks")
+        levelUpEffect!.name="ghostTalentEffect"
+        game!.player!.playerSprite!.addChild(levelUpEffect!)
+        
+        
+        
+        levelUpEffect!.zPosition = 200
+        levelUpEffect!.alpha=1
+        levelUpEffect!.run(SKAction.sequence([SKAction.wait(forDuration: 1),SKAction.fadeOut(withDuration: 1.0), SKAction.removeFromParent()]))
     }
     
     public func update()
@@ -481,7 +504,6 @@ class PlayerClass
         healthRe()
         manaRe()
         LevelUp()
-        receiveEX()
         
         
         // test

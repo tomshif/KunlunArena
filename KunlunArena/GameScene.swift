@@ -250,7 +250,7 @@ class GameScene: SKScene {
     func spawnEnemy()
     {
 
-        let tempEntHorse=DragonEntClass(theGame: game, id: entCount)
+        let tempEntSnake=SnakeEntClass(theGame: game, id: entCount)
 
         var goodSpawn:Bool=false
         var xp:CGFloat=0
@@ -277,9 +277,9 @@ class GameScene: SKScene {
             } // for each node at the spot
         } // while we're looking for a good spawn point
 
-        tempEntHorse.bodySprite.position.x=xp
-        tempEntHorse.bodySprite.position.y=yp
-        game.entList.append(tempEntHorse)
+        tempEntSnake.bodySprite.position.x=xp
+        tempEntSnake.bodySprite.position.y=yp
+        game.entList.append(tempEntSnake)
         entCount+=1
         
     } // func spawnEnemy()
@@ -587,7 +587,7 @@ class GameScene: SKScene {
         // first update global cooldowns
         if actionCoolDowns.count > 0
          {
-             for i in 1..<player.playerTalents.count
+            for i in 1..<actionCoolDowns.count
              {
                  // get the cooldown remaing %
                 if player.getGlobalCooldownRatio() > 0
@@ -609,11 +609,12 @@ class GameScene: SKScene {
         // Then update individual cooldowns
         if actionCoolDowns.count > 0
         {
-            for i in 1..<player.playerTalents.count
+            for i in 1..<actionCoolDowns.count
             {
                 // get the cooldown remaing %
                 if player.playerTalents[i].getCooldown() > 0 //&& player.getGlobalCooldownRatio() < 0
                 {
+                    
                     actionCoolDowns[i-1].isHidden=false
                     actionCoolDowns[i-1].yScale=player.playerTalents[i].getCooldownRatio()
                     actionCoolDowns[i-1].position.y = -32*(1-player.playerTalents[i].getCooldownRatio())
@@ -729,8 +730,10 @@ class GameScene: SKScene {
         case 14: // e
             attack()
             
-        //case 16: //y //This is a temp for leveling stuff
-            //game.player.reciveXp()
+        case 16: //y //This is a temp for leveling stuff
+            game.player!.receiveEX()
+            print("melee level is \(game.player!.meleeLv)")
+            print("melee exp is \(game.player!.experienceMelee)")
             
         case 18: // 1
             if player.playerTalents[TalentList.dash].getCooldown() < 0 && player.mana >= player.playerTalents[TalentList.dash].manaCost
@@ -828,6 +831,17 @@ class GameScene: SKScene {
             
         case 24: // +
             zoomInPressed=true
+            
+        case 25: // temp 9 --
+            if player.playerTalents[TalentList.ancientShield].getCooldown() < 0 && player.mana >= player.playerTalents[TalentList.ancientShield].manaCost && player.getGlobalCooldownRatio() < 0
+                     {
+                     player.activeTalents.append(player.playerTalents[TalentList.ancientShield])
+                         player.playerTalents[TalentList.ancientShield].doTalent()
+                     }
+                     else
+                     {
+                         print("ancientShield on cooldown.")
+                     }
             
         case 29: // 0 -- generate new weapon
             if gameState==STATES.ITEM

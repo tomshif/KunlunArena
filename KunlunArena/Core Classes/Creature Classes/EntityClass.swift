@@ -31,7 +31,7 @@ class EntityClass
     // ent<Type>0<Single digit number>
     // for example a pig part would be
     // "entPig01"
-    var spriteNamePrefix:String="pig"
+    var spriteNamePrefix:String="dragon"
     
     // the number of possible combinations for each sprite part.
     var headNum:Int=0
@@ -163,6 +163,8 @@ class EntityClass
         bodySprite.physicsBody=SKPhysicsBody(circleOfRadius: bodySprite.size.width)
         bodySprite.physicsBody!.categoryBitMask=BODYBITMASKS.ENEMY
         bodySprite.physicsBody!.collisionBitMask=BODYBITMASKS.WALL | BODYBITMASKS.ENEMY | BODYBITMASKS.PLAYER
+       
+        bodySprite.physicsBody!.friction=0.5
         bodySprite.texture!.filteringMode=SKTextureFilteringMode.nearest
         headSprite.texture!.filteringMode=SKTextureFilteringMode.nearest
         tailSprite.texture!.filteringMode=SKTextureFilteringMode.nearest
@@ -319,6 +321,7 @@ class EntityClass
         bodySprite.removeAllActions()
         bodySprite.removeFromParent()
         isDead=true
+        game!.player!.receiveEX()
 
     } // die()
     
