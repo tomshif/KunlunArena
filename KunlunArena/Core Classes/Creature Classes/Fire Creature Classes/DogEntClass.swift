@@ -11,7 +11,7 @@ import SpriteKit
 
 class DogEntClass:EntityClass
 {
-   
+    var dogSoundAction=SKAction.playSoundFileNamed("quickBite", waitForCompletion: true)
     
     override init(theGame: GameClass, id: Int)
      {
@@ -79,7 +79,22 @@ class DogEntClass:EntityClass
 
 }//Init
     
+ override func attack() {
+       
  
+      if !bodySprite.hasActions()
+      {
+          bodySprite.run(dogSoundAction)
+      }
+      if skillList[1].getCooldown() < 0
+      {
+          skillList[1].doSkill()
+      }
+      else if skillList[0].getCooldown() < 0
+      {
+          skillList[0].doSkill()
+      }
+  }//attack
     
         
     

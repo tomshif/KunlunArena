@@ -11,6 +11,8 @@ import SpriteKit
 
 class PigEntClass:EntityClass
 {
+    var pigSoundAction=SKAction.playSoundFileNamed("shortOink", waitForCompletion: true)
+    
   override init(theGame: GameClass, id: Int)
   {
       super.init(theGame: theGame, id: id)
@@ -82,7 +84,22 @@ class PigEntClass:EntityClass
     
   } // init scene/ID
 
-    
+    override func attack() {
+            
+      
+           if !bodySprite.hasActions()
+           {
+               bodySprite.run(pigSoundAction)
+           }
+           if skillList[1].getCooldown() < 0
+           {
+               skillList[1].doSkill()
+           }
+           else if skillList[0].getCooldown() < 0
+           {
+               skillList[0].doSkill()
+           }
+       }//attack
     
     
 }// class PigEntClass

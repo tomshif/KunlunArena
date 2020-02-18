@@ -11,7 +11,7 @@ import SpriteKit
 
 class DragonEntClass:EntityClass
 {
-    var dragonSoundAction=SKAction.playSoundFileNamed("goat.mp3", waitForCompletion: true)
+    var dragonSoundAction=SKAction.playSoundFileNamed("dragonBiteQuick.mp3", waitForCompletion: true)
   override init(theGame: GameClass, id: Int)
   {
       super.init(theGame: theGame, id: id)
