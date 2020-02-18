@@ -78,8 +78,8 @@ class HowlingWindTalentClass:PlayerTalentClass
                         ent.bodySprite.physicsBody!.angularVelocity=0
                     }]))
                 
-            }
-        }
+            } // if it's in range
+        } // for each ent
            
        } // doTalent()
        override func updateTalent()

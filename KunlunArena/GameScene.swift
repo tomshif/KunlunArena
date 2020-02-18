@@ -833,14 +833,14 @@ class GameScene: SKScene {
             zoomInPressed=true
             
         case 25: // temp 9 --
-            if player.playerTalents[TalentList.howlingWind].getCooldown() < 0 && player.mana >= player.playerTalents[TalentList.howlingWind].manaCost && player.getGlobalCooldownRatio() < 0
+            if player.playerTalents[TalentList.ancientShield].getCooldown() < 0 && player.mana >= player.playerTalents[TalentList.ancientShield].manaCost && player.getGlobalCooldownRatio() < 0
                      {
-                     player.activeTalents.append(player.playerTalents[TalentList.howlingWind])
-                         player.playerTalents[TalentList.howlingWind].doTalent()
+                     player.activeTalents.append(player.playerTalents[TalentList.ancientShield])
+                         player.playerTalents[TalentList.ancientShield].doTalent()
                      }
                      else
                      {
-                         print("howlingWind on cooldown.")
+                         print("ancientShield on cooldown.")
                      }
             
         case 29: // 0 -- generate new weapon

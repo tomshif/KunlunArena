@@ -37,6 +37,7 @@
 		4C45B39D23E8C7AF005C778E /* VampiricAttackTalentClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C45B39C23E8C7AF005C778E /* VampiricAttackTalentClass.swift */; };
 		4C45B3A123E8C83F005C778E /* VampiricEmmiter.sks in Resources */ = {isa = PBXBuildFile; fileRef = 4C45B3A023E8C83F005C778E /* VampiricEmmiter.sks */; };
 		4CA2857A23DF8BC400A72268 /* GhostDodgeTalent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA2857923DF8BC400A72268 /* GhostDodgeTalent.swift */; };
+		F419418523FC518A003F06E7 /* AncientShieldTalentClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F419418423FC518A003F06E7 /* AncientShieldTalentClass.swift */; };
 		F431F07D23DBD16D00EBD905 /* TalentList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F431F07C23DBD16D00EBD905 /* TalentList.swift */; };
 		F4460B7223F1EDE800DDCDF6 /* BaseWeaponClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4460B7123F1EDE800DDCDF6 /* BaseWeaponClass.swift */; };
 		F4460B7423F1F6CA00DDCDF6 /* EnemyBlinkClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4460B7323F1F6CA00DDCDF6 /* EnemyBlinkClass.swift */; };
@@ -117,6 +118,7 @@
 		4C45B39C23E8C7AF005C778E /* VampiricAttackTalentClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VampiricAttackTalentClass.swift; sourceTree = "<group>"; };
 		4C45B3A023E8C83F005C778E /* VampiricEmmiter.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = VampiricEmmiter.sks; sourceTree = "<group>"; };
 		4CA2857923DF8BC400A72268 /* GhostDodgeTalent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GhostDodgeTalent.swift; sourceTree = "<group>"; };
+		F419418423FC518A003F06E7 /* AncientShieldTalentClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AncientShieldTalentClass.swift; sourceTree = "<group>"; };
 		F431F07C23DBD16D00EBD905 /* TalentList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalentList.swift; sourceTree = "<group>"; };
 		F4460B7123F1EDE800DDCDF6 /* BaseWeaponClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseWeaponClass.swift; sourceTree = "<group>"; };
 		F4460B7323F1F6CA00DDCDF6 /* EnemyBlinkClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnemyBlinkClass.swift; sourceTree = "<group>"; };
@@ -419,6 +421,7 @@
 				4C45B39C23E8C7AF005C778E /* VampiricAttackTalentClass.swift */,
 				F473B87323EB4BA50088C885 /* BloomingFlowerTalentClass.swift */,
 				F4C775AA23F8E0270062A912 /* HowlingWindTalentClass.swift */,
+				F419418423FC518A003F06E7 /* AncientShieldTalentClass.swift */,
 			);
 			path = "Ability Classes";
 			sourceTree = "<group>";
@@ -542,6 +545,7 @@
 				4CA2857A23DF8BC400A72268 /* GhostDodgeTalent.swift in Sources */,
 				4C45B38E23E22FBF005C778E /* AngerIssuesTalentClass.swift in Sources */,
 				F46BF48F23D8CA31005C29EB /* InventoryInit.swift in Sources */,
+				F419418523FC518A003F06E7 /* AncientShieldTalentClass.swift in Sources */,
 				44F62E7423DA451B004C8469 /* SwordsOfLightningTalentClass.swift in Sources */,
 				4454C2E623E2176F00473804 /* DogEntClass.swift in Sources */,
 				F431F07D23DBD16D00EBD905 /* TalentList.swift in Sources */,

@@ -125,6 +125,10 @@ class PlayerClass
         let tempWind=HowlingWindTalentClass(theGame: game!)
         playerTalents.append(tempWind)
         
+        // 10 ancient shield
+        let tempShield=AncientShieldTalentClass(theGame: game!)
+        playerTalents.append(tempShield)
+        
         
         equippedWeapon=BaseInventoryClass(theGame: game!, level: 1)
         resetStats()

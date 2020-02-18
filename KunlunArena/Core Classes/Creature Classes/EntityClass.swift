@@ -163,6 +163,8 @@ class EntityClass
         bodySprite.physicsBody=SKPhysicsBody(circleOfRadius: bodySprite.size.width)
         bodySprite.physicsBody!.categoryBitMask=BODYBITMASKS.ENEMY
         bodySprite.physicsBody!.collisionBitMask=BODYBITMASKS.WALL | BODYBITMASKS.ENEMY | BODYBITMASKS.PLAYER
+       
+        bodySprite.physicsBody!.friction=0.5
         bodySprite.texture!.filteringMode=SKTextureFilteringMode.nearest
         headSprite.texture!.filteringMode=SKTextureFilteringMode.nearest
         tailSprite.texture!.filteringMode=SKTextureFilteringMode.nearest

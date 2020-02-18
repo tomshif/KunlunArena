@@ -19,6 +19,8 @@ class BaseInventoryClass
     var iLevel:Int=0
     var iLevelMod:CGFloat=0
     var statsMod:CGFloat=0
+    var armorRating:CGFloat=0
+    
     
     var invType:Int=0
     var talentType:Int=0
@@ -63,6 +65,9 @@ class BaseInventoryClass
     internal func generateItem(level: Int)
     {
         // Set iLevel
+        
+        // Determine type of item
+        // TEMP - Hardcoded to weapon right now until helmets are ready
         invSlot=INVENTORYSLOTS.weapon
         
         switch invSlot
