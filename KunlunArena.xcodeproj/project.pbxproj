@@ -39,6 +39,8 @@
 		4C45B39D23E8C7AF005C778E /* VampiricAttackTalentClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C45B39C23E8C7AF005C778E /* VampiricAttackTalentClass.swift */; };
 		4C45B3A123E8C83F005C778E /* VampiricEmmiter.sks in Resources */ = {isa = PBXBuildFile; fileRef = 4C45B3A023E8C83F005C778E /* VampiricEmmiter.sks */; };
 		4CA2857A23DF8BC400A72268 /* GhostDodgeTalent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA2857923DF8BC400A72268 /* GhostDodgeTalent.swift */; };
+		F40DE52E23FC9C950061DC92 /* JadeSplodeEmitter.sks in Resources */ = {isa = PBXBuildFile; fileRef = F40DE52D23FC9C950061DC92 /* JadeSplodeEmitter.sks */; };
+		F40DE53023FC9FF90061DC92 /* JadeStormEmitter.sks in Resources */ = {isa = PBXBuildFile; fileRef = F40DE52F23FC9FF90061DC92 /* JadeStormEmitter.sks */; };
 		F419418523FC518A003F06E7 /* AncientShieldTalentClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F419418423FC518A003F06E7 /* AncientShieldTalentClass.swift */; };
 		F419418723FC76B2003F06E7 /* JadeStormTalentClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F419418623FC76B2003F06E7 /* JadeStormTalentClass.swift */; };
 		F431F07D23DBD16D00EBD905 /* TalentList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F431F07C23DBD16D00EBD905 /* TalentList.swift */; };
@@ -123,6 +125,8 @@
 		4C45B39C23E8C7AF005C778E /* VampiricAttackTalentClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VampiricAttackTalentClass.swift; sourceTree = "<group>"; };
 		4C45B3A023E8C83F005C778E /* VampiricEmmiter.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = VampiricEmmiter.sks; sourceTree = "<group>"; };
 		4CA2857923DF8BC400A72268 /* GhostDodgeTalent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GhostDodgeTalent.swift; sourceTree = "<group>"; };
+		F40DE52D23FC9C950061DC92 /* JadeSplodeEmitter.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = JadeSplodeEmitter.sks; sourceTree = "<group>"; };
+		F40DE52F23FC9FF90061DC92 /* JadeStormEmitter.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = JadeStormEmitter.sks; sourceTree = "<group>"; };
 		F419418423FC518A003F06E7 /* AncientShieldTalentClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AncientShieldTalentClass.swift; sourceTree = "<group>"; };
 		F419418623FC76B2003F06E7 /* JadeStormTalentClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JadeStormTalentClass.swift; sourceTree = "<group>"; };
 		F431F07C23DBD16D00EBD905 /* TalentList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalentList.swift; sourceTree = "<group>"; };
@@ -450,6 +454,8 @@
 				F473B87123EB18280088C885 /* PortalEmitter.sks */,
 				4C34DF6823F358AB0056EC77 /* levelUp.sks */,
 				F4C775AC23F8E1120062A912 /* HowlingWindEmitter.sks */,
+				F40DE52D23FC9C950061DC92 /* JadeSplodeEmitter.sks */,
+				F40DE52F23FC9FF90061DC92 /* JadeStormEmitter.sks */,
 			);
 			path = Emitters;
 			sourceTree = "<group>";
@@ -518,7 +524,9 @@
 				F4460B7623F35F9300DDCDF6 /* dragonBiteQuick.mp3 in Resources */,
 				4C45B39B23E4D0E5005C778E /* CherryBombEffect.sks in Resources */,
 				F497A28723E1D96C00E4B248 /* FireBreathTalentEmitter.sks in Resources */,
+				F40DE53023FC9FF90061DC92 /* JadeStormEmitter.sks in Resources */,
 				F45F4B1E23B652ED0020333B /* SmokeBG.sks in Resources */,
+				F40DE52E23FC9C950061DC92 /* JadeSplodeEmitter.sks in Resources */,
 				4C45B39023E23160005C778E /* GhostDodgeEmitter.sks in Resources */,
 				440E1EE723F4959C007D5700 /* scratchQuick.mp3 in Resources */,
 				F451541B23E314E900B5D04C /* To Do.rtf in Resources */,

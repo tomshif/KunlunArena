@@ -56,6 +56,9 @@ class EntityClass
     var healthBar=SKSpriteNode()
     
     var spriteScale:CGFloat=1.0
+    var entColor=NSColor()
+    
+    
     
     // AI related
     var moveSpeed:CGFloat=7.5
@@ -72,6 +75,8 @@ class EntityClass
     var VISIONDIST:CGFloat=500
     var UPDATECYCLE:Int=0   // This is revised based on entID % 4 to ensure even distribution of entities in update cycling
     var MELEERANGE:CGFloat=100
+    var statusEffect:Int=0
+    
     
     // Entity Stats
     var entLevel:Int=1
@@ -127,7 +132,7 @@ class EntityClass
         healthBar.setScale(4.0)
         game!.scene!.addChild(healthBar)
         
-        let entColor=NSColor(calibratedRed: random(min: 1, max: 1.0), green: random(min: 0, max: 1), blue: random(min: 0, max: 1), alpha: 1.0)
+        entColor=NSColor(calibratedRed: random(min: 1, max: 1.0), green: random(min: 0, max: 1), blue: random(min: 0, max: 1), alpha: 1.0)
         bodySprite.color=entColor
         headSprite.color=entColor
         tailSprite.color=entColor
@@ -237,30 +242,47 @@ class EntityClass
     
     public func takeDamage(amount: CGFloat)
     {
-        print("Health: \(health)")
-        health -= amount*(1-damageReduction)
-        print("\(amount) reduced to \(amount*(1-damageReduction))")
-        
-        // create a flash effect to indicate it got hit
-        bodySprite.run(SKAction.sequence([SKAction.fadeAlpha(to: 0.5, duration: 0.1), SKAction.fadeAlpha(to: 1.0, duration: 0.1)]))
-        game!.floatText!.damageLabel(amount: amount*(1-damageReduction), ent: self)
-        // create blood splatter
-        for _ in 1...5
+        if statusEffect == SPECIALSTATUS.jade
         {
-            let tempBlood=SKSpriteNode(imageNamed: "bloodSplatter")
-            tempBlood.position=bodySprite.position
-            tempBlood.zPosition=10
-            tempBlood.zRotation=random(min: 0, max: CGFloat.pi*2)
-            let distance=(random(min: 2, max: 100)+random(min: 2, max: 100))/2
-            let angle=random(min: 0, max: CGFloat.pi*2)
-            let adx=cos(angle)*distance
-            let ady=sin(angle)*distance
-            tempBlood.run(SKAction.sequence([SKAction.move(by: CGVector(dx: adx, dy: ady), duration: 0.4), SKAction.wait(forDuration: 2.0), SKAction.fadeOut(withDuration: 0.5), SKAction.removeFromParent()]))
-            tempBlood.name="bloodSplatter"
-            game!.scene!.addChild(tempBlood)
-        } // for
+            // if we're jade, any damage causes us to splode
+            
+            let splode=SKEmitterNode(fileNamed: "JadeSplodeEmitter.sks")
+            splode!.position = bodySprite.position
+            splode!.zPosition=1500
+            splode!.setScale(1.0)
+            game!.scene!.addChild(splode!)
+            splode!.run(SKAction.sequence([SKAction.wait(forDuration: 2.5),SKAction.removeFromParent()]))
+            die()
+            
+        }
+        else
+        {
+                
         
-        
+            print("Health: \(health)")
+            health -= amount*(1-damageReduction)
+            print("\(amount) reduced to \(amount*(1-damageReduction))")
+            
+            // create a flash effect to indicate it got hit
+            bodySprite.run(SKAction.sequence([SKAction.fadeAlpha(to: 0.5, duration: 0.1), SKAction.fadeAlpha(to: 1.0, duration: 0.1)]))
+            game!.floatText!.damageLabel(amount: amount*(1-damageReduction), ent: self)
+            // create blood splatter
+            for _ in 1...5
+            {
+                let tempBlood=SKSpriteNode(imageNamed: "bloodSplatter")
+                tempBlood.position=bodySprite.position
+                tempBlood.zPosition=10
+                tempBlood.zRotation=random(min: 0, max: CGFloat.pi*2)
+                let distance=(random(min: 2, max: 100)+random(min: 2, max: 100))/2
+                let angle=random(min: 0, max: CGFloat.pi*2)
+                let adx=cos(angle)*distance
+                let ady=sin(angle)*distance
+                tempBlood.run(SKAction.sequence([SKAction.move(by: CGVector(dx: adx, dy: ady), duration: 0.4), SKAction.wait(forDuration: 2.0), SKAction.fadeOut(withDuration: 0.5), SKAction.removeFromParent()]))
+                tempBlood.name="bloodSplatter"
+                game!.scene!.addChild(tempBlood)
+            } // for
+            
+        } // if not jade
     } // takeDamage()
      
     internal func getAngleToPlayer() -> CGFloat
@@ -466,7 +488,7 @@ class EntityClass
             die()
         }
         
-        if UPDATECYCLE==cycle && !isDead
+        if UPDATECYCLE==cycle && !isDead && statusEffect != SPECIALSTATUS.jade
         {
             
  
@@ -479,7 +501,7 @@ class EntityClass
 
         
         // move if pursuing
-        if playerDist > pursueRange && isPursuing && !isDead
+        if playerDist > pursueRange && isPursuing && !isDead && statusEffect != SPECIALSTATUS.jade
         {
             let moveDX=cos(bodySprite.zRotation)*moveSpeed
             let moveDY=sin(bodySprite.zRotation)*moveSpeed

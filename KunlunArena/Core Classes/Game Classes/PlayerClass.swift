@@ -129,10 +129,21 @@ class PlayerClass
         let tempShield=AncientShieldTalentClass(theGame: game!)
         playerTalents.append(tempShield)
         
+        // 11 tiger claws
+        let tempTiger=TigerClawsTalentClass(theGame: game!)
+        playerTalents.append(tempShield)
+        
+        // 12 jade storm
+        let tempJadeStorm=JadeStormTalentClass(theGame: game!)
+        playerTalents.append(tempJadeStorm)
+        
         
         equippedWeapon=BaseInventoryClass(theGame: game!, level: 1)
         resetStats()
         equipRefresh()
+        
+
+        
     } // init - game
     
     public func moveTo()

@@ -819,28 +819,28 @@ class GameScene: SKScene {
             zoomOutPressed=true
             
         case 28: // 8
-            if player.playerTalents[TalentList.vampireAttack].getCooldown() < 0 && player.mana >= player.playerTalents[TalentList.vampireAttack].manaCost && player.getGlobalCooldownRatio() < 0
+            if player.playerTalents[TalentList.howlingWind].getCooldown() < 0 && player.mana >= player.playerTalents[TalentList.howlingWind].manaCost && player.getGlobalCooldownRatio() < 0
                      {
-                     player.activeTalents.append(player.playerTalents[TalentList.vampireAttack])
-                         player.playerTalents[TalentList.vampireAttack].doTalent()
+                     player.activeTalents.append(player.playerTalents[TalentList.howlingWind])
+                         player.playerTalents[TalentList.howlingWind].doTalent()
                      }
                      else
                      {
-                         print("vampireAttack on cooldown.")
+                         print("howlingWind on cooldown.")
                      }
             
         case 24: // +
             zoomInPressed=true
             
         case 25: // temp 9 --
-            if player.playerTalents[TalentList.ancientShield].getCooldown() < 0 && player.mana >= player.playerTalents[TalentList.ancientShield].manaCost && player.getGlobalCooldownRatio() < 0
+            if player.playerTalents[TalentList.jadeStorm].getCooldown() < 0 && player.mana >= player.playerTalents[TalentList.jadeStorm].manaCost && player.getGlobalCooldownRatio() < 0
                      {
-                     player.activeTalents.append(player.playerTalents[TalentList.ancientShield])
-                         player.playerTalents[TalentList.ancientShield].doTalent()
+                     player.activeTalents.append(player.playerTalents[TalentList.jadeStorm])
+                         player.playerTalents[TalentList.jadeStorm].doTalent()
                      }
                      else
                      {
-                         print("ancientShield on cooldown.")
+                         print("jadeStorm on cooldown.")
                      }
             
         case 29: // 0 -- generate new weapon

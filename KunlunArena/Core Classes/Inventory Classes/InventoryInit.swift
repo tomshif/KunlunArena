@@ -147,7 +147,7 @@ func initInventory(game: GameClass)
     let type41=BaseInvTypesClass(n: "Han Helmet", m: 1, t: 1)
        game.baseTypesList.append(type41)
     
-    let type42=BaseInvTypesClass(n: "shānwénkǎi Helmet", m: 1, t: 1)
+    let type42=BaseInvTypesClass(n: "Plate Helm", m: 1, t: 1)
        game.baseTypesList.append(type42)
     
     let type43=BaseInvTypesClass(n: "Jin Helm", m: 1, t: 1)
@@ -156,7 +156,7 @@ func initInventory(game: GameClass)
     let type44=BaseInvTypesClass(n: "Yuan Cap", m: 1, t: 1)
     game.baseTypesList.append(type44)
     
-    let type45=BaseInvTypesClass(n: "Mongol hat", m: 1, t: 1)
+    let type45=BaseInvTypesClass(n: "Mongol Hat", m: 1, t: 1)
     game.baseTypesList.append(type45)
     
     let type46=BaseInvTypesClass(n: "Ming Phoenix Helmet", m: 1, t: 1)

@@ -49,7 +49,7 @@ class RoosterEntClass:EntityClass
         pursueRange=attackRange
     }
       
-    let entColor=NSColor(calibratedRed: random(min: 0.3, max: 0.5), green: random(min: 0.6, max: 0.8), blue: random(min: 0.1, max: 0.4), alpha: 1.0)
+    entColor=NSColor(calibratedRed: random(min: 0.3, max: 0.5), green: random(min: 0.6, max: 0.8), blue: random(min: 0.1, max: 0.4), alpha: 1.0)
     
     bodySprite.color=entColor
     headSprite.color=entColor
