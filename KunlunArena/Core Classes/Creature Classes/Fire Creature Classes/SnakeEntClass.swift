@@ -30,6 +30,8 @@ class SnakeEntClass:EntityClass
       tailSprite.texture=SKTexture(imageNamed: "\(spriteNamePrefix)Tail0\(tailID)")
       spriteScale=random(min: 1.5, max: 3.5)
       bodySprite.setScale(spriteScale)
+    leftSprite.isHidden=true
+    rightSprite.isHidden=true
     
     
     moveSpeed=random(min: 5.0, max: 5.5)
@@ -110,6 +112,10 @@ class SnakeEntClass:EntityClass
             game!.entCount+=1
              childSnake.bodySprite.position.x=self.bodySprite.position.x
              childSnake.bodySprite.position.y=self.bodySprite.position.y
+            
+            childSnake.bodySprite.name="child\(childSnake.bodySprite.name!)"
+            childSnake.bodySprite.setScale(self.bodySprite.xScale)
+            
              self.bodySprite.name="child\(self.bodySprite.name!)"
              
              game!.entList.append(childSnake)
