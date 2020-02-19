@@ -87,12 +87,9 @@ class EntityClass
     var currentDamage:CGFloat=0
     var damageReduction:CGFloat=0.05 // Modifier applied to incoming damage
     
-    
+    var activeSkillList=[EnemySkillClass]()
     var skillList=[EnemySkillClass]()
     
-    
-    
-
     
     init()
     {
