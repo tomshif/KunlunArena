@@ -21,6 +21,7 @@ class GameClass
     var floatText:FloatingTextClass?
     var cam:SKCameraNode?
     var map:MapClass?
+    var entCount:Int=0
     
     var entList=[EntityClass]() // needs to move to GameClass
     var suffixList=[SuffixClass]()

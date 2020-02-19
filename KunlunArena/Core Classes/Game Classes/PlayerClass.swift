@@ -59,6 +59,8 @@ class PlayerClass
     var ancesterLv:Int=0
     var mechanicaLv:Int=0
     var alchemyLv:Int=0
+    
+    var currentStatus:Int=0
 
     var globalCooldown:CGFloat=0.3
     var lastAction=NSDate()

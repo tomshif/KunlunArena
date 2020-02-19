@@ -61,7 +61,7 @@ class EnemyFireClass:EnemySkillClass
         let pdy = game!.player!.playerSprite!.position.y - dy
         let pDist=hypot(pdy, pdx)
         
-        if pDist < 100
+        if pDist < entity!.bodySprite.size.height*2.5
         {
             game!.player!.takeDamage(amount: entity!.currentDamage/4)
         }

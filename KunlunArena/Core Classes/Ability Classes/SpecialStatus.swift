@@ -19,4 +19,5 @@ struct SPECIALSTATUS
     static let fire:Int=2
     static let jade:Int=4
     static let frozen:Int=6
+    static let poison:Int=8
 }
