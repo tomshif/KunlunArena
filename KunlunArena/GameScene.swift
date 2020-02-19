@@ -231,6 +231,7 @@ class GameScene: SKScene {
        
         pBody.physicsBody!.usesPreciseCollisionDetection=true
         pBody.physicsBody!.affectedByGravity=false
+        pBody.physicsBody!.mass=1.0
         
         // Start the player in room #1 of the map
         player.playerSprite!.position.x = CGFloat(tempMap!.roomPoints[tempMap!.startRoomIndex].x)*tempMap!.TILESIZE - (CGFloat(tempMap!.mapWidth)*tempMap!.TILESIZE) / 2

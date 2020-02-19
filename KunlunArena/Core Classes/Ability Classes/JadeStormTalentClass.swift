@@ -42,7 +42,7 @@ class JadeStormTalentClass:PlayerTalentClass
                 ents.tailSprite.color=ents.entColor
                 ents.rightSprite.color=ents.entColor
                 ents.leftSprite.color=ents.entColor
-                
+
             }
         } // for each entity
     } // removeTalent()
@@ -81,6 +81,8 @@ class JadeStormTalentClass:PlayerTalentClass
                 ents.tailSprite.color=NSColor.green
                 ents.rightSprite.color=NSColor.green
                 ents.leftSprite.color=NSColor.green
+
+                
                 
                 
             }
