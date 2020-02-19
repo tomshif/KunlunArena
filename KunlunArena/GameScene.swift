@@ -54,7 +54,6 @@ class GameScene: SKScene {
     // Ints
     var updateCycle:Int=0 // Moderates AI updates for performance
     var talentUpdateCycle:Int=0 // Moderates talent updates for performance
-    var entCount:Int=0
     var gameState:Int=STATES.FIGHT
     var MAPSIZE:Int=90
     
@@ -250,7 +249,7 @@ class GameScene: SKScene {
     func spawnEnemy()
     {
 
-        let tempEntSnake=DragonEntClass(theGame: game, id: entCount)
+        let tempEntSnake=SnakeEntClass(theGame: game, id: game.entCount)
 
         var goodSpawn:Bool=false
         var xp:CGFloat=0
@@ -280,7 +279,7 @@ class GameScene: SKScene {
         tempEntSnake.bodySprite.position.x=xp
         tempEntSnake.bodySprite.position.y=yp
         game.entList.append(tempEntSnake)
-        entCount+=1
+        game.entCount+=1
         
     } // func spawnEnemy()
     
@@ -530,11 +529,11 @@ class GameScene: SKScene {
         } // if in spawn vert wall mode
         else if gameState==STATES.SPAWNENT
         {
-            let tempEnt=EntityClass(theGame: game, id: entCount)
+            let tempEnt=EntityClass(theGame: game, id: game.entCount)
             tempEnt.game=game
             tempEnt.bodySprite.position=pos
             game.entList.append(tempEnt)
-            entCount+=1
+            game.entCount+=1
         } // if in spawn entity state
     } // touchDown()
     
