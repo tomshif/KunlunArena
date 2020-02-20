@@ -31,10 +31,7 @@
 		440E1EEB23F497CE007D5700 /* flameThrower.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 440E1EEA23F497CE007D5700 /* flameThrower.mp3 */; };
 		4439788E23FC768C008890D1 /* TigerClawsTalent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4439788D23FC768C008890D1 /* TigerClawsTalent.swift */; };
 		4454C2E623E2176F00473804 /* DogEntClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4454C2E523E2176F00473804 /* DogEntClass.swift */; };
-		4480EDF923FF1A9F00AF17C2 /* shortGrunt.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4480EDF823FF1A9F00AF17C2 /* shortGrunt.mp3 */; };
-		4480EDFD23FF1E7200AF17C2 /* levelUp.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4480EDFC23FF1E7200AF17C2 /* levelUp.mp3 */; };
-		4480EE0223FF24DA00AF17C2 /* healing.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4480EE0123FF24DA00AF17C2 /* healing.mp3 */; };
-		4480EE0423FF26E800AF17C2 /* howlingWind.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4480EE0323FF26E800AF17C2 /* howlingWind.mp3 */; };
+		449D331D23FF209B00FB5552 /* SpinningHookKickClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449D331C23FF209B00FB5552 /* SpinningHookKickClass.swift */; };
 		44A6261523E4D0ED004ED04A /* swordsOfLightningEffect.sks in Resources */ = {isa = PBXBuildFile; fileRef = 44A6261423E4D0ED004ED04A /* swordsOfLightningEffect.sks */; };
 		44B8DBBA23DA2D30002BA761 /* SnakeEntClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B8DBB923DA2D30002BA761 /* SnakeEntClass.swift */; };
 		44C697A223DF768B004CCE49 /* PlayerClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C697A123DF768B004CCE49 /* PlayerClass.swift */; };
@@ -125,10 +122,7 @@
 		440E1EEA23F497CE007D5700 /* flameThrower.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = flameThrower.mp3; sourceTree = "<group>"; };
 		4439788D23FC768C008890D1 /* TigerClawsTalent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TigerClawsTalent.swift; sourceTree = "<group>"; };
 		4454C2E523E2176F00473804 /* DogEntClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogEntClass.swift; sourceTree = "<group>"; };
-		4480EDF823FF1A9F00AF17C2 /* shortGrunt.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = shortGrunt.mp3; sourceTree = "<group>"; };
-		4480EDFC23FF1E7200AF17C2 /* levelUp.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = levelUp.mp3; sourceTree = "<group>"; };
-		4480EE0123FF24DA00AF17C2 /* healing.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = healing.mp3; sourceTree = "<group>"; };
-		4480EE0323FF26E800AF17C2 /* howlingWind.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = howlingWind.mp3; sourceTree = "<group>"; };
+		449D331C23FF209B00FB5552 /* SpinningHookKickClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinningHookKickClass.swift; sourceTree = "<group>"; };
 		44A6261423E4D0ED004ED04A /* swordsOfLightningEffect.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = swordsOfLightningEffect.sks; sourceTree = "<group>"; };
 		44B8DBB923DA2D30002BA761 /* SnakeEntClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnakeEntClass.swift; sourceTree = "<group>"; };
 		44C697A123DF768B004CCE49 /* PlayerClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerClass.swift; sourceTree = "<group>"; };
@@ -467,6 +461,7 @@
 				F4C775AA23F8E0270062A912 /* HowlingWindTalentClass.swift */,
 				F419418423FC518A003F06E7 /* AncientShieldTalentClass.swift */,
 				F419418623FC76B2003F06E7 /* JadeStormTalentClass.swift */,
+				449D331C23FF209B00FB5552 /* SpinningHookKickClass.swift */,
 			);
 			path = "Ability Classes";
 			sourceTree = "<group>";
@@ -613,6 +608,7 @@
 				4351F38C23DB9B6F002A48A9 /* PigEntClass.swift in Sources */,
 				4388593323E384170048F4DB /* MonkeyEntClass.swift in Sources */,
 				F482DF0C239744050063CF84 /* GameScene.swift in Sources */,
+				449D331D23FF209B00FB5552 /* SpinningHookKickClass.swift in Sources */,
 				F46BF48D23D8C9CD005C29EB /* SuffixClass.swift in Sources */,
 				F46BF48B23D772A4005C29EB /* TestEntClass.swift in Sources */,
 				F473B87023EB154B0088C885 /* MapTypes.swift in Sources */,
