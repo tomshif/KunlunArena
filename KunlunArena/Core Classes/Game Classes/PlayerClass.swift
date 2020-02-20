@@ -416,7 +416,7 @@ class PlayerClass
     } // equipRefresh
     public func receiveEX(experienceGain:CGFloat=100) //100 is temp
     {
-        print("Receiving XP: \(experienceGain)")
+        
         if  game!.player!.equippedWeapon!.talentType == TalentBranchList.melee
         {
             experienceMelee+=experienceGain*0.8
