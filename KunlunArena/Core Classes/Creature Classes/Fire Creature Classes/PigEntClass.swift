@@ -26,7 +26,7 @@ class PigEntClass:EntityClass
       headID=Int(random(min: 0, max: CGFloat(headNum)-0.000000001))
       bodyID=Int(random(min: 0, max: CGFloat(bodyNum)-0.000000001))
       tailID=Int(random(min: 0, max: CGFloat(tailNum)-0.000000001))
-      let wingID=Int(random(min:0, max: CGFloat(leftNum)-0.000000001))
+      let wingID=Int(random(min:1, max: CGFloat(leftNum)-0.000000001))
       leftID=wingID
       rightID=wingID
     

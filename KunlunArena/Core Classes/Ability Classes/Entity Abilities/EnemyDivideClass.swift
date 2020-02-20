@@ -36,8 +36,6 @@ class EnemyDivideClass:EnemySkillClass
                {
                 if entity!.health < entity!.maxHealth*0.25
                     {
-                        
-                        
                         if node.name!.contains("childSnake")
                         {
                           break
