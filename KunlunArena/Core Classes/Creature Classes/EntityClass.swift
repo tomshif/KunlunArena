@@ -216,6 +216,11 @@ class EntityClass
         // 1
         let tempBlink=EnemyBlinkClass(theGame: game!, ent: self)
         skillList.append(tempBlink)
+        
+        // 2
+        let tempFire=EnemyFireClass(theGame: game!, ent: self)
+        skillList.append(tempFire)
+        
     } // setupSkills
     
     internal func updateHealthBar()
@@ -461,7 +466,11 @@ class EntityClass
     
     internal func attack()
     {
-        if skillList[1].getCooldown() < 0
+        if skillList[2].getCooldown() < 0
+        {
+            skillList[2].doSkill()
+        }
+        else if skillList[1].getCooldown() < 0
         {
             skillList[1].doSkill()
         }
