@@ -53,12 +53,14 @@ class PlayerClass
     var experienceAncester:CGFloat=0
     var experienceMechanical:CGFloat=0
     var experienceAlchemy:CGFloat=0
-    var meleeLv:Int=0
-    var martialLv:Int=0
-    var bowsLv:Int=0
-    var ancesterLv:Int=0
-    var mechanicaLv:Int=0
-    var alchemyLv:Int=0
+    var meleeLv:Int=1
+    var martialLv:Int=1
+    var bowsLv:Int=1
+    var ancesterLv:Int=1
+    var mechanicaLv:Int=1
+    var alchemyLv:Int=1
+    
+    var currentStatus:Int=0
 
     var globalCooldown:CGFloat=0.3
     var lastAction=NSDate()
@@ -129,10 +131,21 @@ class PlayerClass
         let tempShield=AncientShieldTalentClass(theGame: game!)
         playerTalents.append(tempShield)
         
+        // 11 tiger claws
+        let tempTiger=TigerClawsTalentClass(theGame: game!)
+        playerTalents.append(tempShield)
+        
+        // 12 jade storm
+        let tempJadeStorm=JadeStormTalentClass(theGame: game!)
+        playerTalents.append(tempJadeStorm)
+        
         
         equippedWeapon=BaseInventoryClass(theGame: game!, level: 1)
         resetStats()
         equipRefresh()
+        
+
+        
     } // init - game
     
     public func moveTo()
@@ -255,9 +268,17 @@ class PlayerClass
         
     } // getGlobalCooldownRatio()
     
+    public func computePlayerLevel() -> Int
+    {
+        let total=meleeLv+martialLv+bowsLv+mechanicaLv+alchemyLv+ancesterLv
+        let average=(CGFloat(total)/6)+0.5
+        let level=Int(average)
+        return level
+    }
+    
     public func resetStats()
     {
-        playerLevel=equippedWeapon!.iLevel
+        playerLevel=computePlayerLevel()
         strength=CGFloat(playerLevel*5+15)
         quickness=CGFloat(playerLevel*5+15)
         wisdom=CGFloat(playerLevel*5+15)

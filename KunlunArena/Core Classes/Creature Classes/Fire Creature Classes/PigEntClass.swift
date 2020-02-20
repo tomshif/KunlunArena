@@ -52,12 +52,11 @@ class PigEntClass:EntityClass
         pursueRange=attackRange
     }
       
-    let entColor=NSColor(calibratedRed: random(min: 1, max: 1.0), green: random(min: 1, max: 1.0), blue: random(min: 1, max: 1.0), alpha: 1.0)
+    entColor=NSColor(calibratedRed: random(min: 1, max: 1.0), green: random(min: 1, max: 1.0), blue: random(min: 1, max: 1.0), alpha: 1.0)
     
     bodySprite.color=entColor
     headSprite.color=entColor
     tailSprite.color=entColor
- 
 
     if entLevel >= 2
     {

@@ -30,6 +30,8 @@ class SnakeEntClass:EntityClass
       tailSprite.texture=SKTexture(imageNamed: "\(spriteNamePrefix)Tail0\(tailID)")
       spriteScale=random(min: 1.5, max: 3.5)
       bodySprite.setScale(spriteScale)
+    leftSprite.isHidden=true
+    rightSprite.isHidden=true
     
     
     moveSpeed=random(min: 5.0, max: 5.5)
@@ -46,7 +48,7 @@ class SnakeEntClass:EntityClass
         pursueRange=attackRange
     }
       
-    let entColor=NSColor(calibratedRed: random(min: 0.3, max: 0.4), green: random(min: 0.3, max: 0.6), blue: random(min: 0.1, max: 0.3), alpha: 1.0)
+    entColor=NSColor(calibratedRed: random(min: 0.3, max: 0.4), green: random(min: 0.3, max: 0.6), blue: random(min: 0.1, max: 0.3), alpha: 1.0)
     
     bodySprite.color=entColor
     headSprite.color=entColor
@@ -95,40 +97,34 @@ class SnakeEntClass:EntityClass
         }
     }//attack
 
-    func updateSnake(_ currentTime: TimeInterval)
-    {
-        let xp:CGFloat=0
-        let yp:CGFloat=0
-        let childSnake = self
+    override func update(cycle: Int) {
+        super.update(cycle: cycle)
         
-        for node in game!.scene!.nodes(at: CGPoint(x: xp, y: yp))
-              {
-                  if node.name != nil
-                  {
-                      if node.name!.contains("snake")
-                      {
-                       if health < maxHealth*0.25
-                       {
-                                if node.name!.contains("child")
-                                {
-                                    break
-                                }
-                                else
-                                {
-                                    childSnake.bodySprite.position.x=xp
-                                    childSnake.bodySprite.position.y=yp
-                                    game!.entList.append(childSnake)
-                                    break
-                               }// checking if its a child snake if not spawn a second snake else do nothing
-                               
-                           }// checking snake's health is 25% left
-                       
-                      } // if it's a snake
-                      
-                  } // if the name isn't nil
-                  
-              } // for each node at the point
-    }// update func updateSnake
+
+        if health < maxHealth*0.25
+        {
+        
+         print("snake should divide")
+         if !bodySprite.name!.contains("child")
+         {
+             print("snake is adult, should divide")
+             let childSnake=SnakeEntClass(theGame: game!, id: game!.entCount)
+            game!.entCount+=1
+             childSnake.bodySprite.position.x=self.bodySprite.position.x
+             childSnake.bodySprite.position.y=self.bodySprite.position.y
+            
+            childSnake.bodySprite.name="child\(childSnake.bodySprite.name!)"
+            childSnake.bodySprite.setScale(self.bodySprite.xScale)
+            
+             self.bodySprite.name="child\(self.bodySprite.name!)"
+             
+             game!.entList.append(childSnake)
+             
+        }// checking if its a child snake if not spawn a second snake
+                
+         } // if
+        
+    }// update func
     
     
 }// class SnakeEntClass

@@ -18,13 +18,17 @@ class EnemyPoisonClass:EnemySkillClass
         
         manaCost=17
         COOLDOWN=8
-        lengthActive=0.3
+        lengthActive=10
         tier=0
     } // init
     
+    override func removeSkill()
+    {
+        game!.player!.currentStatus=SPECIALSTATUS.none
+    }
     override func doSkill()
     {
-      
+
         
         // Pick a spot in front of the enemy and see if player is there
         
@@ -39,7 +43,8 @@ class EnemyPoisonClass:EnemySkillClass
         
         if pDist < entity!.bodySprite.size.height*2.5
         {
-            game!.player!.takeDamage(amount: entity!.currentDamage)
+            game!.player!.currentStatus=SPECIALSTATUS.poison
+            lastUse=NSDate()
         }
     }
     
