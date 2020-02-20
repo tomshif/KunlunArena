@@ -31,6 +31,8 @@ class RabbitEntClass:EntityClass
       tailSprite.texture=SKTexture(imageNamed: "\(spriteNamePrefix)Tail0\(tailID)")
       spriteScale=random(min: 1.5, max: 3.5)
       bodySprite.setScale(spriteScale)
+    leftSprite.isHidden=true
+    rightSprite.isHidden=true
     
     
     moveSpeed=random(min: 5.7, max: 10.3)

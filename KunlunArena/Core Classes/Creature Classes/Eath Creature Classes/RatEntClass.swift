@@ -30,7 +30,8 @@ class RatEntClass:EntityClass
       tailSprite.texture=SKTexture(imageNamed: "\(spriteNamePrefix)Tail0\(tailID)")
       spriteScale=random(min: 1.5, max: 3.5)
       bodySprite.setScale(spriteScale)
-    
+    leftSprite.isHidden=true
+    rightSprite.isHidden=true
     
     moveSpeed=random(min: 5.7, max: 10.3)
     TURNRATE=random(min: 0.8, max: 0.8)
@@ -46,7 +47,7 @@ class RatEntClass:EntityClass
         pursueRange=attackRange
     }
       
-    entColor=NSColor(calibratedRed: random(min: 0.3, max: 0.5), green: random(min: 0.6, max: 0.8), blue: random(min: 0.1, max: 0.4), alpha: 1.0)
+    entColor=NSColor(calibratedRed: random(min: 0.2, max: 0.8), green: random(min: 0.2, max: 0.4), blue: random(min: 0.1, max: 0.2), alpha: 1.0)
     
     bodySprite.color=entColor
     headSprite.color=entColor
