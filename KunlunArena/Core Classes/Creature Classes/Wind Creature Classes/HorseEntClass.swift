@@ -11,7 +11,7 @@ import SpriteKit
 
 class HorseEntClass:EntityClass
 {
-    
+    var horseSoundAction=SKAction.playSoundFileNamed("horseGrunt.mp3", waitForCompletion: true)
     
     override init(theGame: GameClass, id: Int)
     {
@@ -74,7 +74,21 @@ class HorseEntClass:EntityClass
     } // init scene/ID
       
     
-      
+      override func attack() {
+                  
+                 if !bodySprite.hasActions()
+                 {
+                     bodySprite.run(horseSoundAction)
+                 }
+                 if skillList[1].getCooldown() < 0
+                 {
+                     skillList[1].doSkill()
+                 }
+                 else if skillList[0].getCooldown() < 0
+                 {
+                     skillList[0].doSkill()
+                 }
+             }//attack
       
       
       
