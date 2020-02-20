@@ -13,7 +13,7 @@ class HowlingWindTalentClass:PlayerTalentClass
 {
 
 
-       var fireSundAction=SKAction.playSoundFileNamed("flameThrower", waitForCompletion: true)
+       var windSoundAction=SKAction.playSoundFileNamed("howlingWind.mp3", waitForCompletion: true)
        
        override init(theGame: GameClass)
        {
@@ -50,7 +50,7 @@ class HowlingWindTalentClass:PlayerTalentClass
            windNode!.setScale(1.3)
            game!.scene!.addChild(windNode!)
            
-           game!.player!.playerSprite?.run(fireSundAction)
+           game!.player!.playerSprite?.run(windSoundAction)
     
         // find all entities around and damage them / knock them back
         for ent in game!.entList

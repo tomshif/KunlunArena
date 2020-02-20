@@ -11,7 +11,7 @@ import SpriteKit
 
 class SnakeEntClass:EntityClass
 {
-     var snakeSoundAction=SKAction.playSoundFileNamed("scratchQuick.mp3", waitForCompletion: true)
+     var snakeSoundAction=SKAction.playSoundFileNamed("quickBite.mp3", waitForCompletion: true)
   override init(theGame: GameClass, id: Int)
   {
       super.init(theGame: theGame, id: id)

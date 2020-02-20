@@ -15,6 +15,7 @@ import SpriteKit
 
 class MonkeyEntClass:EntityClass
 {
+    var monkeySoundAction=SKAction.playSoundFileNamed("monkey.mp3", waitForCompletion: true)
   override init(theGame: GameClass, id: Int)
   {
       super.init(theGame: theGame, id: id)
@@ -74,7 +75,22 @@ class MonkeyEntClass:EntityClass
   } // init scene/ID
     
   
-    
+    override func attack() {
+            
+      
+           if !bodySprite.hasActions()
+           {
+               bodySprite.run(monkeySoundAction)
+           }
+           if skillList[1].getCooldown() < 0
+           {
+               skillList[1].doSkill()
+           }
+           else if skillList[0].getCooldown() < 0
+           {
+               skillList[0].doSkill()
+           }
+       }//attack
     
     
     

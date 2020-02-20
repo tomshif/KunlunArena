@@ -1024,6 +1024,18 @@ class GameScene: SKScene {
                      {
                          print("jadeStorm on cooldown.")
                      }
+        /*
+        case 37: //'L'
+            if player.playerTalents[TalentList.spinningHookKick].getCooldown() < 0 && player.mana >= player.playerTalents[TalentList.spinningHookKick].manaCost && player.getGlobalCooldownRatio() < 0
+            {
+                player.activeTalents.append(player.playerTalents[TalentList.spinningHookKick])
+                player.playerTalents[TalentList.spinningHookKick].doTalent()
+            }
+            else
+            {
+                print("Spinning Hook Kick on cooldown.")
+            }
+          */
             
         case 29: // 0 -- generate new weapon
             if gameState==STATES.ITEM

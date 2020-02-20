@@ -11,6 +11,7 @@ import SpriteKit
 
 class BloomingFlowerTalentClass:PlayerTalentClass
 {
+    var healingSoundAction=SKAction.playSoundFileNamed("healing.mp3", waitForCompletion: true)
 
 
    
@@ -34,7 +35,9 @@ class BloomingFlowerTalentClass:PlayerTalentClass
        super.doTalent()
         lastUse=NSDate()
         isActive=true
-       
+    
+    game!.player!.playerSprite?.run(healingSoundAction)
+    
    } // doTalent()
     
    override func updateTalent()

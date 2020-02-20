@@ -11,6 +11,7 @@ import SpriteKit
 
 class CherryBombTalentClass:PlayerTalentClass
 {
+    var bombSoundAction=SKAction.playSoundFileNamed("grenadeShort.mp3", waitForCompletion: true)
     
     override init(theGame: GameClass)
     {
@@ -65,6 +66,8 @@ class CherryBombTalentClass:PlayerTalentClass
         
         cherryNode!.run(SKAction.sequence([SKAction.wait(forDuration: 2),SKAction.removeFromParent()]))
         game!.scene!.addChild(cherryNode!)
+        
+        game!.player!.playerSprite?.run(bombSoundAction)
         
     } // doTalent()
     override func updateTalent()

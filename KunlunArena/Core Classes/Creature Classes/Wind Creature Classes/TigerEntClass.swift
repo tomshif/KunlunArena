@@ -11,6 +11,8 @@ import SpriteKit
 
 class TigerEntClass:EntityClass
 {
+    var tigerSoundAction=SKAction.playSoundFileNamed("shortGrunt.mp3", waitForCompletion: true)
+    
   override init(theGame: GameClass, id: Int)
   {
       super.init(theGame: theGame, id: id)
@@ -53,13 +55,25 @@ class TigerEntClass:EntityClass
  
 
 
-    
-    
-    
   } // init scene/ID
 
 
-    
+    override func attack() {
+                   
+             
+                  if !bodySprite.hasActions()
+                  {
+                      bodySprite.run(tigerSoundAction)
+                  }
+                  if skillList[1].getCooldown() < 0
+                  {
+                      skillList[1].doSkill()
+                  }
+                  else if skillList[0].getCooldown() < 0
+                  {
+                      skillList[0].doSkill()
+                  }
+              }//attack
     
     
     
