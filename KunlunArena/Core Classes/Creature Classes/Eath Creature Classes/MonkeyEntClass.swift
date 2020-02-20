@@ -35,6 +35,8 @@ class MonkeyEntClass:EntityClass
       tailSprite.texture=SKTexture(imageNamed: "\(spriteNamePrefix)Tail0\(tailID)")
       spriteScale=random(min: 1.5, max: 3.5)
       bodySprite.setScale(spriteScale)
+    leftSprite.isHidden=true
+    rightSprite.isHidden=true
     
     
     moveSpeed=random(min: 5.5, max: 10.5)
@@ -50,7 +52,7 @@ class MonkeyEntClass:EntityClass
         pursueRange=attackRange
     }
       
-    entColor=NSColor(calibratedRed: random(min: 0.3, max: 0.8), green: random(min: 0.3, max: 0.6), blue: random(min: 0.1, max: 0.3), alpha: 1.0)
+    entColor=NSColor(calibratedRed: random(min: 0.17, max: 0.49), green: random(min: 0.14, max: 0.2), blue: random(min: 0.14, max: 0.2), alpha: 1.0)
     bodySprite.color=entColor
     headSprite.color=entColor
     tailSprite.color=entColor
