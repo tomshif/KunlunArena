@@ -35,6 +35,27 @@ class GameScene: SKScene {
     var hudBar=SKSpriteNode(imageNamed: "hud01")
     var hudMana=SKSpriteNode(imageNamed: "hudMana")
     var hudHealth=SKSpriteNode(imageNamed: "hudHealth")
+    var xpScreen=SKSpriteNode(imageNamed: "XPScreen")
+    var xpBG=SKSpriteNode(imageNamed: "xpBackground")
+    var xpBar01=SKSpriteNode(imageNamed: "xpBar")
+    var xpBar02=SKSpriteNode(imageNamed: "xpBar")
+    var xpBar03=SKSpriteNode(imageNamed: "xpBar")
+    var xpBar04=SKSpriteNode(imageNamed: "xpBar")
+    var xpBar05=SKSpriteNode(imageNamed: "xpBar")
+    var xpBar06=SKSpriteNode(imageNamed: "xpBar")
+    let levelNow1=SKLabelNode(fontNamed: "Arial")
+    let levelNext1=SKLabelNode(fontNamed: "Arial")
+    let levelNow2=SKLabelNode(fontNamed: "Arial")
+    let levelNext2=SKLabelNode(fontNamed: "Arial")
+    let levelNow3=SKLabelNode(fontNamed: "Arial")
+    let levelNext3=SKLabelNode(fontNamed: "Arial")
+    let levelNow4=SKLabelNode(fontNamed: "Arial")
+    let levelNext4=SKLabelNode(fontNamed: "Arial")
+    let levelNow5=SKLabelNode(fontNamed: "Arial")
+    let levelNext5=SKLabelNode(fontNamed: "Arial")
+    let levelNow6=SKLabelNode(fontNamed: "Arial")
+    let levelNext6=SKLabelNode(fontNamed: "Arial")
+    let playerLevelLabel=SKLabelNode(fontNamed: "Arial")
     
     
     var actionBarFrame=SKSpriteNode(imageNamed: "actionBarFrame")
@@ -211,8 +232,101 @@ class GameScene: SKScene {
         hudHealth.setScale(1.25)
         cam.addChild(hudHealth)
 
+        xpScreen.name="UIxpScreen"
+        xpScreen.zPosition=25000
+        xpScreen.isHidden=true
+        cam.addChild(xpScreen)
+        
+        xpBG.name="UIxpBG"
+        xpBG.zPosition = -10
+        xpBG.setScale(0.9)
+        xpScreen.addChild(xpBG)
+        
+        // setup xp bars
+        xpBar01.zPosition = -5
+        xpBar01.position.x = -xpScreen.size.width*0.3675
+        xpBar01.position.y = -2
+        xpBar01.name="UIxpBar01"
+        xpBar01.colorBlendFactor=1.0
+        xpBar01.color=NSColor.systemTeal
+        xpScreen.addChild(xpBar01)
+        
+        xpBar02.zPosition = -5
+        xpBar02.position.x = -xpScreen.size.width*0.282
+        xpBar02.position.y = -2
+        xpBar02.name="UIxpBar02"
+        xpBar02.colorBlendFactor=1.0
+        xpBar02.color=NSColor.systemTeal
+        xpScreen.addChild(xpBar02)
+        
+        xpBar03.zPosition = -5
+        xpBar03.position.x = -xpScreen.size.width*0.132
+        xpBar03.position.y = -2
+        xpBar03.name="UIxpBar03"
+        xpBar03.colorBlendFactor=1.0
+        xpBar03.color=NSColor.systemTeal
+        xpScreen.addChild(xpBar03)
+        
+        xpBar04.zPosition = -5
+        xpBar04.position.x = -xpScreen.size.width*0.046
+        xpBar04.position.y = -2
+        xpBar04.name="UIxpBar04"
+        xpBar04.colorBlendFactor=1.0
+        xpBar04.color=NSColor.systemTeal
+        xpScreen.addChild(xpBar04)
+        
+        xpBar05.zPosition = -5
+        xpBar05.position.x = xpScreen.size.width*0.10
+        xpBar05.position.y = -2
+        xpBar05.name="UIxpBar05"
+        xpBar05.colorBlendFactor=1.0
+        xpBar05.color=NSColor.systemTeal
+        xpScreen.addChild(xpBar05)
+        
+        xpBar06.zPosition = -5
+        xpBar06.position.x = xpScreen.size.width*0.192
+        xpBar06.position.y = -2
+        xpBar06.name="UIxpBar06"
+        xpBar06.colorBlendFactor=1.0
+        xpBar06.color=NSColor.systemTeal
+        xpScreen.addChild(xpBar06)
         
         
+        // set up xp labels
+
+        levelNow1.position.x = -xpScreen.size.width*0.41
+        levelNow1.zPosition=10
+        levelNow1.text="\(player.meleeLv)"
+        levelNow1.position.y = -xpScreen.size.height*0.26
+        xpScreen.addChild(levelNow1)
+        
+        levelNext1.position.x = -xpScreen.size.width*0.41
+        levelNext1.zPosition=10
+        levelNext1.text="\(player.meleeLv+1)"
+        levelNext1.position.y = xpScreen.size.height*0.26
+        xpScreen.addChild(levelNext1)
+        
+        levelNow2.position.x = -xpScreen.size.width*0.25
+        levelNow2.zPosition=10
+        levelNow2.text="\(player.meleeLv)"
+        levelNow2.position.y = -xpScreen.size.height*0.26
+        xpScreen.addChild(levelNow2)
+        
+        levelNext2.position.x = -xpScreen.size.width*0.25
+        levelNext2.zPosition=10
+        levelNext2.text="\(player.meleeLv+1)"
+        levelNext2.position.y = xpScreen.size.height*0.26
+        xpScreen.addChild(levelNext2)
+        
+        
+        
+        
+        // Set up player stats
+        playerLevelLabel.position.x=xpScreen.size.width*0.35
+        playerLevelLabel.fontSize=20
+        playerLevelLabel.position.y = xpScreen.size.height*0.3
+        xpScreen.addChild(playerLevelLabel)
+        playerLevelLabel.zPosition=15
         
         // Setup the player sprite (needs to be moved to PlayerClass init)
         
@@ -730,6 +844,9 @@ class GameScene: SKScene {
         case 14: // e
             attack()
             
+        case 8: // c - Character XP
+            xpScreen.isHidden.toggle()
+            
         case 16: //y //This is a temp for leveling stuff
             game.player!.receiveEX()
             print("melee level is \(game.player!.meleeLv)")
@@ -1220,6 +1337,46 @@ class GameScene: SKScene {
         } // if player is dead
     } // checkPlayerDeath
     
+    func updateXPBars()
+    {
+        let ratio1=player.experienceMelee/player.baseExUp
+        xpBar01.yScale=ratio1
+        xpBar01.position.y = -138 + (138*ratio1)
+        
+        let ratio2=player.experienceMartial/player.baseExUp
+        xpBar02.yScale=ratio2
+        xpBar02.position.y = -138 + (138*ratio2)
+        
+        let ratio3=player.experienceBows/player.baseExUp
+        xpBar03.yScale=ratio3
+        xpBar03.position.y = -138 + (138*ratio3)
+        
+        let ratio4=player.experienceMechanical/player.baseExUp
+        xpBar04.yScale=ratio4
+        xpBar04.position.y = -138 + (138*ratio4)
+        
+        let ratio5=player.experienceAlchemy/player.baseExUp
+        xpBar05.yScale=ratio5
+        xpBar05.position.y = -138 + (138*ratio5)
+        
+        let ratio6=player.experienceAncester/player.baseExUp
+        xpBar06.yScale=ratio6
+        xpBar06.position.y = -138 + (138*ratio6)
+        
+        // update level labels
+
+        levelNow1.text="\(player.meleeLv)"
+        levelNext1.text="\(player.meleeLv+1)"
+        levelNow2.text="\(player.martialLv)"
+        levelNext2.text="\(player.martialLv+1)"
+        levelNow3.text="\(player.bowsLv)"
+        levelNext3.text="\(player.bowsLv+1)"
+        
+        // update player stats
+        playerLevelLabel.text = "Player Level: \(player.computePlayerLevel())"
+        
+    }
+    
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
         
@@ -1254,6 +1411,10 @@ class GameScene: SKScene {
                 talentUpdateCycle = 0
             }
 
+            if !xpScreen.isHidden
+            {
+                updateXPBars()
+            }
             keyMovement()
             
             cam.position=player.playerSprite!.position
