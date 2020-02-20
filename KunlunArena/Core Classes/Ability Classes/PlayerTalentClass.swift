@@ -32,6 +32,9 @@ class PlayerTalentClass
     var isActive:Bool=false
     var manaCost:CGFloat=10.00
     var iconName:String=""
+    var enemyKills:Int=0
+    
+    
     
     init(theGame: GameClass)
     {

@@ -66,6 +66,7 @@ class PlayerClass
     var lastAction=NSDate()
     
     
+    var enemyKillCount:Int=0
     
     let BASEREGENMANA:CGFloat=3
     let BASEREGENHEALTH:CGFloat=2.0
@@ -415,6 +416,7 @@ class PlayerClass
     } // equipRefresh
     public func receiveEX(experienceGain:CGFloat=100) //100 is temp
     {
+        print("Receiving XP: \(experienceGain)")
         if  game!.player!.equippedWeapon!.talentType == TalentBranchList.melee
         {
             experienceMelee+=experienceGain*0.8
@@ -438,8 +440,8 @@ class PlayerClass
             experienceMelee+=experienceGain*0.025
                                   experienceMartial+=experienceGain*0.025
                                   experienceBows+=experienceGain*0.8
-                                  experienceAlchemy+=experienceGain*0.1
-                                  experienceMechanical+=experienceGain*0.025
+                                  experienceAlchemy+=experienceGain*0.025
+                                  experienceMechanical+=experienceGain*0.1
                                   experienceAncester+=experienceGain*0.025
         }
         if game!.player!.equippedWeapon!.talentType == TalentBranchList.mechanical
@@ -474,32 +476,32 @@ class PlayerClass
     {
         if experienceAncester>=baseExUp
         {
-            experienceAncester-=baseExUp
+            experienceAncester = 0
             ancesterLv+=1
         }
         if experienceMechanical>=baseExUp
         {
-            experienceAncester-=baseExUp
+            experienceMechanical = 0
             mechanicaLv+=1
         }
         if experienceAlchemy>=baseExUp
         {
-            experienceAncester-=baseExUp
-            ancesterLv+=1
+            experienceAlchemy=0
+            alchemyLv+=1
         }
         if experienceBows>=baseExUp
         {
-            experienceBows-=baseExUp
+            experienceBows=0
             bowsLv+=1
         }
         if experienceMartial>=baseExUp
         {
-            experienceMartial-=baseExUp
+            experienceMartial=0
             martialLv+=1
         }
         if experienceMelee>=baseExUp
         {
-            experienceMelee-=baseExUp
+            experienceMelee=0
             meleeLv+=1
             levelUpEffect()
         }

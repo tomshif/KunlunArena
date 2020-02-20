@@ -56,6 +56,8 @@ class GameScene: SKScene {
     let levelNow6=SKLabelNode(fontNamed: "Arial")
     let levelNext6=SKLabelNode(fontNamed: "Arial")
     let playerLevelLabel=SKLabelNode(fontNamed: "Arial")
+    let playerKillLabel=SKLabelNode(fontNamed: "Arial")
+    
     
     
     var actionBarFrame=SKSpriteNode(imageNamed: "actionBarFrame")
@@ -276,7 +278,7 @@ class GameScene: SKScene {
         xpScreen.addChild(xpBar04)
         
         xpBar05.zPosition = -5
-        xpBar05.position.x = xpScreen.size.width*0.10
+        xpBar05.position.x = xpScreen.size.width*0.105
         xpBar05.position.y = -2
         xpBar05.name="UIxpBar05"
         xpBar05.colorBlendFactor=1.0
@@ -298,27 +300,85 @@ class GameScene: SKScene {
         levelNow1.zPosition=10
         levelNow1.text="\(player.meleeLv)"
         levelNow1.position.y = -xpScreen.size.height*0.26
+        levelNow1.fontSize=24
         xpScreen.addChild(levelNow1)
         
         levelNext1.position.x = -xpScreen.size.width*0.41
         levelNext1.zPosition=10
         levelNext1.text="\(player.meleeLv+1)"
         levelNext1.position.y = xpScreen.size.height*0.26
+        levelNext1.fontSize=10
         xpScreen.addChild(levelNext1)
         
         levelNow2.position.x = -xpScreen.size.width*0.25
         levelNow2.zPosition=10
         levelNow2.text="\(player.meleeLv)"
         levelNow2.position.y = -xpScreen.size.height*0.26
+        levelNow2.fontSize=24
         xpScreen.addChild(levelNow2)
         
         levelNext2.position.x = -xpScreen.size.width*0.25
         levelNext2.zPosition=10
         levelNext2.text="\(player.meleeLv+1)"
         levelNext2.position.y = xpScreen.size.height*0.26
+        levelNext2.fontSize=10
         xpScreen.addChild(levelNext2)
         
+        levelNow3.position.x = -xpScreen.size.width*0.16
+        levelNow3.zPosition=10
+        levelNow3.text="\(player.meleeLv)"
+        levelNow3.position.y = -xpScreen.size.height*0.26
+        levelNow3.fontSize=24
+        xpScreen.addChild(levelNow3)
         
+        levelNext3.position.x = -xpScreen.size.width*0.16
+        levelNext3.zPosition=10
+        levelNext3.text="\(player.meleeLv+1)"
+        levelNext3.position.y = xpScreen.size.height*0.26
+        levelNext3.fontSize=10
+        xpScreen.addChild(levelNext3)
+        
+        levelNow4.position.x = -xpScreen.size.width*0.016
+        levelNow4.zPosition=10
+        levelNow4.text="\(player.meleeLv)"
+        levelNow4.position.y = -xpScreen.size.height*0.26
+        levelNow4.fontSize=24
+        xpScreen.addChild(levelNow4)
+        
+        levelNext4.position.x = -xpScreen.size.width*0.016
+        levelNext4.zPosition=10
+        levelNext4.text="\(player.meleeLv+1)"
+        levelNext4.position.y = xpScreen.size.height*0.26
+        levelNext4.fontSize=10
+        xpScreen.addChild(levelNext4)
+        
+        levelNow5.position.x = xpScreen.size.width*0.07
+        levelNow5.zPosition=10
+        levelNow5.text="\(player.meleeLv)"
+        levelNow5.position.y = -xpScreen.size.height*0.26
+        levelNow5.fontSize=24
+        xpScreen.addChild(levelNow5)
+        
+        levelNext5.position.x = xpScreen.size.width*0.07
+        levelNext5.zPosition=10
+        levelNext5.text="\(player.meleeLv+1)"
+        levelNext5.position.y = xpScreen.size.height*0.26
+        levelNext5.fontSize=10
+        xpScreen.addChild(levelNext5)
+        
+        levelNow6.position.x = xpScreen.size.width*0.222
+        levelNow6.zPosition=10
+        levelNow6.text="\(player.meleeLv)"
+        levelNow6.position.y = -xpScreen.size.height*0.26
+        levelNow6.fontSize=24
+        xpScreen.addChild(levelNow6)
+        
+        levelNext6.position.x = xpScreen.size.width*0.222
+        levelNext6.zPosition=10
+        levelNext6.text="\(player.meleeLv+1)"
+        levelNext6.position.y = xpScreen.size.height*0.26
+        levelNext6.fontSize=10
+        xpScreen.addChild(levelNext6)
         
         
         // Set up player stats
@@ -328,6 +388,11 @@ class GameScene: SKScene {
         xpScreen.addChild(playerLevelLabel)
         playerLevelLabel.zPosition=15
         
+        playerKillLabel.position.x=xpScreen.size.width*0.35
+        playerKillLabel.fontSize=20
+        playerKillLabel.position.y=xpScreen.size.height*0.25
+        playerKillLabel.zPosition=15
+        xpScreen.addChild(playerKillLabel)
         // Setup the player sprite (needs to be moved to PlayerClass init)
         
         
@@ -1341,27 +1406,27 @@ class GameScene: SKScene {
     {
         let ratio1=player.experienceMelee/player.baseExUp
         xpBar01.yScale=ratio1
-        xpBar01.position.y = -138 + (138*ratio1)
+        xpBar01.position.y = -139 + (138*ratio1)
         
         let ratio2=player.experienceMartial/player.baseExUp
         xpBar02.yScale=ratio2
-        xpBar02.position.y = -138 + (138*ratio2)
+        xpBar02.position.y = -139 + (138*ratio2)
         
         let ratio3=player.experienceBows/player.baseExUp
         xpBar03.yScale=ratio3
-        xpBar03.position.y = -138 + (138*ratio3)
+        xpBar03.position.y = -139 + (138*ratio3)
         
         let ratio4=player.experienceMechanical/player.baseExUp
         xpBar04.yScale=ratio4
-        xpBar04.position.y = -138 + (138*ratio4)
+        xpBar04.position.y = -139 + (138*ratio4)
         
         let ratio5=player.experienceAlchemy/player.baseExUp
         xpBar05.yScale=ratio5
-        xpBar05.position.y = -138 + (138*ratio5)
+        xpBar05.position.y = -139 + (138*ratio5)
         
         let ratio6=player.experienceAncester/player.baseExUp
         xpBar06.yScale=ratio6
-        xpBar06.position.y = -138 + (138*ratio6)
+        xpBar06.position.y = -139 + (138*ratio6)
         
         // update level labels
 
@@ -1371,10 +1436,17 @@ class GameScene: SKScene {
         levelNext2.text="\(player.martialLv+1)"
         levelNow3.text="\(player.bowsLv)"
         levelNext3.text="\(player.bowsLv+1)"
+        levelNow4.text="\(player.mechanicaLv)"
+        levelNext4.text="\(player.mechanicaLv+1)"
+        levelNow5.text="\(player.alchemyLv)"
+        levelNext5.text="\(player.alchemyLv+1)"
+        levelNow6.text="\(player.ancesterLv)"
+        levelNext6.text="\(player.ancesterLv+1)"
+        
         
         // update player stats
         playerLevelLabel.text = "Player Level: \(player.computePlayerLevel())"
-        
+        playerKillLabel.text = "Enemies killed: \(player.enemyKillCount)"
     }
     
     override func update(_ currentTime: TimeInterval) {

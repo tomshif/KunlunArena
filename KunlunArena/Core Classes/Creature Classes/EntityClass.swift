@@ -340,6 +340,7 @@ class EntityClass
         bodySprite.removeAllActions()
         bodySprite.removeFromParent()
         isDead=true
+        game!.player!.enemyKillCount += 1
         game!.player!.receiveEX()
 
     } // die()
