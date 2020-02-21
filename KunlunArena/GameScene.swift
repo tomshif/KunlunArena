@@ -429,7 +429,7 @@ class GameScene: SKScene {
     func spawnEnemy()
     {
 
-        let tempEntSnake=SnakeEntClass(theGame: game, id: game.entCount)
+        let tempEntSnake=DragonEntClass(theGame: game, id: game.entCount)
 
         var goodSpawn:Bool=false
         var xp:CGFloat=0
@@ -509,48 +509,120 @@ class GameScene: SKScene {
         itemNameLabel.fontColor=game.player!.equippedWeapon!.itemLevelColor
         itemNameLabel.text=game.player!.equippedWeapon!.name
         itemScreen.addChild(itemNameLabel)
+        itemNameLabel.fontSize=24
         itemNameLabel.zPosition=10010
 
         let itemLevelLabel=SKLabelNode(fontNamed: "Tahoma")
-        itemLevelLabel.position.y=itemScreen.size.height*0.25
+        itemLevelLabel.position.y=itemScreen.size.height*0.27
         itemLevelLabel.color=NSColor.white
-        itemLevelLabel.fontSize=24
+        itemLevelLabel.fontSize=20
         itemLevelLabel.zPosition=10010
         itemLevelLabel.text="Item Level: \(game.player!.equippedWeapon!.iLevel)"
         itemScreen.addChild(itemLevelLabel)
     
         let itemDamageLabel=SKLabelNode(fontNamed: "Tahoma")
-        itemDamageLabel.position.y=itemScreen.size.height*0.20
+        itemDamageLabel.position.y=itemScreen.size.height*0.215
         itemDamageLabel.color=NSColor.white
-        itemDamageLabel.fontSize=24
+        itemDamageLabel.fontSize=20
         itemDamageLabel.zPosition=10010
         itemDamageLabel.text=String(format: "Damage: %2.2f", game.player!.equippedWeapon!.modLevel*game.player!.equippedWeapon!.iLevelMod)
         itemScreen.addChild(itemDamageLabel)
         
         let itemSpeedLabel=SKLabelNode(fontNamed: "Tahoma")
-        itemSpeedLabel.position.y=itemScreen.size.height*0.15
+        itemSpeedLabel.position.y=itemScreen.size.height*0.165
         itemSpeedLabel.color=NSColor.white
-        itemSpeedLabel.fontSize=24
+        itemSpeedLabel.fontSize=20
         itemSpeedLabel.zPosition=10010
         itemSpeedLabel.text=String(format: "Speed: %1.2f", game.player!.equippedWeapon!.attackSpeedFactor)
         itemScreen.addChild(itemSpeedLabel)
         
+
+        if player.equippedWeapon!.rarity > 1
+        {
+            let itemMod1=SKLabelNode(fontNamed: "Tahoma")
+            itemMod1.position.y=itemScreen.size.height*0.125
+            itemMod1.color=NSColor.white
+            itemMod1.fontSize=20
+            itemMod1.zPosition=10010
+            itemMod1.text=String(format: "\(game.player!.equippedWeapon!.getFirstEffectString()) +%1.2f", game.player!.equippedWeapon!.statsMod)
+            itemScreen.addChild(itemMod1)
+            
+            let itemMod2=SKLabelNode(fontNamed: "Tahoma")
+            itemMod2.position.y=itemScreen.size.height*0.100
+            itemMod2.color=NSColor.white
+            itemMod2.fontSize=20
+            itemMod2.zPosition=10010
+            itemMod2.text=String(format: "\(game.player!.equippedWeapon!.getSecondEffectString()) +%1.2f", game.player!.equippedWeapon!.statsMod)
+            itemScreen.addChild(itemMod2)
+        } // if has mods
         
-        let itemMod1=SKLabelNode(fontNamed: "Tahoma")
-        itemMod1.position.y=itemScreen.size.height*0.05
-        itemMod1.color=NSColor.white
-        itemMod1.fontSize=24
-        itemMod1.zPosition=10010
-        itemMod1.text=String(format: "\(game.player!.equippedWeapon!.getFirstEffectString()) +%1.2f", game.player!.equippedWeapon!.statsMod)
-        itemScreen.addChild(itemMod1)
+        // Helmet
+        if player.equippedHelmet != nil
+        {
+                
+
+            let itemNameLabel2=SKLabelNode(fontNamed: "Tahoma")
+            itemNameLabel2.position.y = -itemScreen.size.height*0.1
+            itemNameLabel2.fontColor=game.player!.equippedHelmet!.itemLevelColor
+            itemNameLabel2.text=game.player!.equippedHelmet!.name
+            itemScreen.addChild(itemNameLabel2)
+            itemNameLabel2.fontSize=24
+            itemNameLabel2.zPosition=10010
+
+            let itemLevelLabel2=SKLabelNode(fontNamed: "Tahoma")
+            itemLevelLabel2.position.y = -itemScreen.size.height*0.13
+            itemLevelLabel2.color=NSColor.white
+            itemLevelLabel2.fontSize=20
+            itemLevelLabel2.zPosition=10010
+            itemLevelLabel2.text="Item Level: \(game.player!.equippedHelmet!.iLevel)"
+            itemScreen.addChild(itemLevelLabel2)
         
-        let itemMod2=SKLabelNode(fontNamed: "Tahoma")
-        itemMod2.position.y=itemScreen.size.height*0.00
-        itemMod2.color=NSColor.white
-        itemMod2.fontSize=24
-        itemMod2.zPosition=10010
-        itemMod2.text=String(format: "\(game.player!.equippedWeapon!.getSecondEffectString()) +%1.2f", game.player!.equippedWeapon!.statsMod)
-        itemScreen.addChild(itemMod2)
+            let itemDamageLabel2=SKLabelNode(fontNamed: "Tahoma")
+            itemDamageLabel2.position.y = -itemScreen.size.height*0.185
+            itemDamageLabel2.color=NSColor.white
+            itemDamageLabel2.fontSize=20
+            itemDamageLabel2.zPosition=10010
+            itemDamageLabel2.text=String(format: "Armor rating: %2.2f", game.player!.equippedHelmet!.modLevel*game.player!.equippedHelmet!.iLevelMod)
+            itemScreen.addChild(itemDamageLabel2)
+            
+            let itemSpeedLabel2=SKLabelNode(fontNamed: "Tahoma")
+            itemSpeedLabel2.position.y = -itemScreen.size.height*0.235
+            itemSpeedLabel2.color=NSColor.white
+            itemSpeedLabel2.fontSize=20
+            itemSpeedLabel2.zPosition=10010
+            itemSpeedLabel2.text=String(format: "Damage Reduction: %1.2f", game.player!.equippedHelmet!.attackSpeedFactor)
+            itemScreen.addChild(itemSpeedLabel2)
+            
+
+            if player.equippedHelmet!.rarity > 1
+            {
+                let itemMod12=SKLabelNode(fontNamed: "Tahoma")
+                itemMod12.position.y = -itemScreen.size.height*0.275
+                itemMod12.color=NSColor.white
+                itemMod12.fontSize=20
+                itemMod12.zPosition=10010
+                itemMod12.text=String(format: "\(game.player!.equippedHelmet!.getFirstEffectString()) +%1.2f", game.player!.equippedHelmet!.statsMod)
+                itemScreen.addChild(itemMod12)
+                
+                let itemMod22=SKLabelNode(fontNamed: "Tahoma")
+                itemMod22.position.y = -itemScreen.size.height*0.3
+                itemMod22.color=NSColor.white
+                itemMod22.fontSize=20
+                itemMod22.zPosition=10010
+                itemMod22.text=String(format: "\(game.player!.equippedHelmet!.getSecondEffectString()) +%1.2f", game.player!.equippedHelmet!.statsMod)
+                itemScreen.addChild(itemMod22)
+            } // if has mods
+        } // if helmet is equipped
+        else
+        {
+            let itemNameLabel2=SKLabelNode(fontNamed: "Tahoma")
+            itemNameLabel2.position.y = -itemScreen.size.height*0.1
+            itemNameLabel2.fontColor=NSColor.white
+            itemNameLabel2.text="No helmet equipped."
+            itemScreen.addChild(itemNameLabel2)
+            itemNameLabel2.fontSize=24
+            itemNameLabel2.zPosition=10010
+        }
         
     } // updateItemScreen
     
@@ -600,21 +672,43 @@ class GameScene: SKScene {
                     // First we check to see if we clicked on loot
                     if node.name!.contains("loot") && !node.hasActions()
                     {
-                        // first, drop the loot we have
-                        game.player!.dropLoot(loot: game.player!.equippedWeapon!)
+
                         
                         let last5 = Int(node.name!.suffix(5))
                         
                         print("Last 5: \(last5!)")
                         print("Loot: \(game.lootList[last5!].name)")
+                        if (game.lootList[last5!].invSlot==INVENTORYSLOTS.weapon)
+                        {
+                            // first, drop the loot we have
+                            game.player!.dropLoot(loot: game.player!.equippedWeapon!)
+                           // pick up the loot
+                            game.player!.equippedWeapon=game.lootList[last5!]
+                            game.player!.resetStats()
+                            game.player!.equipRefresh()
+                            // remove the sprite
+                            node.removeFromParent()
+                            otherAction=true
+                            
+                            
+                        }
+                        else if (game.lootList[last5!].invSlot==INVENTORYSLOTS.head)
+                        {
+                             // first, drop the loot we have (if we have it)
+                            if player.equippedHelmet != nil
+                            {
+                             game.player!.dropLoot(loot: game.player!.equippedHelmet!)
+                            }
+                            // pick up the loot
+                             game.player!.equippedHelmet=game.lootList[last5!]
+                             game.player!.resetStats()
+                             game.player!.equipRefresh()
+                             // remove the sprite
+                             node.removeFromParent()
+                             otherAction=true
+                        }
                         
-                        // pick up the loot
-                        game.player!.equippedWeapon=game.lootList[last5!]
-                        game.player!.resetStats()
-                        game.player!.equipRefresh()
-                        // remove the sprite
-                        node.removeFromParent()
-                        otherAction=true
+                        
                     } // if it's loot
                     
                     if node.name!.contains("actButton")
@@ -1040,7 +1134,7 @@ class GameScene: SKScene {
         case 29: // 0 -- generate new weapon
             if gameState==STATES.ITEM
             {
-                game.player!.equippedWeapon=BaseInventoryClass(theGame: game, level: game.player!.equippedWeapon!.iLevel)
+                game.player!.equippedWeapon=BaseInventoryClass(theGame: game, level: game.player!.equippedWeapon!.iLevel, slot: INVENTORYSLOTS.weapon)
                 game.player!.resetStats()
                 game.player!.equipRefresh()
                 updateItemScreen()

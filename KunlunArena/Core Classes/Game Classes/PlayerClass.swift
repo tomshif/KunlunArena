@@ -28,6 +28,7 @@ class PlayerClass
     var isInAttackMode:Bool=false
     
     var equippedWeapon:BaseInventoryClass?
+    var equippedHelmet:BaseInventoryClass?
     
     var playerTalents=[PlayerTalentClass]()
     var activeTalents=[PlayerTalentClass]()
@@ -141,7 +142,7 @@ class PlayerClass
         playerTalents.append(tempJadeStorm)
         
         
-        equippedWeapon=BaseInventoryClass(theGame: game!, level: 1)
+        equippedWeapon=BaseInventoryClass(theGame: game!, level: 1, slot: INVENTORYSLOTS.weapon)
         resetStats()
         equipRefresh()
         
@@ -283,8 +284,8 @@ class PlayerClass
         strength=CGFloat(playerLevel*5+15)
         quickness=CGFloat(playerLevel*5+15)
         wisdom=CGFloat(playerLevel*5+15)
-        maxMana=CGFloat(playerLevel*5+35)
-        maxHealth=CGFloat(playerLevel*5+35)
+        maxMana=CGFloat(playerLevel*10+40)
+        maxHealth=CGFloat(playerLevel*10+40)
         moveSpeed=7.5
         manaRegen=BASEREGENMANA
         healthRegen=BASEREGENHEALTH
@@ -352,11 +353,11 @@ class PlayerClass
             }
             else if equippedWeapon!.effects % suffixEffects.HEALTH == 0
             {
-                maxHealth = CGFloat(15 + playerLevel*5) + equippedWeapon!.statsMod
+                maxHealth = CGFloat(40 + playerLevel*10) + equippedWeapon!.statsMod
             }
             else if equippedWeapon!.effects % suffixEffects.MANA == 0
             {
-                maxMana = CGFloat(15 + playerLevel*5) + equippedWeapon!.statsMod
+                maxMana = CGFloat(40 + playerLevel*10) + equippedWeapon!.statsMod
             }
             else if equippedWeapon!.effects % suffixEffects.HEALTHREGEN == 0
             {
@@ -394,11 +395,11 @@ class PlayerClass
                    }
             else if equippedWeapon!.effects % suffixEffects.MANA == 0
                  {
-                     maxMana = CGFloat(15 + playerLevel*5) + equippedWeapon!.statsMod
+                     maxMana = CGFloat(40 + playerLevel*10) + equippedWeapon!.statsMod
                  }
             else if equippedWeapon!.effects % suffixEffects.HEALTH == 0
             {
-                maxHealth = CGFloat(15 + playerLevel*5) + equippedWeapon!.statsMod
+                maxHealth = CGFloat(40 + playerLevel*10) + equippedWeapon!.statsMod
             }
             else if equippedWeapon!.effects % suffixEffects.WISDOM == 0
                    {
@@ -416,7 +417,7 @@ class PlayerClass
     } // equipRefresh
     public func receiveEX(experienceGain:CGFloat=100) //100 is temp
     {
-        print("Receiving XP: \(experienceGain)")
+        
         if  game!.player!.equippedWeapon!.talentType == TalentBranchList.melee
         {
             experienceMelee+=experienceGain*0.8
@@ -478,32 +479,44 @@ class PlayerClass
         {
             experienceAncester = 0
             ancesterLv+=1
+            resetStats()
+            equipRefresh()
         }
         if experienceMechanical>=baseExUp
         {
             experienceMechanical = 0
             mechanicaLv+=1
+            resetStats()
+            equipRefresh()
         }
         if experienceAlchemy>=baseExUp
         {
             experienceAlchemy=0
             alchemyLv+=1
+            resetStats()
+            equipRefresh()
         }
         if experienceBows>=baseExUp
         {
             experienceBows=0
             bowsLv+=1
+            resetStats()
+            equipRefresh()
         }
         if experienceMartial>=baseExUp
         {
             experienceMartial=0
             martialLv+=1
+            resetStats()
+            equipRefresh()
         }
         if experienceMelee>=baseExUp
         {
             experienceMelee=0
             meleeLv+=1
             levelUpEffect()
+            resetStats()
+            equipRefresh()
         }
     }
     
@@ -522,6 +535,9 @@ class PlayerClass
     
     public func update()
     {
+        
+        //resetStats()
+        //equipRefresh()
         checkActions()
         moveTo()
         healthRe()

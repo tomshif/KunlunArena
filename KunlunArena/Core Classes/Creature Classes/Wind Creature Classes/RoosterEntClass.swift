@@ -36,7 +36,6 @@ class RoosterEntClass:EntityClass
     spriteScale=random(min: 1.5, max: 3.5)
       bodySprite.setScale(spriteScale)
     
-    
     moveSpeed=random(min: 5.7, max: 10.3)
     TURNRATE=random(min: 0.8, max: 0.8)
     attackRange=random(min: 25, max: 150)

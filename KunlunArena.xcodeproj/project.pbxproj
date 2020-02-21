@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4314BA9623E4D60A0018A07D /* HorseEntClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4314BA9523E4D60A0018A07D /* HorseEntClass.swift */; };
+		4323306C23FF31F4000375C4 /* PoisonExt.sks in Resources */ = {isa = PBXBuildFile; fileRef = 4323306B23FF31F4000375C4 /* PoisonExt.sks */; };
 		432D90D823E8C6EC00BA99F8 /* GoatEntClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432D90D723E8C6EC00BA99F8 /* GoatEntClass.swift */; };
 		432D90DA23E8C6FB00BA99F8 /* OxEntClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432D90D923E8C6FB00BA99F8 /* OxEntClass.swift */; };
 		432D90DC23E8C70600BA99F8 /* RabbitEntClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432D90DB23E8C70600BA99F8 /* RabbitEntClass.swift */; };
@@ -99,6 +100,7 @@
 
 /* Begin PBXFileReference section */
 		4314BA9523E4D60A0018A07D /* HorseEntClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HorseEntClass.swift; sourceTree = "<group>"; };
+		4323306B23FF31F4000375C4 /* PoisonExt.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = PoisonExt.sks; sourceTree = "<group>"; };
 		432D90D723E8C6EC00BA99F8 /* GoatEntClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoatEntClass.swift; sourceTree = "<group>"; };
 		432D90D923E8C6FB00BA99F8 /* OxEntClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OxEntClass.swift; sourceTree = "<group>"; };
 		432D90DB23E8C70600BA99F8 /* RabbitEntClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RabbitEntClass.swift; sourceTree = "<group>"; };
@@ -251,7 +253,6 @@
 				440E1EE423F491FF007D5700 /* quickBite.mp3 */,
 				4409EA8223FC8357009DC5E6 /* horseGrunt.mp3 */,
 				4409EA7C23FC7C66009DC5E6 /* monkey.mp3 */,
-				4480EDF823FF1A9F00AF17C2 /* shortGrunt.mp3 */,
 				4409EA7A23FC7AEA009DC5E6 /* shortOink.mp3 */,
 				440E1EE623F4959C007D5700 /* scratchQuick.mp3 */,
 				440E1EE823F4968B007D5700 /* teleport.mp3 */,
@@ -263,10 +264,7 @@
 			isa = PBXGroup;
 			children = (
 				4409EA7823FC766D009DC5E6 /* grenadeShort.mp3 */,
-				4480EDFC23FF1E7200AF17C2 /* levelUp.mp3 */,
-				4480EE0323FF26E800AF17C2 /* howlingWind.mp3 */,
 				440E1EEA23F497CE007D5700 /* flameThrower.mp3 */,
-				4480EE0123FF24DA00AF17C2 /* healing.mp3 */,
 			);
 			path = "Player Ability Sounds";
 			sourceTree = "<group>";
@@ -483,6 +481,7 @@
 				F4C775AC23F8E1120062A912 /* HowlingWindEmitter.sks */,
 				F40DE52D23FC9C950061DC92 /* JadeSplodeEmitter.sks */,
 				F40DE52F23FC9FF90061DC92 /* JadeStormEmitter.sks */,
+				4323306B23FF31F4000375C4 /* PoisonExt.sks */,
 			);
 			path = Emitters;
 			sourceTree = "<group>";
@@ -548,7 +547,6 @@
 				F473B87223EB18280088C885 /* PortalEmitter.sks in Resources */,
 				440E1EE523F491FF007D5700 /* quickBite.mp3 in Resources */,
 				4409EA7D23FC7C66009DC5E6 /* monkey.mp3 in Resources */,
-				4480EDF923FF1A9F00AF17C2 /* shortGrunt.mp3 in Resources */,
 				4409EA7923FC766D009DC5E6 /* grenadeShort.mp3 in Resources */,
 				440E1EE923F4968B007D5700 /* teleport.mp3 in Resources */,
 				F4460B7623F35F9300DDCDF6 /* dragonBiteQuick.mp3 in Resources */,
@@ -561,16 +559,14 @@
 				440E1EE723F4959C007D5700 /* scratchQuick.mp3 in Resources */,
 				F451541B23E314E900B5D04C /* To Do.rtf in Resources */,
 				F482DF08239744050063CF84 /* GameScene.sks in Resources */,
-				4480EDFD23FF1E7200AF17C2 /* levelUp.mp3 in Resources */,
 				F4C775AD23F8E1120062A912 /* HowlingWindEmitter.sks in Resources */,
 				F482DF10239744070063CF84 /* Assets.xcassets in Resources */,
 				F4AC646B23A03DF200C64D2E /* FireSplode.sks in Resources */,
-				4480EE0223FF24DA00AF17C2 /* healing.mp3 in Resources */,
 				43F34FBC23EB69CA008701F9 /* AngerIssuesEmitter.sks in Resources */,
 				440E1EEB23F497CE007D5700 /* flameThrower.mp3 in Resources */,
-				4480EE0423FF26E800AF17C2 /* howlingWind.mp3 in Resources */,
 				4C45B3A123E8C83F005C778E /* VampiricEmmiter.sks in Resources */,
 				F482DF13239744070063CF84 /* Main.storyboard in Resources */,
+				4323306C23FF31F4000375C4 /* PoisonExt.sks in Resources */,
 				44A6261523E4D0ED004ED04A /* swordsOfLightningEffect.sks in Resources */,
 				4409EA8323FC8357009DC5E6 /* horseGrunt.mp3 in Resources */,
 				4409EA7B23FC7AEA009DC5E6 /* shortOink.mp3 in Resources */,
