@@ -17,8 +17,7 @@ class ToolTipClass
     var loot:Int = -1
     var talent:Int = -1
     var ttText=SKLabelNode()
-    var ttILText=SKLabelNode()
-    var ttDText=SKLabelNode()
+
     
     
     init(theGame: GameClass)
@@ -36,46 +35,48 @@ class ToolTipClass
         ttText.text=game!.lootList[num].name
         ttText.fontColor=game!.lootList[num].itemLevelColor
         ttText.fontName="Arial"
-        ttText.fontSize=18
+        ttText.fontSize=20
         ttText.name="toolTip"
         ttText.zPosition=750
         
         let ttILText=SKLabelNode(fontNamed: "Arial")
-        ttILText.text="\(game!.lootList[num].iLevel)"
-        ttILText.fontColor=game!.lootList[num].itemLevelColor
+        ttILText.text="Item Level: \(game!.lootList[num].iLevel)"
+        ttILText.fontColor=NSColor.white
         ttILText.fontName="Arial"
         ttILText.fontSize=18
-        ttILText.name="Itemlevel"
-        ttILText.position.y = -70
+        ttILText.name="ttItemlevel"
+        ttILText.position.y = -30
         ttILText.zPosition=750
         ttText.addChild(ttILText)
        
        let ttDText=SKLabelNode(fontNamed: "Arial")
-    ttDText.text="\(game!.lootList[num].modLevel*CGFloat(game!.lootList[num].iLevel))"
-        ttDText.fontColor=game!.lootList[num].itemLevelColor
+    ttDText.text="Damage: \(game!.lootList[num].modLevel*CGFloat(game!.lootList[num].iLevel))"
+        ttDText.fontColor=NSColor.white
         ttDText.fontName="Arial"
         ttDText.fontSize=18
-        ttDText.name="Damage"
-        ttDText.position.y = -100
+        ttDText.name="ttDamage"
+        ttDText.position.y = -60
         ttDText.zPosition=750
         ttText.addChild(ttDText)
         
         
-        var ttHText=SKLabelNode()
+        let ttHText=SKLabelNode()
         
         ttHText.text=game!.lootList[num].name
-        ttHText.fontColor=game!.lootList[num].itemLevelColor
+        ttHText.fontColor=NSColor.white
         ttHText.fontName="Arial"
         ttHText.fontSize=18
-        ttHText.name="Health"
+        ttHText.name="ttSpeed"
+        ttHText.position.y = -90
+        ttHText.text="Speed: \(game!.lootList[num].attackSpeedFactor)"
         ttHText.zPosition=750
         ttText.addChild(ttHText)
         
         
         
         // create toolTip background
-        let ttBG=SKShapeNode(rectOf: CGSize(width: ttText.frame.size.width*1.25, height: ttText.frame.size.height*7.0), cornerRadius: 10)
-        ttBG.position.y = -50
+        let ttBG=SKShapeNode(rectOf: CGSize(width: ttText.frame.size.width*1.25, height: 150), cornerRadius: 10)
+        ttBG.position.y = -ttBG.frame.size.height*0.35
         ttBG.zPosition = -5
         ttBG.fillColor=NSColor.gray
         ttBG.alpha=0.65
