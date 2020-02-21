@@ -62,6 +62,29 @@ class BaseInventoryClass
 
     } // init
     
+    init(theGame: GameClass, level:Int, slot: Int)
+    {
+        // generate a completely random piece of equipment
+        game=theGame
+        // Generate the iLevel
+        iLevel=level
+        iLevelMod=CGFloat(iLevel)*1.0525
+        invSlot=slot
+        switch invSlot
+        {
+        case INVENTORYSLOTS.weapon:
+            generateWeapon(level: level)
+            
+        case INVENTORYSLOTS.head:
+            generateHead(level: level)
+            
+        default:
+            print("Inventory generation error -- invalid slot")
+            
+        } // switch
+
+    } // init
+    
     internal func generateItem(level: Int)
     {
         // Set iLevel
@@ -214,6 +237,7 @@ class BaseInventoryClass
     internal func generateHead(level: Int)
     {
         iLevel=level
+        
         
         invType=Int(random(min: 34, max: 34+(CGFloat(INVENTORYSLOTS.NUMHELMETS)-0.0000001)))
         if invType <= 47 && invType > 32
