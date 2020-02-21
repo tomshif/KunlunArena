@@ -49,7 +49,8 @@ class HorseEntClass:EntityClass
           pursueRange=attackRange
       }
         
-      entColor=NSColor(calibratedRed: random(min: 0.3, max: 0.8), green: random(min: 0.3, max: 0.6), blue: random(min: 0.1, max: 0.3), alpha: 1.0)
+        entColor=NSColor(calibratedRed: random(min: 0.4, max: 0.97), green: random(min: 0.3, max: 0.37), blue: random(min: 0.1, max: 0.3), alpha: 1.0)
+        
       bodySprite.color=entColor
       headSprite.color=entColor
       tailSprite.color=entColor
