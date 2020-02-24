@@ -337,6 +337,9 @@ class PlayerClass
     
     public func equipRefresh()
     {
+        
+        // refresh for equipped weapon
+        
         if equippedWeapon!.rarity > 1
         {
             if equippedWeapon!.effects % suffixEffects.STRENGTH == 0
@@ -414,6 +417,91 @@ class PlayerClass
                        strength = CGFloat(15 + playerLevel*5) + equippedWeapon!.statsMod
                    }
         } // if better than common quality
+        
+        // refresh for equipped helmet
+        if equippedHelmet != nil
+        {
+            if equippedHelmet!.rarity > 1
+            {
+                if equippedHelmet!.effects % suffixEffects.STRENGTH == 0
+                {
+                    strength += equippedHelmet!.statsMod
+                }
+                else if equippedHelmet!.effects % suffixEffects.QUICKNESS == 0
+                {
+                    quickness += equippedHelmet!.statsMod
+                }
+                else if equippedHelmet!.effects % suffixEffects.WISDOM == 0
+                {
+                    wisdom += equippedHelmet!.statsMod
+                }
+                else if equippedHelmet!.effects % suffixEffects.HEALTH == 0
+                {
+                    maxHealth += equippedHelmet!.statsMod
+                }
+                else if equippedHelmet!.effects % suffixEffects.MANA == 0
+                {
+                    maxMana += equippedHelmet!.statsMod
+                }
+                else if equippedHelmet!.effects % suffixEffects.HEALTHREGEN == 0
+                {
+                    healthRegen += equippedHelmet!.statsMod/100
+                }
+                else if equippedHelmet!.effects % suffixEffects.MANAREGEN == 0
+                {
+                    manaRegen += equippedHelmet!.statsMod/100
+                }
+                else if equippedHelmet!.effects % suffixEffects.MOVESPEED == 0
+                {
+                    moveSpeed += equippedHelmet!.statsMod/100
+                }
+                else if equippedHelmet!.effects % suffixEffects.CRITICAL == 0
+                {
+                    critChance += equippedHelmet!.statsMod
+                }
+                
+                
+                if equippedHelmet!.effects % suffixEffects.CRITICAL == 0
+                {
+                    critChance += equippedHelmet!.statsMod
+                }
+                else if equippedHelmet!.effects % suffixEffects.MOVESPEED == 0
+                       {
+                        moveSpeed += equippedHelmet!.statsMod/100
+                       }
+                else if equippedHelmet!.effects % suffixEffects.MANAREGEN == 0
+                       {
+                        manaRegen += equippedHelmet!.statsMod/100
+                       }
+                else if equippedHelmet!.effects % suffixEffects.HEALTHREGEN == 0
+                       {
+                        healthRegen += equippedHelmet!.statsMod/100
+                       }
+                else if equippedHelmet!.effects % suffixEffects.MANA == 0
+                     {
+                         maxMana += equippedHelmet!.statsMod
+                     }
+                else if equippedHelmet!.effects % suffixEffects.HEALTH == 0
+                {
+                    maxHealth += equippedHelmet!.statsMod
+                }
+                else if equippedHelmet!.effects % suffixEffects.WISDOM == 0
+                       {
+                           wisdom += equippedHelmet!.statsMod
+                       }
+                else if equippedHelmet!.effects % suffixEffects.QUICKNESS == 0
+                       {
+                           quickness += equippedHelmet!.statsMod
+                       }
+                else if equippedHelmet!.effects % suffixEffects.STRENGTH == 0
+                       {
+                           strength += equippedHelmet!.statsMod
+                       }
+
+            } // if better than common quality
+            // adjust damage resist
+            damageReduction = ((equippedHelmet!.modLevel*(CGFloat(equippedHelmet!.iLevelMod)))-(2*CGFloat(computePlayerLevel())))/100
+        } // if we're wearing a helmet
     } // equipRefresh
     public func receiveEX(experienceGain:CGFloat=100) //100 is temp
     {

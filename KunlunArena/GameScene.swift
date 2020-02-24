@@ -590,7 +590,7 @@ class GameScene: SKScene {
             itemSpeedLabel2.color=NSColor.white
             itemSpeedLabel2.fontSize=20
             itemSpeedLabel2.zPosition=10010
-            itemSpeedLabel2.text=String(format: "Damage Reduction: %1.2f", game.player!.equippedHelmet!.attackSpeedFactor)
+            itemSpeedLabel2.text=String(format: "Damage Reduction: %1.2f%%", game.player!.damageReduction*100)
             itemScreen.addChild(itemSpeedLabel2)
             
 
@@ -1134,7 +1134,7 @@ class GameScene: SKScene {
         case 29: // 0 -- generate new weapon
             if gameState==STATES.ITEM
             {
-                game.player!.equippedWeapon=BaseInventoryClass(theGame: game, level: game.player!.equippedWeapon!.iLevel, slot: INVENTORYSLOTS.weapon)
+                game.player!.equippedHelmet=BaseInventoryClass(theGame: game, level: game.player!.computePlayerLevel(), slot: INVENTORYSLOTS.head)
                 game.player!.resetStats()
                 game.player!.equipRefresh()
                 updateItemScreen()
