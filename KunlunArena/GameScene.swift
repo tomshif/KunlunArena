@@ -57,6 +57,9 @@ class GameScene: SKScene {
     let levelNext6=SKLabelNode(fontNamed: "Arial")
     let playerLevelLabel=SKLabelNode(fontNamed: "Arial")
     let playerKillLabel=SKLabelNode(fontNamed: "Arial")
+    let playerDeathsLabel=SKLabelNode(fontNamed: "Arial")
+    let playerDamageLabel=SKLabelNode(fontNamed: "Arial")
+    let playerHealingLabel=SKLabelNode(fontNamed: "Arial")
     
     
     
@@ -393,6 +396,25 @@ class GameScene: SKScene {
         playerKillLabel.position.y=xpScreen.size.height*0.25
         playerKillLabel.zPosition=15
         xpScreen.addChild(playerKillLabel)
+        
+        playerDeathsLabel.position.x=xpScreen.size.width*0.35
+        playerDeathsLabel.fontSize=20
+        playerDeathsLabel.position.y=xpScreen.size.height*0.2
+        playerDeathsLabel.zPosition=15
+        xpScreen.addChild(playerDeathsLabel)
+        
+        playerDamageLabel.position.x=xpScreen.size.width*0.35
+        playerDamageLabel.fontSize=20
+        playerDamageLabel.position.y=xpScreen.size.height*0.15
+        playerDamageLabel.zPosition=15
+        xpScreen.addChild(playerDamageLabel)
+        
+        playerHealingLabel.position.x=xpScreen.size.width*0.35
+        playerHealingLabel.fontSize=20
+        playerHealingLabel.position.y=xpScreen.size.height*0.10
+        playerHealingLabel.zPosition=15
+        xpScreen.addChild(playerHealingLabel)
+        
         // Setup the player sprite (needs to be moved to PlayerClass init)
         
         
@@ -1581,6 +1603,7 @@ class GameScene: SKScene {
     {
         if game.player!.health < 0
         {
+            game.player!.playerDeathCount += 1
             // player is dead, respawn in the hub
             removeMap()
             MAPSIZE=Int(random(min:28, max: 28))
@@ -1642,6 +1665,9 @@ class GameScene: SKScene {
         // update player stats
         playerLevelLabel.text = "Player Level: \(player.computePlayerLevel())"
         playerKillLabel.text = "Enemies killed: \(player.enemyKillCount)"
+        playerDeathsLabel.text="Player Deaths: \(player.playerDeathCount)"
+        playerDamageLabel.text=String(format: "Damage: %2.0f", player.playerDamageCount)
+        playerHealingLabel.text=String(format: "Healing: %2.0f",player.playerHealingCount)
     }
     
     func checkPortalHome()

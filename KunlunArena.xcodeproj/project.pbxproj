@@ -36,8 +36,6 @@
 		44A6261523E4D0ED004ED04A /* swordsOfLightningEffect.sks in Resources */ = {isa = PBXBuildFile; fileRef = 44A6261423E4D0ED004ED04A /* swordsOfLightningEffect.sks */; };
 		44B8DBBA23DA2D30002BA761 /* SnakeEntClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B8DBB923DA2D30002BA761 /* SnakeEntClass.swift */; };
 		44C697A223DF768B004CCE49 /* PlayerClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C697A123DF768B004CCE49 /* PlayerClass.swift */; };
-		44F06C7D24045BA000CF8854 /* healing.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 44F06C7C24045BA000CF8854 /* healing.mp3 */; };
-		44F06C7F24045BA700CF8854 /* howlingWind.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 44F06C7E24045BA700CF8854 /* howlingWind.mp3 */; };
 		44F62E7423DA451B004C8469 /* SwordsOfLightningTalentClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F62E7323DA451B004C8469 /* SwordsOfLightningTalentClass.swift */; };
 		4C34DF6923F358AB0056EC77 /* levelUp.sks in Resources */ = {isa = PBXBuildFile; fileRef = 4C34DF6823F358AB0056EC77 /* levelUp.sks */; };
 		4C45B38E23E22FBF005C778E /* AngerIssuesTalentClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C45B38D23E22FBF005C778E /* AngerIssuesTalentClass.swift */; };
@@ -130,8 +128,6 @@
 		44A6261423E4D0ED004ED04A /* swordsOfLightningEffect.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = swordsOfLightningEffect.sks; sourceTree = "<group>"; };
 		44B8DBB923DA2D30002BA761 /* SnakeEntClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnakeEntClass.swift; sourceTree = "<group>"; };
 		44C697A123DF768B004CCE49 /* PlayerClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerClass.swift; sourceTree = "<group>"; };
-		44F06C7C24045BA000CF8854 /* healing.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = healing.mp3; path = "../../../../Sound Effects/Player Abilities/healing.mp3"; sourceTree = "<group>"; };
-		44F06C7E24045BA700CF8854 /* howlingWind.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = howlingWind.mp3; path = "../../../../Sound Effects/Player Abilities/howlingWind.mp3"; sourceTree = "<group>"; };
 		44F62E7323DA451B004C8469 /* SwordsOfLightningTalentClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwordsOfLightningTalentClass.swift; sourceTree = "<group>"; };
 		4C34DF6823F358AB0056EC77 /* levelUp.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = levelUp.sks; sourceTree = "<group>"; };
 		4C45B38D23E22FBF005C778E /* AngerIssuesTalentClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AngerIssuesTalentClass.swift; sourceTree = "<group>"; };
@@ -268,8 +264,6 @@
 			isa = PBXGroup;
 			children = (
 				4409EA7823FC766D009DC5E6 /* grenadeShort.mp3 */,
-				44F06C7E24045BA700CF8854 /* howlingWind.mp3 */,
-				44F06C7C24045BA000CF8854 /* healing.mp3 */,
 				440E1EEA23F497CE007D5700 /* flameThrower.mp3 */,
 			);
 			path = "Player Ability Sounds";
@@ -552,7 +546,6 @@
 			files = (
 				F473B87223EB18280088C885 /* PortalEmitter.sks in Resources */,
 				440E1EE523F491FF007D5700 /* quickBite.mp3 in Resources */,
-				44F06C7F24045BA700CF8854 /* howlingWind.mp3 in Resources */,
 				4409EA7D23FC7C66009DC5E6 /* monkey.mp3 in Resources */,
 				4409EA7923FC766D009DC5E6 /* grenadeShort.mp3 in Resources */,
 				440E1EE923F4968B007D5700 /* teleport.mp3 in Resources */,
@@ -564,7 +557,6 @@
 				F40DE52E23FC9C950061DC92 /* JadeSplodeEmitter.sks in Resources */,
 				4C45B39023E23160005C778E /* GhostDodgeEmitter.sks in Resources */,
 				440E1EE723F4959C007D5700 /* scratchQuick.mp3 in Resources */,
-				44F06C7D24045BA000CF8854 /* healing.mp3 in Resources */,
 				F451541B23E314E900B5D04C /* To Do.rtf in Resources */,
 				F482DF08239744050063CF84 /* GameScene.sks in Resources */,
 				F4C775AD23F8E1120062A912 /* HowlingWindEmitter.sks in Resources */,

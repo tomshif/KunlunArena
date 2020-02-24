@@ -67,7 +67,11 @@ class PlayerClass
     var lastAction=NSDate()
     
     
+    var playerDeathCount:Int=0
     var enemyKillCount:Int=0
+    var playerDamageCount:CGFloat=0
+    var playerHealingCount:CGFloat=0
+    
     
     let BASEREGENMANA:CGFloat=3
     let BASEREGENHEALTH:CGFloat=2.0
@@ -328,7 +332,7 @@ class PlayerClass
     {
 
         health += amount
-
+        game!.player!.playerHealingCount += amount
         
         // create a flash effect to indicate it got hit
         game!.floatText!.healLabel(amount: amount, player: self)

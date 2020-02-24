@@ -260,7 +260,7 @@ class EntityClass
         else
         {
                 
-        
+            game!.player!.playerDamageCount += amount
             print("Health: \(health)")
             health -= amount*(1-damageReduction)
             print("\(amount) reduced to \(amount*(1-damageReduction))")
@@ -282,6 +282,7 @@ class EntityClass
                 tempBlood.run(SKAction.sequence([SKAction.move(by: CGVector(dx: adx, dy: ady), duration: 0.4), SKAction.wait(forDuration: 2.0), SKAction.fadeOut(withDuration: 0.5), SKAction.removeFromParent()]))
                 tempBlood.name="bloodSplatter"
                 game!.scene!.addChild(tempBlood)
+                
             } // for
             
         } // if not jade
