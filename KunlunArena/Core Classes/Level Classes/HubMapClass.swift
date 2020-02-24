@@ -161,7 +161,7 @@ class HubMapClass:MapClass
          let earthEmitter=SKEmitterNode(fileNamed: "PortalEmitter.sks")
         earthEmitter!.particleColorBlendFactor=1
         earthEmitter!.particleColorSequence=nil
-        earthEmitter!.particleColor=NSColor.brown
+        earthEmitter!.particleColor=NSColor.black
         earthEmitter!.position=earthPortal.position
         earthEmitter!.zPosition=7
         earthEmitter!.setScale(1.5)
@@ -173,7 +173,7 @@ class HubMapClass:MapClass
         firePortal.position.y = (3*firePortal.size.height)
         firePortal.position.x = 0
         firePortal.zPosition=5
-        firePortal.alpha=0.3
+        firePortal.alpha=0.6
         firePortal.name="hubFirePortal"
         firePortal.colorBlendFactor=1.0
         firePortal.color=NSColor.red
@@ -183,7 +183,7 @@ class HubMapClass:MapClass
          let fireEmitter=SKEmitterNode(fileNamed: "PortalEmitter.sks")
         fireEmitter!.particleColorBlendFactor=1
         fireEmitter!.particleColorSequence=nil
-        fireEmitter!.particleColor=NSColor.red
+        fireEmitter!.particleColor=NSColor.orange
         fireEmitter!.position=firePortal.position
         fireEmitter!.zPosition=7
         fireEmitter!.setScale(1.5)
@@ -212,6 +212,17 @@ class HubMapClass:MapClass
         windEmitter!.name="hubWindEmitter"
         scene!.addChild(windEmitter!)
         
+        // get rid up end portal
+        for node in scene!.self.children
+        {
+            if node.name != nil
+            {
+                if node.name!.contains("end")
+                {
+                    node.removeFromParent()
+                }
+            }
+        }
      } // func createMap()
 
     

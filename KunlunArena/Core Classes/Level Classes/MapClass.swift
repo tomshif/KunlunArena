@@ -581,7 +581,40 @@ class MapClass
                 } // switch
             } // for x
         } // for y
+        
+
+        
     } // func drawMap()
+    
+    public func createPortal()
+    {
+        // draw portal back to hub
+            let hubPortal=SKSpriteNode(imageNamed: "portalIcon")
+            hubPortal.setScale(4.0)
+        hubPortal.position.y = (CGFloat((roomPoints[endRoomIndex].y+2)*96) - (CGFloat(mapWidth)*48))
+        hubPortal.position.x = (CGFloat((roomPoints[endRoomIndex].x+2)*96) - (CGFloat(mapWidth)*48))
+            
+        
+
+        
+            hubPortal.zPosition=5
+            hubPortal.alpha=0.3
+            hubPortal.name="endPortal"
+            hubPortal.colorBlendFactor=1.0
+            hubPortal.color=NSColor.green
+            scene!.addChild(hubPortal)
+        hubPortal.run(SKAction.repeatForever(SKAction.sequence([SKAction.rotate(toAngle: CGFloat.pi/12, duration: 0.25),SKAction.rotate(toAngle: -CGFloat.pi/12, duration: 0.25)])))
+            
+             let hubEmitter=SKEmitterNode(fileNamed: "PortalEmitter.sks")
+            hubEmitter!.particleColorBlendFactor=1
+            hubEmitter!.particleColorSequence=nil
+            hubEmitter!.particleColor=NSColor.yellow
+            hubEmitter!.position=hubPortal.position
+            hubEmitter!.zPosition=7
+            hubEmitter!.setScale(1.5)
+            hubEmitter!.name="endEmitter"
+            scene!.addChild(hubEmitter!)
+    }
     
     internal func convertXY(x: Int, y:Int) -> Int
     {

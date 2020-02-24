@@ -1439,6 +1439,8 @@ class GameScene: SKScene {
         game.map!.miniMap!.removeAllChildren()
         
         tempMap=MapClass(width: MAPSIZE, height: MAPSIZE, theScene: self, theGame:game,type:MapTypes.fire)
+        tempMap!.createPortal()
+        
         NUMENEMIES=MAPSIZE*MAPSIZE/tempMap!.ENTSPAWNFACTOR
         game.lootList.removeAll()
         game.lootCounter=0
@@ -1470,6 +1472,8 @@ class GameScene: SKScene {
         game.map!.miniMap!.removeAllChildren()
         
         tempMap=MapClass(width: MAPSIZE, height: MAPSIZE, theScene: self, theGame:game, type: MapTypes.earth)
+        tempMap!.createPortal()
+        
         NUMENEMIES=MAPSIZE*MAPSIZE/tempMap!.ENTSPAWNFACTOR
         game.lootList.removeAll()
         game.lootCounter=0
@@ -1497,6 +1501,7 @@ class GameScene: SKScene {
         game.map!.miniMap!.removeAllChildren()
         
         tempMap=MapClass(width: MAPSIZE, height: MAPSIZE, theScene: self, theGame:game, type: MapTypes.wind)
+        tempMap!.createPortal()
         NUMENEMIES=MAPSIZE*MAPSIZE/tempMap!.ENTSPAWNFACTOR
         game.lootList.removeAll()
         game.lootCounter=0
@@ -1636,6 +1641,20 @@ class GameScene: SKScene {
         playerKillLabel.text = "Enemies killed: \(player.enemyKillCount)"
     }
     
+    func checkPortalHome()
+    {
+        for node in nodes(at: game.player!.playerSprite!.position)
+        {
+            if node.name != nil
+            {
+                if node.name!.contains("endPortal")
+                {
+                    player.health = -10000
+                }
+            }
+        }
+    }
+    
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
         
@@ -1687,6 +1706,7 @@ class GameScene: SKScene {
             if gameState==STATES.FIGHT
             {
                 checkPlayerDeath()
+                checkPortalHome()
             }
             for ent in game.entList
             {
