@@ -38,4 +38,8 @@ struct MapTypes
     static let PigBoss:Int=23
     static let DragonBoss:Int=24
     
+    static let earth:Int=0
+    static let wind:Int=1
+    static let fire:Int=2
+    
 }
