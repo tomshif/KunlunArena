@@ -20,8 +20,6 @@ class PigEntClass:EntityClass
       headNum=3
       bodyNum=3
       tailNum=3
-      leftNum=3
-      rightNum=3
 
       headID=Int(random(min: 0, max: CGFloat(headNum)-0.000000001))
       bodyID=Int(random(min: 0, max: CGFloat(bodyNum)-0.000000001))

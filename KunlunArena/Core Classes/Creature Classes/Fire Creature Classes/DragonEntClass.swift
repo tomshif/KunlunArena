@@ -32,7 +32,6 @@ class DragonEntClass:EntityClass
       tailSprite.texture=SKTexture(imageNamed: "\(spriteNamePrefix)Tail0\(tailID)")
     leftSprite.texture=SKTexture(imageNamed: "\(spriteNamePrefix)Left0\(leftID)")
     rightSprite.texture=SKTexture(imageNamed: "\(spriteNamePrefix)Right0\(rightID)")
-      spriteScale=random(min: 1.5, max: 3.5)
       bodySprite.setScale(spriteScale)
     
     
