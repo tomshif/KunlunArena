@@ -462,6 +462,9 @@ class GameScene: SKScene {
         case MapTypes.Snake:
             tempEnt=SnakeEntClass(theGame: game, id: game.entCount)
             print("Spawn Snake")
+        case MapTypes.Dog:
+            tempEnt=DogEntClass(theGame: game, id: game.entCount)
+            print("Spawn Dog")
         case MapTypes.Pig:
             tempEnt=PigEntClass(theGame: game, id: game.entCount)
             print("Spawn Pig")
