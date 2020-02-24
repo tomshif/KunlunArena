@@ -62,7 +62,7 @@ class MapClass
         var playerArrow=SKSpriteNode(imageNamed: "smallRedArrow")
     
     
-    init(width:Int, height:Int, theScene: GameScene, theGame:GameClass)
+    init(width:Int, height:Int, theScene: GameScene, theGame:GameClass, type: Int)
     {
         scene=theScene // a pointer to our scene
         game=theGame
@@ -89,8 +89,8 @@ class MapClass
             } // for x
         } // for y
 
-        floorType=Int(random(min: 0, max: 3.999999999))
-            
+        //floorType=Int(random(min: 0, max: 3.999999999))
+        floorType=type
         // create the map
         createMap()
         
@@ -452,10 +452,10 @@ class MapClass
         var wallString:String=""
         switch floorType
         {
-        case 0:
+        case MapTypes.fire:
             wallString="wall"
             
-        case 1:
+        case MapTypes.earth:
             wallString="yellowWall"
             
         default:
@@ -505,12 +505,12 @@ class MapClass
                     
                     let tempFloor=SKSpriteNode(imageNamed: "stoneFloor00")
                     tempFloor.lightingBitMask=1
-                    if floorType==1
+                    if floorType==MapTypes.earth
                     {
                         tempFloor.texture=SKTexture(imageNamed: "dirtFloor00")
                         scene!.myLight.lightColor=NSColor(calibratedRed: 0.6, green: 1.0, blue: 1.0, alpha: 1.0)
                     }
-                    else if floorType==2
+                    else if floorType==MapTypes.fire
                     {
                         let floorType:CGFloat=random(min: 0, max: 90)
                             var suffixFloor:String=""

@@ -11,9 +11,9 @@ import SpriteKit
 
 class HubMapClass:MapClass
 {
-    override init(width:Int, height:Int, theScene: GameScene, theGame:GameClass)
+    override init(width:Int, height:Int, theScene: GameScene, theGame:GameClass, type: Int)
     {
-        super.init(width: width, height: height, theScene: theScene, theGame: theGame)
+        super.init(width: width, height: height, theScene: theScene, theGame: theGame, type: type)
         scene=theScene // a pointer to our scene
         game=theGame
         mapWidth=width
@@ -189,6 +189,28 @@ class HubMapClass:MapClass
         fireEmitter!.setScale(1.5)
         fireEmitter!.name="hubFireEmitter"
         scene!.addChild(fireEmitter!)
+    
+        let windPortal=SKSpriteNode(imageNamed: "portalIcon")
+        windPortal.setScale(4.0)
+        windPortal.position.y = 0
+        windPortal.position.x = (5*earthPortal.size.width)
+        windPortal.zPosition=5
+        windPortal.alpha=0.3
+        windPortal.name="hubWindPortal"
+        windPortal.colorBlendFactor=1.0
+        windPortal.color=NSColor.blue
+        scene!.addChild(windPortal)
+    windPortal.run(SKAction.repeatForever(SKAction.sequence([SKAction.rotate(toAngle: CGFloat.pi/12, duration: 0.25),SKAction.rotate(toAngle: -CGFloat.pi/12, duration: 0.25)])))
+        
+         let windEmitter=SKEmitterNode(fileNamed: "PortalEmitter.sks")
+        windEmitter!.particleColorBlendFactor=1
+        windEmitter!.particleColorSequence=nil
+        windEmitter!.particleColor=NSColor.systemTeal
+        windEmitter!.position=windPortal.position
+        windEmitter!.zPosition=7
+        windEmitter!.setScale(1.5)
+        windEmitter!.name="hubWindEmitter"
+        scene!.addChild(windEmitter!)
         
      } // func createMap()
 

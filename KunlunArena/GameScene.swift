@@ -147,7 +147,7 @@ class GameScene: SKScene {
         self.backgroundColor=NSColor.black
         
         // Gen Map
-        tempMap=HubMapClass(width: MAPSIZE, height: MAPSIZE, theScene: self, theGame:game)
+        tempMap=HubMapClass(width: MAPSIZE, height: MAPSIZE, theScene: self, theGame:game, type: MapTypes.wind)
         
         
         NUMENEMIES=MAPSIZE*MAPSIZE/tempMap!.ENTSPAWNFACTOR
@@ -426,11 +426,52 @@ class GameScene: SKScene {
         
     } // didMove()
     
-    func spawnEnemy()
+    func spawnEnemy(type: Int)
     {
 
-        let tempEntSnake=DragonEntClass(theGame: game, id: game.entCount)
+        //let tempEntSnake=DragonEntClass(theGame: game, id: game.entCount)
 
+        var tempEnt=EntityClass()
+        
+        switch type
+        {
+        case MapTypes.Rat:
+            tempEnt=RatEntClass(theGame: game, id: game.entCount)
+            print("Spawn Rat")
+        case MapTypes.Goat:
+            tempEnt=GoatEntClass(theGame: game, id: game.entCount)
+            print("Spawn Goat")
+        case MapTypes.Monkey:
+                tempEnt=MonkeyEntClass(theGame: game, id: game.entCount)
+            print("Spawn Monkey")
+        case MapTypes.Ox:
+            tempEnt=OxEntClass(theGame: game, id: game.entCount)
+            print("Spawn Ox")
+        case MapTypes.Horse:
+                tempEnt=HorseEntClass(theGame: game, id: game.entCount)
+            print("Spawn Horse")
+        case MapTypes.Rabbit:
+            tempEnt=RabbitEntClass(theGame: game, id: game.entCount)
+            print("Spawn Rabbit")
+        case MapTypes.Rooster:
+            tempEnt=RoosterEntClass(theGame: game, id: game.entCount)
+            print("Spawn Rooster")
+        case MapTypes.Tiger:
+            tempEnt=TigerEntClass(theGame: game, id: game.entCount)
+            print("Spawn Tiger")
+        case MapTypes.Snake:
+            tempEnt=SnakeEntClass(theGame: game, id: game.entCount)
+            print("Spawn Snake")
+        case MapTypes.Pig:
+            tempEnt=PigEntClass(theGame: game, id: game.entCount)
+            print("Spawn Pig")
+        case MapTypes.Dragon:
+            tempEnt=DragonEntClass(theGame: game, id: game.entCount)
+            print("Spawn Dragon")
+        default:
+            print("*** Invalid Spawn Type ***")
+        }
+        
         var goodSpawn:Bool=false
         var xp:CGFloat=0
         var yp:CGFloat=0
@@ -456,9 +497,9 @@ class GameScene: SKScene {
             } // for each node at the spot
         } // while we're looking for a good spawn point
 
-        tempEntSnake.bodySprite.position.x=xp
-        tempEntSnake.bodySprite.position.y=yp
-        game.entList.append(tempEntSnake)
+        tempEnt.bodySprite.position.x=xp
+        tempEnt.bodySprite.position.y=yp
+        game.entList.append(tempEnt)
         game.entCount+=1
         
     } // func spawnEnemy()
@@ -582,7 +623,7 @@ class GameScene: SKScene {
             itemDamageLabel2.color=NSColor.white
             itemDamageLabel2.fontSize=20
             itemDamageLabel2.zPosition=10010
-            itemDamageLabel2.text=String(format: "Armor rating: %2.2f", game.player!.equippedHelmet!.modLevel*game.player!.equippedHelmet!.iLevelMod)
+            itemDamageLabel2.text=String(format: "Armor rating: %2.0f", game.player!.equippedHelmet!.modLevel*game.player!.equippedHelmet!.iLevelMod)
             itemScreen.addChild(itemDamageLabel2)
             
             let itemSpeedLabel2=SKLabelNode(fontNamed: "Tahoma")
@@ -1000,8 +1041,6 @@ class GameScene: SKScene {
         case 13: // w
             upPressed=true
             
-        case 14: // e
-            attack()
             
         case 8: // c - Character XP
             xpScreen.isHidden.toggle()
@@ -1210,7 +1249,7 @@ class GameScene: SKScene {
             MAPSIZE=Int(random(min:64, max: 96))
             game.map!.miniMap!.removeAllChildren()
             
-            tempMap=MapClass(width: MAPSIZE, height: MAPSIZE, theScene: self, theGame:game)
+            tempMap=MapClass(width: MAPSIZE, height: MAPSIZE, theScene: self, theGame:game, type: MapTypes.fire)
             NUMENEMIES=MAPSIZE*MAPSIZE/tempMap!.ENTSPAWNFACTOR
             game.lootList.removeAll()
             game.lootCounter=0
@@ -1221,7 +1260,7 @@ class GameScene: SKScene {
             // create a bunch of temp entities
             for _ in 1...NUMENEMIES
             {
-                spawnEnemy()
+                spawnEnemy(type: 0)
             } // for
             
             game.map=tempMap
@@ -1235,7 +1274,12 @@ class GameScene: SKScene {
         case 46:
             game.map!.miniMap!.isHidden.toggle()
 
-
+        case 47: // . - add 1000 xp
+            game.player!.receiveEX(experienceGain: 1000)
+        case 65:
+            attack()
+        case 76:
+            game.player!.health = -10000
 
         default:
             print("keyDown: \(event.characters!) keyCode: \(event.keyCode)")
@@ -1264,6 +1308,7 @@ class GameScene: SKScene {
             
             case 49: // space - Attack lock
                 game.player!.isInAttackMode=false
+
         default:
             break
         } // switch keyCode
@@ -1393,7 +1438,7 @@ class GameScene: SKScene {
         MAPSIZE=Int(random(min:64, max: 96))
         game.map!.miniMap!.removeAllChildren()
         
-        tempMap=MapClass(width: MAPSIZE, height: MAPSIZE, theScene: self, theGame:game)
+        tempMap=MapClass(width: MAPSIZE, height: MAPSIZE, theScene: self, theGame:game,type:MapTypes.fire)
         NUMENEMIES=MAPSIZE*MAPSIZE/tempMap!.ENTSPAWNFACTOR
         game.lootList.removeAll()
         game.lootCounter=0
@@ -1401,10 +1446,15 @@ class GameScene: SKScene {
         player.playerSprite!.position.y = CGFloat(tempMap!.roomPoints[tempMap!.startRoomIndex].y)*tempMap!.TILESIZE - (CGFloat(tempMap!.mapHeight)*tempMap!.TILESIZE)/2
         
         
-        // create a bunch of temp entities
+        // create a bunch of entities
+        
+        // Choose enemy type
+        
+        let entType=Int(random(min: 9, max: 12.9999999999))
+        
         for _ in 1...NUMENEMIES
         {
-            spawnEnemy()
+            spawnEnemy(type: entType)
         } // for
         
         game.map=tempMap
@@ -1419,24 +1469,51 @@ class GameScene: SKScene {
         MAPSIZE=Int(random(min:64, max: 96))
         game.map!.miniMap!.removeAllChildren()
         
-        tempMap=MapClass(width: MAPSIZE, height: MAPSIZE, theScene: self, theGame:game)
+        tempMap=MapClass(width: MAPSIZE, height: MAPSIZE, theScene: self, theGame:game, type: MapTypes.earth)
         NUMENEMIES=MAPSIZE*MAPSIZE/tempMap!.ENTSPAWNFACTOR
         game.lootList.removeAll()
         game.lootCounter=0
         player.playerSprite!.position.x = CGFloat(tempMap!.roomPoints[tempMap!.startRoomIndex].x)*tempMap!.TILESIZE - (CGFloat(tempMap!.mapWidth)*tempMap!.TILESIZE) / 2
         player.playerSprite!.position.y = CGFloat(tempMap!.roomPoints[tempMap!.startRoomIndex].y)*tempMap!.TILESIZE - (CGFloat(tempMap!.mapHeight)*tempMap!.TILESIZE)/2
         
-        
+        let entType=Int(random(min: 1, max: 4.9999999999))
         // create a bunch of temp entities
         for _ in 1...NUMENEMIES
         {
-            spawnEnemy()
+            spawnEnemy(type: entType)
         } // for
         
         game.map=tempMap
         
     } // spawnEarthMap()
     
+    func spawnWindMap()
+    {
+        // This will need to be modified for different earth maps (Rat, Goat, Monkey, Ox)
+        
+        gameState=STATES.FIGHT
+        removeMap()
+        MAPSIZE=Int(random(min:64, max: 96))
+        game.map!.miniMap!.removeAllChildren()
+        
+        tempMap=MapClass(width: MAPSIZE, height: MAPSIZE, theScene: self, theGame:game, type: MapTypes.wind)
+        NUMENEMIES=MAPSIZE*MAPSIZE/tempMap!.ENTSPAWNFACTOR
+        game.lootList.removeAll()
+        game.lootCounter=0
+        player.playerSprite!.position.x = CGFloat(tempMap!.roomPoints[tempMap!.startRoomIndex].x)*tempMap!.TILESIZE - (CGFloat(tempMap!.mapWidth)*tempMap!.TILESIZE) / 2
+        player.playerSprite!.position.y = CGFloat(tempMap!.roomPoints[tempMap!.startRoomIndex].y)*tempMap!.TILESIZE - (CGFloat(tempMap!.mapHeight)*tempMap!.TILESIZE)/2
+        
+        let entType=Int(random(min: 5, max: 8.9999999999))
+
+        // create a bunch of temp entities
+        for _ in 1...NUMENEMIES
+        {
+            spawnEnemy(type: entType)
+        } // for
+        
+        game.map=tempMap
+        
+    } // spawnEarthMap()
     
     func checkHubPortals()
     {
@@ -1451,6 +1528,10 @@ class GameScene: SKScene {
                 else if node.name!.contains("hubFirePortal")
                 {
                     spawnFireMap()
+                }
+                else if node.name!.contains("hubWindPorta")
+                {
+                    spawnWindMap()
                 }
             } // if it's not nil
         } // for each node at the player's position
@@ -1495,7 +1576,7 @@ class GameScene: SKScene {
             // player is dead, respawn in the hub
             removeMap()
             MAPSIZE=Int(random(min:28, max: 28))
-            tempMap=HubMapClass(width: MAPSIZE, height: MAPSIZE, theScene: self, theGame:game)
+            tempMap=HubMapClass(width: MAPSIZE, height: MAPSIZE, theScene: self, theGame:game, type: MapTypes.fire)
 
             game.map=tempMap
 
