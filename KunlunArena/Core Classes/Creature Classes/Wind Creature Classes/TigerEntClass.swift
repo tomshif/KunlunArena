@@ -49,7 +49,10 @@ class TigerEntClass:EntityClass
         pursueRange=attackRange
     }
       
-    entColor=NSColor(calibratedRed: random(min: 0.97, max: 1.0), green: random(min: 0.1, max: 0.2), blue: random(min: 0.4, max: 0.6), alpha: 1.0)
+    entColor=NSColor(calibratedRed: random(min: 0.97, max: 1.0), green: random(min: 0.32, max: 0.37), blue: random(min: 0.14, max: 0.26), alpha: 1.0)
+    
+    // entColor=NSColor(calibratedRed: random(min: 0.97, max: 1.0), green: random(min: 0.1, max: 0.2), blue: random(min: 0.4, max: 0.6), alpha: 1.0)
+    // this code makes the Tigers Hot pink if this wants to be added back in
     
     bodySprite.color=entColor
     headSprite.color=entColor
