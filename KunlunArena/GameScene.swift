@@ -1680,9 +1680,9 @@ class GameScene: SKScene {
                 {
                     player.health = -10000
                 }
-            }
-        }
-    }
+            } // if not nil
+        } // for
+    } // checkPortalHome()
     
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered

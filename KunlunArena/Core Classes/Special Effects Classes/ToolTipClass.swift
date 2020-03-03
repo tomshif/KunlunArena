@@ -50,7 +50,7 @@ class ToolTipClass
         ttText.addChild(ttILText)
        
        let ttDText=SKLabelNode(fontNamed: "Arial")
-    ttDText.text="Damage: \(game!.lootList[num].modLevel*CGFloat(game!.lootList[num].iLevel))"
+        ttDText.text=String(format: "Damage: %2.2f", game!.lootList[num].modLevel*CGFloat(game!.lootList[num].iLevel))
         ttDText.fontColor=NSColor.white
         ttDText.fontName="Arial"
         ttDText.fontSize=18
